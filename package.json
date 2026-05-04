@@ -1,7 +1,7 @@
 {
 	"name": "neostation-web",
 	"type": "module",
-	"version": "0.7.5",
+	"version": "0.7.7",
 	"private": false,
 	"scripts": {
 		"dev": "astro dev --host",

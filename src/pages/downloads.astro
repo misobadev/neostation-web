@@ -111,6 +111,60 @@ const platforms = [
     note: "If blocked by system, go to System Settings > Privacy & Security and click 'Open Anyway'.",
   },
 ];
+
+const systemRequirements = [
+  {
+    platform: "Android",
+    icon: "simple-icons:android",
+    minCpu: "Cortex-A53 / A55 @ 1.5 GHz",
+    cores: "4 Cores",
+    minRam: "2 GB",
+    recRam: "3–4 GB",
+    minGpu: "Mali-G31 / Adreno 3xx",
+    notes:
+      "With 1 GB, the OS leaves ~400 MB free; the app requires more for stable performance.",
+  },
+  {
+    platform: "Linux ARM64",
+    icon: "simple-icons:linux",
+    minCpu: "Cortex-A53 / A55 @ 1.5 GHz",
+    cores: "4 Cores",
+    minRam: "1.5 GB",
+    recRam: "2 GB",
+    minGpu: "GLES 3.0 / Vulkan",
+    notes:
+      "More viable than Android on 1 GB devices due to lower OS overhead.",
+  },
+  {
+    platform: "Linux x64",
+    icon: "simple-icons:linux",
+    minCpu: "Intel Haswell / AMD Excavator",
+    cores: "2 Cores",
+    minRam: "2 GB",
+    recRam: "4 GB",
+    minGpu: "OpenGL 3.0+",
+  },
+  {
+    platform: "macOS",
+    icon: "simple-icons:apple",
+    minCpu: "Intel i5 4th Gen / Apple M1",
+    cores: "4 Cores",
+    minRam: "4 GB",
+    recRam: "8 GB",
+    minGpu: "Integrated Intel / Apple Silicon",
+    notes: "Rosetta translation increases resource consumption on Intel Macs.",
+  },
+  {
+    platform: "Windows",
+    icon: "simple-icons:windows",
+    minCpu: "Intel i3 4th Gen / AMD FX",
+    cores: "2 Cores",
+    minRam: "4 GB",
+    recRam: "8 GB",
+    minGpu: "DirectX 11",
+    notes: "Windows 10/11 typically consumes 2–3 GB of RAM on its own.",
+  },
+];
 ---
 
 <PageLayout meta={meta}>
@@ -224,6 +278,104 @@ const platforms = [
         }
       </div>
 
+      <!-- System Requirements -->
+      <div class="mb-24">
+        <div class="flex items-center gap-3 mb-8">
+          <div
+            class="w-10 h-10 rounded-xl bg-[#2fa593]/10 flex items-center justify-center"
+          >
+            <Icon name="mdi:speedometer" class="w-6 h-6 text-[#2fa593]" />
+          </div>
+          <h2 class="text-3xl font-bold text-white">System Requirements</h2>
+        </div>
+
+        <div
+          class="overflow-x-auto rounded-3xl border border-white/5 bg-[#26292e]/50 backdrop-blur-sm"
+        >
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-white/5 bg-white/[0.02]">
+                <th
+                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
+                  >Platform</th
+                >
+                <th
+                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
+                  >Min CPU</th
+                >
+                <th
+                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
+                  >Cores</th
+                >
+                <th
+                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
+                  >Min RAM</th
+                >
+                <th
+                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
+                  >Recommended</th
+                >
+                <th
+                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
+                  >Min GPU</th
+                >
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+              {
+                systemRequirements.map((req) => (
+                  <>
+                    <tr class="hover:bg-white/[0.02] transition-colors group">
+                      <td class="px-6 py-5 whitespace-nowrap">
+                        <div class="flex items-center gap-3">
+                          <Icon
+                            name={req.icon}
+                            class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
+                          />
+                          <span class="font-bold text-white">
+                            {req.platform}
+                          </span>
+                        </div>
+                      </td>
+                      <td class="px-6 py-5 text-sm text-gray-300">
+                        {req.minCpu}
+                      </td>
+                      <td class="px-6 py-5 text-sm text-gray-300">
+                        {req.cores}
+                      </td>
+                      <td class="px-6 py-5 text-sm text-gray-300">
+                        {req.minRam}
+                      </td>
+                      <td class="px-6 py-5 text-sm">
+                        <span class="px-2 py-1 rounded-md bg-[#2fa593]/10 text-[#2fa593] font-medium">
+                          {req.recRam}
+                        </span>
+                      </td>
+                      <td class="px-6 py-5 text-sm text-gray-300">
+                        {req.minGpu}
+                      </td>
+                    </tr>
+                    {req.notes && (
+                      <tr class="bg-black/10">
+                        <td
+                          colspan="6"
+                          class="px-6 py-3 text-[11px] text-gray-500 italic"
+                        >
+                          <span class="text-amber-500/70 mr-1 font-bold">
+                            *
+                          </span>{" "}
+                          {req.notes}
+                        </td>
+                      </tr>
+                    )}
+                  </>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
       <!-- Beta Section & Discord -->
       <div class="grid md:grid-cols-2 gap-8 mb-24">
         <div
@@ -310,7 +462,7 @@ const platforms = [
       if (!res.ok) return;
       const data = await res.json();
 
-      const badge = document.querySelector("[data-release-badge]");
+      const badge = document.querySelector("[data-release-badge]") as HTMLAnchorElement | null;
       if (badge) {
         badge.href = data.html_url || badge.href;
         const versionEl = badge.querySelector("[data-release-version]");
@@ -344,7 +496,7 @@ const platforms = [
         else if (name.includes("macos") && name.endsWith(".dmg")) key = "macos";
 
         if (key) {
-          const link = document.querySelector(`[data-download="${key}"]`);
+          const link = document.querySelector(`[data-download="${key}"]`) as HTMLAnchorElement | null;
           if (link) link.href = url;
         }
       }
