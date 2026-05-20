@@ -43,7 +43,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n ru.vastness.altmer.iratajaguar/ru.vastness.altmer.iratajaguar.MainActivity -e rom {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n ru.vastness.altmer.iratajaguar/ru.vastness.altmer.iratajaguar.MainActivity -e rom \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },

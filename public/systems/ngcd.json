@@ -40,17 +40,6 @@
       }
     },
     {
-      "name": "RetroArch64 FBNeo",
-      "unique_id": "ngcd.ra64.fbneo",
-      "description": "Supported extensions: cue.",
-      "is_retroachievements_compatible": false,
-      "platforms": {
-        "android": {
-          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture --es ROM \"{file.path}\" --es LIBRETRO \"fbneo\""
-        }
-      }
-    },
-    {
       "name": "RetroArch32 NeoCD",
       "unique_id": "ngcd.ra32.neocd",
       "description": "Supported extensions: chd, cue.",
@@ -58,17 +47,6 @@
       "platforms": {
         "android": {
           "launch_arguments": "-n com.retroarch.ra32/com.retroarch.browser.retroactivity.RetroActivityFuture --es ROM \"{file.path}\" --es LIBRETRO \"neocd\""
-        }
-      }
-    },
-    {
-      "name": "RetroArch32 FBNeo",
-      "unique_id": "ngcd.ra32.fbneo",
-      "description": "Supported extensions: cue.",
-      "is_retroachievements_compatible": false,
-      "platforms": {
-        "android": {
-          "launch_arguments": "-n com.retroarch.ra32/com.retroarch.browser.retroactivity.RetroActivityFuture --es ROM \"{file.path}\" --es LIBRETRO \"fbneo\""
         }
       }
     },
@@ -93,29 +71,6 @@
         "macos": {
           "executable": "retroarch",
           "args": "-L neocd_libretro.dylib \"{file.path}\""
-        }
-      }
-    },
-    {
-      "name": "RetroArch FBNeo",
-      "unique_id": "ngcd.ra.fbneo",
-      "description": "Supported extensions: cue.",
-      "is_retroachievements_compatible": false,
-      "platforms": {
-        "android": {
-          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture --es ROM \"{file.path}\" --es LIBRETRO \"fbneo\""
-        },
-        "windows": {
-          "executable": "retroarch.exe",
-          "args": "-L fbneo_libretro.dll \"{file.path}\""
-        },
-        "linux": {
-          "executable": "retroarch",
-          "args": "-L fbneo_libretro.so \"{file.path}\""
-        },
-        "macos": {
-          "executable": "retroarch",
-          "args": "-L fbneo_libretro.dylib \"{file.path}\""
         }
       }
     },

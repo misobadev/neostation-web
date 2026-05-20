@@ -247,6 +247,32 @@ const plans = [
         </div>
       </section>
 
+      <!-- Supported Emulators -->
+      <section class="mb-32">
+        <div class="flex items-center gap-4 mb-12">
+          <h2
+            class="text-3xl md:text-4xl font-bold text-white pl-6 border-l-4 border-[#2fa593] italic tracking-tight"
+          >
+            Supported Emulators
+          </h2>
+          <div class="flex-grow h-[1px] bg-white/5"></div>
+        </div>
+
+        <div class="bg-[#26292e] rounded-[2.5rem] border border-white/5 p-10 shadow-xl">
+          <p class="text-gray-400 leading-relaxed mb-6">
+            NeoSync is currently compatible with saves and states from the following emulators:
+          </p>
+          <div class="flex flex-wrap gap-3">
+            {["RetroArch", "RetroArch32", "RetroArch64", "Eden", "Citro", "NetherSX2"].map((emu) => (
+              <div class="flex items-center gap-2 px-5 py-3 bg-[#2fa593]/10 rounded-xl border border-[#2fa593]/20">
+                <Icon name="mdi:controller-classic" class="w-5 h-5 text-[#2fa593]" />
+                <span class="text-sm font-bold text-white">{emu}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <!-- Pricing Plans -->
       <section class="mb-32">
         <div class="flex items-center gap-4 mb-12">

@@ -43,7 +43,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n it.dbtecno.pizzaboy/it.dbtecno.pizzaboy.MainActivity -e rom_uri {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n it.dbtecno.pizzaboy/it.dbtecno.pizzaboy.MainActivity -e rom_uri \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -54,7 +54,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n it.dbtecno.pizzaboypro/it.dbtecno.pizzaboypro.MainActivity -e rom_uri {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n it.dbtecno.pizzaboypro/it.dbtecno.pizzaboypro.MainActivity -e rom_uri \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -65,7 +65,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.sky.SkyEmu/.EnhancedNativeActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.sky.SkyEmu/.EnhancedNativeActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -76,7 +76,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.explusalpha.GbcEmu/com.imagine.BaseActivity -a android.intent.action.VIEW -d {file.uri} -t application/zip --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.explusalpha.GbcEmu/com.imagine.BaseActivity -a android.intent.action.VIEW -d \"{file.localuri}\" -t application/zip --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -87,7 +87,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.fastemulator.gbcfree/.EmulatorActivity -a android.intent.action.VIEW -d {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.fastemulator.gbcfree/.EmulatorActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -98,7 +98,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.fastemulator.gbc/.EmulatorActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.fastemulator.gbc/.EmulatorActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -109,7 +109,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.pixelrespawn.linkboy/.EmulatorActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.pixelrespawn.linkboy/.EmulatorActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },

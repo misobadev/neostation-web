@@ -42,7 +42,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.devmiyax.yabasanshioro2.pro/org.uoyabause.android.Yabause -a android.intent.action.MAIN -e org.uoyabause.android.FileNameUri {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n org.devmiyax.yabasanshioro2.pro/org.uoyabause.android.Yabause -a android.intent.action.MAIN -e org.uoyabause.android.FileNameUri \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -53,7 +53,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.devmiyax.yabasanshioro2/org.uoyabause.android.Yabause -a android.intent.action.VIEW -e org.uoyabause.android.FileNameUri {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n org.devmiyax.yabasanshioro2/org.uoyabause.android.Yabause -a android.intent.action.VIEW -e org.uoyabause.android.FileNameUri \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -64,7 +64,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.uoyabause.android.pro/org.uoyabause.android.Yabause -a android.intent.action.VIEW -e org.uoyabause.android.FileNameEx {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n org.uoyabause.android.pro/org.uoyabause.android.Yabause -a android.intent.action.VIEW -e org.uoyabause.android.FileNameEx \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -75,7 +75,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.uoyabause.android/org.uoyabause.android.Yabause -a android.intent.action.VIEW -e org.uoyabause.android.FileNameEx {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n org.uoyabause.android/org.uoyabause.android.Yabause -a android.intent.action.VIEW -e org.uoyabause.android.FileNameEx \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -86,7 +86,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.explusalpha.SaturnEmu/com.imagine.BaseActivity -d {file.path}"
+          "launch_arguments": "-n com.explusalpha.SaturnEmu/com.imagine.BaseActivity -a android.intent.action.VIEW -d \"{file.localuri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },

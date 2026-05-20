@@ -54,7 +54,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.explusalpha.MdEmu/com.imagine.BaseActivity -a android.intent.action.VIEW -d {file.uri} -t application/zip"
+          "launch_arguments": "-n com.explusalpha.MdEmu/com.imagine.BaseActivity -a android.intent.action.VIEW -d \"{file.localuri}\" -t application/zip"
         }
       }
     },
@@ -65,7 +65,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n it.dbtecno.pizzaboyscpro/.MainActivity -e rom_uri {file.path} --activity-clear-task --activity-clear-top"
+          "launch_arguments": "-n it.dbtecno.pizzaboyscpro/.MainActivity -e rom_uri \"{file.uri}\" --activity-clear-task --activity-clear-top"
         }
       }
     },

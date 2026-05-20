@@ -35,7 +35,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n aenu.aps3e/aenu.aps3e.EmulatorActivity -a aenu.intent.action.APS3E -e iso_uri {file.uri}"
+          "launch_arguments": "-n aenu.aps3e/aenu.aps3e.EmulatorActivity -a aenu.intent.action.APS3E -e iso_uri \"{file.uri}\""
         }
       }
     },
@@ -47,7 +47,7 @@
       "platforms": {
         "windows": {
           "executable": "rpcs3.exe",
-          "args": "--no-gui \"{file.path}\""
+          "args": "--no-gui bootPath{file.path}\""
         },
         "linux": {
           "executable": "rpcs3",

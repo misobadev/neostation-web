@@ -37,7 +37,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n skyline.emu/emu.skyline.EmulationActivity -a android.intent.action.VIEW -d {file.uri}"
+          "launch_arguments": "-n skyline.emu/emu.skyline.EmulationActivity -a android.intent.action.VIEW -d \"{file.uri}\""
         }
       }
     },
@@ -49,7 +49,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n dev.eden.eden_emulator/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d {file.uri}"
+          "launch_arguments": "-n dev.eden.eden_emulator/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
         },
         "windows": {
           "executable": "eden.exe",
@@ -62,35 +62,57 @@
       }
     },
     {
-      "name": "Standalone Eden (Optimized)",
-      "unique_id": "switch.com.miHoYo.Yuanshen.eden",
+      "name": "Standalone Eden Optimized",
+      "unique_id": "switch.com.miHoYo.Yuanshen",
       "description": "Supported extensions: nro, nso, nca, xci, nsp.",
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.miHoYo.Yuanshen/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d {file.uri}"
+          "launch_arguments": "-n com.miHoYo.Yuanshen/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
         }
       }
     },
     {
-      "name": "Standalone Eden (Legacy)",
+      "name": "Standalone Eden Legacy",
       "unique_id": "switch.dev.legacy.eden_emulator",
       "description": "Supported extensions: nro, nso, nca, xci, nsp.",
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n dev.legacy.eden_emulator/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d {file.uri}"
+          "launch_arguments": "-n dev.legacy.eden_emulator/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
+        }
+      }
+    },
+    {
+      "name": "Standalone Eden Optimized (Nightly)",
+      "unique_id": "switch.com.miHoYo.Yuanshen.nightly",
+      "description": "Supported extensions: nro, nso, nca, xci, nsp.",
+      "is_retroachievements_compatible": false,
+      "platforms": {
+        "android": {
+          "launch_arguments": "-n com.miHoYo.Yuanshen.nightly/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
+        }
+      }
+    },
+    {
+      "name": "Standalone Eden Legacy (Nightly)",
+      "unique_id": "switch.dev.legacy.eden_emulator.nightly",
+      "description": "Supported extensions: nro, nso, nca, xci, nsp.",
+      "is_retroachievements_compatible": false,
+      "platforms": {
+        "android": {
+          "launch_arguments": "-n dev.legacy.eden_emulator.nightly/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
         }
       }
     },
     {
       "name": "Standalone Eden (Nightly)",
-      "unique_id": "switch.dev.eden.eden_nightly",
+      "unique_id": "switch.dev.eden.eden_emulator.nightly",
       "description": "Supported extensions: nro, nso, nca, xci, nsp.",
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n dev.eden.eden_nightly/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d {file.uri}"
+          "launch_arguments": "-n dev.eden.eden_emulator.nightly/org.yuzu.yuzu_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
         }
       }
     },
@@ -117,7 +139,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n dev.suyu.suyu_emu.relWithDebInfo/dev.suyu.suyu_emu.activities.EmulationActivity -a android.intent.action.VIEW -d {file.uri}"
+          "launch_arguments": "-n dev.suyu.suyu_emu.relWithDebInfo/dev.suyu.suyu_emu.activities.EmulationActivity -a android.intent.action.VIEW -d \"{file.uri}\""
         }
       }
     },
@@ -128,7 +150,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.sudachi.sudachi_emu/org.sudachi.sudachi_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d {file.uri}"
+          "launch_arguments": "-n org.sudachi.sudachi_emu/org.sudachi.sudachi_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
         }
       }
     },
@@ -139,7 +161,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.sudachi.sudachi_emu.ea/org.sudachi.sudachi_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d {file.uri}"
+          "launch_arguments": "-n org.sudachi.sudachi_emu.ea/org.sudachi.sudachi_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
         }
       }
     },
@@ -150,7 +172,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.citron.citron_emu/org.citron.citron_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d {file.uri}"
+          "launch_arguments": "-n org.citron.citron_emu/org.citron.citron_emu.activities.EmulationActivity -a android.nfc.action.TECH_DISCOVERED -d \"{file.uri}\""
         },
         "windows": {
           "executable": "citron.exe",
@@ -169,7 +191,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.kenjinx.android/.MainActivity -a org.kenjinx.android.LAUNCH_GAME -e bootPath {file.uri}\n"
+          "launch_arguments": "-n org.kenjinx.android/.MainActivity -a org.kenjinx.android.LAUNCH_GAME -e bootPath \"{file.path}\"\n"
         }
       }
     },
@@ -180,7 +202,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.benjisc.android/org.kenjinx.android.MainActivity -a org.kenjinx.android.LAUNCH_GAME -e bootPath {file.uri}\n"
+          "launch_arguments": "-n org.benjisc.android/org.kenjinx.android.MainActivity -a org.kenjinx.android.LAUNCH_GAME -e bootPath \"{file.path}\"\n"
         }
       }
     }

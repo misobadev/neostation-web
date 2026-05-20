@@ -40,7 +40,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.mupen64plusae.v3.fzurita/paulscode.android.mupen64plusae.SplashActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n org.mupen64plusae.v3.fzurita/paulscode.android.mupen64plusae.SplashActivity -a android.intent.action.VIEW -d \"{file.uri}\""
         }
       }
     },
@@ -51,7 +51,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.mupen64plusae.v3.alpha/paulscode.android.mupen64plusae.SplashActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n org.mupen64plusae.v3.alpha/paulscode.android.mupen64plusae.SplashActivity -a android.intent.action.VIEW -d \"{file.uri}\""
         }
       }
     },
@@ -62,7 +62,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.mupen64plusae.v3.fzurita.pro/paulscode.android.mupen64plusae.SplashActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n org.mupen64plusae.v3.fzurita.pro/paulscode.android.mupen64plusae.SplashActivity -a android.intent.action.VIEW -d \"{file.uri}\""
         }
       }
     },
@@ -73,7 +73,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n paulscode.android.mupen64plusae/.MainActivity -a android.intent.action.VIEW -d {file.path}"
+          "launch_arguments": "-n paulscode.android.mupen64plusae/.MainActivity -a android.intent.action.VIEW -d \"{file.uri}\""
         }
       }
     },

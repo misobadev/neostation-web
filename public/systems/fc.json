@@ -35,23 +35,23 @@
   "emulators": [
     {
       "name": "Standalone NES.emu",
-      "unique_id": "nes.com.explusalpha.NesEmu",
+      "unique_id": "fc.com.explusalpha.NesEmu",
       "description": "Support extensions: bin, fds, nes, nsf, qd, rom, unf, unif.",
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.explusalpha.NesEmu/com.imagine.BaseActivity -a android.intent.action.VIEW -d {file.uri} -t application/zip --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.explusalpha.NesEmu/com.imagine.BaseActivity -a android.intent.action.VIEW -d \"{file.localuri}\" -t application/zip --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
     {
       "name": "Standalone NES Emulator",
-      "unique_id": "nes.com.androidemu.nes",
+      "unique_id": "fc.com.androidemu.nes",
       "description": "Support extensions: bin, fds, nes, nsf, qd, rom, unf, unif.",
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.androidemu.nes/.EmulatorActivity -a android.intent.action.VIEW -d {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.androidemu.nes/.EmulatorActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },

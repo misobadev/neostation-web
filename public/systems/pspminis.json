@@ -38,7 +38,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.ppsspp.ppsspp/.PpssppActivity   -a android.intent.action.VIEW  -c android.intent.category.DEFAULT  -d {file.uri}  -t application/octet-stream  --activity-clear-task  --activity-clear-top  --activity-no-history"
+          "launch_arguments": "-n org.ppsspp.ppsspp/.PpssppActivity   -a android.intent.action.VIEW  -c android.intent.category.DEFAULT  -d \"{file.uri}\"  -t application/octet-stream  --activity-clear-task  --activity-clear-top  --activity-no-history"
         }
       }
     },
@@ -49,7 +49,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.ppsspp.ppssppgold/org.ppsspp.ppsspp.PpssppActivity   -a android.intent.action.VIEW  -c android.intent.category.DEFAULT  -d {file.uri}  -t application/octet-stream  --activity-clear-task  --activity-clear-top  --activity-no-history"
+          "launch_arguments": "-n org.ppsspp.ppssppgold/org.ppsspp.ppsspp.PpssppActivity   -a android.intent.action.VIEW  -c android.intent.category.DEFAULT  -d \"{file.uri}\"  -t application/octet-stream  --activity-clear-task  --activity-clear-top  --activity-no-history"
         }
       }
     },
@@ -60,7 +60,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.ppsspp.ppsspplegacy/org.ppsspp.ppsspp.PpssppActivity   -a android.intent.action.VIEW  -c android.intent.category.DEFAULT  -d {file.uri}  -t application/octet-stream  --activity-clear-task  --activity-clear-top  --activity-no-history"
+          "launch_arguments": "-n org.ppsspp.ppsspplegacy/org.ppsspp.ppsspp.PpssppActivity   -a android.intent.action.VIEW  -c android.intent.category.DEFAULT  -d \"{file.uri}\"  -t application/octet-stream  --activity-clear-task  --activity-clear-top  --activity-no-history"
         }
       }
     },
@@ -71,7 +71,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO ppsspp  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"{file.path}\"  --es LIBRETRO \"ppsspp\""
         }
       }
     },
@@ -82,7 +82,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch.ra32/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO ppsspp  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.ra32/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch.ra32/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"{file.path}\"  --es LIBRETRO \"ppsspp\""
         }
       }
     },
@@ -93,7 +93,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO ppsspp  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"{file.path}\"  --es LIBRETRO \"ppsspp\""
         }
       }
     }

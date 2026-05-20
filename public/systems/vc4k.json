@@ -35,7 +35,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.amigan.droidarcadia/.MainActivity  -a android.intent.action.VIEW  -d {file.uri}  -t application/zip   --activity-clear-task   --activity-clear-top"
+          "launch_arguments": "-n com.amigan.droidarcadia/.MainActivity  -a android.intent.action.VIEW  -d \"{file.uri}\"  -t application/zip   --activity-clear-task   --activity-clear-top"
         }
       }
     },
@@ -46,7 +46,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO mamemess  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"{file.path}\"  --es LIBRETRO \"mamemess\""
         }
       }
     },
@@ -57,7 +57,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO mamemess  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"{file.path}\"  --es LIBRETRO \"mamemess\""
         }
       }
     }

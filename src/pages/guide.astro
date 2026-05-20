@@ -28,12 +28,12 @@ const sortedSystems = allSystems.sort((a, b) =>
 );
 
 const totalSystems = sortedSystems.length;
+const emulationCompatibleCount = sortedSystems.filter(
+  (s) => s.emulators && s.emulators.length > 0,
+).length;
 const neosyncCompatibleCount = sortedSystems.filter(
   (s) => s.neosync.sync,
 ).length;
-const neosyncPercentage = Math.round(
-  (neosyncCompatibleCount / totalSystems) * 100,
-);
 
 const toc = [
   { id: "getting-started", label: "Getting Started", icon: "mdi:flag-variant" },
@@ -89,29 +89,17 @@ const toc = [
             fine-tuning cloud saves, this complete manual has you covered.
           </p>
 
-          <div class="flex justify-center gap-4 flex-wrap">
+          <div class="flex justify-center">
             <div
               class="inline-flex items-center gap-2 px-4 py-2 bg-[#2fa593]/10 rounded-2xl border border-[#2fa593]/20 shadow-lg"
             >
-              <Icon name="mdi:cloud-check" class="w-5 h-5 text-[#2fa593]" />
+              <Icon name="mdi:check-all" class="w-5 h-5 text-[#2fa593]" />
               <span class="text-sm font-bold text-white">
-                {neosyncCompatibleCount} / {totalSystems}
+                {emulationCompatibleCount}
               </span>
               <span
                 class="text-[10px] text-gray-500 uppercase tracking-widest font-bold"
-                >NeoSync Enabled Systems</span
-              >
-            </div>
-            <div
-              class="inline-flex items-center gap-2 px-4 py-2 bg-blue-500/10 rounded-2xl border border-blue-500/20 shadow-lg"
-            >
-              <Icon name="mdi:chart-donut" class="w-5 h-5 text-blue-400" />
-              <span class="text-sm font-bold text-white"
-                >{neosyncPercentage}%</span
-              >
-              <span
-                class="text-[10px] text-gray-500 uppercase tracking-widest font-bold"
-                >Coverage</span
+                >Systems Supported</span
               >
             </div>
           </div>
@@ -554,6 +542,23 @@ const toc = [
                 NeoSync works automatically once logged in. Saves are atomically synchronized across devices without manual intervention. Optimized for SRAM saves and RetroArch states.
               </p>
 
+              <div class="mb-6 p-4 bg-[#26292e] rounded-2xl border border-white/5">
+                <h4 class="text-xs font-bold text-white uppercase tracking-widest mb-3 flex items-center gap-2">
+                  <Icon name="mdi:controller-classic" class="w-4 h-4 text-[#2fa593]" />
+                  Supported Emulators
+                </h4>
+                <p class="text-xs text-gray-400 mb-3">
+                  NeoSync is currently compatible with saves and states from the following emulators:
+                </p>
+                <div class="flex flex-wrap gap-2">
+                  {["RetroArch", "RetroArch32", "RetroArch64", "Eden", "Citro", "NetherSX2"].map((emu) => (
+                    <span class="text-[10px] font-bold text-[#2fa593] bg-[#2fa593]/10 px-3 py-1.5 rounded-lg border border-[#2fa593]/20">
+                      {emu}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
               <div class="mb-6 p-4 bg-[#2fa593]/5 rounded-2xl border border-[#2fa593]/10 flex items-center gap-3">
                 <Icon name="mdi:information-outline" class="w-5 h-5 text-[#2fa593] shrink-0" />
                 <p class="text-xs text-gray-400">
@@ -727,7 +732,6 @@ const toc = [
                     <tr>
                       <th class="px-6 py-4">System Name</th>
                       <th class="px-6 py-4">Folders</th>
-                      <th class="px-6 py-4 text-right">Sync</th>
                     </tr>
                   </thead>
                   <tbody class="divide-y divide-white/5">
@@ -745,17 +749,6 @@ const toc = [
                                 </code>
                               ))}
                             </div>
-                          </td>
-                          <td class="px-6 py-4 text-right">
-                            {s.neosync.sync ? (
-                              <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">
-                                Yes
-                              </span>
-                            ) : (
-                              <span class="text-[10px] font-bold text-red-500/70 uppercase tracking-widest">
-                                No
-                              </span>
-                            )}
                           </td>
                         </tr>
                       ))

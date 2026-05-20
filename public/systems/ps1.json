@@ -14,8 +14,8 @@
       "retroachievements": 12
     },
     "folders": [
-      "psx",
       "ps1",
+      "psx",
       "playstation",
       "Sony Playstation",
       "ps"
@@ -50,7 +50,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.github.stenzek.duckstation/.EmulationActivity -e bootPath {file.uri} --ez resumeState 0 --activity-clear-task --activity-clear-top"
+          "launch_arguments": "-n com.github.stenzek.duckstation/.EmulationActivity -e bootPath \"{file.uri}\" --ez resumeState 0 --activity-clear-task --activity-clear-top"
         },
         "windows": {
           "executable": "duckstation.exe",
@@ -73,7 +73,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.emulator.fpse/.Main -a android.intent.action.VIEW -d {file.path} --activity-clear-task --activity-clear-top"
+          "launch_arguments": "-n com.emulator.fpse/.Main -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -84,7 +84,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.emulator.fpse64/.Main -a android.intent.action.VIEW -d {file.path} --activity-clear-task --activity-clear-top"
+          "launch_arguments": "-n com.emulator.fpse64/.Main -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -95,7 +95,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.epsxe.ePSXe/.ePSXe -a android.intent.action.MAIN -e com.epsxe.ePSXe.isoName {file.path} --activity-clear-task --activity-clear-top"
+          "launch_arguments": "-n com.epsxe.ePSXe/.ePSXe -a android.intent.action.MAIN -e com.epsxe.ePSXe.isoName \"{file.uri}\" --activity-clear-task --activity-clear-top"
         },
         "windows": {
           "executable": "epsxe.exe",

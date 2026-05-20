@@ -40,19 +40,19 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n info.cemu.cemu/.emulation.EmulationActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top"
+          "launch_arguments": "-n info.cemu.cemu/.emulation.EmulationActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top"
         },
         "windows": {
           "executable": "cemu.exe",
-          "args": "-g {file.path} -f"
+          "args": "-g \"{file.path}\" -f"
         },
         "linux": {
           "executable": "cemu",
-          "args": "-g {file.path} -f"
+          "args": "-g \"{file.path}\" -f"
         },
         "macos": {
           "executable": "Cemu.app",
-          "args": "-g {file.path} -f"
+          "args": "-g \"{file.path}\" -f"
         }
       }
     }

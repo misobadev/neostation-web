@@ -35,7 +35,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n aenu.ax360e/aenu.ax360e.EmulatorActivity  -a aenu.intent.action.AX360E  -e game_uri {file.uri}"
+          "launch_arguments": "-n aenu.ax360e/aenu.ax360e.EmulatorActivity  -a aenu.intent.action.AX360E  -e game_uri \"{file.uri}\""
         }
       }
     },
@@ -47,7 +47,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n aenu.ax360e.free/aenu.ax360e.EmulatorActivity  -a aenu.intent.action.AX360E  -e game_uri {file.uri}"
+          "launch_arguments": "-n aenu.ax360e.free/aenu.ax360e.EmulatorActivity  -a aenu.intent.action.AX360E  -e game_uri \"{file.uri}\""
         }
       }
     },
@@ -59,7 +59,7 @@
       "platforms": {
         "windows": {
           "executable": "Xenia.exe",
-          "args": "{file.path}"
+          "args": "\"{file.path}\""
         }
       }
     }

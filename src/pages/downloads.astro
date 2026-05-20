@@ -41,6 +41,7 @@ const platforms = [
     link: windowsLink,
     label: "Download for Windows",
     dataKey: "windows",
+    note: "Requires <a href='https://aka.ms/vs/17/release/vc_redist.x64.exe' target='_blank' class='underline hover:text-gray-300 transition-colors'>Microsoft Visual C++ Redistributable (x64)</a>.",
   },
   {
     name: "Android",
@@ -270,7 +271,7 @@ const systemRequirements = [
 
               {p.note && (
                 <div class="mt-4 text-[10px] text-gray-500 leading-tight italic">
-                  *{p.note}
+                  *<span set:html={p.note} />
                 </div>
               )}
             </div>

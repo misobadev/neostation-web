@@ -33,7 +33,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.scummvm.scummvm/org.scummvm.scummvm.SplashActivity  -a android.intent.action.MAIN  -c android.intent.category.LAUNCHER  -d {tags.scummvm_id}"
+          "launch_arguments": "-n org.scummvm.scummvm/org.scummvm.scummvm.SplashActivity  -a android.intent.action.MAIN  -c android.intent.category.LAUNCHER  -d \"{tags.scummvm_id}\""
         }
       }
     },
@@ -44,7 +44,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n org.scummvm.scummvm.debug/org.scummvm.scummvm.SplashActivity  -a android.intent.action.MAIN  -c android.intent.category.LAUNCHER  -d {tags.scummvm_id}"
+          "launch_arguments": "-n org.scummvm.scummvm.debug/org.scummvm.scummvm.SplashActivity  -a android.intent.action.MAIN  -c android.intent.category.LAUNCHER  -d \"{tags.scummvm_id}\""
         }
       }
     },
@@ -55,7 +55,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO scummvm  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.aarch64/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"file.path}\"  --es LIBRETRO \"scummvm\""
         }
       }
     },
@@ -66,7 +66,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch.ra32/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO scummvm  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch.ra32/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch.ra32/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"{file.path}\"  --es LIBRETRO \"scummvm\""
         }
       }
     },
@@ -78,7 +78,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture  -e ROM {file.path}  -e LIBRETRO scummvm  -e CONFIGFILE /storage/emulated/0/Android/data/com.retroarch/files/retroarch.cfg"
+          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture  --es ROM \"{file.path}\"  --es LIBRETRO \"scummvm\""
         },
         "windows": {
           "executable": "retroarch.exe",

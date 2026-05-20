@@ -53,7 +53,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.androidemu.gg/.EmulatorActivity -a android.intent.action.VIEW -d {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.androidemu.gg/.EmulatorActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -64,7 +64,7 @@
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.fms.mg/com.fms.emulib.MainActivity -a android.intent.action.VIEW -d {file.uri} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n com.fms.mg/com.fms.emulib.MainActivity -a android.intent.action.VIEW -d \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
@@ -75,7 +75,7 @@
       "is_retroachievements_compatible": true,
       "platforms": {
         "android": {
-          "launch_arguments": "-n it.dbtecno.pizzaboyscpro/.MainActivity -e rom_uri {file.path} --activity-clear-task --activity-clear-top --activity-no-history"
+          "launch_arguments": "-n it.dbtecno.pizzaboyscpro/.MainActivity -e rom_uri \"{file.uri}\" --activity-clear-task --activity-clear-top --activity-no-history"
         }
       }
     },
