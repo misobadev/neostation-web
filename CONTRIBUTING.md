@@ -6,7 +6,7 @@ Thank you for your interest in contributing to the NeoStation official website! 
 
 ### Reporting Issues
 
-- Check if the issue already exists in the [issue tracker](https://github.com/miguelsotobaez/neostation-web/issues).
+- Check if the issue already exists in the [issue tracker](https://github.com/misobadev/neostation-web/issues).
 - Provide a clear description, steps to reproduce (if applicable), and screenshots when relevant.
 
 ### Submitting Changes
@@ -25,4 +25,4 @@ Thank you for your interest in contributing to the NeoStation official website! 
 
 ## Questions?
 
-Feel free to open a [Discussion](https://github.com/miguelsotobaez/neostation-web/discussions) or reach out on our [Discord](https://discord.gg/xE2kgKsRVq).
+Feel free to open a [Discussion](https://github.com/misobadev/neostation-web/discussions) or reach out on our [Discord](https://discord.gg/xE2kgKsRVq).

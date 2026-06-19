@@ -1,7 +1,7 @@
 {
 	"name": "neostation-web",
 	"type": "module",
-	"version": "0.7.7",
+	"version": "0.9.1",
 	"private": false,
 	"scripts": {
 		"dev": "astro dev --host",
@@ -18,8 +18,9 @@
 		"check": "astro check"
 	},
 	"dependencies": {
-		"@astrojs/markdown-remark": "^7.1.0",
-		"@astrojs/mdx": "^6.0.1",
+		"@astrojs/markdown-remark": "^7.2.0",
+		"@astrojs/markdown-satteri": "^0.3.0",
+		"@astrojs/mdx": "^6.0.3",
 		"@astrojs/rss": "^4.0.18",
 		"@astrojs/sitemap": "^3.7.3",
 		"@fontsource-variable/jetbrains-mono": "^5.2.8",
@@ -68,11 +69,13 @@
 	"overrides": {
 		"yaml": "^2.8.3",
 		"sharp": "^0.34.2",
-		"vite": "^7"
+		"vite": "^7",
+		"esbuild": "^0.28.1"
 	},
 	"pnpm": {
 		"overrides": {
-			"sharp": "^0.34.2"
+			"sharp": "^0.34.2",
+			"esbuild": "^0.28.1"
 		},
 		"onlyBuiltDependencies": [
 			"@biomejs/biome",

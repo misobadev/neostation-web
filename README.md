@@ -47,5 +47,5 @@ For significant design changes, please open an Issue first to discuss your ideas
 ## Licensing
 
 - **This website (source code):** [MIT License](./LICENSE.md)
-- **NeoStation application (Flutter frontend):** [GPL v3](https://github.com/miguelsotobaez/neostation-frontend/blob/main/LICENSE.md)
+- **NeoStation application (Flutter frontend):** [GPL v3](https://github.com/mmisobadev/neostation-frontend/blob/main/LICENSE.md)
 - **Branding and Design:** The visual identity, logos, and copywriting are protected assets of the NeoStation project.
