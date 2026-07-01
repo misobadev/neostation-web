@@ -21,7 +21,7 @@
 		"@astrojs/markdown-remark": "^7.2.0",
 		"@astrojs/markdown-satteri": "^0.3.0",
 		"@astrojs/mdx": "^6.0.3",
-		"@astrojs/rss": "^4.0.18",
+		"@astrojs/rss": "^4.0.19",
 		"@astrojs/sitemap": "^3.7.3",
 		"@fontsource-variable/jetbrains-mono": "^5.2.8",
 		"@fontsource-variable/sora": "^5.2.8",
