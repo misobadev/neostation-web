@@ -52,6 +52,10 @@ export const menuLinks: { path: string; title: string }[] = [
 		path: "/guide/",
 		title: "Guide",
 	},
+	{
+		path: "/theme-designer/",
+		title: "Theme Designer",
+	},
 ];
 
 // https://expressive-code.com/reference/configuration/

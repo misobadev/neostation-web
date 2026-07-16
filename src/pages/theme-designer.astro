@@ -1,0 +1,642 @@
+---
+// NeoStation Theme Designer — route: /theme-designer/.
+// GENERATED from scripts/theme/source.html by scripts/theme/build.mjs.
+// Do not edit by hand — edit source.html and run `npm run build:theme`.
+import Base from "@/layouts/Base.astro";
+import "@fontsource/anta";
+// Page-scoped styles (137 KB, mostly inlined art) — imported here rather than
+// in global.css so only /theme-designer/ pays for them.
+import "@/styles/components/theme-designer.css";
+import type { SiteMeta } from "@/types";
+
+const meta: SiteMeta = {
+  title: "Theme Designer - NeoStation",
+  description:
+    "Design a NeoStation theme with a live preview of the System Browser and Game Detail screens, then export it as theme JSON built on daisyUI tokens and share it in our Discord.",
+};
+---
+
+<Base meta={meta}>
+  <div class="relative py-12 md:py-20">
+    <div class="max-w-7xl mx-auto px-4">
+      <!-- Hero -->
+      <div class="text-center">
+        <h1
+          class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight"
+        >
+          Theme <span class="text-[#2fa593]">Designer</span>
+        </h1>
+        <div class="max-w-3xl mx-auto">
+          <p class="text-lg md:text-xl text-gray-400 leading-relaxed">
+            Design your own NeoStation theme with a live preview of the System
+            Browser and Game Detail screens, then export it as theme JSON built
+            on daisyUI colour and radius tokens. Share your themes with the
+            community in our
+            <a
+              href="https://discord.gg/xE2kgKsRVq"
+              target="_blank"
+              rel="noopener"
+              class="text-[#2fa593] hover:underline">Discord server</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tb">
+    
+    <!-- reusable icons -->
+    <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+      <symbol id="i-grid" viewBox="0 0 24 24"><g fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></g></symbol>
+      <symbol id="i-cloud" viewBox="0 0 24 24"><path fill="currentColor" d="M7 18a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 9.5a3.5 3.5 0 0 1-.5 6.96V18z"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h12v3a4 4 0 0 1-3 3.87A4 4 0 0 1 13 14v2h2v2H9v-2h2v-2a4 4 0 0 1-2-3.13A4 4 0 0 1 6 7zM4 5h2v2a2 2 0 0 1-2-2m14 0h2a2 2 0 0 1-2 2z"/></symbol>
+      <symbol id="i-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 8V5h3M20 8V5h-3M4 16v3h3m13-3v3h-3M8 12h8"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8m9 4-2 1 1 2-2 2-2-1-1 2h-2l-1-2-2 1-2-2 1-2-2-1v-2l2-1-1-2 2-2 2 1 1-2h2l1 2 2-1 2 2-1 2 2 1z"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M19 12a7 7 0 1 1-2-4.9M19 4v4h-4"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.5 12 20 12 20"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 5v14l12-7z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></g></symbol>
+      <symbol id="i-list" viewBox="0 0 24 24"><g fill="currentColor"><rect x="4" y="5" width="16" height="3" rx="1.5"/><rect x="4" y="10.5" width="16" height="3" rx="1.5"/><rect x="4" y="16" width="16" height="3" rx="1.5"/></g></symbol>
+      <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M14 6l-6 6 6 6"/></symbol>
+      <symbol id="i-dice" viewBox="0 0 24 24"><g><rect x="4" y="4" width="16" height="16" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="1.4" fill="currentColor"/><circle cx="15" cy="15" r="1.4" fill="currentColor"/><circle cx="15" cy="9" r="1.4" fill="currentColor"/><circle cx="9" cy="15" r="1.4" fill="currentColor"/></g></symbol>
+    </svg>
+    
+    <div class="workspace">
+      <!-- ============ PREVIEW STAGE ============ -->
+      <main class="stage">
+        <div class="rail" id="ledRail" aria-hidden="true"><span class="lbl">Palette</span></div>
+    
+        <div class="bezel">
+          <div class="viewtog" role="group" aria-label="Preview screen">
+            <button type="button" data-v="browse" class="on">Browse</button>
+            <button type="button" data-v="detail">Detail</button>
+            <button type="button" data-v="components">Components</button>
+          </div>
+          <div class="screen" id="screen">
+    
+            <!-- ============ BROWSE / coverflow ============ -->
+            <section class="view on" data-view="browse">
+              <div class="topbar">
+                <span class="pill vm"><span class="glyph g-x">X</span>View Mode</span>
+                <div class="toolcluster">
+                  <span class="shoulder">LB</span>
+                  <span class="tool sel"><svg class="ico"><use href="#i-grid"/></svg></span>
+                  <span class="tool"><svg class="ico"><use href="#i-cloud"/></svg></span>
+                  <span class="tool"><svg class="ico"><use href="#i-trophy"/></svg></span>
+                  <span class="tool"><svg class="ico"><use href="#i-scan"/></svg></span>
+                  <span class="tool"><svg class="ico"><use href="#i-gear"/></svg></span>
+                  <span class="shoulder">RB</span>
+                </div>
+                <div class="status">
+                  <svg class="ico"><use href="#i-clock"/></svg><span class="clk">18:07</span>
+                  <span class="batwrap"><span class="bat"><i></i></span></span><span class="pct">80%</span>
+                </div>
+              </div>
+    
+              <div class="cf">
+                <div class="tile side a2"><div class="art"><span class="logo">ARCADE</span></div></div>
+                <div class="tile center a1"><div class="art"><span class="logo">ATARI 2600</span></div></div>
+                <div class="tile side a3"><div class="art"><span class="logo">ATARI 7800</span></div></div>
+              </div>
+    
+              <div class="filterrow">
+                <span class="fpill">ALL</span><span class="fpill">ANDROID</span><span class="fpill">ARCADE</span>
+                <span class="fpill sel">A2600</span><span class="fpill">A7800</span><span class="fpill">LYNX</span>
+                <span class="fpill">CV</span><span class="fpill">C64</span><span class="fpill">FDS</span>
+                <span class="fpill">GB</span><span class="fpill">GBA</span><span class="fpill">GBC</span>
+              </div>
+    
+              <div class="browsefoot">
+                <span class="sysname">Atari 2600<span class="count">636 Games</span></span>
+                <div class="foot-actions">
+                  <span class="fab set"><svg class="ico"><use href="#i-list"/></svg>Settings</span>
+                  <span class="fab enter"><span class="glyph g-a">A</span>Enter</span>
+                </div>
+              </div>
+            </section>
+    
+            <!-- ============ DETAIL / game view ============ -->
+            <section class="view detail" data-view="detail">
+              <!-- detail keeps the same nav toolbar, anchored top-right -->
+              <div class="dtoolbar">
+                <div class="toolcluster">
+                  <span class="shoulder">LB</span>
+                  <span class="tool sel"><svg class="ico"><use href="#i-grid"/></svg></span>
+                  <span class="tool"><svg class="ico"><use href="#i-cloud"/></svg></span>
+                  <span class="tool"><svg class="ico"><use href="#i-trophy"/></svg></span>
+                  <span class="tool"><svg class="ico"><use href="#i-gear"/></svg></span>
+                  <span class="shoulder">RB</span>
+                </div>
+              </div>
+              <div class="leftcol">
+                <div class="hints">
+                  <span class="hbtn back"><span class="glyph">B</span><svg class="ico"><use href="#i-back"/></svg></span>
+                  <span class="hbtn"><span class="glyph">X</span><svg class="ico"><use href="#i-grid"/></svg></span>
+                  <span class="hbtn"><svg class="ico"><use href="#i-refresh"/></svg><svg class="ico"><use href="#i-dice"/></svg></span>
+                </div>
+                <span class="syschip">A2600</span>
+                <div class="glist">
+                  <div class="grow">Barnstorming</div>
+                  <div class="grow">Basketball</div>
+                  <div class="grow">Battlezone</div>
+                  <div class="grow sel">Bentley Bear's Crystal Q…</div>
+                  <div class="grow">Berzerk</div>
+                  <div class="grow">BurgerTime</div>
+                  <div class="grow">California Games</div>
+                  <div class="grow">Centipede</div>
+                  <div class="grow">Chopper Command</div>
+                </div>
+              </div>
+    
+              <div class="fan">
+                <div class="scan"></div><div class="glow"></div>
+                <div class="fan-bottom">
+                  <div class="ratingrow">
+                    <span class="rating"><span class="star">★</span>9.0</span>
+                    <div class="ttl">
+                      <h3>Bentley Bear's Crystal Quest</h3>
+                      <p>Bentley Bear's Crystal Quest (USA)</p>
+                    </div>
+                  </div>
+                  <div class="actions">
+                    <div class="actcluster">
+                      <span class="act"><svg class="ico"><use href="#i-trophy"/></svg>0 / 48</span>
+                      <span class="act"><svg class="ico"><use href="#i-scan"/></svg>Scrape</span>
+                      <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><span class="glyph">Y</span></span>Add Fav</span>
+                    </div>
+                    <span class="act play"><span class="glyph">A</span>Play</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+    
+            <!-- ============ COMPONENTS ============ -->
+            <section class="view components" data-view="components">
+              <div class="gallery">
+    
+                <div class="gcard">
+                  <span class="gh">Buttons</span>
+                  <div class="grow">
+                    <button class="gb primary">Play</button>
+                    <button class="gb secondary">Scrape</button>
+                    <button class="gb accent">Sync</button>
+                  </div>
+                  <div class="grow">
+                    <button class="gb outline">Cancel</button>
+                    <button class="gb ghost">Skip</button>
+                    <button class="gb dis">Disabled</button>
+                  </div>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">Toggles &amp; Radios</span>
+                  <div class="grow" style="justify-content:space-between"><span class="glab">Show hidden games</span><span class="gtog on"></span></div>
+                  <div class="grow" style="justify-content:space-between"><span class="glab">Box art only</span><span class="gtog"></span></div>
+                  <div class="grow"><span class="grad on"></span><span class="glab">List view</span></div>
+                  <div class="grow"><span class="grad"></span><span class="glab">Grid view</span></div>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">Status Badges</span>
+                  <div class="grow">
+                    <span class="gbadge b-success">Installed</span>
+                    <span class="gbadge b-warning">Update</span>
+                  </div>
+                  <div class="grow">
+                    <span class="gbadge b-info">Scanning</span>
+                    <span class="gbadge b-error">Missing</span>
+                  </div>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">Notifications</span>
+                  <div class="gnote n-success"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Library sync complete</div>
+                  <div class="gnote n-error"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Emulator not found</div>
+                  <div class="gnote n-info"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg>Downloading metadata…</div>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">Battery</span>
+                  <div><div class="mlabel"><span>Controller 1</span><b>92%</b></div><div class="gmeter m-batt-full"><span style="width:92%"></span></div></div>
+                  <div><div class="mlabel"><span>Controller 2</span><b>46%</b></div><div class="gmeter m-batt-med"><span style="width:46%"></span></div></div>
+                  <div><div class="mlabel"><span>Headset</span><b>11%</b></div><div class="gmeter m-batt-low"><span style="width:11%"></span></div></div>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">Storage</span>
+                  <div><div class="mlabel"><span>Internal</span><b>174 / 256 GB</b></div><div class="gmeter m-store"><span style="width:68%"></span></div></div>
+                  <div><div class="mlabel"><span>SD Card</span><b>41 / 128 GB</b></div><div class="gmeter m-store"><span style="width:32%"></span></div></div>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">Game List</span>
+                  <div class="glist2">
+                    <div class="gli">Adventure</div>
+                    <div class="gli sel">Missile Command</div>
+                    <div class="gli">Pitfall!</div>
+                    <div class="gli">River Raid</div>
+                  </div>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">System Filters</span>
+                  <div class="grow">
+                    <span class="gchip on">All</span>
+                    <span class="gchip">A2600</span>
+                    <span class="gchip">A7800</span>
+                    <span class="gchip">Lynx</span>
+                    <span class="gchip">Jaguar</span>
+                  </div>
+                </div>
+    
+                <div class="gcard gtype">
+                  <span class="gh">Typography</span>
+                  <h4>NeoStation</h4>
+                  <span class="t-title">Game Library</span>
+                  <p class="t-body">Browse, scrape and launch your retro collection from one place.</p>
+                  <span class="t-cap">636 Games · 12 Systems</span>
+                </div>
+    
+                <div class="gcard">
+                  <span class="gh">Inputs</span>
+                  <div class="ginput ph">Search games…</div>
+                  <div class="ginput focus">River Raid</div>
+                  <div class="grate"><span class="stars">★★★★<span class="off">★</span></span><span class="num">4.0</span></div>
+                </div>
+    
+                <div class="gcard span2">
+                  <span class="gh">Dialog</span>
+                  <div class="gdlg">
+                    <span class="dt">Delete “Pitfall!”?</span>
+                    <p class="db">This removes the game and its saved states from this device. Cloud backups are kept.</p>
+                    <div class="da">
+                      <button class="gb ghost">Cancel</button>
+                      <button class="gb primary">Delete</button>
+                    </div>
+                  </div>
+                </div>
+    
+              </div>
+            </section>
+    
+          </div>
+        </div>
+        <p class="hint" id="legend"></p>
+      </main>
+    
+      <!-- ============ CONTROL RAIL ============ -->
+      <aside class="rail-col">
+        <div class="setup-row">
+          <div class="source-pick">
+            <span class="fld" id="presetLbl">Start from</span>
+            <div class="dd" id="presetDD">
+              <button class="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="presetLbl"><span class="dd-val">Dark</span></button>
+              <ul class="dd-menu" role="listbox" aria-label="Starting preset"></ul>
+            </div>
+          </div>
+          <button class="btn" id="importBtn" type="button">Import JSON</button>
+          <input type="file" id="fileInput" class="file-hide" accept=".json,application/json" />
+        </div>
+    
+        <div class="meta-row">
+          <div><label for="tName">Theme name</label><input type="text" id="tName" value="My Custom Theme" /></div>
+          <div><label for="tId">Palette id <span style="text-transform:none">(key used in code)</span></label><input type="text" id="tId" value="my_custom_theme" /></div>
+          <div><label for="tAuthor">Author</label><input type="text" id="tAuthor" placeholder="Your name or handle" /></div>
+          <div><label>Color scheme</label>
+            <div class="seg" id="brightSeg" role="group" aria-label="Color scheme">
+              <button type="button" data-b="dark" class="on">Dark</button>
+              <button type="button" data-b="light">Light</button>
+            </div>
+          </div>
+        </div>
+    
+        <div id="groups"></div>
+        <div id="effects"></div>
+    
+        <div class="export-bar">
+          <button class="btn" id="copyBtn" type="button">Copy JSON</button>
+          <button class="btn primary" id="dlBtn" type="button">Download</button>
+        </div>
+      </aside>
+    </div>
+    
+    <div class="toast" id="toast">Copied</div>
+  </div>
+</Base>
+
+<script is:inline>
+/* =====================================================================
+   daisyUI theme model — field keys are daisyUI's exact CSS-variable
+   suffixes (base-100, primary-content, …) so export drops straight into
+   an `@plugin "daisyui/theme"` block. Colours are authored in oklch
+   (the daisyUI convention); hex is derived only for the pickers.
+   ===================================================================== */
+const GROUPS = [
+  { key:'base', title:'Base', n:'01', desc:'The surfaces everything sits on.',
+    fields:[
+      ['base-100','Base 100','App / screen background'],
+      ['base-200','Base 200','Toolbars, pills, cards'],
+      ['base-300','Base 300','Deeper surfaces, borders'],
+      ['base-content','Base content','Default text & icons'],
+    ]},
+  { key:'brand', title:'Brand', n:'02', desc:'Primary actions, selection, accents.',
+    fields:[
+      ['primary','Primary','System-name pill, "A2600" chip'],
+      ['primary-content','Primary content','Text over primary'],
+      ['secondary','Secondary','Selected row / tab / filter'],
+      ['secondary-content','Secondary content','Text over secondary'],
+      ['accent','Accent','View Mode / Settings buttons'],
+      ['accent-content','Accent content','Text over accent'],
+      ['neutral','Neutral','Neutral surfaces & badges'],
+      ['neutral-content','Neutral content','Text over neutral'],
+    ]},
+  { key:'status', title:'Status', n:'03', desc:'Semantic feedback colours.',
+    fields:[
+      ['info','Info','Info badges, charging'],
+      ['info-content','Info content','Text over info'],
+      ['success','Success','Enter / Play, battery full'],
+      ['success-content','Success content','Text over success'],
+      ['warning','Warning','Updates, battery medium'],
+      ['warning-content','Warning content','Text over warning'],
+      ['error','Error','Back button, battery low'],
+      ['error-content','Error content','Text over error'],
+    ]},
+];
+const COLOR_FIELDS = GROUPS.flatMap(g=>g.fields.map(f=>f[0]));
+
+/* Non-colour theme variables (radius / size / border). */
+const EFFECTS = [
+  ['radius-selector','Radius · selector','Checkboxes, toggles, badges', ['0','0.25rem','0.5rem','1rem','2rem']],
+  ['radius-field','Radius · field','Buttons, inputs, pills', ['0','0.25rem','0.5rem','1rem','2rem']],
+  ['radius-box','Radius · box','Cards, tiles, artwork', ['0','0.25rem','0.5rem','1rem','2rem']],
+  ['border','Border','Component border width', ['0','1px','1.5px','2px']],
+];
+const SIZE_DEFAULTS = { 'size-selector':'0.25rem', 'size-field':'0.25rem' };
+
+/* Existing preview `--c-*` vars re-mapped onto the daisyUI token set,
+   so the two-screen mock keeps working unchanged. */
+const PREVIEW_VARS = {
+  '--c-bg':'base-100','--c-surface':'base-200','--c-onSurface':'base-content',
+  '--c-primary':'primary','--c-onPrimary':'primary-content',
+  '--c-secondary':'secondary','--c-onSecondary':'secondary-content',
+  '--c-tertiary':'accent','--c-onTertiary':'accent-content',
+  '--c-success':'success','--c-onSuccess':'success-content',
+  '--c-info':'info','--c-onInfo':'info-content',
+  '--c-warning':'warning','--c-onWarning':'warning-content',
+  '--c-error':'error','--c-onError':'error-content',
+  '--c-battFull':'success','--c-outline':'base-300','--c-card':'base-200',
+};
+
+/* ---- oklch <-> sRGB hex (Björn Ottosson's OKLab matrices) ---- */
+function parseOklch(str){
+  const m=String(str).match(/oklch\(\s*([\d.]+)%?\s+([\d.]+)\s+([\d.-]+)/i);
+  if(!m) return {L:0,C:0,H:0};
+  let L=parseFloat(m[1]); if(str.includes('%')) L/=100;
+  return {L, C:parseFloat(m[2]), H:parseFloat(m[3])};
+}
+function oklchToHex(str){
+  const {L,C,H}=parseOklch(str), hr=H*Math.PI/180;
+  const a=C*Math.cos(hr), b=C*Math.sin(hr);
+  const l_=L+0.3963377774*a+0.2158037573*b, m_=L-0.1055613458*a-0.0638541728*b, s_=L-0.0894841775*a-1.2914855480*b;
+  const l=l_**3, m=m_**3, s=s_**3;
+  let r= 4.0767416621*l-3.3077115913*m+0.2309699292*s;
+  let g=-1.2684380046*l+2.6097574011*m-0.3413193965*s;
+  let bl=-0.0041960863*l-0.7034186147*m+1.7076147010*s;
+  const gam=c=>{c=c<=0.0031308?12.92*c:1.055*Math.pow(c,1/2.4)-0.055; return Math.max(0,Math.min(1,c));};
+  const h2=x=>Math.round(gam(x)*255).toString(16).padStart(2,'0');
+  return '#'+h2(r)+h2(g)+h2(bl);
+}
+function hexToOklch(hex){
+  hex=hex.replace('#',''); if(hex.length===3) hex=hex.split('').map(c=>c+c).join('');
+  const lin=c=>{c/=255; return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);};
+  const r=lin(parseInt(hex.slice(0,2),16)), g=lin(parseInt(hex.slice(2,4),16)), b=lin(parseInt(hex.slice(4,6),16));
+  const l=Math.cbrt(0.4122214708*r+0.5363325363*g+0.0514459929*b);
+  const m=Math.cbrt(0.2119034982*r+0.6806995451*g+0.1073969566*b);
+  const s=Math.cbrt(0.0883024619*r+0.2817188376*g+0.6299787005*b);
+  const L=0.2104542553*l+0.7936177850*m-0.0040720468*s;
+  const a=1.9779984951*l-2.4285922050*m+0.4505937099*s;
+  const bb=0.0259040371*l+0.7827717662*m-0.8086757660*s;
+  const C=Math.sqrt(a*a+bb*bb); let Hh=Math.atan2(bb,a)*180/Math.PI; if(Hh<0)Hh+=360;
+  const r3=n=>+n.toFixed(3);
+  return `oklch(${+(L*100).toFixed(2)}% ${r3(C)} ${+Hh.toFixed(2)})`;
+}
+
+/* ---- Presets: colour values copied verbatim from daisyUI (oklch). ---- */
+const EFX_DARK   = {'radius-selector':'0.5rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'};
+const PRESETS = {
+  light:{ name:'Light', id:'light', scheme:'light', effects:{'radius-selector':'0.5rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(98% 0 0)','base-300':'oklch(95% 0 0)','base-content':'oklch(21% 0.006 285.885)','primary':'oklch(45% 0.24 277.023)','primary-content':'oklch(93% 0.034 272.788)','secondary':'oklch(65% 0.241 354.308)','secondary-content':'oklch(94% 0.028 342.258)','accent':'oklch(77% 0.152 181.912)','accent-content':'oklch(38% 0.063 188.416)','neutral':'oklch(14% 0.005 285.823)','neutral-content':'oklch(92% 0.004 286.32)','info':'oklch(74% 0.16 232.661)','info-content':'oklch(29% 0.066 243.157)','success':'oklch(76% 0.177 163.223)','success-content':'oklch(37% 0.077 168.94)','warning':'oklch(82% 0.189 84.429)','warning-content':'oklch(41% 0.112 45.904)','error':'oklch(71% 0.194 13.428)','error-content':'oklch(27% 0.105 12.094)'}},
+  dark:{ name:'Dark', id:'dark', scheme:'dark', effects:{'radius-selector':'0.5rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'}, colors:{'base-100':'oklch(25.33% 0.016 252.42)','base-200':'oklch(23.26% 0.014 253.1)','base-300':'oklch(21.15% 0.012 254.09)','base-content':'oklch(97.807% 0.029 256.847)','primary':'oklch(58% 0.233 277.117)','primary-content':'oklch(96% 0.018 272.314)','secondary':'oklch(65% 0.241 354.308)','secondary-content':'oklch(94% 0.028 342.258)','accent':'oklch(77% 0.152 181.912)','accent-content':'oklch(38% 0.063 188.416)','neutral':'oklch(14% 0.005 285.823)','neutral-content':'oklch(92% 0.004 286.32)','info':'oklch(74% 0.16 232.661)','info-content':'oklch(29% 0.066 243.157)','success':'oklch(76% 0.177 163.223)','success-content':'oklch(37% 0.077 168.94)','warning':'oklch(82% 0.189 84.429)','warning-content':'oklch(41% 0.112 45.904)','error':'oklch(71% 0.194 13.428)','error-content':'oklch(27% 0.105 12.094)'}},
+  cupcake:{ name:'Cupcake', id:'cupcake', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'2rem','radius-box':'1rem','border':'2px'}, colors:{'base-100':'oklch(97.788% 0.004 56.375)','base-200':'oklch(93.982% 0.007 61.449)','base-300':'oklch(91.586% 0.006 53.44)','base-content':'oklch(23.574% 0.066 313.189)','primary':'oklch(85% 0.138 181.071)','primary-content':'oklch(43% 0.078 188.216)','secondary':'oklch(89% 0.061 343.231)','secondary-content':'oklch(45% 0.187 3.815)','accent':'oklch(90% 0.076 70.697)','accent-content':'oklch(47% 0.157 37.304)','neutral':'oklch(27% 0.006 286.033)','neutral-content':'oklch(92% 0.004 286.32)','info':'oklch(68% 0.169 237.323)','info-content':'oklch(29% 0.066 243.157)','success':'oklch(69% 0.17 162.48)','success-content':'oklch(26% 0.051 172.552)','warning':'oklch(79% 0.184 86.047)','warning-content':'oklch(28% 0.066 53.813)','error':'oklch(64% 0.246 16.439)','error-content':'oklch(27% 0.105 12.094)'}},
+  bumblebee:{ name:'Bumblebee', id:'bumblebee', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(97% 0 0)','base-300':'oklch(92% 0 0)','base-content':'oklch(20% 0 0)','primary':'oklch(85% 0.199 91.936)','primary-content':'oklch(42% 0.095 57.708)','secondary':'oklch(75% 0.183 55.934)','secondary-content':'oklch(40% 0.123 38.172)','accent':'oklch(0% 0 0)','accent-content':'oklch(100% 0 0)','neutral':'oklch(37% 0.01 67.558)','neutral-content':'oklch(92% 0.003 48.717)','info':'oklch(74% 0.16 232.661)','info-content':'oklch(39% 0.09 240.876)','success':'oklch(76% 0.177 163.223)','success-content':'oklch(37% 0.077 168.94)','warning':'oklch(82% 0.189 84.429)','warning-content':'oklch(41% 0.112 45.904)','error':'oklch(70% 0.191 22.216)','error-content':'oklch(39% 0.141 25.723)'}},
+  emerald:{ name:'Emerald', id:'emerald', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(93% 0 0)','base-300':'oklch(86% 0 0)','base-content':'oklch(35.519% 0.032 262.988)','primary':'oklch(76.662% 0.135 153.45)','primary-content':'oklch(33.387% 0.04 162.24)','secondary':'oklch(61.302% 0.202 261.294)','secondary-content':'oklch(100% 0 0)','accent':'oklch(72.772% 0.149 33.2)','accent-content':'oklch(0% 0 0)','neutral':'oklch(35.519% 0.032 262.988)','neutral-content':'oklch(98.462% 0.001 247.838)','info':'oklch(72.06% 0.191 231.6)','info-content':'oklch(0% 0 0)','success':'oklch(64.8% 0.15 160)','success-content':'oklch(0% 0 0)','warning':'oklch(84.71% 0.199 83.87)','warning-content':'oklch(0% 0 0)','error':'oklch(71.76% 0.221 22.18)','error-content':'oklch(0% 0 0)'}},
+  corporate:{ name:'Corporate', id:'corporate', scheme:'light', effects:{'radius-selector':'0.25rem','radius-field':'0.25rem','radius-box':'0.25rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(93% 0 0)','base-300':'oklch(86% 0 0)','base-content':'oklch(22.389% 0.031 278.072)','primary':'oklch(58% 0.158 241.966)','primary-content':'oklch(100% 0 0)','secondary':'oklch(55% 0.046 257.417)','secondary-content':'oklch(100% 0 0)','accent':'oklch(60% 0.118 184.704)','accent-content':'oklch(100% 0 0)','neutral':'oklch(0% 0 0)','neutral-content':'oklch(100% 0 0)','info':'oklch(60% 0.126 221.723)','info-content':'oklch(100% 0 0)','success':'oklch(62% 0.194 149.214)','success-content':'oklch(100% 0 0)','warning':'oklch(85% 0.199 91.936)','warning-content':'oklch(0% 0 0)','error':'oklch(70% 0.191 22.216)','error-content':'oklch(0% 0 0)'}},
+  synthwave:{ name:'Synthwave', id:'synthwave', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(15% 0.09 281.288)','base-200':'oklch(20% 0.09 281.288)','base-300':'oklch(25% 0.09 281.288)','base-content':'oklch(78% 0.115 274.713)','primary':'oklch(71% 0.202 349.761)','primary-content':'oklch(28% 0.109 3.907)','secondary':'oklch(82% 0.111 230.318)','secondary-content':'oklch(29% 0.066 243.157)','accent':'oklch(75% 0.183 55.934)','accent-content':'oklch(26% 0.079 36.259)','neutral':'oklch(45% 0.24 277.023)','neutral-content':'oklch(87% 0.065 274.039)','info':'oklch(74% 0.16 232.661)','info-content':'oklch(29% 0.066 243.157)','success':'oklch(77% 0.152 181.912)','success-content':'oklch(27% 0.046 192.524)','warning':'oklch(90% 0.182 98.111)','warning-content':'oklch(42% 0.095 57.708)','error':'oklch(73.7% 0.121 32.639)','error-content':'oklch(23.501% 0.096 290.329)'}},
+  retro:{ name:'Retro', id:'retro', scheme:'light', effects:{'radius-selector':'0.25rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'}, colors:{'base-100':'oklch(91.637% 0.034 90.515)','base-200':'oklch(88.272% 0.049 91.774)','base-300':'oklch(84.133% 0.065 90.856)','base-content':'oklch(41% 0.112 45.904)','primary':'oklch(80% 0.114 19.571)','primary-content':'oklch(39% 0.141 25.723)','secondary':'oklch(92% 0.084 155.995)','secondary-content':'oklch(44% 0.119 151.328)','accent':'oklch(68% 0.162 75.834)','accent-content':'oklch(41% 0.112 45.904)','neutral':'oklch(44% 0.011 73.639)','neutral-content':'oklch(86% 0.005 56.366)','info':'oklch(58% 0.158 241.966)','info-content':'oklch(96% 0.059 95.617)','success':'oklch(51% 0.096 186.391)','success-content':'oklch(96% 0.059 95.617)','warning':'oklch(64% 0.222 41.116)','warning-content':'oklch(96% 0.059 95.617)','error':'oklch(70% 0.191 22.216)','error-content':'oklch(40% 0.123 38.172)'}},
+  cyberpunk:{ name:'Cyberpunk', id:'cyberpunk', scheme:'light', effects:{'radius-selector':'0rem','radius-field':'0rem','radius-box':'0rem','border':'1px'}, colors:{'base-100':'oklch(94.51% 0.179 104.32)','base-200':'oklch(91.51% 0.179 104.32)','base-300':'oklch(85.51% 0.179 104.32)','base-content':'oklch(0% 0 0)','primary':'oklch(74.22% 0.209 6.35)','primary-content':'oklch(14.844% 0.041 6.35)','secondary':'oklch(83.33% 0.184 204.72)','secondary-content':'oklch(16.666% 0.036 204.72)','accent':'oklch(71.86% 0.217 310.43)','accent-content':'oklch(14.372% 0.043 310.43)','neutral':'oklch(23.04% 0.065 269.31)','neutral-content':'oklch(94.51% 0.179 104.32)','info':'oklch(72.06% 0.191 231.6)','info-content':'oklch(0% 0 0)','success':'oklch(64.8% 0.15 160)','success-content':'oklch(0% 0 0)','warning':'oklch(84.71% 0.199 83.87)','warning-content':'oklch(0% 0 0)','error':'oklch(71.76% 0.221 22.18)','error-content':'oklch(0% 0 0)'}},
+  valentine:{ name:'Valentine', id:'valentine', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'2rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(97% 0.014 343.198)','base-200':'oklch(94% 0.028 342.258)','base-300':'oklch(89% 0.061 343.231)','base-content':'oklch(52% 0.223 3.958)','primary':'oklch(65% 0.241 354.308)','primary-content':'oklch(100% 0 0)','secondary':'oklch(62% 0.265 303.9)','secondary-content':'oklch(97% 0.014 308.299)','accent':'oklch(82% 0.111 230.318)','accent-content':'oklch(39% 0.09 240.876)','neutral':'oklch(40% 0.153 2.432)','neutral-content':'oklch(89% 0.061 343.231)','info':'oklch(86% 0.127 207.078)','info-content':'oklch(44% 0.11 240.79)','success':'oklch(84% 0.143 164.978)','success-content':'oklch(43% 0.095 166.913)','warning':'oklch(75% 0.183 55.934)','warning-content':'oklch(26% 0.079 36.259)','error':'oklch(63% 0.237 25.331)','error-content':'oklch(97% 0.013 17.38)'}},
+  halloween:{ name:'Halloween', id:'halloween', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(21% 0.006 56.043)','base-200':'oklch(14% 0.004 49.25)','base-300':'oklch(0% 0 0)','base-content':'oklch(84.955% 0 0)','primary':'oklch(77.48% 0.204 60.62)','primary-content':'oklch(19.693% 0.004 196.779)','secondary':'oklch(45.98% 0.248 305.03)','secondary-content':'oklch(89.196% 0.049 305.03)','accent':'oklch(64.8% 0.223 136.073)','accent-content':'oklch(0% 0 0)','neutral':'oklch(24.371% 0.046 65.681)','neutral-content':'oklch(84.874% 0.009 65.681)','info':'oklch(54.615% 0.215 262.88)','info-content':'oklch(90.923% 0.043 262.88)','success':'oklch(62.705% 0.169 149.213)','success-content':'oklch(12.541% 0.033 149.213)','warning':'oklch(66.584% 0.157 58.318)','warning-content':'oklch(13.316% 0.031 58.318)','error':'oklch(65.72% 0.199 27.33)','error-content':'oklch(13.144% 0.039 27.33)'}},
+  garden:{ name:'Garden', id:'garden', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(92.951% 0.002 17.197)','base-200':'oklch(86.445% 0.002 17.197)','base-300':'oklch(79.938% 0.001 17.197)','base-content':'oklch(16.961% 0.001 17.32)','primary':'oklch(62.45% 0.278 3.836)','primary-content':'oklch(100% 0 0)','secondary':'oklch(48.495% 0.11 355.095)','secondary-content':'oklch(89.699% 0.022 355.095)','accent':'oklch(56.273% 0.054 154.39)','accent-content':'oklch(100% 0 0)','neutral':'oklch(24.155% 0.049 89.07)','neutral-content':'oklch(92.951% 0.002 17.197)','info':'oklch(72.06% 0.191 231.6)','info-content':'oklch(0% 0 0)','success':'oklch(64.8% 0.15 160)','success-content':'oklch(0% 0 0)','warning':'oklch(84.71% 0.199 83.87)','warning-content':'oklch(0% 0 0)','error':'oklch(71.76% 0.221 22.18)','error-content':'oklch(0% 0 0)'}},
+  forest:{ name:'Forest', id:'forest', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'2rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(20.84% 0.008 17.911)','base-200':'oklch(18.522% 0.007 17.911)','base-300':'oklch(16.203% 0.007 17.911)','base-content':'oklch(83.768% 0.001 17.911)','primary':'oklch(68.628% 0.185 148.958)','primary-content':'oklch(0% 0 0)','secondary':'oklch(69.776% 0.135 168.327)','secondary-content':'oklch(13.955% 0.027 168.327)','accent':'oklch(70.628% 0.119 185.713)','accent-content':'oklch(14.125% 0.023 185.713)','neutral':'oklch(30.698% 0.039 171.364)','neutral-content':'oklch(86.139% 0.007 171.364)','info':'oklch(72.06% 0.191 231.6)','info-content':'oklch(0% 0 0)','success':'oklch(64.8% 0.15 160)','success-content':'oklch(0% 0 0)','warning':'oklch(84.71% 0.199 83.87)','warning-content':'oklch(0% 0 0)','error':'oklch(71.76% 0.221 22.18)','error-content':'oklch(0% 0 0)'}},
+  aqua:{ name:'Aqua', id:'aqua', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(37% 0.146 265.522)','base-200':'oklch(28% 0.091 267.935)','base-300':'oklch(22% 0.091 267.935)','base-content':'oklch(90% 0.058 230.902)','primary':'oklch(85.661% 0.144 198.645)','primary-content':'oklch(40.124% 0.068 197.603)','secondary':'oklch(60.682% 0.108 309.782)','secondary-content':'oklch(96% 0.016 293.756)','accent':'oklch(93.426% 0.102 94.555)','accent-content':'oklch(18.685% 0.02 94.555)','neutral':'oklch(27% 0.146 265.522)','neutral-content':'oklch(80% 0.146 265.522)','info':'oklch(54.615% 0.215 262.88)','info-content':'oklch(90.923% 0.043 262.88)','success':'oklch(62.705% 0.169 149.213)','success-content':'oklch(12.541% 0.033 149.213)','warning':'oklch(66.584% 0.157 58.318)','warning-content':'oklch(27% 0.077 45.635)','error':'oklch(73.95% 0.19 27.33)','error-content':'oklch(14.79% 0.038 27.33)'}},
+  lofi:{ name:'Lofi', id:'lofi', scheme:'light', effects:{'radius-selector':'2rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(97% 0 0)','base-300':'oklch(94% 0 0)','base-content':'oklch(0% 0 0)','primary':'oklch(15.906% 0 0)','primary-content':'oklch(100% 0 0)','secondary':'oklch(21.455% 0.001 17.278)','secondary-content':'oklch(100% 0 0)','accent':'oklch(26.861% 0 0)','accent-content':'oklch(100% 0 0)','neutral':'oklch(0% 0 0)','neutral-content':'oklch(100% 0 0)','info':'oklch(79.54% 0.103 205.9)','info-content':'oklch(15.908% 0.02 205.9)','success':'oklch(90.13% 0.153 164.14)','success-content':'oklch(18.026% 0.03 164.14)','warning':'oklch(88.37% 0.135 79.94)','warning-content':'oklch(17.674% 0.027 79.94)','error':'oklch(78.66% 0.15 28.47)','error-content':'oklch(15.732% 0.03 28.47)'}},
+  pastel:{ name:'Pastel', id:'pastel', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'2rem','radius-box':'1rem','border':'2px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(98.462% 0.001 247.838)','base-300':'oklch(92.462% 0.001 247.838)','base-content':'oklch(20% 0 0)','primary':'oklch(90% 0.063 306.703)','primary-content':'oklch(49% 0.265 301.924)','secondary':'oklch(89% 0.058 10.001)','secondary-content':'oklch(51% 0.222 16.935)','accent':'oklch(90% 0.093 164.15)','accent-content':'oklch(50% 0.118 165.612)','neutral':'oklch(55% 0.046 257.417)','neutral-content':'oklch(92% 0.013 255.508)','info':'oklch(86% 0.127 207.078)','info-content':'oklch(52% 0.105 223.128)','success':'oklch(87% 0.15 154.449)','success-content':'oklch(52% 0.154 150.069)','warning':'oklch(83% 0.128 66.29)','warning-content':'oklch(55% 0.195 38.402)','error':'oklch(80% 0.114 19.571)','error-content':'oklch(50% 0.213 27.518)'}},
+  fantasy:{ name:'Fantasy', id:'fantasy', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(93% 0 0)','base-300':'oklch(86% 0 0)','base-content':'oklch(27.807% 0.029 256.847)','primary':'oklch(37.45% 0.189 325.02)','primary-content':'oklch(87.49% 0.037 325.02)','secondary':'oklch(53.92% 0.162 241.36)','secondary-content':'oklch(90.784% 0.032 241.36)','accent':'oklch(75.98% 0.204 56.72)','accent-content':'oklch(15.196% 0.04 56.72)','neutral':'oklch(27.807% 0.029 256.847)','neutral-content':'oklch(85.561% 0.005 256.847)','info':'oklch(72.06% 0.191 231.6)','info-content':'oklch(0% 0 0)','success':'oklch(64.8% 0.15 160)','success-content':'oklch(0% 0 0)','warning':'oklch(84.71% 0.199 83.87)','warning-content':'oklch(0% 0 0)','error':'oklch(71.76% 0.221 22.18)','error-content':'oklch(0% 0 0)'}},
+  wireframe:{ name:'Wireframe', id:'wireframe', scheme:'light', effects:{'radius-selector':'0rem','radius-field':'0.25rem','radius-box':'0.25rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(97% 0 0)','base-300':'oklch(94% 0 0)','base-content':'oklch(20% 0 0)','primary':'oklch(87% 0 0)','primary-content':'oklch(26% 0 0)','secondary':'oklch(87% 0 0)','secondary-content':'oklch(26% 0 0)','accent':'oklch(87% 0 0)','accent-content':'oklch(26% 0 0)','neutral':'oklch(87% 0 0)','neutral-content':'oklch(26% 0 0)','info':'oklch(44% 0.11 240.79)','info-content':'oklch(90% 0.058 230.902)','success':'oklch(43% 0.095 166.913)','success-content':'oklch(90% 0.093 164.15)','warning':'oklch(47% 0.137 46.201)','warning-content':'oklch(92% 0.12 95.746)','error':'oklch(44% 0.177 26.899)','error-content':'oklch(88% 0.062 18.334)'}},
+  oled:{ name:'OLED (Black)', id:'oled', scheme:'dark', effects:{'radius-selector':'0rem','radius-field':'0rem','radius-box':'0rem','border':'1px'}, colors:{'base-100':'oklch(0% 0 0)','base-200':'oklch(19% 0 0)','base-300':'oklch(22% 0 0)','base-content':'oklch(87.609% 0 0)','primary':'oklch(35% 0 0)','primary-content':'oklch(100% 0 0)','secondary':'oklch(35% 0 0)','secondary-content':'oklch(100% 0 0)','accent':'oklch(35% 0 0)','accent-content':'oklch(100% 0 0)','neutral':'oklch(35% 0 0)','neutral-content':'oklch(100% 0 0)','info':'oklch(45.201% 0.313 264.052)','info-content':'oklch(89.04% 0.062 264.052)','success':'oklch(51.975% 0.176 142.495)','success-content':'oklch(90.395% 0.035 142.495)','warning':'oklch(96.798% 0.211 109.769)','warning-content':'oklch(19.359% 0.042 109.769)','error':'oklch(62.795% 0.257 29.233)','error-content':'oklch(12.559% 0.051 29.233)'}},
+  luxury:{ name:'Luxury', id:'luxury', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(14.076% 0.004 285.822)','base-200':'oklch(20.219% 0.004 308.229)','base-300':'oklch(23.219% 0.004 308.229)','base-content':'oklch(75.687% 0.123 76.89)','primary':'oklch(100% 0 0)','primary-content':'oklch(20% 0 0)','secondary':'oklch(27.581% 0.064 261.069)','secondary-content':'oklch(85.516% 0.012 261.069)','accent':'oklch(36.674% 0.051 338.825)','accent-content':'oklch(87.334% 0.01 338.825)','neutral':'oklch(24.27% 0.057 59.825)','neutral-content':'oklch(93.203% 0.089 90.861)','info':'oklch(79.061% 0.121 237.133)','info-content':'oklch(15.812% 0.024 237.133)','success':'oklch(78.119% 0.192 132.154)','success-content':'oklch(15.623% 0.038 132.154)','warning':'oklch(86.127% 0.136 102.891)','warning-content':'oklch(17.225% 0.027 102.891)','error':'oklch(71.753% 0.176 22.568)','error-content':'oklch(14.35% 0.035 22.568)'}},
+  dracula:{ name:'Dracula', id:'dracula', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(28.822% 0.022 277.508)','base-200':'oklch(26.805% 0.02 277.508)','base-300':'oklch(24.787% 0.019 277.508)','base-content':'oklch(97.747% 0.007 106.545)','primary':'oklch(75.461% 0.183 346.812)','primary-content':'oklch(15.092% 0.036 346.812)','secondary':'oklch(74.202% 0.148 301.883)','secondary-content':'oklch(14.84% 0.029 301.883)','accent':'oklch(83.392% 0.124 66.558)','accent-content':'oklch(16.678% 0.024 66.558)','neutral':'oklch(39.445% 0.032 275.524)','neutral-content':'oklch(87.889% 0.006 275.524)','info':'oklch(88.263% 0.093 212.846)','info-content':'oklch(17.652% 0.018 212.846)','success':'oklch(87.099% 0.219 148.024)','success-content':'oklch(17.419% 0.043 148.024)','warning':'oklch(95.533% 0.134 112.757)','warning-content':'oklch(19.106% 0.026 112.757)','error':'oklch(68.22% 0.206 24.43)','error-content':'oklch(13.644% 0.041 24.43)'}},
+  cmyk:{ name:'CMYK', id:'cmyk', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(95% 0 0)','base-300':'oklch(90% 0 0)','base-content':'oklch(20% 0 0)','primary':'oklch(71.772% 0.133 239.443)','primary-content':'oklch(14.354% 0.026 239.443)','secondary':'oklch(64.476% 0.202 359.339)','secondary-content':'oklch(12.895% 0.04 359.339)','accent':'oklch(94.228% 0.189 105.306)','accent-content':'oklch(18.845% 0.037 105.306)','neutral':'oklch(21.778% 0 0)','neutral-content':'oklch(84.355% 0 0)','info':'oklch(68.475% 0.094 217.284)','info-content':'oklch(13.695% 0.018 217.284)','success':'oklch(46.949% 0.162 321.406)','success-content':'oklch(89.389% 0.032 321.406)','warning':'oklch(71.236% 0.159 52.023)','warning-content':'oklch(14.247% 0.031 52.023)','error':'oklch(62.013% 0.208 28.717)','error-content':'oklch(12.402% 0.041 28.717)'}},
+  autumn:{ name:'Autumn', id:'autumn', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(95.814% 0 0)','base-200':'oklch(89.107% 0 0)','base-300':'oklch(82.4% 0 0)','base-content':'oklch(19.162% 0 0)','primary':'oklch(40.723% 0.161 17.53)','primary-content':'oklch(88.144% 0.032 17.53)','secondary':'oklch(61.676% 0.169 23.865)','secondary-content':'oklch(12.335% 0.033 23.865)','accent':'oklch(73.425% 0.094 60.729)','accent-content':'oklch(14.685% 0.018 60.729)','neutral':'oklch(54.367% 0.037 51.902)','neutral-content':'oklch(90.873% 0.007 51.902)','info':'oklch(69.224% 0.097 207.284)','info-content':'oklch(13.844% 0.019 207.284)','success':'oklch(60.995% 0.08 174.616)','success-content':'oklch(12.199% 0.016 174.616)','warning':'oklch(70.081% 0.164 56.844)','warning-content':'oklch(14.016% 0.032 56.844)','error':'oklch(53.07% 0.241 24.16)','error-content':'oklch(90.614% 0.048 24.16)'}},
+  business:{ name:'Business', id:'business', scheme:'dark', effects:{'radius-selector':'0rem','radius-field':'0.25rem','radius-box':'0.25rem','border':'1px'}, colors:{'base-100':'oklch(24.353% 0 0)','base-200':'oklch(22.648% 0 0)','base-300':'oklch(20.944% 0 0)','base-content':'oklch(84.87% 0 0)','primary':'oklch(41.703% 0.099 251.473)','primary-content':'oklch(88.34% 0.019 251.473)','secondary':'oklch(64.092% 0.027 229.389)','secondary-content':'oklch(12.818% 0.005 229.389)','accent':'oklch(67.271% 0.167 35.791)','accent-content':'oklch(13.454% 0.033 35.791)','neutral':'oklch(27.441% 0.013 253.041)','neutral-content':'oklch(85.488% 0.002 253.041)','info':'oklch(62.616% 0.143 240.033)','info-content':'oklch(12.523% 0.028 240.033)','success':'oklch(70.226% 0.094 156.596)','success-content':'oklch(14.045% 0.018 156.596)','warning':'oklch(77.482% 0.115 81.519)','warning-content':'oklch(15.496% 0.023 81.519)','error':'oklch(51.61% 0.146 29.674)','error-content':'oklch(90.322% 0.029 29.674)'}},
+  acid:{ name:'Acid', id:'acid', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'1rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(98% 0 0)','base-200':'oklch(95% 0 0)','base-300':'oklch(91% 0 0)','base-content':'oklch(0% 0 0)','primary':'oklch(71.9% 0.357 330.759)','primary-content':'oklch(14.38% 0.071 330.759)','secondary':'oklch(73.37% 0.224 48.25)','secondary-content':'oklch(14.674% 0.044 48.25)','accent':'oklch(92.78% 0.264 122.962)','accent-content':'oklch(18.556% 0.052 122.962)','neutral':'oklch(21.31% 0.128 278.68)','neutral-content':'oklch(84.262% 0.025 278.68)','info':'oklch(60.72% 0.227 252.05)','info-content':'oklch(12.144% 0.045 252.05)','success':'oklch(85.72% 0.266 158.53)','success-content':'oklch(17.144% 0.053 158.53)','warning':'oklch(91.01% 0.212 100.5)','warning-content':'oklch(18.202% 0.042 100.5)','error':'oklch(64.84% 0.293 29.349)','error-content':'oklch(12.968% 0.058 29.349)'}},
+  lemonade:{ name:'Lemonade', id:'lemonade', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(98.71% 0.02 123.72)','base-200':'oklch(91.8% 0.018 123.72)','base-300':'oklch(84.89% 0.017 123.72)','base-content':'oklch(19.742% 0.004 123.72)','primary':'oklch(58.92% 0.199 134.6)','primary-content':'oklch(11.784% 0.039 134.6)','secondary':'oklch(77.75% 0.196 111.09)','secondary-content':'oklch(15.55% 0.039 111.09)','accent':'oklch(85.39% 0.201 100.73)','accent-content':'oklch(17.078% 0.04 100.73)','neutral':'oklch(30.98% 0.075 108.6)','neutral-content':'oklch(86.196% 0.015 108.6)','info':'oklch(86.19% 0.047 224.14)','info-content':'oklch(17.238% 0.009 224.14)','success':'oklch(86.19% 0.047 157.85)','success-content':'oklch(17.238% 0.009 157.85)','warning':'oklch(86.19% 0.047 102.15)','warning-content':'oklch(17.238% 0.009 102.15)','error':'oklch(86.19% 0.047 25.85)','error-content':'oklch(17.238% 0.009 25.85)'}},
+  night:{ name:'Night', id:'night', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(20.768% 0.039 265.754)','base-200':'oklch(19.314% 0.037 265.754)','base-300':'oklch(17.86% 0.034 265.754)','base-content':'oklch(84.153% 0.007 265.754)','primary':'oklch(75.351% 0.138 232.661)','primary-content':'oklch(15.07% 0.027 232.661)','secondary':'oklch(68.011% 0.158 276.934)','secondary-content':'oklch(13.602% 0.031 276.934)','accent':'oklch(72.36% 0.176 350.048)','accent-content':'oklch(14.472% 0.035 350.048)','neutral':'oklch(27.949% 0.036 260.03)','neutral-content':'oklch(85.589% 0.007 260.03)','info':'oklch(68.455% 0.148 237.251)','info-content':'oklch(0% 0 0)','success':'oklch(78.452% 0.132 181.911)','success-content':'oklch(15.69% 0.026 181.911)','warning':'oklch(83.242% 0.139 82.95)','warning-content':'oklch(16.648% 0.027 82.95)','error':'oklch(71.785% 0.17 13.118)','error-content':'oklch(14.357% 0.034 13.118)'}},
+  coffee:{ name:'Coffee', id:'coffee', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(24% 0.023 329.708)','base-200':'oklch(21% 0.021 329.708)','base-300':'oklch(16% 0.019 329.708)','base-content':'oklch(72.354% 0.092 79.129)','primary':'oklch(71.996% 0.123 62.756)','primary-content':'oklch(14.399% 0.024 62.756)','secondary':'oklch(34.465% 0.029 199.194)','secondary-content':'oklch(86.893% 0.005 199.194)','accent':'oklch(42.621% 0.074 224.389)','accent-content':'oklch(88.524% 0.014 224.389)','neutral':'oklch(16.51% 0.015 326.261)','neutral-content':'oklch(83.302% 0.003 326.261)','info':'oklch(79.49% 0.063 184.558)','info-content':'oklch(15.898% 0.012 184.558)','success':'oklch(74.722% 0.072 131.116)','success-content':'oklch(14.944% 0.014 131.116)','warning':'oklch(88.15% 0.14 87.722)','warning-content':'oklch(17.63% 0.028 87.722)','error':'oklch(77.318% 0.128 31.871)','error-content':'oklch(15.463% 0.025 31.871)'}},
+  winter:{ name:'Winter', id:'winter', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(100% 0 0)','base-200':'oklch(97.466% 0.011 259.822)','base-300':'oklch(93.268% 0.016 262.751)','base-content':'oklch(41.886% 0.053 255.824)','primary':'oklch(56.86% 0.255 257.57)','primary-content':'oklch(91.372% 0.051 257.57)','secondary':'oklch(42.551% 0.161 282.339)','secondary-content':'oklch(88.51% 0.032 282.339)','accent':'oklch(59.939% 0.191 335.171)','accent-content':'oklch(11.988% 0.038 335.171)','neutral':'oklch(19.616% 0.063 257.651)','neutral-content':'oklch(83.923% 0.012 257.651)','info':'oklch(88.127% 0.085 214.515)','info-content':'oklch(17.625% 0.017 214.515)','success':'oklch(80.494% 0.077 197.823)','success-content':'oklch(16.098% 0.015 197.823)','warning':'oklch(89.172% 0.045 71.47)','warning-content':'oklch(17.834% 0.009 71.47)','error':'oklch(73.092% 0.11 20.076)','error-content':'oklch(14.618% 0.022 20.076)'}},
+  dim:{ name:'Dim', id:'dim', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(30.857% 0.023 264.149)','base-200':'oklch(28.036% 0.019 264.182)','base-300':'oklch(26.346% 0.018 262.177)','base-content':'oklch(82.901% 0.031 222.959)','primary':'oklch(86.133% 0.141 139.549)','primary-content':'oklch(17.226% 0.028 139.549)','secondary':'oklch(73.375% 0.165 35.353)','secondary-content':'oklch(14.675% 0.033 35.353)','accent':'oklch(74.229% 0.133 311.379)','accent-content':'oklch(14.845% 0.026 311.379)','neutral':'oklch(24.731% 0.02 264.094)','neutral-content':'oklch(82.901% 0.031 222.959)','info':'oklch(86.078% 0.142 206.182)','info-content':'oklch(17.215% 0.028 206.182)','success':'oklch(86.171% 0.142 166.534)','success-content':'oklch(17.234% 0.028 166.534)','warning':'oklch(86.163% 0.142 94.818)','warning-content':'oklch(17.232% 0.028 94.818)','error':'oklch(82.418% 0.099 33.756)','error-content':'oklch(16.483% 0.019 33.756)'}},
+  nord:{ name:'Nord', id:'nord', scheme:'light', effects:{'radius-selector':'1rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'}, colors:{'base-100':'oklch(95.127% 0.007 260.731)','base-200':'oklch(93.299% 0.01 261.788)','base-300':'oklch(89.925% 0.016 262.749)','base-content':'oklch(32.437% 0.022 264.182)','primary':'oklch(59.435% 0.077 254.027)','primary-content':'oklch(11.887% 0.015 254.027)','secondary':'oklch(69.651% 0.059 248.687)','secondary-content':'oklch(13.93% 0.011 248.687)','accent':'oklch(77.464% 0.062 217.469)','accent-content':'oklch(15.492% 0.012 217.469)','neutral':'oklch(45.229% 0.035 264.131)','neutral-content':'oklch(89.925% 0.016 262.749)','info':'oklch(69.207% 0.062 332.664)','info-content':'oklch(13.841% 0.012 332.664)','success':'oklch(76.827% 0.074 131.063)','success-content':'oklch(15.365% 0.014 131.063)','warning':'oklch(85.486% 0.089 84.093)','warning-content':'oklch(17.097% 0.017 84.093)','error':'oklch(60.61% 0.12 15.341)','error-content':'oklch(12.122% 0.024 15.341)'}},
+  sunset:{ name:'Sunset', id:'sunset', scheme:'dark', effects:{'radius-selector':'1rem','radius-field':'0.5rem','radius-box':'1rem','border':'1px'}, colors:{'base-100':'oklch(22% 0.019 237.69)','base-200':'oklch(20% 0.019 237.69)','base-300':'oklch(18% 0.019 237.69)','base-content':'oklch(77.383% 0.043 245.096)','primary':'oklch(74.703% 0.158 39.947)','primary-content':'oklch(14.94% 0.031 39.947)','secondary':'oklch(72.537% 0.177 2.72)','secondary-content':'oklch(14.507% 0.035 2.72)','accent':'oklch(71.294% 0.166 299.844)','accent-content':'oklch(14.258% 0.033 299.844)','neutral':'oklch(26% 0.019 237.69)','neutral-content':'oklch(70% 0.019 237.69)','info':'oklch(85.559% 0.085 206.015)','info-content':'oklch(17.111% 0.017 206.015)','success':'oklch(85.56% 0.085 144.778)','success-content':'oklch(17.112% 0.017 144.778)','warning':'oklch(85.569% 0.084 74.427)','warning-content':'oklch(17.113% 0.016 74.427)','error':'oklch(85.511% 0.078 16.886)','error-content':'oklch(17.102% 0.015 16.886)'}},
+  caramellatte:{ name:'Caramellatte', id:'caramellatte', scheme:'light', effects:{'radius-selector':'2rem','radius-field':'0.5rem','radius-box':'1rem','border':'2px'}, colors:{'base-100':'oklch(98% 0.016 73.684)','base-200':'oklch(95% 0.038 75.164)','base-300':'oklch(90% 0.076 70.697)','base-content':'oklch(40% 0.123 38.172)','primary':'oklch(0% 0 0)','primary-content':'oklch(100% 0 0)','secondary':'oklch(22.45% 0.075 37.85)','secondary-content':'oklch(90% 0.076 70.697)','accent':'oklch(46.44% 0.111 37.85)','accent-content':'oklch(90% 0.076 70.697)','neutral':'oklch(55% 0.195 38.402)','neutral-content':'oklch(98% 0.016 73.684)','info':'oklch(42% 0.199 265.638)','info-content':'oklch(90% 0.076 70.697)','success':'oklch(43% 0.095 166.913)','success-content':'oklch(90% 0.076 70.697)','warning':'oklch(82% 0.189 84.429)','warning-content':'oklch(41% 0.112 45.904)','error':'oklch(70% 0.191 22.216)','error-content':'oklch(39% 0.141 25.723)'}},
+  abyss:{ name:'Abyss', id:'abyss', scheme:'dark', effects:{'radius-selector':'2rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'}, colors:{'base-100':'oklch(20% 0.08 209)','base-200':'oklch(15% 0.08 209)','base-300':'oklch(10% 0.08 209)','base-content':'oklch(90% 0.076 70.697)','primary':'oklch(92% 0.2653 125)','primary-content':'oklch(50% 0.2653 125)','secondary':'oklch(83.27% 0.0764 298.3)','secondary-content':'oklch(43.27% 0.0764 298.3)','accent':'oklch(43% 0 0)','accent-content':'oklch(98% 0 0)','neutral':'oklch(30% 0.08 209)','neutral-content':'oklch(90% 0.076 70.697)','info':'oklch(74% 0.16 232.661)','info-content':'oklch(29% 0.066 243.157)','success':'oklch(79% 0.209 151.711)','success-content':'oklch(26% 0.065 152.934)','warning':'oklch(84.8% 0.1962 84.62)','warning-content':'oklch(44.8% 0.1962 84.62)','error':'oklch(65% 0.1985 24.22)','error-content':'oklch(27% 0.1985 24.22)'}},
+  silk:{ name:'Silk', id:'silk', scheme:'light', effects:{'radius-selector':'2rem','radius-field':'0.5rem','radius-box':'1rem','border':'2px'}, colors:{'base-100':'oklch(97% 0.0035 67.78)','base-200':'oklch(95% 0.0081 61.42)','base-300':'oklch(90% 0.0081 61.42)','base-content':'oklch(40% 0.0081 61.42)','primary':'oklch(23.27% 0.0249 284.3)','primary-content':'oklch(94.22% 0.2505 117.44)','secondary':'oklch(23.27% 0.0249 284.3)','secondary-content':'oklch(73.92% 0.2135 50.94)','accent':'oklch(23.27% 0.0249 284.3)','accent-content':'oklch(88.92% 0.2061 189.9)','neutral':'oklch(20% 0 0)','neutral-content':'oklch(80% 0.0081 61.42)','info':'oklch(80.39% 0.1148 241.68)','info-content':'oklch(30.39% 0.1148 241.68)','success':'oklch(83.92% 0.0901 136.87)','success-content':'oklch(23.92% 0.0901 136.87)','warning':'oklch(83.92% 0.1085 80)','warning-content':'oklch(43.92% 0.1085 80)','error':'oklch(75.1% 0.1814 22.37)','error-content':'oklch(35.1% 0.1814 22.37)'}},
+};
+
+function newModel(){ return { name:'My Custom Theme', id:'my_custom_theme', author:'', scheme:'dark',
+  colors:{}, oklch:{}, effects:{...EFX_DARK} }; }
+let model = newModel();
+
+const $=s=>document.querySelector(s);
+const inputs={}, efxInputs={};
+
+function buildGroups(){
+  const root=$('#groups'); root.innerHTML='';
+  for(const g of GROUPS){
+    const el=document.createElement('div'); el.className='group';
+    el.innerHTML=`<h3><span class="n">${g.n}</span>${g.title}</h3><p>${g.desc}</p>`;
+    for(const [field,label,desc] of g.fields){
+      const row=document.createElement('div'); row.className='swatch';
+      row.innerHTML=`
+        <span class="pick"><input type="color" aria-label="${label} color" /></span>
+        <span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span>
+        <input class="hex" type="text" spellcheck="false" maxlength="7" aria-label="${label} hex" />`;
+      const color=row.querySelector('input[type=color]'), hex=row.querySelector('.hex');
+      inputs[field]={color,hex,pick:row.querySelector('.pick')};
+      color.addEventListener('input',()=>setField(field,color.value));
+      hex.addEventListener('input',()=>{ if(/^#?[0-9a-fA-F]{6}$/.test(hex.value)) setField(field,'#'+hex.value.replace('#','')); });
+      hex.addEventListener('blur',()=>syncOne(field));
+      el.appendChild(row);
+    }
+    root.appendChild(el);
+  }
+}
+function buildEffects(){
+  const root=$('#effects'); root.innerHTML='';
+  const el=document.createElement('div'); el.className='group';
+  el.innerHTML=`<h3><span class="n">04</span>Effects</h3><p>daisyUI radius &amp; border.</p>`;
+  for(const [key,label,desc,opts] of EFFECTS){
+    const row=document.createElement('div'); row.className='efx';
+    if(opts==='toggle'){
+      row.innerHTML=`<span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span>
+        <div class="tog" data-k="${key}"><button type="button" data-val="0">Off</button><button type="button" data-val="1">On</button></div>`;
+      row.querySelector('.tog').addEventListener('click',e=>{ const v=e.target.dataset.val; if(v!=null) setEffect(key,v); });
+    }else{
+      const o=opts.map(v=>`<option value="${v}">${v==='0'?'0 (none)':v}</option>`).join('');
+      row.innerHTML=`<span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span><select data-k="${key}">${o}</select>`;
+      row.querySelector('select').addEventListener('change',e=>setEffect(key,e.target.value));
+    }
+    efxInputs[key]=row; el.appendChild(row);
+  }
+  root.appendChild(el);
+}
+function syncEffects(){
+  for(const [key,,,opts] of EFFECTS){
+    const v=model.effects[key], row=efxInputs[key]; if(!row) continue;
+    if(opts==='toggle') row.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.val===String(v)));
+    else row.querySelector('select').value=v;
+  }
+}
+function setEffect(key,val){ model.effects[key]=val; syncEffects(); applyPreview(); renderJson(); }
+
+function setField(field,hex){ hex=hex.toUpperCase(); model.colors[field]=hex; model.oklch[field]=hexToOklch(hex); syncOne(field); applyPreview(); renderJson(); }
+function syncOne(field){ const v=model.colors[field],i=inputs[field]; if(!i||!v)return; i.color.value=v; i.hex.value=v; i.pick.style.background=v; }
+function syncAll(){ for(const f in inputs) syncOne(f); }
+
+function applyPreview(){
+  const s=$('#screen');
+  for(const [cssVar,field] of Object.entries(PREVIEW_VARS)) s.style.setProperty(cssVar,model.colors[field]);
+  // daisyUI radius tokens -> preview em scale (×3 keeps the default look); rem maps to em, px stays px
+  const remEm=v=>{ const n=parseFloat(v)||0; return String(v||'').includes('rem')?(n*3)+'em':(n?n*3+'px':'0'); };
+  s.style.setProperty('--r-sel',  remEm(model.effects['radius-selector']));
+  s.style.setProperty('--r-field',remEm(model.effects['radius-field']));
+  s.style.setProperty('--r-box',  remEm(model.effects['radius-box']));
+  s.style.setProperty('--brd', model.effects['border']!=null?String(model.effects['border']):'1px');
+  const rail=$('#ledRail');
+  rail.querySelectorAll('.led-chip').forEach(c=>c.remove());
+  const order=['primary','secondary','accent','neutral','base-100','base-200','base-300','base-content','info','success','warning','error'];
+  for(const f of order){
+    const chip=document.createElement('span'); chip.className='led-chip';
+    chip.style.background=model.colors[f]; chip.style.color=model.colors[f];
+    if(['primary','secondary','accent','success','error'].includes(f)) chip.setAttribute('data-glow','');
+    chip.title=f+' '+model.colors[f]; rail.appendChild(chip);
+  }
+}
+
+/* ---- Export builder ---- */
+function jsonExport(){
+  const colors={}; for(const f of COLOR_FIELDS) colors[f]=model.colors[f];
+  return JSON.stringify({ name:model.name, id:model.id, author:model.author, colorScheme:model.scheme, colors, effects:{...model.effects,...SIZE_DEFAULTS} }, null, 2);
+}
+function renderJson(){}
+function currentExport(){ return jsonExport(); }
+
+function loadModel(m){
+  const src=m.colors||m, isOklch=v=>/oklch/i.test(v||'');
+  model=newModel();
+  model.name=m.name||'Imported Theme';
+  model.id=m.id||(m.name||'imported').toLowerCase().replace(/[^a-z0-9]+/g,'_');
+  model.author=m.author||'';
+  model.scheme=m.scheme||m.colorScheme||m.brightness||'dark';
+  const base=PRESETS.dark.colors;
+  for(const f of COLOR_FIELDS){
+    const raw=src[f]!=null?src[f]:base[f];
+    if(isOklch(raw)){ model.oklch[f]=raw; model.colors[f]=oklchToHex(raw).toUpperCase(); }
+    else { model.colors[f]=String(raw).toUpperCase(); model.oklch[f]=hexToOklch(raw); }
+  }
+  model.effects={...EFX_DARK, ...(m.effects||{})};
+  $('#tName').value=model.name; $('#tId').value=model.id; $('#tAuthor').value=model.author;
+  setBright(model.scheme); syncAll(); syncEffects(); applyPreview(); renderJson();
+}
+function setBright(b){ model.scheme=b; $('#brightSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.b===b)); }
+
+let toastT;
+function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),1600); }
+
+function setView(v){
+  document.querySelectorAll('.view').forEach(el=>el.classList.toggle('on',el.dataset.view===v));
+  document.querySelectorAll('.viewtog button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  $('#legend').innerHTML = v==='browse'
+    ? 'Screen background is <b>base-100</b>, toolbar/pills <b>base-200</b>, text <b>base-content</b> · selected tab + filter use <b>secondary</b> · system-name pill uses <b>primary</b> · View Mode / Settings use <b>accent</b> · Enter uses <b>success</b> · battery uses <b>success</b>. (A/B/X/Y glyphs are monochrome.)'
+    : v==='detail'
+    ? 'Selected list row uses <b>secondary</b> · "A2600" chip uses <b>primary</b> · Back uses <b>error</b> · Play uses <b>success</b> · text uses <b>base-content</b>.'
+    : 'Every NeoStation UI role at a glance — buttons, toggles, notifications, battery & storage, badges and dialogs. <b>primary</b> / <b>secondary</b> / <b>accent</b> drive actions · <b>success</b> / <b>warning</b> / <b>info</b> / <b>error</b> drive status · surfaces are <b>base-100/200/300</b>, text <b>base-content</b>.';
+}
+
+function initPresetDropdown(){
+  const dd=$('#presetDD'), btn=dd.querySelector('.dd-btn'), val=dd.querySelector('.dd-val'), menu=dd.querySelector('.dd-menu');
+  let active=-1;
+  const items=[];
+  for(const [k,p] of Object.entries(PRESETS)){
+    const li=document.createElement('li'); li.setAttribute('role','option'); li.dataset.k=k; li.textContent=p.name;
+    li.setAttribute('aria-selected', k==='dark'?'true':'false');
+    if(k==='dark') val.textContent=p.name;
+    li.addEventListener('click',()=>select(k));
+    li.addEventListener('mousemove',()=>setActive(items.indexOf(li)));
+    menu.appendChild(li); items.push(li);
+  }
+  function setActive(i){ items.forEach((li,n)=>li.classList.toggle('active',n===i)); active=i;
+    if(items[i]) items[i].scrollIntoView({block:'nearest'}); }
+  function select(k){ const p=PRESETS[k]; val.textContent=p.name;
+    items.forEach(li=>li.setAttribute('aria-selected', li.dataset.k===k?'true':'false'));
+    close();
+    loadModel({name:$('#tName').value,id:$('#tId').value,author:$('#tAuthor').value,scheme:p.scheme,colors:p.colors,effects:p.effects});
+    toast(p.name+' loaded'); }
+  function open(){ dd.classList.add('open'); btn.setAttribute('aria-expanded','true');
+    setActive(Math.max(0,items.findIndex(li=>li.getAttribute('aria-selected')==='true'))); }
+  function close(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); items.forEach(li=>li.classList.remove('active')); }
+  btn.addEventListener('click',e=>{ e.stopPropagation(); dd.classList.contains('open')?close():open(); });
+  btn.addEventListener('keydown',e=>{
+    if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault();
+      if(!dd.classList.contains('open')){ open(); return; }
+      setActive((active+(e.key==='ArrowDown'?1:-1)+items.length)%items.length); }
+    else if(e.key==='Enter'||e.key===' '){ e.preventDefault();
+      if(dd.classList.contains('open')&&active>=0) select(items[active].dataset.k); else open(); }
+    else if(e.key==='Escape'){ close(); }
+  });
+  document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
+}
+
+function init(){
+  buildGroups(); buildEffects();
+  initPresetDropdown();
+
+  $('#tName').addEventListener('input',e=>{model.name=e.target.value;renderJson();});
+  $('#tId').addEventListener('input',e=>{model.id=e.target.value.trim().replace(/\s+/g,'_');renderJson();applyPreview();});
+  $('#tAuthor').addEventListener('input',e=>{model.author=e.target.value;renderJson();});
+  $('#brightSeg').addEventListener('click',e=>{const b=e.target.dataset.b; if(b){setBright(b);renderJson();}});
+  document.querySelector('.viewtog').addEventListener('click',e=>{const v=e.target.dataset.v; if(v)setView(v);});
+
+  const copy=()=>navigator.clipboard.writeText(currentExport()).then(()=>toast('JSON copied'));
+  $('#copyBtn').addEventListener('click',copy);
+  $('#dlBtn').addEventListener('click',()=>{
+    const blob=new Blob([currentExport()],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=(model.id||'theme')+'.json';
+    a.click(); URL.revokeObjectURL(a.href); toast('Downloaded'); });
+  $('#importBtn').addEventListener('click',()=>$('#fileInput').click());
+  $('#fileInput').addEventListener('change',e=>{ const f=e.target.files[0]; if(!f)return;
+    const r=new FileReader(); r.onload=()=>{ try{ loadModel(JSON.parse(r.result)); toast('Imported'); }catch(err){ toast('Invalid JSON'); } };
+    r.readAsText(f); e.target.value=''; });
+
+  loadModel({...PRESETS.dark, name:'My Custom Theme', id:'my_custom_theme'}); setView('browse');
+}
+init();
+</script>
