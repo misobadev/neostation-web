@@ -17,7 +17,8 @@
       "snes",
       "snesna",
       "Super Nintendo",
-      "Super Nintendo Entertainment System"
+      "Super Nintendo Entertainment System",
+      "sufami"
     ],
     "colors": [
       "#d1d5db",
@@ -56,6 +57,7 @@
     },
     {
       "name": "RetroArch64 Snes9x",
+      "default_core": true,
       "unique_id": "snes.ra64.snes9x",
       "description": "Supported extensions: bs, fig, sfc, smc, st, swc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -265,6 +267,7 @@
     },
     {
       "name": "RetroArch32 Snes9x",
+      "default_core": true,
       "unique_id": "snes.ra32.snes9x",
       "description": "Supported extensions: bs, fig, sfc, smc, st, swc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -474,7 +477,7 @@
     },
     {
       "name": "RetroArch Snes9x",
-      "default": true,
+      "default_core": true,
       "unique_id": "snes.ra.snes9x",
       "description": "Supported extensions: bs, fig, sfc, smc, st, swc, zip, 7z.",
       "is_retroachievements_compatible": true,

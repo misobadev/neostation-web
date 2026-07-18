@@ -30,6 +30,7 @@
   "emulators": [
     {
       "name": "RetroArch64 Picodrive",
+      "default_core": true,
       "unique_id": "pico.ra64.picodrive",
       "description": "Supported extensions: md, 7z, zip.",
       "is_retroachievements_compatible": false,
@@ -41,6 +42,7 @@
     },
     {
       "name": "RetroArch32 Picodrive",
+      "default_core": true,
       "unique_id": "pico.ra32.picodrive",
       "description": "Supported extensions: md, 7z, zip.",
       "is_retroachievements_compatible": false,
@@ -52,7 +54,7 @@
     },
     {
       "name": "RetroArch Picodrive",
-      "default": true,
+      "default_core": true,
       "unique_id": "pico.ra.picodrive",
       "description": "Supported extensions: md, 7z, zip.",
       "is_retroachievements_compatible": false,

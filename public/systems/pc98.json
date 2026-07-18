@@ -48,6 +48,7 @@
   "emulators": [
     {
       "name": "Retroarch64 NP2kai",
+      "default_core": true,
       "unique_id": "pc98.ra64.np2kai",
       "description": "Supported extensions: 2hd, 88d, 98d, cmd, d88, d98, dup, fdd, fdi, hdd, hdi, hdm, hdn, nhd, tfd, thd, xdf, zip.",
       "is_retroachievements_compatible": false,
@@ -70,6 +71,7 @@
     },
     {
       "name": "Retroarch32 NP2kai",
+      "default_core": true,
       "unique_id": "pc98.ra32.np2kai",
       "description": "Supported extensions: 2hd, 88d, 98d, cmd, d88, d98, dup, fdd, fdi, hdd, hdi, hdm, hdn, nhd, tfd, thd, xdf, zip.",
       "is_retroachievements_compatible": false,
@@ -92,6 +94,7 @@
     },
     {
       "name": "Retroarch NP2kai",
+      "default_core": true,
       "unique_id": "pc98.ra.np2kai",
       "description": "Supported extensions: 2hd, 88d, 98d, cmd, d88, d98, dup, fdd, fdi, hdd, hdi, hdm, hdn, nhd, tfd, thd, xdf, zip.",
       "is_retroachievements_compatible": false,

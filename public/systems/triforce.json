@@ -32,7 +32,7 @@
     {
       "name": "Standalone Dolphin",
       "unique_id": "triforce.org.dolphinemu.dolphinemu",
-      "default": true,
+      "default_standalone": true,
       "description": "Supported extensions: gcz, iso, wia, gcm.",
       "is_retroachievements_compatible": false,
       "platforms": {

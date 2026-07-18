@@ -40,6 +40,7 @@
   "emulators": [
     {
       "name": "RetroArch64 X1",
+      "default_core": true,
       "unique_id": "x1.ra64.x1",
       "description": "Supported extensions: 2hd, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip, 7z.",
       "is_retroachievements_compatible": false,
@@ -51,6 +52,7 @@
     },
     {
       "name": "RetroArch32 X1",
+      "default_core": true,
       "unique_id": "x1.ra32.x1",
       "description": "Supported extensions: 2hd, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip, 7z.",
       "is_retroachievements_compatible": false,
@@ -62,6 +64,7 @@
     },
     {
       "name": "RetroArch X1",
+      "default_core": true,
       "unique_id": "x1.ra.x1",
       "description": "Supported extensions: 2hd, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip, 7z.",
       "is_retroachievements_compatible": false,

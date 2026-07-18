@@ -29,7 +29,7 @@
   "emulators": [
     {
       "name": "Standalone Vita3K",
-      "default": true,
+      "default_standalone": true,
       "unique_id": "vita.vita3k",
       "description": "Supported extensions: psvita.",
       "is_retroachievements_compatible": false,

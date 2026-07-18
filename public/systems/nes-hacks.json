@@ -72,6 +72,7 @@
     },
     {
       "name": "RetroArch64 FCEUmm",
+      "default_core": true,
       "unique_id": "nes-hacks.ra64.fceumm",
       "description": "Supported extensions: fds, nes, unf, unif.",
       "is_retroachievements_compatible": true,
@@ -127,6 +128,7 @@
     },
     {
       "name": "RetroArch32 FCEUmm",
+      "default_core": true,
       "unique_id": "nes-hacks.ra32.fceumm",
       "description": "Supported extensions: fds, nes, unf, unif.",
       "is_retroachievements_compatible": true,
@@ -194,7 +196,7 @@
     },
     {
       "name": "RetroArch FCEUmm",
-      "default": true,
+      "default_core": true,
       "unique_id": "nes-hacks.ra.fceumm",
       "description": "Supported extensions: fds, nes, unf, unif.",
       "is_retroachievements_compatible": true,

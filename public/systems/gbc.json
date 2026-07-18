@@ -115,6 +115,7 @@
     },
     {
       "name": "RetroArch64 Gambatte",
+      "default_core": true,
       "unique_id": "gbc.ra64.gambatte",
       "description": "Supported extensions: dmg, gb, gbc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -203,6 +204,7 @@
     },
     {
       "name": "RetroArch32 Gambatte",
+      "default_core": true,
       "unique_id": "gbc.ra32.gambatte",
       "description": "Supported extensions: dmg, gb, gbc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -291,7 +293,7 @@
     },
     {
       "name": "RetroArch Gambatte",
-      "default": true,
+      "default_core": true,
       "unique_id": "gbc.ra.gambatte",
       "description": "Supported extensions: dmg, gb, gbc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -471,6 +473,51 @@
         "macos": {
           "executable": "RetroArch.App",
           "args": "-L mgba_libretro.dylib \"{file.path}\""
+        }
+      }
+    },
+    {
+      "name": "RetroArch64 Bsnes",
+      "unique_id": "gbc.ra64.bsnes",
+      "description": "Supported extensions: gb, gbc, sgb.",
+      "is_retroachievements_compatible": false,
+      "platforms": {
+        "android": {
+          "launch_arguments": "-n com.retroarch.aarch64/com.retroarch.browser.retroactivity.RetroActivityFuture --es ROM \"{file.path}\" --es LIBRETRO \"bsnes\""
+        }
+      }
+    },
+    {
+      "name": "RetroArch32 Bsnes",
+      "unique_id": "gbc.ra32.bsnes",
+      "description": "Supported extensions: gb, gbc, sgb.",
+      "is_retroachievements_compatible": false,
+      "platforms": {
+        "android": {
+          "launch_arguments": "-n com.retroarch.ra32/com.retroarch.browser.retroactivity.RetroActivityFuture --es ROM \"{file.path}\" --es LIBRETRO \"bsnes\""
+        }
+      }
+    },
+    {
+      "name": "RetroArch Bsnes",
+      "unique_id": "gbc.ra.bsnes",
+      "description": "Supported extensions: gb, gbc, sgb.",
+      "is_retroachievements_compatible": false,
+      "platforms": {
+        "android": {
+          "launch_arguments": "-n com.retroarch/com.retroarch.browser.retroactivity.RetroActivityFuture --es ROM \"{file.path}\" --es LIBRETRO \"bsnes\""
+        },
+        "windows": {
+          "executable": "retroarch.exe",
+          "args": "-L bsnes_libretro.dll \"{file.path}\""
+        },
+        "linux": {
+          "executable": "retroarch",
+          "args": "-L bsnes_libretro.so \"{file.path}\""
+        },
+        "macos": {
+          "executable": "RetroArch.App",
+          "args": "-L bsnes_libretro.dylib \"{file.path}\""
         }
       }
     }

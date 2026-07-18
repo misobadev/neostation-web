@@ -50,6 +50,7 @@
     },
     {
       "name": "RetroArch64 ScummVM",
+      "default_core": true,
       "unique_id": "scummvm.ra64.scummvm",
       "description": "Supported extensions: sh, svm, scummvm.",
       "is_retroachievements_compatible": false,
@@ -61,6 +62,7 @@
     },
     {
       "name": "RetroArch32 ScummVM",
+      "default_core": true,
       "unique_id": "scummvm.ra32.scummvm",
       "description": "Supported extensions: sh, svm, scummvm.",
       "is_retroachievements_compatible": false,
@@ -72,7 +74,7 @@
     },
     {
       "name": "RetroArch ScummVM",
-      "default": true,
+      "default_core": true,
       "unique_id": "scummvm.ra.scummvm",
       "description": "Supported extensions: sh, svm, scummvm.",
       "is_retroachievements_compatible": false,

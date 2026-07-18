@@ -62,7 +62,6 @@
   .dd-menu li:not([aria-selected="true"])::before{content:"";flex:none;width:5px;height:5px}
   .export-bar{position:sticky;bottom:0;z-index:5;display:flex;gap:10px;margin:22px -20px 0;padding:14px 20px;
     background:var(--panel);border-top:1px solid var(--line)}
-  .export-bar .btn{flex:1;justify-content:center;height:40px;font-size:13px}
   label.fld{font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint)}
   select{appearance:none;background:var(--panel-2);color:var(--ink);border:1px solid var(--line-2);border-radius:var(--radius-sm);
     padding:9px 32px 9px 12px;font-size:13px;cursor:pointer;font-family:var(--body);font-weight:500;
@@ -123,9 +122,9 @@
 
   /* top toolbar — View Mode pinned left, toolbar centered, status pinned right */
   .topbar{display:flex;align-items:center;gap:.7em;position:relative}
-  .topbar .toolcluster{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
   .toolcluster{display:flex;align-items:center;gap:.45em;background:color-mix(in srgb,var(--c-surface) 78%, transparent);
     border-radius:999px;padding:.4em .55em;box-shadow:0 .4em 1.2em -.6em var(--c-shadow)}
+  .topbar .toolcluster{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
   .tool{width:1.9em;height:1.9em;border-radius:var(--r-field);display:grid;place-items:center;color:var(--c-onSurface);opacity:.78}
   .tool.sel{background:var(--c-secondary);color:var(--c-onSecondary);opacity:1}
   .vm{background:var(--c-tertiary);color:var(--c-onTertiary);--gc:var(--c-tertiary);padding:.5em .9em;font-size:.95em;box-shadow:0 .4em 1.2em -.6em var(--c-shadow)}
@@ -228,7 +227,7 @@
   .rail-col{border-left:1px solid var(--line);background:var(--panel);padding:22px 20px 0;position:sticky;top:63px;
     align-self:stretch;max-height:calc(100vh - 63px);overflow-y:auto}
   @media(max-width:1080px){
-    .rail-col{position:static;max-height:none;border-left:none;border-top:none;position:relative;padding-top:26px;border-radius:18px 18px 0 0}
+    .rail-col{max-height:none;border-left:none;border-top:none;position:relative;padding-top:26px;border-radius:18px 18px 0 0}
     /* soft fading divider instead of a hard edge-to-edge line */
     .rail-col::before{content:"";position:absolute;top:0;left:8%;right:8%;height:1px;
       background:linear-gradient(90deg,transparent,var(--line-2) 22%,var(--line-2) 78%,transparent)}
@@ -344,7 +343,7 @@
   .grate .stars{color:var(--c-warning);font-size:15px;letter-spacing:1px}
   .grate .stars .off{color:var(--c-outline)}
   .grate .num{font:600 13px/1 var(--ui);color:var(--c-onSurface)}
-  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+  @media(prefers-reduced-motion:reduce){*{animation:none;transition:none}}
 </style>
 </head>
 <body>
@@ -370,11 +369,11 @@
     <div class="rail" id="ledRail" aria-hidden="true"><span class="lbl">Palette</span></div>
 
     <div class="bezel">
-      <div class="viewtog" role="group" aria-label="Preview screen">
+      <fieldset class="viewtog" aria-label="Preview screen">
         <button type="button" data-v="browse" class="on">Browse</button>
         <button type="button" data-v="detail">Detail</button>
         <button type="button" data-v="components">Components</button>
-      </div>
+      </fieldset>
       <div class="screen" id="screen">
 
         <!-- ============ BROWSE / coverflow ============ -->
@@ -480,14 +479,14 @@
             <div class="gcard">
               <span class="gh">Buttons</span>
               <div class="grow">
-                <button class="gb primary">Play</button>
-                <button class="gb secondary">Scrape</button>
-                <button class="gb accent">Sync</button>
+                <button type="button" class="gb primary">Play</button>
+                <button type="button" class="gb secondary">Scrape</button>
+                <button type="button" class="gb accent">Sync</button>
               </div>
               <div class="grow">
-                <button class="gb outline">Cancel</button>
-                <button class="gb ghost">Skip</button>
-                <button class="gb dis">Disabled</button>
+                <button type="button" class="gb outline">Cancel</button>
+                <button type="button" class="gb ghost">Skip</button>
+                <button type="button" class="gb dis">Disabled</button>
               </div>
             </div>
 
@@ -573,8 +572,8 @@
                 <span class="dt">Delete “Pitfall!”?</span>
                 <p class="db">This removes the game and its saved states from this device. Cloud backups are kept.</p>
                 <div class="da">
-                  <button class="gb ghost">Cancel</button>
-                  <button class="gb primary">Delete</button>
+                  <button type="button" class="gb ghost">Cancel</button>
+                  <button type="button" class="gb primary">Delete</button>
                 </div>
               </div>
             </div>
@@ -594,7 +593,7 @@
         <span class="fld" id="presetLbl">Start from</span>
         <div class="dd" id="presetDD">
           <button class="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="presetLbl"><span class="dd-val">Dark</span></button>
-          <ul class="dd-menu" role="listbox" aria-label="Starting preset"></ul>
+          <ul class="dd-menu" aria-label="Starting preset"></ul>
         </div>
       </div>
       <button class="btn" id="importBtn" type="button">Import JSON</button>
@@ -605,12 +604,10 @@
       <div><label for="tName">Theme name</label><input type="text" id="tName" value="My Custom Theme" /></div>
       <div><label for="tId">Palette id <span style="text-transform:none">(key used in code)</span></label><input type="text" id="tId" value="my_custom_theme" /></div>
       <div><label for="tAuthor">Author</label><input type="text" id="tAuthor" placeholder="Your name or handle" /></div>
-      <div><label>Color scheme</label>
-        <div class="seg" id="brightSeg" role="group" aria-label="Color scheme">
+      <fieldset class="seg" id="brightSeg" aria-label="Color scheme">
           <button type="button" data-b="dark" class="on">Dark</button>
           <button type="button" data-b="light">Light</button>
-        </div>
-      </div>
+        </fieldset>
     </div>
 
     <div id="groups"></div>
@@ -692,25 +689,33 @@ const PREVIEW_VARS = {
 function parseOklch(str){
   const m=String(str).match(/oklch\(\s*([\d.]+)%?\s+([\d.]+)\s+([\d.-]+)/i);
   if(!m) return {L:0,C:0,H:0};
-  let L=parseFloat(m[1]); if(str.includes('%')) L/=100;
-  return {L, C:parseFloat(m[2]), H:parseFloat(m[3])};
+  let L=Number.parseFloat(m[1]); if(str.includes('%')) L/=100;
+  return {L, C:Number.parseFloat(m[2]), H:Number.parseFloat(m[3])};
 }
 function oklchToHex(str){
-  const {L,C,H}=parseOklch(str), hr=H*Math.PI/180;
-  const a=C*Math.cos(hr), b=C*Math.sin(hr);
-  const l_=L+0.3963377774*a+0.2158037573*b, m_=L-0.1055613458*a-0.0638541728*b, s_=L-0.0894841775*a-1.2914855480*b;
-  const l=l_**3, m=m_**3, s=s_**3;
-  let r= 4.0767416621*l-3.3077115913*m+0.2309699292*s;
-  let g=-1.2684380046*l+2.6097574011*m-0.3413193965*s;
-  let bl=-0.0041960863*l-0.7034186147*m+1.7076147010*s;
-  const gam=c=>{c=c<=0.0031308?12.92*c:1.055*Math.pow(c,1/2.4)-0.055; return Math.max(0,Math.min(1,c));};
+  const {L,C,H}=parseOklch(str);
+  const hr=H*Math.PI/180;
+  const a=C*Math.cos(hr);
+  const b=C*Math.sin(hr);
+  const l_=L+0.3963377774*a+0.2158037573*b;
+  const m_=L-0.1055613458*a-0.0638541728*b;
+  const s_=L-0.0894841775*a-1.2914855480*b;
+  const l=l_**3;
+  const m=m_**3;
+  const s=s_**3;
+  const r= 4.0767416621*l-3.3077115913*m+0.2309699292*s;
+  const g=-1.2684380046*l+2.6097574011*m-0.3413193965*s;
+  const bl=-0.0041960863*l-0.7034186147*m+1.7076147010*s;
+  const gam=c=>{const v=c<=0.0031308?12.92*c:1.055*c ** (1/2.4)-0.055; return Math.max(0,Math.min(1,v));};
   const h2=x=>Math.round(gam(x)*255).toString(16).padStart(2,'0');
-  return '#'+h2(r)+h2(g)+h2(bl);
+  return `#${h2(r)}${h2(g)}${h2(bl)}`;
 }
 function hexToOklch(hex){
-  hex=hex.replace('#',''); if(hex.length===3) hex=hex.split('').map(c=>c+c).join('');
-  const lin=c=>{c/=255; return c<=0.04045?c/12.92:Math.pow((c+0.055)/1.055,2.4);};
-  const r=lin(parseInt(hex.slice(0,2),16)), g=lin(parseInt(hex.slice(2,4),16)), b=lin(parseInt(hex.slice(4,6),16));
+  let h=hex.replace('#',''); if(h.length===3) h=h.split('').map(c=>c+c).join('');
+  const lin=c=>{const v=c/255; return v<=0.04045?v/12.92:((v+0.055)/1.055) ** 2.4;};
+  const r=lin(Number.parseInt(h.slice(0,2),16));
+  const g=lin(Number.parseInt(h.slice(2,4),16));
+  const b=lin(Number.parseInt(h.slice(4,6),16));
   const l=Math.cbrt(0.4122214708*r+0.5363325363*g+0.0514459929*b);
   const m=Math.cbrt(0.2119034982*r+0.6806995451*g+0.1073969566*b);
   const s=Math.cbrt(0.0883024619*r+0.2817188376*g+0.6299787005*b);
@@ -767,7 +772,8 @@ function newModel(){ return { name:'My Custom Theme', id:'my_custom_theme', auth
 let model = newModel();
 
 const $=s=>document.querySelector(s);
-const inputs={}, efxInputs={};
+const inputs={};
+const efxInputs={};
 
 function buildGroups(){
   const root=$('#groups'); root.innerHTML='';
@@ -780,10 +786,11 @@ function buildGroups(){
         <span class="pick"><input type="color" aria-label="${label} color" /></span>
         <span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span>
         <input class="hex" type="text" spellcheck="false" maxlength="7" aria-label="${label} hex" />`;
-      const color=row.querySelector('input[type=color]'), hex=row.querySelector('.hex');
+      const color=row.querySelector('input[type=color]');
+      const hex=row.querySelector('.hex');
       inputs[field]={color,hex,pick:row.querySelector('.pick')};
       color.addEventListener('input',()=>setField(field,color.value));
-      hex.addEventListener('input',()=>{ if(/^#?[0-9a-fA-F]{6}$/.test(hex.value)) setField(field,'#'+hex.value.replace('#','')); });
+      hex.addEventListener('input',()=>{ if(/^#?[0-9a-fA-F]{6}$/.test(hex.value)) setField(field,`#${hex.value.replace('#','')}`); });
       hex.addEventListener('blur',()=>syncOne(field));
       el.appendChild(row);
     }
@@ -811,34 +818,36 @@ function buildEffects(){
 }
 function syncEffects(){
   for(const [key,,,opts] of EFFECTS){
-    const v=model.effects[key], row=efxInputs[key]; if(!row) continue;
-    if(opts==='toggle') row.querySelectorAll('.tog button').forEach(b=>b.classList.toggle('on',b.dataset.val===String(v)));
+    const v=model.effects[key];
+    const row=efxInputs[key]; if(!row) continue;
+    if(opts==='toggle') for(const b of row.querySelectorAll('.tog button')) b.classList.toggle('on',b.dataset.val===String(v));
     else row.querySelector('select').value=v;
   }
 }
 function setEffect(key,val){ model.effects[key]=val; syncEffects(); applyPreview(); renderJson(); }
 
-function setField(field,hex){ hex=hex.toUpperCase(); model.colors[field]=hex; model.oklch[field]=hexToOklch(hex); syncOne(field); applyPreview(); renderJson(); }
-function syncOne(field){ const v=model.colors[field],i=inputs[field]; if(!i||!v)return; i.color.value=v; i.hex.value=v; i.pick.style.background=v; }
+function setField(field,hex){ const h=hex.toUpperCase(); model.colors[field]=h; model.oklch[field]=hexToOklch(h); syncOne(field); applyPreview(); renderJson(); }
+function syncOne(field){ const v=model.colors[field];
+const i=inputs[field]; if(!i||!v)return; i.color.value=v; i.hex.value=v; i.pick.style.background=v; }
 function syncAll(){ for(const f in inputs) syncOne(f); }
 
 function applyPreview(){
   const s=$('#screen');
   for(const [cssVar,field] of Object.entries(PREVIEW_VARS)) s.style.setProperty(cssVar,model.colors[field]);
   // daisyUI radius tokens -> preview em scale (×3 keeps the default look); rem maps to em, px stays px
-  const remEm=v=>{ const n=parseFloat(v)||0; return String(v||'').includes('rem')?(n*3)+'em':(n?n*3+'px':'0'); };
+  const remEm=v=>{ const n=Number.parseFloat(v)||0; return String(v||'').includes('rem')?`${n*3}em`:(n?`${n*3}px`:'0'); };
   s.style.setProperty('--r-sel',  remEm(model.effects['radius-selector']));
   s.style.setProperty('--r-field',remEm(model.effects['radius-field']));
   s.style.setProperty('--r-box',  remEm(model.effects['radius-box']));
-  s.style.setProperty('--brd', model.effects['border']!=null?String(model.effects['border']):'1px');
+  s.style.setProperty('--brd', model.effects.border!=null?String(model.effects.border):'1px');
   const rail=$('#ledRail');
-  rail.querySelectorAll('.led-chip').forEach(c=>c.remove());
+  for(const c of rail.querySelectorAll('.led-chip')) c.remove();
   const order=['primary','secondary','accent','neutral','base-100','base-200','base-300','base-content','info','success','warning','error'];
   for(const f of order){
     const chip=document.createElement('span'); chip.className='led-chip';
     chip.style.background=model.colors[f]; chip.style.color=model.colors[f];
     if(['primary','secondary','accent','success','error'].includes(f)) chip.setAttribute('data-glow','');
-    chip.title=f+' '+model.colors[f]; rail.appendChild(chip);
+    chip.title=`${f} ${model.colors[f]}`; rail.appendChild(chip);
   }
 }
 
@@ -851,7 +860,8 @@ function renderJson(){}
 function currentExport(){ return jsonExport(); }
 
 function loadModel(m){
-  const src=m.colors||m, isOklch=v=>/oklch/i.test(v||'');
+  const src=m.colors||m;
+  const isOklch=v=>/oklch/i.test(v||'');
   model=newModel();
   model.name=m.name||'Imported Theme';
   model.id=m.id||(m.name||'imported').toLowerCase().replace(/[^a-z0-9]+/g,'_');
@@ -867,14 +877,14 @@ function loadModel(m){
   $('#tName').value=model.name; $('#tId').value=model.id; $('#tAuthor').value=model.author;
   setBright(model.scheme); syncAll(); syncEffects(); applyPreview(); renderJson();
 }
-function setBright(b){ model.scheme=b; $('#brightSeg').querySelectorAll('button').forEach(x=>x.classList.toggle('on',x.dataset.b===b)); }
+function setBright(b){ model.scheme=b; for(const x of $('#brightSeg').querySelectorAll('button')) x.classList.toggle('on',x.dataset.b===b); }
 
 let toastT;
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),1600); }
 
 function setView(v){
-  document.querySelectorAll('.view').forEach(el=>el.classList.toggle('on',el.dataset.view===v));
-  document.querySelectorAll('.viewtog button').forEach(b=>b.classList.toggle('on',b.dataset.v===v));
+  for(const el of document.querySelectorAll('.view')) el.classList.toggle('on',el.dataset.view===v);
+  for(const b of document.querySelectorAll('.viewtog button')) b.classList.toggle('on',b.dataset.v===v);
   $('#legend').innerHTML = v==='browse'
     ? 'Screen background is <b>base-100</b>, toolbar/pills <b>base-200</b>, text <b>base-content</b> · selected tab + filter use <b>secondary</b> · system-name pill uses <b>primary</b> · View Mode / Settings use <b>accent</b> · Enter uses <b>success</b> · battery uses <b>success</b>. (A/B/X/Y glyphs are monochrome.)'
     : v==='detail'
@@ -883,7 +893,10 @@ function setView(v){
 }
 
 function initPresetDropdown(){
-  const dd=$('#presetDD'), btn=dd.querySelector('.dd-btn'), val=dd.querySelector('.dd-val'), menu=dd.querySelector('.dd-menu');
+  const dd=$('#presetDD');
+  const btn=dd.querySelector('.dd-btn');
+  const val=dd.querySelector('.dd-val');
+  const menu=dd.querySelector('.dd-menu');
   let active=-1;
   const items=[];
   for(const [k,p] of Object.entries(PRESETS)){
@@ -894,16 +907,16 @@ function initPresetDropdown(){
     li.addEventListener('mousemove',()=>setActive(items.indexOf(li)));
     menu.appendChild(li); items.push(li);
   }
-  function setActive(i){ items.forEach((li,n)=>li.classList.toggle('active',n===i)); active=i;
+  function setActive(i){ for(let n=0;n<items.length;n++) items[n].classList.toggle('active',n===i); active=i;
     if(items[i]) items[i].scrollIntoView({block:'nearest'}); }
   function select(k){ const p=PRESETS[k]; val.textContent=p.name;
-    items.forEach(li=>li.setAttribute('aria-selected', li.dataset.k===k?'true':'false'));
+    for(const li of items) li.setAttribute('aria-selected', li.dataset.k===k?'true':'false');
     close();
     loadModel({name:$('#tName').value,id:$('#tId').value,author:$('#tAuthor').value,scheme:p.scheme,colors:p.colors,effects:p.effects});
-    toast(p.name+' loaded'); }
+    toast(`${p.name} loaded`); }
   function open(){ dd.classList.add('open'); btn.setAttribute('aria-expanded','true');
     setActive(Math.max(0,items.findIndex(li=>li.getAttribute('aria-selected')==='true'))); }
-  function close(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); items.forEach(li=>li.classList.remove('active')); }
+  function close(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); for(const li of items) li.classList.remove('active'); }
   btn.addEventListener('click',e=>{ e.stopPropagation(); dd.classList.contains('open')?close():open(); });
   btn.addEventListener('keydown',e=>{
     if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault();
@@ -930,11 +943,11 @@ function init(){
   $('#copyBtn').addEventListener('click',copy);
   $('#dlBtn').addEventListener('click',()=>{
     const blob=new Blob([currentExport()],{type:'application/json'});
-    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=(model.id||'theme')+'.json';
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`${model.id||'theme'}.json`;
     a.click(); URL.revokeObjectURL(a.href); toast('Downloaded'); });
   $('#importBtn').addEventListener('click',()=>$('#fileInput').click());
   $('#fileInput').addEventListener('change',e=>{ const f=e.target.files[0]; if(!f)return;
-    const r=new FileReader(); r.onload=()=>{ try{ loadModel(JSON.parse(r.result)); toast('Imported'); }catch(err){ toast('Invalid JSON'); } };
+    const r=new FileReader(); r.onload=()=>{ try{ loadModel(JSON.parse(r.result)); toast('Imported'); }catch(_err){ toast('Invalid JSON'); } };
     r.readAsText(f); e.target.value=''; });
 
   loadModel({...PRESETS.dark, name:'My Custom Theme', id:'my_custom_theme'}); setView('browse');

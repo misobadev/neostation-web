@@ -1,6 +1,7 @@
 {
   "system": {
     "id": "jagcd",
+    "multidisc": true,
     "name": "Atari Jaguar CD",
     "short_name": "JCD",
     "details": {
@@ -30,7 +31,7 @@
   "emulators": [
     {
       "name": "Standalone BigPEmu",
-      "default": true,
+      "default_standalone": true,
       "unique_id": "jagcd.jaguarcd.bigpe.bigpemu",
       "description": "Supported extensions: cue, cdi.",
       "is_retroachievements_compatible": false,
