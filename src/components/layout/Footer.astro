@@ -1,22 +1,44 @@
 ---
+import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/site.config";
 
 const year = new Date().getFullYear();
 ---
 
-<footer
-  class="mt-auto flex w-full flex-col items-center justify-center gap-y-4 pt-20 pb-8 text-center align-top font-medium text-gray-500 sm:flex-row sm:justify-between sm:text-sm"
->
-  <div class="me-0 sm:me-4 flex items-center gap-2 flex-wrap justify-center sm:justify-start">
-    <a
-      href="https://github.com/misobadev/neostation-frontend"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hover:text-white transition-colors font-medium"
-    >
-      {siteConfig.title}
+<footer class="footer sm:footer-horizontal bg-base-200 text-base-content/50 py-10 px-4 sm:px-8 mt-auto gap-8">
+  <aside class="max-w-md">
+    <div class="flex items-center gap-2 mb-3">
+      <img src="/neostation-logo-dark-v2.webp" alt={siteConfig.title} class="h-8 w-auto" width="64" height="64" />
+    </div>
+    <p class="text-sm">
+      The NeoStation app is open source under <strong>GPL v3</strong>. This website is <strong>MIT</strong> licensed.
+    </p>
+    <p class="text-xs mt-2">
+      &copy; {year} {siteConfig.title}. All rights reserved.
+    </p>
+  </aside>
+
+  <nav>
+    <h6 class="footer-title">Community</h6>
+    <a href="https://github.com/misobadev/neostation-frontend" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm justify-start">
+      <Icon name="simple-icons:github" class="w-4 h-4" />
+      GitHub
     </a>
-    <span class="text-gray-600">·</span>
-    <span>{year}</span>
-  </div>
+    <a href="https://discord.gg/xE2kgKsRVq" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm justify-start">
+      <Icon name="simple-icons:discord" class="w-4 h-4" />
+      Discord
+    </a>
+  </nav>
+
+  <nav>
+    <h6 class="footer-title">Support</h6>
+    <a href="https://ko-fi.com/neostation" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm justify-start">
+      <Icon name="simple-icons:kofi" class="w-4 h-4" />
+      Ko-fi
+    </a>
+    <a href="https://www.patreon.com/cw/NeoStation" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm justify-start">
+      <Icon name="simple-icons:patreon" class="w-4 h-4" />
+      Patreon
+    </a>
+  </nav>
 </footer>

@@ -3,150 +3,44 @@ import { menuLinks, siteConfig } from "@/site.config";
 import { Icon } from "astro-icon/components";
 ---
 
-<header
-  class="group mb-8 relative z-50 flex items-center bg-[#1d2024] border-b border-white/5 py-4"
-  id="main-header"
->
-  <div
-    class="flex flex-col items-start flex-1 px-4 sm:px-8 max-w-7xl mx-auto w-full"
-  >
-    <div class="flex items-center justify-between w-full">
-      <a
-        aria-current={Astro.url.pathname === "/" ? "page" : false}
-        class="flex flex-col items-center hover:opacity-90 transition-opacity"
-        href="/"
-      >
-        <img
-          alt={siteConfig.title}
-          class="w-auto h-10 xs:h-10 sm:h-12 md:h-12 lg:h-14 xl:h-16"
-          height="120"
-          src="/neostation-logo-dark-v2.webp"
-          width="120"
-        />
-      </a>
-
-      <nav
-        aria-label="Main menu"
-        class="bg-[#1d2024] text-gray-300 absolute left-0 right-0 top-full hidden flex-col items-center gap-y-4 py-6 shadow-2xl border-b border-white/5 group-[.menu-open]:flex lg:static lg:flex lg:flex-row lg:items-center lg:gap-x-2 lg:py-0 lg:shadow-none lg:border-none lg:bg-transparent lg:ml-auto"
-        id="navigation-menu"
-      >
-        {
-          menuLinks.map((link) => (
-            <a
-              aria-current={Astro.url.pathname === link.path ? "page" : false}
-              class="px-3 py-2 rounded-lg transition-all duration-200 hover:text-white hover:bg-white/5 aria-[current='page']:bg-[#2fa593] aria-[current='page']:text-white aria-[current='page']:font-bold aria-[current='page']:shadow-lg aria-[current='page']:shadow-[#2fa593]/20"
-              href={link.path}
-            >
-              {link.title}
-            </a>
-          ))
-        }
-
-        <div class="flex items-center gap-3 sm:ml-4 mt-4 lg:mt-0 pb-4 lg:pb-0">
-          <a
-            href="https://github.com/misobadev/neostation-frontend"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center gap-1.5 px-3 py-2 bg-white/8 hover:bg-white/15 text-gray-200 rounded-lg transition-all transform hover:scale-105 active:scale-95 border border-white/10 text-xs font-bold"
-            aria-label="NeoStation source code on GitHub (GPL v3)"
-          >
-            <Icon name="simple-icons:github" class="w-4 h-4" />
-            <span class="hidden sm:inline">GPL v3</span>
-          </a>
-          <a
-            href="https://discord.gg/xE2kgKsRVq"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center p-2 bg-[#5865F2] hover:bg-[#4752C4] text-white rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-md shadow-[#5865F2]/20"
-            aria-label="Join our Discord community"
-          >
-            <Icon name="simple-icons:discord" class="w-5 h-5" />
-          </a>
-          <a
-            href="https://ko-fi.com/neostation"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center p-2 bg-[#29ABE2] hover:bg-[#2497c9] text-white rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-md shadow-[#29ABE2]/20"
-            aria-label="Support development on Ko-fi"
-          >
-            <Icon name="simple-icons:kofi" class="w-5 h-5" />
-          </a>
-          <a
-            href="https://www.patreon.com/cw/NeoStation"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center p-2 bg-[#FF424D] hover:bg-[#e63b45] text-white rounded-lg transition-all transform hover:scale-105 active:scale-95 shadow-md shadow-[#FF424D]/20"
-            aria-label="Become a Patron on Patreon"
-          >
-            <Icon name="simple-icons:patreon" class="w-5 h-5" />
-          </a>
-        </div>
-      </nav>
-
-      <mobile-button>
-        <button
-          aria-expanded="false"
-          aria-haspopup="menu"
-          class="group relative ms-4 h-9 w-9 flex items-center justify-center rounded-lg bg-white/5 text-gray-300 hover:bg-white/10 lg:invisible lg:hidden"
-          id="toggle-navigation-menu"
-          type="button"
-        >
-          <span class="sr-only">Toggle navigation menu</span>
-          <svg
-            aria-hidden="true"
-            class="absolute start-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 transition-all group-aria-expanded:scale-0 group-aria-expanded:opacity-0"
-            fill="none"
-            focusable="false"
-            id="line-svg"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M3.75 9h16.5m-16.5 6.75h16.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="text-[#2fa593] absolute start-1/2 top-1/2 h-5 w-5 -translate-x-1/2 -translate-y-1/2 scale-0 opacity-0 transition-all group-aria-expanded:scale-100 group-aria-expanded:opacity-100"
-            fill="none"
-            focusable="false"
-            id="cross-svg"
-            stroke="currentColor"
-            stroke-width="1.5"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M6 18L18 6M6 6l12 12"
-              stroke-linecap="round"
-              stroke-linejoin="round"></path>
-          </svg>
-        </button>
-      </mobile-button>
+<header class="navbar bg-base-100/95 backdrop-blur-sm border-b border-base-content/10 sticky top-0 z-50" id="main-header">
+  <div class="navbar-start">
+    <div class="dropdown lg:hidden">
+      <button tabindex="0" role="button" class="btn btn-ghost btn-square" aria-label="Toggle navigation menu">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+      </button>
+      <ul tabindex="0" class="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+        {menuLinks.map(link => (
+          <li><a href={link.path} aria-current={Astro.url.pathname === link.path ? "page" : undefined}>{link.title}</a></li>
+        ))}
+      </ul>
     </div>
+    <a href="/" class="btn btn-ghost px-2">
+      <img src="/neostation-logo-dark-v2.webp" alt={siteConfig.title} class="h-10 sm:h-12 w-auto" />
+    </a>
+  </div>
+
+  <div class="navbar-center hidden lg:flex">
+    <ul class="menu menu-horizontal px-1">
+      {menuLinks.map(link => (
+        <li><a href={link.path} class="aria-[current='page']:text-primary aria-[current='page']:font-bold" aria-current={Astro.url.pathname === link.path ? "page" : undefined}>{link.title}</a></li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="navbar-end gap-2">
+    <a href="https://github.com/misobadev/neostation-frontend" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm" aria-label="NeoStation source code on GitHub (GPL v3)">
+      <Icon name="simple-icons:github" class="w-4 h-4" />
+      <span class="hidden sm:inline">GPL v3</span>
+    </a>
+    <a href="https://discord.gg/xE2kgKsRVq" target="_blank" rel="noopener noreferrer" class="btn btn-square btn-sm" style="background-color:#5865F2; color:#fff; border-color:#5865F2;" aria-label="Join our Discord community">
+      <Icon name="simple-icons:discord" class="w-4 h-4" />
+    </a>
+    <a href="https://ko-fi.com/neostation" target="_blank" rel="noopener noreferrer" class="btn btn-square btn-sm" style="background-color:#29ABE2; color:#fff; border-color:#29ABE2;" aria-label="Support development on Ko-fi">
+      <Icon name="simple-icons:kofi" class="w-4 h-4" />
+    </a>
+    <a href="https://www.patreon.com/cw/NeoStation" target="_blank" rel="noopener noreferrer" class="btn btn-square btn-sm" style="background-color:#FF424D; color:#fff; border-color:#FF424D;" aria-label="Become a Patron on Patreon">
+      <Icon name="simple-icons:patreon" class="w-4 h-4" />
+    </a>
   </div>
 </header>
-
-<script>
-  import { toggleClass } from "@/utils/domElement";
-
-  class MobileNavBtn extends HTMLElement {
-    #menuOpen: boolean = false;
-
-    connectedCallback() {
-      const headerEl = document.getElementById("main-header");
-      const mobileButtonEl = this.querySelector<HTMLButtonElement>("button");
-
-      mobileButtonEl?.addEventListener("click", () => {
-        if (headerEl) toggleClass(headerEl, "menu-open");
-        this.#menuOpen = !this.#menuOpen;
-        mobileButtonEl.setAttribute("aria-expanded", this.#menuOpen.toString());
-      });
-    }
-  }
-
-  customElements.define("mobile-button", MobileNavBtn);
-</script>

@@ -11,37 +11,24 @@ const meta = {
 
 <PageLayout meta={meta}>
   <div class="relative py-12 md:py-24 overflow-hidden">
-    <!-- Background Accents -->
-    <div
-      class="absolute top-0 right-0 -mt-24 -mr-24 w-[500px] h-[500px] bg-[#2fa593]/10 blur-[150px] rounded-full pointer-events-none opacity-50"
-    >
-    </div>
-    <div
-      class="absolute bottom-0 left-0 -mb-24 -ml-24 w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none opacity-30"
-    >
-    </div>
-
     <div class="max-w-7xl mx-auto px-4 relative z-10">
 
       <!-- Hero -->
       <div class="text-center mb-20 md:mb-24">
         <div
-          class="inline-flex items-center gap-3 px-4 py-2 bg-white/5 rounded-full border border-white/10 text-xs font-bold text-[#2fa593] uppercase tracking-widest mb-6"
+          class="inline-flex items-center gap-3 px-4 py-2 bg-base-content/5 rounded-full border border-base-content/20 text-xs font-bold text-primary uppercase tracking-widest mb-6"
         >
-          <Icon name="mdi:cloud-sync" class="w-4 h-4 animate-pulse" />
+          <Icon name="heroicons:cloud-arrow-up" class="w-4 h-4 animate-pulse" />
           Extensible Provider System
         </div>
         <h1
-          class="text-5xl md:text-7xl font-black text-white tracking-tight leading-tight mb-8"
+          class="text-5xl md:text-7xl font-black text-base-content tracking-tight leading-tight mb-8"
         >
-          Sync your saves. <span
-            class="text-[#2fa593] drop-shadow-[0_0_15px_rgba(47,165,147,0.3)]"
-            >Your way.</span
-          >
+          Sync your saves. <span class="text-primary">Your way.</span>
         </h1>
-        <p class="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed font-medium">
+        <p class="text-xl text-base-content/60 max-w-3xl mx-auto leading-relaxed font-medium">
           NeoStation's sync system is built around pluggable providers. Connect
-          to <strong class="text-white">NeoSync</strong> today, or choose your own
+          to <strong class="text-base-content">NeoSync</strong> today, or choose your own
           backend when new providers become available.
         </p>
       </div>
@@ -50,138 +37,96 @@ const meta = {
       <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
 
         <!-- NeoSync — Available -->
-        <div
-          class="group relative p-8 rounded-3xl bg-[#26292e] border border-[#2fa593]/30 hover:border-[#2fa593]/60 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-[#2fa593]/10 flex flex-col"
-        >
-          <div class="absolute top-4 right-4">
-            <span
-              class="px-2 py-1 bg-[#2fa593]/20 text-[#2fa593] text-[9px] font-bold uppercase rounded-lg tracking-widest"
-              >Available</span
-            >
+        <div class="card card-border bg-base-200">
+          <div class="card-body">
+            <div class="flex justify-between items-start mb-4">
+              <div class="size-14 rounded-2xl bg-primary/10 flex items-center justify-center">
+                <Icon name="heroicons:cloud-arrow-up" class="w-8 h-8 text-primary" />
+              </div>
+              <span class="badge badge-primary badge-sm">Available</span>
+            </div>
+            <h3 class="card-title">NeoSync</h3>
+            <p class="text-sm text-base-content/60">
+              Official NeoStation cloud save sync. Optimized for SRAM saves and
+              RetroArch states. Free tier included, paid plans for larger
+              collections.
+            </p>
+            <a href="/guide#neosync" class="btn btn-primary btn-block mt-4">
+              <Icon name="heroicons:information-circle" class="w-4 h-4" />Setup Guide
+            </a>
           </div>
-
-          <div
-            class="w-14 h-14 rounded-2xl bg-[#2fa593]/10 flex items-center justify-center mb-6"
-          >
-            <Icon name="mdi:cloud-sync" class="w-8 h-8 text-[#2fa593]" />
-          </div>
-
-          <h3 class="text-xl font-bold text-white mb-2">NeoSync</h3>
-          <p class="text-sm text-gray-400 leading-relaxed mb-6 flex-grow">
-            Official NeoStation cloud save sync. Optimized for SRAM saves and
-            RetroArch states. Free tier included, paid plans for larger
-            collections.
-          </p>
-          <a
-            href="/guide#neosync"
-            class="w-full px-4 py-3 bg-[#2fa593] hover:bg-[#268d7e] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#2fa593]/10"
-          >
-            <Icon name="mdi:information" class="w-4 h-4" />
-            Setup Guide
-          </a>
         </div>
 
         <!-- RomM — Coming Soon -->
-        <div
-          class="relative p-8 rounded-3xl bg-[#26292e]/50 border border-white/5 flex flex-col opacity-60"
-        >
-          <div class="absolute top-4 right-4">
-            <span
-              class="px-2 py-1 bg-white/5 text-gray-500 text-[9px] font-bold uppercase rounded-lg tracking-widest"
-              >Coming Soon</span
-            >
+        <div class="card card-border bg-base-200 opacity-50">
+          <div class="card-body">
+            <div class="flex justify-between items-start mb-4">
+              <div class="size-14 rounded-2xl bg-base-content/5 flex items-center justify-center">
+                <Icon name="heroicons:play-circle" class="w-8 h-8 text-base-content/50" />
+              </div>
+              <span class="badge badge-ghost badge-sm">Coming Soon</span>
+            </div>
+            <h3 class="card-title text-base-content/60">RomM</h3>
+            <p class="text-sm text-base-content/40">
+              Self-hosted ROM manager with built-in save sync. Full control over
+              your data on your own server.
+            </p>
+            <a href="https://romm.app/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm btn-block mt-4">
+              romm.app <Icon name="heroicons:arrow-top-right-on-square" class="w-3 h-3" />
+            </a>
           </div>
-
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6"
-          >
-            <Icon name="mdi:gamepad-square" class="w-8 h-8 text-gray-500" />
-          </div>
-
-          <h3 class="text-xl font-bold text-gray-400 mb-2">RomM</h3>
-          <p class="text-sm text-gray-500 leading-relaxed mb-6 flex-grow">
-            Self-hosted ROM manager with built-in save sync. Full control over
-            your data on your own server.
-          </p>
-          <a
-            href="https://romm.app/"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full px-4 py-3 bg-white/5 text-gray-500 text-sm font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5 hover:text-gray-400 transition-colors"
-          >
-            romm.app
-            <Icon name="mdi:open-in-new" class="w-3 h-3" />
-          </a>
         </div>
 
         <!-- Syncthing — Coming Soon -->
-        <div
-          class="relative p-8 rounded-3xl bg-[#26292e]/50 border border-white/5 flex flex-col opacity-60"
-        >
-          <div class="absolute top-4 right-4">
-            <span
-              class="px-2 py-1 bg-white/5 text-gray-500 text-[9px] font-bold uppercase rounded-lg tracking-widest"
-              >Coming Soon</span
-            >
-          </div>
-
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6"
-          >
-            <Icon name="mdi:sync" class="w-8 h-8 text-gray-500" />
-          </div>
-
-          <h3 class="text-xl font-bold text-gray-400 mb-2">Syncthing</h3>
-          <p class="text-sm text-gray-500 leading-relaxed mb-6 flex-grow">
-            Open-source P2P sync with no cloud dependency. Sync directly
-            between your own devices without any third-party server.
-          </p>
-          <div
-            class="w-full px-4 py-3 bg-white/5 text-gray-500 text-sm font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5"
-          >
-            Peer-to-Peer
+        <div class="card card-border bg-base-200 opacity-50">
+          <div class="card-body">
+            <div class="flex justify-between items-start mb-4">
+              <div class="size-14 rounded-2xl bg-base-content/5 flex items-center justify-center">
+                <Icon name="heroicons:arrow-path" class="w-8 h-8 text-base-content/50" />
+              </div>
+              <span class="badge badge-ghost badge-sm">Coming Soon</span>
+            </div>
+            <h3 class="card-title text-base-content/60">Syncthing</h3>
+            <p class="text-sm text-base-content/40">
+              Open-source P2P sync with no cloud dependency. Sync directly
+              between your own devices without any third-party server.
+            </p>
+            <div class="btn btn-ghost btn-sm btn-block mt-4 opacity-60 pointer-events-none">
+              Peer-to-Peer
+            </div>
           </div>
         </div>
 
         <!-- Google Drive — Coming Soon -->
-        <div
-          class="relative p-8 rounded-3xl bg-[#26292e]/50 border border-white/5 flex flex-col opacity-60"
-        >
-          <div class="absolute top-4 right-4">
-            <span
-              class="px-2 py-1 bg-white/5 text-gray-500 text-[9px] font-bold uppercase rounded-lg tracking-widest"
-              >Coming Soon</span
-            >
-          </div>
-
-          <div
-            class="w-14 h-14 rounded-2xl bg-white/5 flex items-center justify-center mb-6"
-          >
-            <Icon
-              name="simple-icons:googledrive"
-              class="w-8 h-8 text-gray-500"
-            />
-          </div>
-
-          <h3 class="text-xl font-bold text-gray-400 mb-2">Google Drive</h3>
-          <p class="text-sm text-gray-500 leading-relaxed mb-6 flex-grow">
-            Use your existing Google Drive storage to back up and sync saves.
-            No new account needed if you already use Google services.
-          </p>
-          <div
-            class="w-full px-4 py-3 bg-white/5 text-gray-500 text-sm font-bold rounded-xl flex items-center justify-center gap-2 border border-white/5"
-          >
-            Google Account
+        <div class="card card-border bg-base-200 opacity-50">
+          <div class="card-body">
+            <div class="flex justify-between items-start mb-4">
+              <div class="size-14 rounded-2xl bg-base-content/5 flex items-center justify-center">
+                <Icon
+                  name="heroicons:cloud"
+                  class="w-8 h-8 text-base-content/50"
+                />
+              </div>
+              <span class="badge badge-ghost badge-sm">Coming Soon</span>
+            </div>
+            <h3 class="card-title text-base-content/60">Google Drive</h3>
+            <p class="text-sm text-base-content/40">
+              Use your existing Google Drive storage to back up and sync saves.
+              No new account needed if you already use Google services.
+            </p>
+            <div class="btn btn-ghost btn-sm btn-block mt-4 opacity-60 pointer-events-none">
+              Google Account
+            </div>
           </div>
         </div>
       </div>
 
-      <p class="text-center text-xs text-gray-600 italic">
+      <p class="text-center text-xs text-base-content/40 italic">
         More providers planned. Architecture is open, community integrations welcome via the
         <a
           href="https://github.com/misobadev/neostation-frontend"
           target="_blank"
-          class="text-gray-500 hover:text-[#2fa593] transition-colors underline"
+          class="text-base-content/50 hover:text-primary transition-colors underline"
           >open source repo</a
         >.
       </p>

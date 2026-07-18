@@ -11,67 +11,38 @@ const meta = {
 
 <!-- Need to move payments to other domain because its for neosync -->
 <PageLayout meta={meta}>
-  <div class="max-w-5xl mx-auto">
-    <!-- Header -->
-    <div class="text-center mb-12">
-      <div
-        class="w-20 h-20 mx-auto mb-6 bg-green-600 rounded-full flex items-center justify-center"
-      >
-        <Icon name="heroicons:check-circle" class="w-10 h-10 text-white" />
+  <div class="max-w-lg mx-auto my-12 px-4">
+    <div class="text-center mb-8">
+      <div class="w-16 h-16 mx-auto mb-4 bg-success rounded-full flex items-center justify-center">
+        <Icon name="heroicons:check-circle" class="w-8 h-8 text-base-content" />
       </div>
+      <h1 class="text-2xl font-black text-success">Payment Successful!</h1>
+    </div>
 
-      <h1 class="title mb-6 text-green-500">Payment Successful!</h1>
-
-      <p
-        id="payment-message"
-        class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
-      >
-        Thank you! Your payment has been processed successfully.
-      </p>
+    <div class="card bg-base-200">
+      <div class="card-body items-center text-center gap-4">
+        <div class="badge badge-success badge-lg gap-2">
+          <Icon name="heroicons:sparkles" class="w-4 h-4" />
+          Thank you for your subscription!
+        </div>
+        <p id="payment-message" class="text-base-content/60">Thank you! Your payment has been processed successfully.</p>
+        <div class="alert alert-info text-sm">
+          <Icon name="heroicons:information-circle" class="w-5 h-5" />
+          <span>You can now return to the NeoStation app to continue.</span>
+        </div>
+      </div>
     </div>
 
     <script>
-      // Get query parameters from URL
       const urlParams = new URLSearchParams(window.location.search);
       const username = urlParams.get("username") || "User";
       const plan = urlParams.get("plan") || "your plan";
       const period = urlParams.get("period") || "monthly";
 
-      // Update the message with the parameters
       const messageElement = document.getElementById("payment-message");
       if (messageElement) {
         messageElement.textContent = `Thank you ${username}! Your payment for the ${plan} plan (${period}) has been processed successfully.`;
       }
     </script>
-
-    <!-- Success Content -->
-    <div
-      class="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-8 md:p-12 shadow-xl"
-    >
-      <div class="text-center space-y-6">
-        <div
-          class="bg-white/50 dark:bg-slate-800/50 rounded-xl p-6 border border-green-200/50 dark:border-green-800/50"
-        >
-          <h2
-            class="text-2xl font-bold text-green-700 dark:text-green-300 mb-4 flex items-center justify-center gap-2"
-          >
-            <Icon name="heroicons:sparkles" class="w-6 h-6" />
-            Thank you for your subscription!
-          </h2>
-          <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
-            Your account has been upgraded and you can now enjoy all the
-            features included in your plan.
-          </p>
-        </div>
-
-        <div
-          class="bg-blue-50/50 dark:bg-blue-900/20 rounded-lg p-4 border border-blue-200/50 dark:border-blue-800/50"
-        >
-          <p class="text-sm text-blue-700 dark:text-blue-300">
-            You can now return to the NeoStation app to continue.
-          </p>
-        </div>
-      </div>
-    </div>
   </div>
 </PageLayout>
