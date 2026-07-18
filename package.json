@@ -29,7 +29,7 @@
 		"@fontsource/anta": "^5.2.7",
 		"@iconify-json/heroicons": "^1.2.3",
 		"@iconify-json/mdi": "^1.2.3",
-		"@iconify-json/simple-icons": "^1.2.85",
+		"@iconify-json/simple-icons": "^1.2.90",
 		"@tailwindcss/vite": "^4.3.1",
 		"astro": "^6.4.8",
 		"astro-expressive-code": "^0.42.0",
