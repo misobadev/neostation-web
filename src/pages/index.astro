@@ -1,5 +1,4 @@
 ---
-import SocialList from "@/components/SocialList.astro";
 import { Icon } from "astro-icon/components";
 import PageLayout from "@/layouts/Base.astro";
 ---
@@ -11,281 +10,135 @@ import PageLayout from "@/layouts/Base.astro";
   }}
 >
   <!-- Hero Section -->
-  <section class="relative mb-16 md:mb-24 mt-8 md:mt-16">
-    <!-- Dynamic Background Accents -->
-    <div
-      class="absolute top-0 left-0 -mt-24 -ml-24 w-[500px] h-[500px] bg-[#2fa593]/10 blur-[150px] rounded-full pointer-events-none opacity-60"
-    >
-    </div>
-    <div
-      class="absolute bottom-0 right-0 -mb-24 -mr-24 w-[400px] h-[400px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none opacity-40"
-    >
-    </div>
-
-    <div
-      class="relative bg-[#26292e] rounded-[2.5rem] overflow-hidden shadow-2xl border border-white/5 ring-1 ring-white/5 group"
-    >
-      <!-- Subtle Grid Pattern -->
-      <div
-        class="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))] opacity-[0.03]"
-      >
-      </div>
-
-      <!-- Hero Image as Content-Background -->
-      <div
-        class="absolute inset-y-0 right-0 w-full md:w-[75%] z-0 select-none pointer-events-none transition-transform duration-1000 group-hover:scale-105"
-      >
-        <div
-          class="absolute inset-0 z-10 bg-gradient-to-r from-[#26292e] via-[#26292e]/80 to-transparent"
-        >
-        </div>
-        <img
-          src="/hero.webp"
-          alt="NeoStation Interface"
-          class="w-full h-full object-cover object-right opacity-40 md:opacity-70"
-        />
-      </div>
-
-      <div class="relative z-10 p-8 md:p-12 max-w-3xl">
-        <div class="text-center lg:text-left space-y-8">
-          
-
-          <h1
-            class="text-5xl md:text-6xl font-black text-white tracking-tight leading-[1.1]"
-          >
-            The<span
-              class="text-[#2fa593] drop-shadow-[0_0_15px_rgba(47,165,147,0.3)]"
-            >
-              Multiplatform
-            </span>Frontend.
-          </h1>
-          <p
-            class="text-xl text-gray-400 max-w-lg leading-relaxed font-medium"
-          >
-            A unified gaming experience for Windows, Android, macOS, and Linux.
-            Beautiful UI, automatic metadata scraping, achievement tracking and
-            cross-device save sync.
-          </p>
-          <div
-            class="flex flex-wrap justify-center lg:justify-start gap-6 pt-4"
-          >
-            <a
-              href="/downloads/"
-              class="px-10 py-5 bg-[#2fa593] hover:bg-[#268d7e] text-white font-bold rounded-2xl shadow-xl shadow-[#2fa593]/30 transition-all transform hover:scale-105 hover:-translate-y-1 flex items-center gap-3 group/btn"
-            >
-              Get Started
-              <Icon
-                name="mdi:arrow-right"
-                class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-              />
-            </a>
-            <a
-              href="/guide/"
-              class="px-10 py-5 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl border border-white/10 transition-all hover:border-[#2fa593]/50 flex items-center gap-3 shadow-lg"
-            >
-              User Guide
-            </a>
-          </div>
+  <div class="hero py-16 md:py-24">
+    <div class="hero-content text-center max-w-3xl">
+      <div class="space-y-8">
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight">
+          The <span class="text-primary">Multiplatform</span> Frontend.
+        </h1>
+        <p class="text-lg md:text-xl text-base-content/60 max-w-2xl mx-auto leading-relaxed">
+          A unified gaming experience for Windows, Android, macOS, and Linux.
+          Beautiful UI, automatic metadata scraping, achievement tracking and
+          cross-device save sync.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4 pt-4">
+          <a href="/downloads/" class="btn btn-primary btn-lg">
+            Get Started
+            <Icon name="heroicons:arrow-right" class="w-5 h-5" />
+          </a>
+          <a href="/guide/" class="btn btn-ghost btn-lg">
+            User Guide
+          </a>
         </div>
       </div>
     </div>
-  </section>
+  </div>
 
   <!-- Features Grid -->
-  <section class="max-w-7xl mx-auto mb-20 px-4">
-    <div class="flex items-center gap-4 mb-12">
-      <h2
-        class="text-3xl md:text-4xl font-bold text-white pl-6 border-l-4 border-[#2fa593] italic tracking-tight"
-      >
-        Why NeoStation?
-      </h2>
-      <div class="flex-grow h-[1px] bg-white/5"></div>
-    </div>
+  <section class="mb-20">
+    <h2 class="text-3xl md:text-4xl font-bold text-primary tracking-tight mb-12 text-center">
+      Why NeoStation?
+    </h2>
 
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-3 gap-6">
       <!-- Card 1 -->
-      <div
-        class="group bg-[#26292e] rounded-3xl border border-white/5 hover:border-[#2fa593]/30 transition-all duration-500 hover:shadow-2xl hover:shadow-[#2fa593]/5 overflow-hidden flex flex-col relative"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-[#2fa593]/0 to-[#2fa593]/0 group-hover:from-[#2fa593]/5 group-hover:to-transparent transition-all duration-500 pointer-events-none"
-        >
-        </div>
-
-        <div class="relative aspect-video overflow-hidden">
-          <img
-            src="/home/stunning.webp"
-            alt="Stunning UI"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-[#26292e] via-[#26292e]/20 to-transparent opacity-80 lg:opacity-60 group-hover:opacity-40 transition-opacity"
-          >
-          </div>
-        </div>
-        <div class="p-8 relative z-10">
-          <div class="flex items-center gap-3 mb-4">
-            <div
-              class="w-12 h-12 rounded-xl bg-[#2fa593]/10 flex items-center justify-center"
-            >
-              <Icon name="mdi:brush-variant" class="w-6 h-6 text-[#2fa593]" />
+      <div class="card card-border bg-base-200 transition-all duration-500 group">
+        <figure class="overflow-hidden aspect-video">
+          <img src="/home/stunning.webp" alt="Stunning UI" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        </figure>
+        <div class="card-body">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="size-10 rounded-xl bg-primary/10 flex items-center justify-center">
+              <Icon name="heroicons:paint-brush" class="w-5 h-5 text-primary" />
             </div>
-            <h3
-              class="text-xl font-bold text-white group-hover:text-[#2fa593] transition-colors"
-            >
-              Stunning UI
-            </h3>
+            <h3 class="card-title">Stunning UI</h3>
           </div>
-          <p class="text-gray-400 leading-relaxed text-sm">
-            Forget boring lists. Browsing your library should be as fun as
-            playing it. Experience rich visuals and smooth animations designed
-            for the modern era.
-          </p>
+          <p class="text-base-content/60 text-sm">Forget boring lists. Browsing your library should be as fun as playing it. Experience rich visuals and smooth animations designed for the modern era.</p>
         </div>
       </div>
 
       <!-- Card 2 -->
-      <div
-        class="group bg-[#26292e] rounded-3xl border border-white/5 hover:border-blue-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/5 overflow-hidden flex flex-col relative"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-blue-500/0 to-blue-500/0 group-hover:from-blue-500/5 group-hover:to-transparent transition-all duration-500 pointer-events-none"
-        >
-        </div>
-
-        <div class="relative aspect-video overflow-hidden">
-          <img
-            src="/home/neosync.webp"
-            alt="Cloud Sync"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-[#26292e] via-[#26292e]/20 to-transparent opacity-80 lg:opacity-60 group-hover:opacity-40 transition-opacity"
-          >
-          </div>
-        </div>
-        <div class="p-8 relative z-10">
-          <div class="flex items-center gap-3 mb-4">
-            <div
-              class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center"
-            >
-              <Icon name="mdi:cloud-sync" class="w-6 h-6 text-blue-400" />
+      <div class="card card-border bg-base-200 transition-all duration-500 group">
+        <figure class="overflow-hidden aspect-video">
+          <img src="/home/neosync.webp" alt="Cloud Sync" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        </figure>
+        <div class="card-body">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="size-10 rounded-xl bg-info/10 flex items-center justify-center">
+              <Icon name="heroicons:cloud-arrow-up" class="w-5 h-5 text-info" />
             </div>
-            <h3
-              class="text-xl font-bold text-white group-hover:text-blue-400 transition-colors"
-            >
-              Cloud Sync
-            </h3>
+            <h3 class="card-title">Cloud Sync</h3>
           </div>
-          <p class="text-gray-400 leading-relaxed text-sm">
-            Sync your saves across devices effortlessly. Connect your preferred
-            sync provider. Start on your PC, pick up on your handheld.
-          </p>
+          <p class="text-base-content/60 text-sm">Sync your saves across devices effortlessly. Connect your preferred sync provider. Start on your PC, pick up on your handheld.</p>
         </div>
       </div>
 
       <!-- Card 3 -->
-      <div
-        class="group bg-[#26292e] rounded-3xl border border-white/5 hover:border-orange-500/30 transition-all duration-500 hover:shadow-2xl hover:shadow-orange-500/5 overflow-hidden flex flex-col relative"
-      >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-orange-500/0 to-orange-500/0 group-hover:from-orange-500/5 group-hover:to-transparent transition-all duration-500 pointer-events-none"
-        >
-        </div>
-
-        <div class="relative aspect-video overflow-hidden">
-          <img
-            src="/home/plug-and-play.webp"
-            alt="Plug & Play"
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-[#26292e] via-[#26292e]/20 to-transparent opacity-80 lg:opacity-60 group-hover:opacity-40 transition-opacity"
-          >
-          </div>
-        </div>
-        <div class="p-8 relative z-10">
-          <div class="flex items-center gap-3 mb-4">
-            <div
-              class="w-12 h-12 rounded-xl bg-orange-500/10 flex items-center justify-center"
-            >
-              <Icon
-                name="mdi:rocket-launch-outline"
-                class="w-6 h-6 text-orange-400"
-              />
+      <div class="card card-border bg-base-200 transition-all duration-500 group">
+        <figure class="overflow-hidden aspect-video">
+          <img src="/home/plug-and-play.webp" alt="Plug & Play" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+        </figure>
+        <div class="card-body">
+          <div class="flex items-center gap-3 mb-2">
+            <div class="size-10 rounded-xl bg-warning/10 flex items-center justify-center">
+              <Icon name="heroicons:rocket-launch" class="w-5 h-5 text-warning" />
             </div>
-            <h3
-              class="text-xl font-bold text-white group-hover:text-orange-400 transition-colors"
-            >
-              Plug & Play
-            </h3>
+            <h3 class="card-title">Plug & Play</h3>
           </div>
-          <p class="text-gray-400 leading-relaxed text-sm">
-            No complex configuration files. Intelligent scanning detects your
-            games automatically so you can spend your time playing, not
-            tweaking.
-          </p>
+          <p class="text-base-content/60 text-sm">No complex configuration files. Intelligent scanning detects your games automatically so you can spend your time playing, not tweaking.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- Support Section -->
-  <section class="max-w-7xl mx-auto mb-20 px-4">
-    <div
-      class="relative bg-[#26292e] rounded-[2.5rem] overflow-hidden border border-white/5 shadow-2xl p-8 md:p-16 group"
-    >
-      <!-- Background Glow -->
-      <div
-        class="absolute top-0 right-0 -mt-20 -mr-20 w-80 h-80 bg-[#2fa593]/10 blur-[100px] rounded-full group-hover:bg-[#2fa593]/20 transition-colors duration-700"
-      >
-      </div>
+  <section class="mb-20">
+    <div class="card bg-base-200">
+      <div class="card-body">
+        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
+          <div class="text-center lg:text-left space-y-6 max-w-2xl">
+            <h2 class="text-3xl md:text-5xl font-bold tracking-tight">
+              Support <span class="text-primary">NeoStation.</span>
+            </h2>
+            <p class="text-base-content/60 text-lg leading-relaxed">
+              NeoStation is a labor of love and remains free for everyone. Your
+              support helps me cover infrastructure costs and allows me to
+              dedicate more time to improving the project.
+            </p>
+          </div>
 
-      <div
-        class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12"
-      >
-        <div class="text-center lg:text-left space-y-6 max-w-2xl">
-          <h2 class="text-3xl md:text-5xl font-black text-white tracking-tight">
-            Support <span class="text-[#2fa593]">NeoStation.</span>
-          </h2>
-          <p class="text-gray-400 text-lg leading-relaxed font-medium">
-            NeoStation is a labor of love and remains free for everyone. Your
-            support helps me cover infrastructure costs and allows me to
-            dedicate more time to improving the project.
-          </p>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-6 w-full lg:w-auto">
-          <a
-            href="https://ko-fi.com/neostation"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center gap-4 px-10 py-5 bg-[#29ABE2] hover:bg-[#2497c9] text-white font-bold rounded-2xl transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#29ABE2]/20"
-          >
-            <Icon name="simple-icons:kofi" class="w-12 h-12" />
-            Support on Ko-fi
-          </a>
-          <a
-            href="https://www.patreon.com/cw/NeoStation"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="flex items-center justify-center gap-4 px-10 py-5 bg-[#FF424D] hover:bg-[#e63b45] text-white font-bold rounded-2xl transition-all transform hover:scale-105 active:scale-95 shadow-xl shadow-[#FF424D]/20 border border-white/5"
-          >
-            <Icon name="simple-icons:patreon" class="w-12 h-12" />
-            Become a Patron
-          </a>
+          <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
+            <a
+              href="https://ko-fi.com/neostation"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-lg"
+              style="background-color:#29ABE2; color:#fff; border-color:#29ABE2;"
+            >
+              <Icon name="simple-icons:kofi" class="w-5 h-5" />
+              Support on Ko-fi
+            </a>
+            <a
+              href="https://www.patreon.com/cw/NeoStation"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn-lg"
+              style="background-color:#FF424D; color:#fff; border-color:#FF424D;"
+            >
+              <Icon name="simple-icons:patreon" class="w-5 h-5" />
+              Become a Patron
+            </a>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <SocialList />
 </PageLayout>
 
 <!-- Image Modal -->
 <div
   id="imageModal"
-  class="fixed inset-0 bg-black bg-opacity-75 hidden z-50 flex items-center justify-center p-4"
+  class="fixed inset-0 bg-black/75 hidden z-50 flex items-center justify-center p-4"
   onclick="closeModal()"
 >
   <div class="relative max-w-4xl max-h-full">
@@ -293,11 +146,11 @@ import PageLayout from "@/layouts/Base.astro";
       id="modalImage"
       src=""
       alt="NeoStation Screenshot"
-      class="rounded-xl shadow-2xl max-w-full max-h-full object-contain"
+      class="rounded-xl max-w-full max-h-full object-contain"
     />
     <button
       onclick="closeModal()"
-      class="absolute top-4 right-4 text-white text-2xl font-bold hover:text-gray-300 transition-colors"
+      class="absolute top-4 right-4 text-white text-2xl font-bold hover:text-base-content/80 transition-colors"
     >
       ×
     </button>
@@ -305,7 +158,6 @@ import PageLayout from "@/layouts/Base.astro";
 </div>
 
 <script>
-  // Scoped image modal — safe with View Transitions
   function openModal(imageSrc: string) {
     const modal = document.getElementById("imageModal");
     const modalImage = document.getElementById("modalImage") as HTMLImageElement | null;
@@ -345,6 +197,5 @@ import PageLayout from "@/layouts/Base.astro";
     });
   }
 
-  // Re-initialize after Astro View Transitions navigation
   document.addEventListener("astro:page-load", initModal);
 </script>

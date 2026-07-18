@@ -1,79 +1,34 @@
-/* Local self-hosted fonts via fontsource — no external CDN requests */
 @import "@fontsource-variable/sora";
 @import "@fontsource-variable/jetbrains-mono";
 
 @import "tailwindcss";
-/* config for tailwindcss-typography plugin */
-@config "../../tailwind.config.ts";
-
-/* use a selector-based strategy for dark mode */
-@variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+@plugin "@tailwindcss/typography";
+@plugin "daisyui" {
+  themes: dark --default;
+}
 
 @theme {
-	--color-global-bg: #1d2024;
-	--color-global-text: #e0e0e0;
-	--color-link: #2fa593;
-	--color-accent: #2fa593;
-	--color-accent-2: #2fa593;
-	--color-surface: #26292e;
-	--color-quote: #2fa593;
-
-	--font-sans: 'Sora Variable', 'Sora', sans-serif;
-	--font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+  --font-sans: 'Sora Variable', 'Sora', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
 }
 
 @layer base {
-	html {
-		color-scheme: dark;
-		accent-color: var(--color-accent);
-		scrollbar-gutter: stable;
-		font-family: var(--font-sans);
-		background-color: var(--color-global-bg);
-		color: var(--color-global-text);
-	}
+  :target {
+    scroll-margin-block: 5ex;
+  }
 
-	:target {
-		scroll-margin-block: 5ex;
-	}
+  @view-transition {
+    navigation: auto;
+  }
 
-	@view-transition {
-		navigation: auto;
-	}
-
-	/* Astro image responsive styles, modified from -> https://docs.astro.build/en/guides/images/#responsive-image-styles */
-	:where([data-astro-image]) {
-		object-fit: var(--fit);
-		object-position: var(--pos);
-	}
-	[data-astro-image="full-width"] {
-		width: 100%;
-	}
-	[data-astro-image="constrained"] {
-		max-width: 100%;
-	}
-}
-
-@layer components {
-	@import "./components/admonition.css";
-	@import "./components/github-card.css";
-
-	.cactus-link {
-		@apply hover:decoration-link underline underline-offset-2 hover:decoration-2;
-	}
-
-	.title {
-		@apply text-accent-2 text-2xl font-semibold;
-	}
-}
-
-@utility prose {
-	--tw-prose-body: var(--color-global-text);
-	--tw-prose-bold: var(--color-global-text);
-	--tw-prose-bullets: var(--color-global-text);
-	--tw-prose-code: var(--color-global-text);
-	--tw-prose-headings: var(--color-accent-2);
-	--tw-prose-hr: 0.5px dashed #666;
-	--tw-prose-links: var(--color-global-text);
-	--tw-prose-quotes: var(--color-quote);
-	--tw-prose-th-borders: #666;
+  :where([data-astro-image]) {
+    object-fit: var(--fit);
+    object-position: var(--pos);
+  }
+  [data-astro-image="full-width"] {
+    width: 100%;
+  }
+  [data-astro-image="constrained"] {
+    max-width: 100%;
+  }
 }

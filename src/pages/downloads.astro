@@ -32,25 +32,25 @@ const platforms = [
   {
     name: "Windows",
     version: latestVersion,
-    icon: "simple-icons:windows",
-    color: "text-blue-400",
-    bgColor: "bg-blue-400/10",
-    borderColor: "hover:border-blue-400/50",
-    shadowColor: "hover:shadow-blue-400/10",
+    icon: "heroicons:computer-desktop",
+    color: "text-info",
+    bgColor: "bg-info/10",
+    borderColor: "hover:border-info/50",
+    shadowColor: "hover:shadow-info/10",
     requirements: "Windows 10 / 11 (64-bit)",
     link: windowsLink,
     label: "Download for Windows",
     dataKey: "windows",
-    note: "Requires <a href='https://aka.ms/vs/17/release/vc_redist.x64.exe' target='_blank' class='underline hover:text-gray-300 transition-colors'>Microsoft Visual C++ Redistributable (x64)</a>.",
+    note: "Requires <a href='https://aka.ms/vs/17/release/vc_redist.x64.exe' target='_blank' class='underline hover:text-base-content/70 transition-colors'>Microsoft Visual C++ Redistributable (x64)</a>.",
   },
   {
     name: "Android",
     version: latestVersion,
-    icon: "simple-icons:android",
-    color: "text-green-400",
-    bgColor: "bg-green-400/10",
-    borderColor: "hover:border-green-400/50",
-    shadowColor: "hover:shadow-green-400/10",
+    icon: "heroicons:device-phone-mobile",
+    color: "text-success",
+    bgColor: "bg-success/10",
+    borderColor: "hover:border-success/50",
+    shadowColor: "hover:shadow-success/10",
     requirements: "7.0+ (API 24+)",
     isAndroid: true,
     note: "Requires 'All Files Access' permission on Android 11+ to manage games and saves.",
@@ -64,7 +64,7 @@ const platforms = [
       },
       {
         label: "Get it on Obtainium",
-        url: "https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.neogamelab.neostation%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fmisobadev%2Fneostation-frontend%22%2C%22author%22%3A%22NeoGameLab%22%2C%22name%22%3A%22NeoStation%22%2C%22preferredApkIndex%22%3A0%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22sortMethodChoice%5C%22%3A%5C%22date%5C%22%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Atrue%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Atrue%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22%5C%22%2C%5C%22appAuthor%5C%22%3A%5C%22%5C%22%2C%5C%22shizukuPretendToBeGooglePlay%5C%22%3Afalse%2C%5C%22allowInsecure%5C%22%3Afalse%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22%5C%22%2C%5C%22refreshBeforeDownload%5C%22%3Afalse%2C%5C%22includeZips%5C%22%3Afalse%2C%5C%22zippedApkFilterRegEx%5C%22%3A%5C%22%5C%22%7D%22%2C%22overrideSource%22%3Anull%7D",
+        url: "https://apps.obtainium.imranr.dev/redirect?r=obtainium://app/%7B%22id%22%3A%22com.neogamelab.neostation%22%2C%22url%22%3A%22https%3A%2F%2Fgithub.com%2Fmisobadev%2Fneostation-frontend%22%2C%22author%22%3A%22NeoGameLab%22%2C%22name%22%3A%22NeoStation%22%2C%22preferredApkIndex%22%3A0%2C%22additionalSettings%22%3A%22%7B%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22sortMethodChoice%5C%22%3A%5C%22date%5C%22%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22includePrereleases%5C%22%3Afalse%2C%5C%22fallbackToOlderReleases%5C%22%3Atrue%2C%5C%22filterReleaseTitlesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22filterReleaseNotesByRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22verifyLatestTag%5C%22%3Afalse%2C%5C%22sortMethodChoice%5C%22%3A%5C%22date%5C%22%2C%5C%22useLatestAssetDateAsReleaseDate%5C%22%3Afalse%2C%5C%22releaseTitleAsVersion%5C%22%3Afalse%2C%5C%22trackOnly%5C%22%3Afalse%2C%5C%22versionExtractionRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22matchGroupToUse%5C%22%3A%5C%22%5C%22%2C%5C%22versionDetection%5C%22%3Atrue%2C%5C%22releaseDateAsVersion%5C%22%3Afalse%2C%5C%22useVersionCodeAsOSVersion%5C%22%3Afalse%2C%5C%22apkFilterRegEx%5C%22%3A%5C%22%5C%22%2C%5C%22invertAPKFilter%5C%22%3Atrue%2C%5C%22autoApkFilterByArch%5C%22%3Atrue%2C%5C%22appName%5C%22%3A%5C%22%5C%22%2C%5C%22appAuthor%5C%22%3A%5C%22%5C%22%2C%5C%22shizukuPretendToBeGooglePlay%5C%22%3Afalse%2C%5C%22allowInsecure%5C%22%3Afalse%2C%5C%22exemptFromBackgroundUpdates%5C%22%3Afalse%2C%5C%22skipUpdateNotifications%5C%22%3Afalse%2C%5C%22about%5C%22%3A%5C%22%5C%22%2C%5C%22refreshBeforeDownload%5C%22%3Afalse%2C%5C%22includeZips%5C%22%3Afalse%2C%5C%22zippedApkFilterRegEx%5C%22%3A%5C%22%5C%22%7D%22%2C%22overrideSource%22%3Anull%7D",
         primary: false,
         recommended: false,
       },
@@ -73,11 +73,11 @@ const platforms = [
   {
     name: "Linux",
     version: latestVersion,
-    icon: "simple-icons:linux",
-    color: "text-orange-400",
-    bgColor: "bg-orange-400/10",
-    borderColor: "hover:border-orange-400/50",
-    shadowColor: "hover:shadow-orange-400/10",
+    icon: "heroicons:command-line",
+    color: "text-warning",
+    bgColor: "bg-warning/10",
+    borderColor: "hover:border-warning/50",
+    shadowColor: "hover:shadow-warning/10",
     requirements: "AppImage (x86_64 / ARM64)",
     isLinux: true,
     links: [
@@ -101,10 +101,10 @@ const platforms = [
     name: "macOS",
     version: latestVersion,
     icon: "simple-icons:apple",
-    color: "text-indigo-400",
-    bgColor: "bg-indigo-400/10",
-    borderColor: "hover:border-indigo-400/50",
-    shadowColor: "hover:shadow-indigo-400/10",
+    color: "text-secondary",
+    bgColor: "bg-secondary/10",
+    borderColor: "hover:border-secondary/50",
+    shadowColor: "hover:shadow-secondary/10",
     requirements: "Universal (Intel & Apple Silicon)",
     link: macosLink,
     label: "Download for macOS",
@@ -116,7 +116,7 @@ const platforms = [
 const systemRequirements = [
   {
     platform: "Android",
-    icon: "simple-icons:android",
+    icon: "heroicons:device-phone-mobile",
     minCpu: "Cortex-A53 / A55 @ 1.5 GHz",
     cores: "4 Cores",
     minRam: "2 GB",
@@ -127,7 +127,7 @@ const systemRequirements = [
   },
   {
     platform: "Linux ARM64",
-    icon: "simple-icons:linux",
+    icon: "heroicons:command-line",
     minCpu: "Cortex-A53 / A55 @ 1.5 GHz",
     cores: "4 Cores",
     minRam: "1.5 GB",
@@ -138,7 +138,7 @@ const systemRequirements = [
   },
   {
     platform: "Linux x64",
-    icon: "simple-icons:linux",
+    icon: "heroicons:command-line",
     minCpu: "Intel Haswell / AMD Excavator",
     cores: "2 Cores",
     minRam: "2 GB",
@@ -157,7 +157,7 @@ const systemRequirements = [
   },
   {
     platform: "Windows",
-    icon: "simple-icons:windows",
+    icon: "heroicons:computer-desktop",
     minCpu: "Intel i3 4th Gen / AMD FX",
     cores: "2 Cores",
     minRam: "4 GB",
@@ -169,27 +169,18 @@ const systemRequirements = [
 ---
 
 <PageLayout meta={meta}>
-  <div class="relative py-12 md:py-20 overflow-hidden">
-    <!-- Background Accents -->
-    <div
-      class="absolute top-0 right-0 -mt-20 -mr-20 w-96 h-96 bg-[#2fa593]/5 blur-[120px] rounded-full pointer-events-none"
-    >
-    </div>
-    <div
-      class="absolute bottom-0 left-0 -mb-20 -ml-20 w-80 h-80 bg-blue-500/5 blur-[100px] rounded-full pointer-events-none"
-    >
-    </div>
+  <div class="py-12 md:py-20">
 
     <div class="max-w-7xl mx-auto px-4">
       <!-- Hero -->
       <div class="text-center mb-16">
         <h1
-          class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight"
+          class="text-4xl md:text-6xl font-bold text-base-content mb-6 tracking-tight"
         >
-          Get <span class="text-[#2fa593]">NeoStation</span>
+          Get <span class="text-primary">NeoStation</span>
         </h1>
         <div class="max-w-3xl mx-auto">
-          <p class="text-lg md:text-xl text-gray-400 leading-relaxed mb-8">
+          <p class="text-lg md:text-xl text-base-content/60 leading-relaxed mb-8">
             Experience the future of retro gaming on your favorite device.
             Select your platform below to download the latest stable beta.
           </p>
@@ -198,22 +189,22 @@ const systemRequirements = [
             href={releaseUrl}
             target="_blank"
             data-release-badge
-            class="inline-flex items-center gap-4 px-6 py-3 bg-[#26292e] rounded-2xl border border-white/5 shadow-xl transition-colors hover:border-white/10"
+            class="inline-flex items-center gap-4 px-6 py-3 bg-base-200 rounded-2xl border border-base-content/10 shadow-xl transition-colors hover:border-base-content/20"
           >
             <div
-              class="w-10 h-10 rounded-xl bg-[#2fa593]/10 flex items-center justify-center"
+              class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"
             >
-              <Icon name="mdi:rocket-launch" class="w-6 h-6 text-[#2fa593]" />
+              <Icon name="heroicons:rocket-launch" class="w-6 h-6 text-primary" />
             </div>
             <div class="text-left">
               <div
-                class="text-xs font-bold text-gray-500 uppercase tracking-widest"
+                class="text-xs font-bold text-base-content/50 uppercase tracking-widest"
               >
                 Latest Stable
               </div>
-              <div class="text-lg font-bold text-white">
+              <div class="text-lg font-bold text-base-content">
                 <span data-release-version>{latestVersion}</span>
-                <span data-release-date class="text-gray-600 text-sm font-normal ml-2"
+                <span data-release-date class="text-base-content/40 text-sm font-normal ml-2"
                   >, {releaseDate}</span
                 >
               </div>
@@ -224,227 +215,96 @@ const systemRequirements = [
 
       <!-- Platform Grid -->
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
-        {
-          platforms.map((p) => (
-            <div
-              class={`group relative p-8 rounded-3xl bg-[#26292e] border border-white/5 ${p.borderColor} transition-all duration-300 ${p.shadowColor} hover:-translate-y-1 flex flex-col`}
-            >
-              <div
-                class={`w-14 h-14 rounded-2xl ${p.bgColor} flex items-center justify-center mb-6`}
-              >
-                <Icon name={p.icon} class={`w-8 h-8 ${p.color}`} />
+        {platforms.map(p => (
+          <div class="card card-border bg-base-200 hover:border-primary/50 transition-all duration-300">
+            <div class="card-body">
+              <div class="size-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-4">
+                <Icon name={p.icon} class="w-8 h-8 text-primary" />
               </div>
-
-              <h3 class="text-2xl font-bold text-white mb-1">{p.name}</h3>
-              <p class="text-xs text-gray-500 mb-6 font-medium uppercase tracking-wider">
-                {p.requirements}
-              </p>
-
-              <div class="space-y-3 mt-auto">
+              <h3 class="card-title">{p.name}</h3>
+              <p class="text-xs text-base-content/50 font-medium uppercase tracking-wider">{p.requirements}</p>
+              <div class="mt-auto space-y-2">
                 {p.isAndroid || p.isLinux ? (
-                  p.links.map((l) => (
-                    <a
-                      href={l.url}
-                      target="_blank"
-                      data-download={l.dataKey}
-                      class={`w-full px-4 py-3 text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all relative overflow-hidden ${l.primary ? "bg-[#2fa593] text-white hover:bg-[#268d7e]" : "bg-white/5 text-gray-300 hover:bg-white/10 hover:text-white border border-white/5"}`}
-                    >
-                      {l.recommended && (
-                        <div class="absolute top-0 right-0 bg-amber-500 text-[8px] px-2 py-0.5 rounded-bl-lg font-bold uppercase tracking-tighter text-black">
-                          Best
-                        </div>
-                      )}
+                  p.links.map(l => (
+                    <a href={l.url} target="_blank" data-download={l.dataKey} class={`btn btn-block btn-sm relative overflow-hidden ${l.primary ? "btn-primary" : "btn-ghost"}`}>
+                      {l.recommended && <span class="badge badge-warning badge-xs absolute top-0 right-0">Best</span>}
                       {l.label}
                     </a>
                   ))
                 ) : (
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    data-download={p.dataKey}
-                    class="w-full px-4 py-3 bg-[#2fa593] hover:bg-[#268d7e] text-white text-sm font-bold rounded-xl flex items-center justify-center gap-2 transition-all shadow-lg shadow-[#2fa593]/10"
-                  >
-                    {p.label}
-                  </a>
+                  <a href={p.link} target="_blank" data-download={p.dataKey} class="btn btn-primary btn-block">{p.label}</a>
                 )}
               </div>
-
-              {p.note && (
-                <div class="mt-4 text-[10px] text-gray-500 leading-tight italic">
-                  *<span set:html={p.note} />
-                </div>
-              )}
+              {p.note && <p class="text-[10px] text-base-content/40 italic mt-2"><span set:html={p.note} /></p>}
             </div>
-          ))
-        }
+          </div>
+        ))}
       </div>
 
       <!-- System Requirements -->
       <div class="mb-24">
         <div class="flex items-center gap-3 mb-8">
           <div
-            class="w-10 h-10 rounded-xl bg-[#2fa593]/10 flex items-center justify-center"
+            class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center"
           >
-            <Icon name="mdi:speedometer" class="w-6 h-6 text-[#2fa593]" />
+            <Icon name="heroicons:bolt" class="w-6 h-6 text-primary" />
           </div>
-          <h2 class="text-3xl font-bold text-white">System Requirements</h2>
+          <h2 class="text-3xl font-bold text-base-content">System Requirements</h2>
         </div>
 
-        <div
-          class="overflow-x-auto rounded-3xl border border-white/5 bg-[#26292e]/50 backdrop-blur-sm"
-        >
-          <table class="w-full text-left border-collapse">
+        <div class="overflow-x-auto rounded-box border border-base-content/10">
+          <table class="table">
             <thead>
-              <tr class="border-b border-white/5 bg-white/[0.02]">
-                <th
-                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
-                  >Platform</th
-                >
-                <th
-                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
-                  >Min CPU</th
-                >
-                <th
-                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
-                  >Cores</th
-                >
-                <th
-                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
-                  >Min RAM</th
-                >
-                <th
-                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
-                  >Recommended</th
-                >
-                <th
-                  class="px-6 py-4 text-xs font-bold text-gray-500 uppercase tracking-wider"
-                  >Min GPU</th
-                >
+              <tr class="text-base-content/50 text-xs uppercase tracking-wider">
+                <th>Platform</th><th>Min CPU</th><th>Cores</th><th>Min RAM</th><th>Recommended</th><th>Min GPU</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-white/5">
-              {
-                systemRequirements.map((req) => (
-                  <>
-                    <tr class="hover:bg-white/[0.02] transition-colors group">
-                      <td class="px-6 py-5 whitespace-nowrap">
-                        <div class="flex items-center gap-3">
-                          <Icon
-                            name={req.icon}
-                            class="w-5 h-5 text-gray-400 group-hover:text-white transition-colors"
-                          />
-                          <span class="font-bold text-white">
-                            {req.platform}
-                          </span>
-                        </div>
-                      </td>
-                      <td class="px-6 py-5 text-sm text-gray-300">
-                        {req.minCpu}
-                      </td>
-                      <td class="px-6 py-5 text-sm text-gray-300">
-                        {req.cores}
-                      </td>
-                      <td class="px-6 py-5 text-sm text-gray-300">
-                        {req.minRam}
-                      </td>
-                      <td class="px-6 py-5 text-sm">
-                        <span class="px-2 py-1 rounded-md bg-[#2fa593]/10 text-[#2fa593] font-medium">
-                          {req.recRam}
-                        </span>
-                      </td>
-                      <td class="px-6 py-5 text-sm text-gray-300">
-                        {req.minGpu}
+            <tbody>
+              {systemRequirements.map(req => (
+                <>
+                  <tr class="hover:bg-base-content/[0.02]">
+                    <td class="flex items-center gap-2 font-bold"><Icon name={req.icon} class="w-5 h-5 text-base-content/50" />{req.platform}</td>
+                    <td class="text-sm">{req.minCpu}</td>
+                    <td class="text-sm">{req.cores}</td>
+                    <td class="text-sm">{req.minRam}</td>
+                    <td><span class="badge badge-primary badge-sm">{req.recRam}</span></td>
+                    <td class="text-sm">{req.minGpu}</td>
+                  </tr>
+                  {req.notes && (
+                    <tr class="bg-base-content/[0.02]">
+                      <td colspan="6" class="text-[11px] text-base-content/50 italic px-4 py-2">
+                        <span class="text-warning/70 mr-1 font-bold">*</span> {req.notes}
                       </td>
                     </tr>
-                    {req.notes && (
-                      <tr class="bg-black/10">
-                        <td
-                          colspan="6"
-                          class="px-6 py-3 text-[11px] text-gray-500 italic"
-                        >
-                          <span class="text-amber-500/70 mr-1 font-bold">
-                            *
-                          </span>{" "}
-                          {req.notes}
-                        </td>
-                      </tr>
-                    )}
-                  </>
-                ))
-              }
+                  )}
+                </>
+              ))}
             </tbody>
           </table>
         </div>
       </div>
 
       <!-- Beta Section & Discord -->
-      <div class="grid md:grid-cols-2 gap-8 mb-24">
-        <div
-          class="bg-gradient-to-br from-amber-500/10 to-orange-600/10 rounded-3xl border border-amber-500/20 p-8"
-        >
+      <div class="grid md:grid-cols-2 gap-6 mb-24">
+        <div class="alert alert-warning shadow-lg">
           <div class="flex items-start gap-4">
-            <div
-              class="w-12 h-12 rounded-2xl bg-amber-500/10 flex items-center justify-center shrink-0"
-            >
-              <Icon name="mdi:alert-decagram" class="w-6 h-6 text-amber-500" />
-            </div>
+            <Icon name="heroicons:sparkles" class="w-6 h-6 shrink-0" />
             <div>
-              <h3 class="text-xl font-bold text-white mb-2">
-                Beta Software Notice
-              </h3>
-              <p class="text-gray-400 text-sm leading-relaxed mb-4">
-                These are <strong>Beta releases</strong> intended for testing and
-                feedback. While stable, you may encounter minor bugs. Join the community
-                to report issues and help improve the experience.
-              </p>
-              <div
-                class="flex items-center gap-2 text-xs font-bold text-gray-500"
-              >
-                <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"
-                ></span>
-                ACTIVE DEVELOPMENT
-              </div>
+              <h3 class="font-bold">Beta Software Notice</h3>
+              <p class="text-sm">These are Beta releases intended for testing and feedback. While stable, you may encounter minor bugs. Join the community to report issues and help improve the experience.</p>
+              <div class="flex items-center gap-2 text-xs mt-2"><span class="w-2 h-2 rounded-full bg-warning animate-pulse"></span>ACTIVE DEVELOPMENT</div>
             </div>
           </div>
         </div>
-
-        <div
-          class="bg-gradient-to-br from-[#2fa593]/10 to-blue-600/10 rounded-3xl border border-[#2fa593]/20 p-8"
-        >
-          <div class="flex items-start gap-6">
-            <div
-              class="w-12 h-12 rounded-2xl bg-[#5865F2]/10 flex items-center justify-center shrink-0"
-            >
-              <Icon
-                name="simple-icons:discord"
-                class="w-6 h-6 text-[#5865F2]"
-              />
-            </div>
+        <div class="alert shadow-lg">
+          <div class="flex items-start gap-4">
+            <Icon name="simple-icons:discord" class="w-6 h-6 text-secondary shrink-0" />
             <div>
-              <h3 class="text-xl font-bold text-white mb-2">
-                Join the Discussion
-              </h3>
-              <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                Get help, share themes, report bugs, and stay updated on the
-                latest releases.
-              </p>
-              <div class="flex flex-wrap gap-3">
-                <a
-                  href="https://discord.gg/xE2kgKsRVq"
-                  target="_blank"
-                  class="inline-flex items-center gap-2 px-6 py-3 bg-[#5865F2] hover:bg-[#4752C4] text-white font-bold rounded-xl transition-all shadow-lg shadow-[#5865F2]/20"
-                >
-                  <Icon name="simple-icons:discord" class="w-4 h-4" />
-                  Discord
-                </a>
-                <a
-                  href="https://github.com/misobadev/neostation-frontend/discussions"
-                  target="_blank"
-                  class="inline-flex items-center gap-2 px-6 py-3 bg-white/5 hover:bg-white/10 text-white font-bold rounded-xl transition-all border border-white/10"
-                >
-                  <Icon name="simple-icons:github" class="w-4 h-4" />
-                  GitHub Discussions
-                </a>
+              <h3 class="font-bold text-base-content">Join the Discussion</h3>
+              <p class="text-sm text-base-content/60">Get help, share themes, report bugs, and stay updated on the latest releases.</p>
+              <div class="flex gap-2 mt-3">
+                <a href="https://discord.gg/xE2kgKsRVq" class="btn btn-secondary btn-sm">Discord</a>
+                <a href="https://github.com/misobadev/neostation-frontend/discussions" class="btn btn-ghost btn-sm">GitHub Discussions</a>
               </div>
             </div>
           </div>
@@ -452,60 +312,61 @@ const systemRequirements = [
       </div>
     </div>
   </div>
-<script>
-  const API_URL = "https://api.github.com/repos/misobadev/neostation-frontend/releases/latest";
 
-  async function loadLatestRelease() {
-    try {
-      const res = await fetch(API_URL, {
-        headers: { Accept: "application/vnd.github+json" },
-      });
-      if (!res.ok) return;
-      const data = await res.json();
+  <script>
+    const API_URL = "https://api.github.com/repos/misobadev/neostation-frontend/releases/latest";
 
-      const badge = document.querySelector("[data-release-badge]") as HTMLAnchorElement | null;
-      if (badge) {
-        badge.href = data.html_url || badge.href;
-        const versionEl = badge.querySelector("[data-release-version]");
-        const dateEl = badge.querySelector("[data-release-date]");
-        if (versionEl) {
-          versionEl.textContent = data.name
-            ? data.name.replace(/^NeoStation\s+/i, "")
-            : data.tag_name?.replace(/^v/, "Beta ");
+    async function loadLatestRelease() {
+      try {
+        const res = await fetch(API_URL, {
+          headers: { Accept: "application/vnd.github+json" },
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+
+        const badge = document.querySelector("[data-release-badge]") as HTMLAnchorElement | null;
+        if (badge) {
+          badge.href = data.html_url || badge.href;
+          const versionEl = badge.querySelector("[data-release-version]");
+          const dateEl = badge.querySelector("[data-release-date]");
+          if (versionEl) {
+            versionEl.textContent = data.name
+              ? data.name.replace(/^NeoStation\s+/i, "")
+              : data.tag_name?.replace(/^v/, "Beta ");
+          }
+          if (dateEl && data.published_at) {
+            const d = new Date(data.published_at);
+            dateEl.textContent =
+              ", " +
+              d.toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+              });
+          }
         }
-        if (dateEl && data.published_at) {
-          const d = new Date(data.published_at);
-          dateEl.textContent =
-            ", " +
-            d.toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            });
+
+        for (const asset of data.assets || []) {
+          const name = asset.name;
+          const url = asset.browser_download_url;
+          let key = null;
+
+          if (name.includes("windows") && name.endsWith(".zip")) key = "windows";
+          else if (name.includes("android") && name.endsWith(".apk")) key = "android-apk";
+          else if (name.includes("linux") && name.includes("x86_64") && name.endsWith(".AppImage")) key = "linux-x64";
+          else if (name.includes("linux") && name.includes("arm64") && name.endsWith(".AppImage")) key = "linux-arm64";
+          else if (name.includes("macos") && name.endsWith(".dmg")) key = "macos";
+
+          if (key) {
+            const link = document.querySelector(`[data-download="${key}"]`) as HTMLAnchorElement | null;
+            if (link) link.href = url;
+          }
         }
+      } catch (e) {
+        console.error("Failed to fetch latest GitHub release:", e);
       }
-
-      for (const asset of data.assets || []) {
-        const name = asset.name;
-        const url = asset.browser_download_url;
-        let key = null;
-
-        if (name.includes("windows") && name.endsWith(".zip")) key = "windows";
-        else if (name.includes("android") && name.endsWith(".apk")) key = "android-apk";
-        else if (name.includes("linux") && name.includes("x86_64") && name.endsWith(".AppImage")) key = "linux-x64";
-        else if (name.includes("linux") && name.includes("arm64") && name.endsWith(".AppImage")) key = "linux-arm64";
-        else if (name.includes("macos") && name.endsWith(".dmg")) key = "macos";
-
-        if (key) {
-          const link = document.querySelector(`[data-download="${key}"]`) as HTMLAnchorElement | null;
-          if (link) link.href = url;
-        }
-      }
-    } catch (e) {
-      console.error("Failed to fetch latest GitHub release:", e);
     }
-  }
 
-  loadLatestRelease();
-</script>
+    loadLatestRelease();
+  </script>
 </PageLayout>
