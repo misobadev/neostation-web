@@ -40,6 +40,7 @@
   "emulators": [
     {
       "name": "RetroArch64 FUSE",
+      "default_core": true,
       "unique_id": "zxspectrum.ra64.fuse",
       "description": "Supported extensions: dsk, rzx, scl, tap, trd, tzx, z80, zip, 7z.",
       "is_retroachievements_compatible": false,
@@ -51,6 +52,7 @@
     },
     {
       "name": "RetroArch32 FUSE",
+      "default_core": true,
       "unique_id": "zxspectrum.ra32.fuse",
       "description": "Supported extensions: dsk, rzx, scl, tap, trd, tzx, z80, zip, 7z.",
       "is_retroachievements_compatible": false,
@@ -62,8 +64,8 @@
     },
     {
       "name": "RetroArch FUSE",
+      "default_core": true,
       "unique_id": "zxspectrum.ra.fuse",
-      "default": true,
       "description": "Supported extensions: dsk, rzx, scl, tap, trd, tzx, z80, zip, 7z.",
       "is_retroachievements_compatible": false,
       "platforms": {

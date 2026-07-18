@@ -29,13 +29,13 @@
   },
   "emulators": [
     {
-      "name": "PICO-8 Android",
+      "name": "Standalone PICO-8 Android",
       "unique_id": "pico8.io.wip.pico8",
       "description": "Supported extensions: p8, png.",
       "is_retroachievements_compatible": false,
       "platforms": {
         "android": {
-          "launch_arguments": "-n io.wip.pico8/com.godot.game.GodotAppLauncher -d \"{file.uri}\""
+          "launch_arguments": "-n io.wip.pico8/com.godot.game.GodotAppLauncher -d \"{file.path}\""
         }
       }
     },
@@ -63,6 +63,7 @@
     },
     {
       "name": "RetroArch64 Retro8",
+      "default_core": true,
       "unique_id": "pico8.ra64.retro8",
       "description": "Supported extensions: p8, png.",
       "is_retroachievements_compatible": false,
@@ -85,6 +86,7 @@
     },
     {
       "name": "RetroArch32 Retro8",
+      "default_core": true,
       "unique_id": "pico8.ra32.retro8",
       "description": "Supported extensions: p8, png.",
       "is_retroachievements_compatible": false,
@@ -107,6 +109,7 @@
     },
     {
       "name": "RetroArch Retro8",
+      "default_core": true,
       "unique_id": "pico8.ra.retro8",
       "description": "Supported extensions: p8, png.",
       "is_retroachievements_compatible": false,

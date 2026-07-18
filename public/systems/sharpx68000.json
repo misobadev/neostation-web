@@ -41,6 +41,7 @@
   "emulators": [
     {
       "name": "RetroArch64 PX68k",
+      "default_core": true,
       "unique_id": "sharpx68000.x68000.ra64.px68k",
       "description": "Supported extensions: 2hd, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip, 7z.",
       "is_retroachievements_compatible": false,
@@ -52,6 +53,7 @@
     },
     {
       "name": "RetroArch32 PX68k",
+      "default_core": true,
       "unique_id": "sharpx68000.x68000.ra32.px68k",
       "description": "Supported extensions: 2hd, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip, 7z.",
       "is_retroachievements_compatible": false,
@@ -63,7 +65,7 @@
     },
     {
       "name": "RetroArch PX68k",
-      "default": true,
+      "default_core": true,
       "unique_id": "sharpx68000.x68000.ra.px68k",
       "description": "Supported extensions: 2hd, 88d, cmd, d88, dim, dup, hdf, hdm, img, m3u, xdf, zip, 7z.",
       "is_retroachievements_compatible": false,

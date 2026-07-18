@@ -33,7 +33,7 @@
   "emulators": [
     {
       "name": "RetroArch MelonDS",
-      "default": true,
+      "default_core": true,
       "unique_id": "ds.ra.melonds",
       "is_retroachievements_compatible": true,
       "description": "MelonDS core for RetroArch.",
@@ -103,6 +103,7 @@
     },
     {
       "name": "RetroArch64 MelonDS",
+      "default_core": true,
       "unique_id": "ds.ra64.melonds",
       "is_retroachievements_compatible": true,
       "description": "MelonDS core for RetroArch 64.",
@@ -125,6 +126,7 @@
     },
     {
       "name": "RetroArch32 MelonDS",
+      "default_core": true,
       "unique_id": "ds.ra32.melonds",
       "is_retroachievements_compatible": true,
       "description": "MelonDS core for RetroArch 32.",
@@ -163,7 +165,8 @@
       "description": "Premium Nintendo DS emulator for Android.",
       "platforms": {
         "android": {
-          "launch_arguments": "-n com.dsemu.drastic/.DraSticActivity -d \"{file.uri}\" --activity-clear-task --activity-clear-top"
+          "launch_arguments": "-n com.dsemu.drastic/.DraSticActivity -d \"{file.localuri}\" --activity-clear-task --activity-clear-top",
+          "keep_saf_uri": true
         }
       }
     },

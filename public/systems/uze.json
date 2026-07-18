@@ -30,6 +30,7 @@
   "emulators": [
     {
       "name": "RetroArch64 Uzem",
+      "default_core": true,
       "unique_id": "uze.ra64.uzem",
       "description": "Supported extensions: uze.",
       "is_retroachievements_compatible": true,
@@ -41,6 +42,7 @@
     },
     {
       "name": "RetroArch32 Uzem",
+      "default_core": true,
       "unique_id": "uze.ra32.uzem",
       "description": "Supported extensions: uze.",
       "is_retroachievements_compatible": true,
@@ -52,7 +54,7 @@
     },
     {
       "name": "RetroArch Uzem",
-      "default": true,
+      "default_core": true,
       "unique_id": "uze.ra.uzem",
       "description": "Supported extensions: uze.",
       "is_retroachievements_compatible": true,

@@ -38,16 +38,16 @@ css = css.replace(/'Sora'/g, "'Sora Variable'");
 css = css.replace(/'JetBrains Mono'/g, "'JetBrains Mono Variable'");
 
 function prefixSelector(sel) {
-  return sel
-    .split(",")
-    .map((s) => {
-      const t = s.trim();
-      if (!t) return s;
-      if (t.startsWith(".tb")) return t;
-      if (t === "*") return ".tb *";
-      return ".tb " + t;
-    })
-    .join(", ");
+	return sel
+		.split(",")
+		.map((s) => {
+			const t = s.trim();
+			if (!t) return s;
+			if (t.startsWith(".tb")) return t;
+			if (t === "*") return ".tb *";
+			return `.tb ${t}`;
+		})
+		.join(", ");
 }
 
 let out2 = "";
@@ -57,38 +57,38 @@ let atKeyframes = 0;
 let depth = 0;
 let buf = "";
 while (i < n) {
-  const c = css[i];
-  if (c === "{") {
-    const sel = buf.trim();
-    buf = "";
-    if (sel.startsWith("@keyframes")) {
-      atKeyframes = depth + 1;
-      out2 += sel + "{";
-      depth++;
-      i++;
-      continue;
-    }
-    if (sel.startsWith("@")) {
-      out2 += sel + "{";
-      depth++;
-      i++;
-      continue;
-    }
-    out2 += (atKeyframes && depth >= atKeyframes ? sel : prefixSelector(sel)) + "{";
-    depth++;
-    i++;
-    continue;
-  }
-  if (c === "}") {
-    out2 += buf + "}";
-    buf = "";
-    depth--;
-    if (atKeyframes && depth < atKeyframes) atKeyframes = 0;
-    i++;
-    continue;
-  }
-  buf += c;
-  i++;
+	const c = css[i];
+	if (c === "{") {
+		const sel = buf.trim();
+		buf = "";
+		if (sel.startsWith("@keyframes")) {
+			atKeyframes = depth + 1;
+			out2 += `${sel}{`;
+			depth++;
+			i++;
+			continue;
+		}
+		if (sel.startsWith("@")) {
+			out2 += `${sel}{`;
+			depth++;
+			i++;
+			continue;
+		}
+		out2 += `${atKeyframes && depth >= atKeyframes ? sel : prefixSelector(sel)}{`;
+		depth++;
+		i++;
+		continue;
+	}
+	if (c === "}") {
+		out2 += `${buf}}`;
+		buf = "";
+		depth--;
+		if (atKeyframes && depth < atKeyframes) atKeyframes = 0;
+		i++;
+		continue;
+	}
+	buf += c;
+	i++;
 }
 css = out2;
 
@@ -145,10 +145,10 @@ const meta: SiteMeta = {
 
   <div class="tb">
 ${body
-  .trimEnd()
-  .split("\n")
-  .map((l) => "    " + l)
-  .join("\n")}
+	.trimEnd()
+	.split("\n")
+	.map((l) => `    ${l}`)
+	.join("\n")}
   </div>
 </Base>
 

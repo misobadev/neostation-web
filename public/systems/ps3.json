@@ -29,7 +29,7 @@
   "emulators": [
     {
       "name": "Standalone aPS3e",
-      "default": true,
+      "default_standalone": true,
       "unique_id": "ps3.aenu.aps3e",
       "description": "Supported extensions: iso.",
       "is_retroachievements_compatible": false,

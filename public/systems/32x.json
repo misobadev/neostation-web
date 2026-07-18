@@ -17,7 +17,9 @@
       "32x",
       "sega32x",
       "Sega 32X",
-      "THIRTYTWOX"
+      "THIRTYTWOX",
+      "sega32xjp",
+      "sega32xna"
     ],
     "colors": [
       "#212121",
@@ -45,7 +47,7 @@
   "emulators": [
     {
       "name": "RetroArch PicoDrive",
-      "default": true,
+      "default_core": true,
       "unique_id": "32x.ra.picodrive",
       "is_retroachievements_compatible": true,
       "description": "Supported extensions: 32x, 68k, bin, chd, cue, gen, gg, iso, m3u, md, pco, sgd, smd, sms, 7z, zip.",
@@ -69,6 +71,7 @@
     },
     {
       "name": "RetroArch64 PicoDrive",
+      "default_core": true,
       "unique_id": "32x.ra64.picodrive",
       "is_retroachievements_compatible": true,
       "description": "Supported extensions: 32x, 68k, bin, chd, cue, gen, gg, iso, m3u, md, pco, sgd, smd, sms, 7z, zip.",
@@ -80,6 +83,7 @@
     },
     {
       "name": "RetroArch32 PicoDrive",
+      "default_core": true,
       "unique_id": "32x.ra32.picodrive",
       "is_retroachievements_compatible": true,
       "description": "Supported extensions: 32x, 68k, bin, chd, cue, gen, gg, iso, m3u, md, pco, sgd, smd, sms, 7z, zip.",
