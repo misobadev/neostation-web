@@ -54,6 +54,7 @@
     },
     {
       "name": "RetroArch64 snes9x",
+      "default_core": true,
       "unique_id": "satellaview.ra64.snes9x",
       "description": "Supported extensions: bs, fig, sfc, smc, st, swc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -153,6 +154,7 @@
     },
     {
       "name": "RetroArch32 Snes9x",
+      "default_core": true,
       "unique_id": "satellaview.ra32.snes9x",
       "description": "Supported extensions: bs, fig, sfc, smc, st, swc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -252,6 +254,7 @@
     },
     {
       "name": "RetroArch Snes9x",
+      "default_core": true,
       "unique_id": "satellaview.ra.snes9x",
       "description": "Supported extensions: bs, fig, sfc, smc, st, swc, zip, 7z.",
       "is_retroachievements_compatible": true,

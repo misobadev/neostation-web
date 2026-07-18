@@ -41,6 +41,7 @@
     },
     {
       "name": "RetroArch64 MESS",
+      "default_core": true,
       "unique_id": "vc4k.vc4000.ra64.mess",
       "description": "Supported extensions: cmd.",
       "is_retroachievements_compatible": false,
@@ -52,6 +53,7 @@
     },
     {
       "name": "RetroArch MESS",
+      "default_core": true,
       "unique_id": "vc4k.vc4000.ra.mess",
       "description": "Supported extensions: cmd.",
       "is_retroachievements_compatible": false,

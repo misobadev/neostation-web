@@ -4,31 +4,31 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @plugin "daisyui" {
-  themes: dark --default;
+	themes: dark --default;
 }
 
 @theme {
-  --font-sans: 'Sora Variable', 'Sora', sans-serif;
-  --font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', monospace;
+	--font-sans: "Sora Variable", "Sora", sans-serif;
+	--font-mono: "JetBrains Mono Variable", "JetBrains Mono", monospace;
 }
 
 @layer base {
-  :target {
-    scroll-margin-block: 5ex;
-  }
+	:target {
+		scroll-margin-block: 5ex;
+	}
 
-  @view-transition {
-    navigation: auto;
-  }
+	@view-transition {
+		navigation: auto;
+	}
 
-  :where([data-astro-image]) {
-    object-fit: var(--fit);
-    object-position: var(--pos);
-  }
-  [data-astro-image="full-width"] {
-    width: 100%;
-  }
-  [data-astro-image="constrained"] {
-    max-width: 100%;
-  }
+	:where([data-astro-image]) {
+		object-fit: var(--fit);
+		object-position: var(--pos);
+	}
+	[data-astro-image="full-width"] {
+		width: 100%;
+	}
+	[data-astro-image="constrained"] {
+		max-width: 100%;
+	}
 }

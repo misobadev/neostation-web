@@ -30,6 +30,7 @@
   "emulators": [
     {
       "name": "RetroArch64 SameDuck",
+      "default_core": true,
       "unique_id": "duck.ra64.sameduck",
       "description": "Supported extensions: bin.",
       "is_retroachievements_compatible": true,
@@ -41,6 +42,7 @@
     },
     {
       "name": "RetroArch32 SameDuck",
+      "default_core": true,
       "unique_id": "duck.ra32.sameduck",
       "description": "Supported extensions: bin.",
       "is_retroachievements_compatible": true,
@@ -52,7 +54,7 @@
     },
     {
       "name": "RetroArch SameDuck",
-      "default": true,
+      "default_core": true,
       "unique_id": "duck.ra.sameduck",
       "description": "Supported extensions: bin.",
       "is_retroachievements_compatible": true,

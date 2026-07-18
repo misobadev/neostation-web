@@ -138,6 +138,7 @@
     },
     {
       "name": "RetroArch64 mGBA",
+      "default_core": true,
       "unique_id": "gba.ra64.mgba",
       "description": "Supported extensions: gb, gba, gbc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -204,6 +205,7 @@
     },
     {
       "name": "RetroArch32 mGBA",
+      "default_core": true,
       "unique_id": "gba.ra32.mgba",
       "description": "Supported extensions: gb, gba, gbc, zip, 7z.",
       "is_retroachievements_compatible": true,
@@ -294,7 +296,7 @@
     },
     {
       "name": "RetroArch mGBA",
-      "default": true,
+      "default_core": true,
       "unique_id": "gba.ra.mgba",
       "description": "Supported extensions: gb, gba, gbc, zip, 7z.",
       "is_retroachievements_compatible": true,

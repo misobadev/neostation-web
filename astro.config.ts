@@ -23,11 +23,11 @@ import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 export default defineConfig({
 	site: siteConfig.url,
 	build: {
-		assets: '_astro',
-		inlineStylesheets: 'never',
+		assets: "_astro",
+		inlineStylesheets: "never",
 	},
 	image: {
-		domains: ["neostation.dev", "neogamelab.com"],
+		domains: ["neostation.dev"],
 	},
 	integrations: [
 		expressiveCode(expressiveCodeOptions),
@@ -97,11 +97,11 @@ export default defineConfig({
 		build: {
 			rollupOptions: {
 				output: {
-					entryFileNames: '_astro/[name].[hash].js',
-					chunkFileNames: '_astro/[name].[hash].js',
-					assetFileNames: '_astro/[name].[hash][extname]'
-				}
-			}
+					entryFileNames: "_astro/[name].[hash].js",
+					chunkFileNames: "_astro/[name].[hash].js",
+					assetFileNames: "_astro/[name].[hash][extname]",
+				},
+			},
 		},
 		plugins: [tailwind(), rawFonts([".ttf", ".woff"])],
 	},

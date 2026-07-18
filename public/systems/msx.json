@@ -16,7 +16,8 @@
     "folders": [
       "msx",
       "msx1",
-      "msx2"
+      "msx2",
+      "msxturbor"
     ],
     "colors": [
       "#30343f",
@@ -63,6 +64,7 @@
     },
     {
       "name": "RetroArch64 blueMSX",
+      "default_core": true,
       "unique_id": "msx.ra64.bluemsx",
       "description": "Supported extensions: cas, col, dsk, m3u, mx1, mx2, ri, rom, sc, sg",
       "is_retroachievements_compatible": true,
@@ -85,6 +87,7 @@
     },
     {
       "name": "RetroArch32 blueMSX",
+      "default_core": true,
       "unique_id": "msx.ra32.bluemsx",
       "description": "Supported extensions: cas, col, dsk, m3u, mx1, mx2, ri, rom, sc, sg",
       "is_retroachievements_compatible": true,
@@ -119,7 +122,7 @@
     },
     {
       "name": "RetroArch blueMSX",
-      "default": true,
+      "default_core": true,
       "unique_id": "msx.ra.bluemsx",
       "description": "Supported extensions: cas, col, dsk, m3u, mx1, mx2, ri, rom, sc, sg",
       "is_retroachievements_compatible": true,

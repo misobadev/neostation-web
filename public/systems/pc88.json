@@ -34,7 +34,7 @@
   "emulators": [
     {
       "name": "RetroArch QUASI88",
-      "default": true,
+      "default_core": true,
       "unique_id": "8088.ra.quasi88",
       "is_retroachievements_compatible": true,
       "description": "Supported extensions: d88, m3u, u88.",
@@ -58,6 +58,7 @@
     },
     {
       "name": "RetroArch64 QUASI88",
+      "default_core": true,
       "unique_id": "8088.ra64.quasi88",
       "is_retroachievements_compatible": true,
       "description": "Supported extensions: d88, m3u, u88.",
@@ -69,6 +70,7 @@
     },
     {
       "name": "RetroArch32 QUASI88",
+      "default_core": true,
       "unique_id": "8088.ra32.quasi88",
       "is_retroachievements_compatible": true,
       "description": "Supported extensions: d88, m3u, u88.",
