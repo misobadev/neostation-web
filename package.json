@@ -32,7 +32,7 @@
 		"@iconify-json/simple-icons": "^1.2.85",
 		"@tailwindcss/vite": "^4.3.1",
 		"astro": "^6.4.8",
-		"astro-expressive-code": "^0.42.0",
+		"astro-expressive-code": "^0.44.0",
 		"astro-icon": "^1.1.5",
 		"astro-robots-txt": "^1.0.0",
 		"astro-webmanifest": "^1.0.0",
