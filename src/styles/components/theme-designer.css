@@ -670,7 +670,7 @@
 	display: flex;
 	gap: 0.6em;
 }
-.tb .fab {
+.tb .tbfab {
 	display: flex;
 	align-items: center;
 	gap: 0.55em;
@@ -679,11 +679,11 @@
 	font-size: 1em;
 	font-weight: 700;
 }
-.tb .fab.set {
+.tb .tbfab.set {
 	background: var(--c-tertiary);
 	color: var(--c-onTertiary);
 }
-.tb .fab.enter {
+.tb .tbfab.enter {
 	background: var(--c-success);
 	color: var(--c-onSuccess);
 	--gc: var(--c-success);
