@@ -10,14 +10,6 @@ import { h, isNodeDirective } from "../utils/remark";
 
 const Admonitions = new Set<AdmonitionType>(["tip", "note", "important", "caution", "warning"]);
 
-const _AdmonitionIcon: Record<string, string> = {
-	note: "mdi:information-outline",
-	tip: "mdi:lightbulb-outline",
-	important: "mdi:message-alert",
-	caution: "mdi:alert-outline",
-	warning: "mdi:shield-alert",
-};
-
 function isAdmonition(s: string): s is AdmonitionType {
 	return Admonitions.has(s as AdmonitionType);
 }
