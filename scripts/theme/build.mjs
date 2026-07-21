@@ -122,12 +122,12 @@ const meta: SiteMeta = {
       <!-- Hero -->
       <div class="text-center">
         <h1
-          class="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight"
+          class="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
         >
-          Theme <span class="text-[#2fa593]">Designer</span>
+          Theme <span class="text-primary">Designer</span>
         </h1>
         <div class="max-w-3xl mx-auto">
-          <p class="text-lg md:text-xl text-gray-400 leading-relaxed">
+          <p class="text-lg md:text-xl text-base-content/60 leading-relaxed">
             Design your own NeoStation theme with a live preview of the System
             Browser and Game Detail screens, then export it as theme JSON built
             on daisyUI colour and radius tokens. Share your themes with the
@@ -136,7 +136,7 @@ const meta: SiteMeta = {
               href="https://discord.gg/xE2kgKsRVq"
               target="_blank"
               rel="noopener"
-              class="text-[#2fa593] hover:underline">Discord server</a>.
+              class="text-primary hover:underline">Discord server</a>.
           </p>
         </div>
       </div>
