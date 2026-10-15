@@ -122,13 +122,15 @@
 
   /* top toolbar — View Mode pinned left, toolbar centered, status pinned right */
   .topbar{display:flex;align-items:center;gap:.7em;position:relative}
-  .toolcluster{display:flex;align-items:center;gap:.45em;background:color-mix(in srgb,var(--c-surface) 78%, transparent);
+  .toolcluster{display:flex;align-items:center;gap:.45em;background:color-mix(in srgb,var(--c-surface) var(--glass-pct,78%), transparent);
+    -webkit-backdrop-filter:blur(var(--glass-blur,0px));backdrop-filter:blur(var(--glass-blur,0px));
     border-radius:999px;padding:.4em .55em;box-shadow:0 .4em 1.2em -.6em var(--c-shadow)}
   .topbar .toolcluster{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%)}
   .tool{width:1.9em;height:1.9em;border-radius:var(--r-field);display:grid;place-items:center;color:var(--c-onSurface);opacity:.78}
   .tool.sel{background:var(--c-secondary);color:var(--c-onSecondary);opacity:1}
   .vm{background:var(--c-tertiary);color:var(--c-onTertiary);--gc:var(--c-tertiary);padding:.5em .9em;font-size:.95em;box-shadow:0 .4em 1.2em -.6em var(--c-shadow)}
-  .status{margin-left:auto;display:flex;align-items:center;gap:.7em;background:color-mix(in srgb,var(--c-surface) 78%, transparent);
+  .status{margin-left:auto;display:flex;align-items:center;gap:.7em;background:color-mix(in srgb,var(--c-surface) var(--glass-pct,78%), transparent);
+    -webkit-backdrop-filter:blur(var(--glass-blur,0px));backdrop-filter:blur(var(--glass-blur,0px));
     border-radius:999px;padding:.4em .85em;color:var(--c-onSurface)}
   .status .clk{font-weight:700}
   .status .batwrap{display:flex;align-items:center;gap:.35em;color:var(--c-battFull)}
@@ -140,7 +142,7 @@
   /* ---- BROWSE (coverflow) ---- */
   .cf{flex:1;display:flex;align-items:center;justify-content:center;gap:.6em;min-height:0}
   /* tiles sized by the coverflow's HEIGHT (aspect-ratio keeps them square) so they never overflow a short screen */
-  .tile{aspect-ratio:1;border-radius:var(--r-box);overflow:hidden;position:relative;flex:none;box-shadow:0 1.6em 3em -1.1em var(--c-shadow)}
+  .tile{aspect-ratio:1;border-radius:var(--r-box);overflow:hidden;position:relative;flex:none;box-shadow:0 1.6em 3em -1.1em var(--c-shadow),0 0 0 var(--tile-rim,0) rgba(255,255,255,.35)}
   .tile .art{width:100%;height:100%;display:grid;place-items:center}
   .tile .logo{font-family:var(--ui);font-weight:800;color:#fff;text-shadow:0 .14em .35em rgba(0,0,0,.6);letter-spacing:.02em}
   .tile.center{height:84%;z-index:2}
@@ -612,6 +614,7 @@
 
     <div id="groups"></div>
     <div id="effects"></div>
+    <div id="glass"></div>
 
     <div class="export-bar">
       <button class="btn" id="copyBtn" type="button">Copy JSON</button>
@@ -670,6 +673,16 @@ const EFFECTS = [
   ['border','Border','Component border width', ['0','1px','1.5px','2px']],
 ];
 const SIZE_DEFAULTS = { 'size-selector':'0.25rem', 'size-field':'0.25rem' };
+
+/* NeoGlass frosted-chrome appearance — the blur/tint/border look the app's
+   glass surfaces and system tiles use. Exported under a top-level `glass`
+   block; applying the theme seeds the user's NeoGlass settings. */
+const GLASS = [
+  ['blur','Glass Blur','Frost strength of the glass chrome', ['0','1','2']],
+  ['transparency','Glass Transparency','Tint see-through (0 = opaque, 30 = max)', ['0','10','20','30']],
+  ['borderWidth','Glass Border','Width of the glass rim & tile border', ['0','1','2','3','4']],
+];
+const GLASS_DEFAULTS = { blur:0, transparency:10, borderWidth:2 };
 
 /* Existing preview `--c-*` vars re-mapped onto the daisyUI token set,
    so the two-screen mock keeps working unchanged. */
@@ -768,12 +781,13 @@ const PRESETS = {
 };
 
 function newModel(){ return { name:'My Custom Theme', id:'my_custom_theme', author:'', scheme:'dark',
-  colors:{}, oklch:{}, effects:{...EFX_DARK} }; }
+  colors:{}, oklch:{}, effects:{...EFX_DARK}, glass:{...GLASS_DEFAULTS} }; }
 let model = newModel();
 
 const $=s=>document.querySelector(s);
 const inputs={};
 const efxInputs={};
+const glassInputs={};
 
 function buildGroups(){
   const root=$('#groups'); root.innerHTML='';
@@ -816,6 +830,23 @@ function buildEffects(){
   }
   root.appendChild(el);
 }
+function buildGlass(){
+  const root=$('#glass'); root.innerHTML='';
+  const el=document.createElement('div'); el.className='group';
+  el.innerHTML=`<h3><span class="n">05</span>Glass</h3><p>NeoGlass frosted chrome &amp; tile border.</p>`;
+  for(const [key,label,desc,opts] of GLASS){
+    const row=document.createElement('div'); row.className='efx';
+    const o=opts.map(v=>`<option value="${v}">${v==='0'?'0 (none)':v}</option>`).join('');
+    row.innerHTML=`<span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span><select data-k="${key}">${o}</select>`;
+    row.querySelector('select').addEventListener('change',e=>setGlass(key,e.target.value));
+    glassInputs[key]=row; el.appendChild(row);
+  }
+  root.appendChild(el);
+}
+function syncGlass(){
+  for(const [key] of GLASS){ const row=glassInputs[key]; if(row) row.querySelector('select').value=String(model.glass[key]); }
+}
+function setGlass(key,val){ model.glass[key]=Number(val)||0; syncGlass(); applyPreview(); renderJson(); }
 function syncEffects(){
   for(const [key,,,opts] of EFFECTS){
     const v=model.effects[key];
@@ -840,6 +871,13 @@ function applyPreview(){
   s.style.setProperty('--r-field',remEm(model.effects['radius-field']));
   s.style.setProperty('--r-box',  remEm(model.effects['radius-box']));
   s.style.setProperty('--brd', model.effects.border!=null?String(model.effects.border):'1px');
+  // NeoGlass: frosted chrome tint/blur + the rim the app draws on system tiles.
+  const glassBlur=Number(model.glass.blur)||0;
+  const glassTransparency=Number(model.glass.transparency)||0;
+  const glassBorder=Number(model.glass.borderWidth)||0;
+  s.style.setProperty('--glass-blur', `${glassBlur*1.4}px`);
+  s.style.setProperty('--glass-pct', `${Math.round(50 + (30 - glassTransparency)/30*28)}%`);
+  s.style.setProperty('--tile-rim', `${(glassBorder*0.09).toFixed(3)}em`);
   const rail=$('#ledRail');
   for(const c of rail.querySelectorAll('.led-chip')) c.remove();
   const order=['primary','secondary','accent','neutral','base-100','base-200','base-300','base-content','info','success','warning','error'];
@@ -854,7 +892,7 @@ function applyPreview(){
 /* ---- Export builder ---- */
 function jsonExport(){
   const colors={}; for(const f of COLOR_FIELDS) colors[f]=model.colors[f];
-  return JSON.stringify({ name:model.name, id:model.id, author:model.author, colorScheme:model.scheme, colors, effects:{...model.effects,...SIZE_DEFAULTS} }, null, 2);
+  return JSON.stringify({ name:model.name, id:model.id, author:model.author, colorScheme:model.scheme, colors, effects:{...model.effects,...SIZE_DEFAULTS}, glass:{...model.glass} }, null, 2);
 }
 function renderJson(){}
 function currentExport(){ return jsonExport(); }
@@ -874,8 +912,10 @@ function loadModel(m){
     else { model.colors[f]=String(raw).toUpperCase(); model.oklch[f]=hexToOklch(raw); }
   }
   model.effects={...EFX_DARK, ...(m.effects||{})};
+  model.glass={...GLASS_DEFAULTS};
+  if(m.glass&&typeof m.glass==='object') for(const [k] of GLASS){ if(m.glass[k]!=null) model.glass[k]=Number(m.glass[k])||0; }
   $('#tName').value=model.name; $('#tId').value=model.id; $('#tAuthor').value=model.author;
-  setBright(model.scheme); syncAll(); syncEffects(); applyPreview(); renderJson();
+  setBright(model.scheme); syncAll(); syncEffects(); syncGlass(); applyPreview(); renderJson();
 }
 function setBright(b){ model.scheme=b; for(const x of $('#brightSeg').querySelectorAll('button')) x.classList.toggle('on',x.dataset.b===b); }
 
@@ -930,7 +970,7 @@ function initPresetDropdown(){
 }
 
 function init(){
-  buildGroups(); buildEffects();
+  buildGroups(); buildEffects(); buildGlass();
   initPresetDropdown();
 
   $('#tName').addEventListener('input',e=>{model.name=e.target.value;renderJson();});
