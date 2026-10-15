@@ -95,7 +95,7 @@ const meta: SiteMeta = {
     
               <div class="cf">
                 <div class="tile side"><div class="art a2"></div><div class="tname">Arcade</div></div>
-                <div class="tile center"><div class="art a1"><span class="tcount">636 Games</span></div><div class="tname">Atari 2600</div></div>
+                <div class="tile center"><div class="art a1"></div><div class="tname">Atari 2600</div></div>
                 <div class="tile side"><div class="art a3"></div><div class="tname">Atari 7800</div></div>
               </div>
     
@@ -579,7 +579,7 @@ function layoutCards(){
   const fs=Number.parseFloat(cs.fontSize)||16;
   const gap=Number.parseFloat(cs.gap)||8;
   const pad=1.1*fs;        // card padding (0.55em each side)
-  const footer=2.4*fs;     // name strip + its padding
+  const footer=3.0*fs;     // name strip + its padding
   const availW=cf.clientWidth-6;
   const availH=cf.clientHeight-4;
   let art=Math.max(40, availH-footer);

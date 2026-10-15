@@ -163,13 +163,11 @@
      name, all inside a rounded surface card wearing the NeoGlass rim (--tile-rim) */
   .tile{display:flex;flex-direction:column;width:fit-content;background:var(--c-surface);border-radius:var(--r-box);overflow:hidden;position:relative;flex:none;padding:.55em;box-shadow:0 1.6em 3em -1.1em var(--c-shadow),0 0 0 var(--tile-rim,0) rgba(255,255,255,.35)}
   .tile .art{width:var(--art-h);height:var(--art-h);border-radius:var(--r-field);overflow:hidden;position:relative;display:block}
-  .tile .tname{width:100%;padding:.65em .45em .4em;text-align:center;font-family:var(--ui);font-weight:800;font-size:.95em;line-height:1.15;color:var(--c-onSurface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tile .tname{width:100%;padding:.7em .3em .35em;text-align:center;font-family:var(--ui);font-weight:800;font-size:1.45em;line-height:1.1;color:var(--c-onSurface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .tile.center{--art-h:var(--ah-center,8.2em);z-index:2}
   .tile.side{--art-h:var(--ah-side,6.5em);z-index:1}
   /* unfocused tiles fade toward the theme background — darkens dark themes, washes out light ones */
   .tile.side::after{content:"";position:absolute;inset:0;background:var(--c-bg);opacity:.62;pointer-events:none}
-  /* the count pill floats over the bottom-left of the artwork */
-  .tcount{position:absolute;left:.55em;bottom:.55em;padding:.18em .6em;border-radius:999px;background:color-mix(in srgb,var(--c-bg) 82%,transparent);border:.06em solid color-mix(in srgb,var(--c-outline) 60%,transparent);color:var(--c-onSurface);font-size:.62em;font-weight:800;letter-spacing:.04em}
   /* real NeoStation system art, scrimmed with the live palette so both the artwork and the theme read */
   .tile.art-bg{background-size:cover;background-position:center;background-repeat:no-repeat}
   .a1,.a2,.a3{background-size:cover;background-position:center;background-repeat:no-repeat}
@@ -418,7 +416,7 @@
 
           <div class="cf">
             <div class="tile side"><div class="art a2"></div><div class="tname">Arcade</div></div>
-            <div class="tile center"><div class="art a1"><span class="tcount">636 Games</span></div><div class="tname">Atari 2600</div></div>
+            <div class="tile center"><div class="art a1"></div><div class="tname">Atari 2600</div></div>
             <div class="tile side"><div class="art a3"></div><div class="tname">Atari 7800</div></div>
           </div>
 
@@ -900,7 +898,7 @@ function layoutCards(){
   const fs=Number.parseFloat(cs.fontSize)||16;
   const gap=Number.parseFloat(cs.gap)||8;
   const pad=1.1*fs;        // card padding (0.55em each side)
-  const footer=2.4*fs;     // name strip + its padding
+  const footer=3.0*fs;     // name strip + its padding
   const availW=cf.clientWidth-6;
   const availH=cf.clientHeight-4;
   let art=Math.max(40, availH-footer);
