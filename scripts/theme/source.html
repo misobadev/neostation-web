@@ -108,7 +108,7 @@
     font-size:clamp(7px,1.42cqw,16px);transition:background .25s,color .25s;
     --c-shadow:rgba(0,0,0,.55); --r-box:1.5em; --r-sel:1em; --r-field:.75em; --brd:1px;
   }
-  .view{position:absolute;inset:0;display:none;padding:1.1em 1.3em;flex-direction:column}
+  .view{position:absolute;inset:0;display:none;padding:1.5em 1.8em;flex-direction:column}
   .view.on{display:flex}
 
   /* shared bits */
@@ -130,7 +130,13 @@
   .ni-gear{-webkit-mask-image:url(/theme-designer/nav/setting.webp);mask-image:url(/theme-designer/nav/setting.webp)}
   .ni-lb{-webkit-mask-image:url(/theme-designer/pad/lb.png);mask-image:url(/theme-designer/pad/lb.png);width:1.7em}
   .ni-rb{-webkit-mask-image:url(/theme-designer/pad/rb.png);mask-image:url(/theme-designer/pad/rb.png);width:1.7em}
-  .pad{width:1.4em;height:1.4em;flex:none;display:block;object-fit:contain}
+  .pad{width:1.45em;height:1.45em;flex:none;display:block;background:currentColor;
+    -webkit-mask-position:center;-webkit-mask-repeat:no-repeat;-webkit-mask-size:contain;
+    mask-position:center;mask-repeat:no-repeat;mask-size:contain}
+  .pad-a{-webkit-mask-image:url(/theme-designer/pad/a.png);mask-image:url(/theme-designer/pad/a.png)}
+  .pad-b{-webkit-mask-image:url(/theme-designer/pad/b.png);mask-image:url(/theme-designer/pad/b.png)}
+  .pad-x{-webkit-mask-image:url(/theme-designer/pad/x.png);mask-image:url(/theme-designer/pad/x.png)}
+  .pad-y{-webkit-mask-image:url(/theme-designer/pad/y.png);mask-image:url(/theme-designer/pad/y.png)}
 
   /* top toolbar — View Mode pinned left, toolbar centered, status pinned right */
   .topbar{display:flex;align-items:center;gap:.7em;position:relative}
@@ -152,12 +158,12 @@
   .status .pct{font-weight:700;color:var(--c-battFull)}
 
   /* ---- BROWSE (coverflow) ---- */
-  .cf{flex:1;display:flex;align-items:center;justify-content:center;gap:.7em;min-height:0}
+  .cf{flex:1;display:flex;align-items:center;justify-content:center;gap:.9em;min-height:0}
   /* system card: the 1:1 artwork sits above a footer strip carrying the system
      name, all inside a rounded surface card wearing the NeoGlass rim (--tile-rim) */
-  .tile{display:flex;flex-direction:column;width:fit-content;background:var(--c-surface);border-radius:var(--r-box);overflow:hidden;position:relative;flex:none;padding:.3em;box-shadow:0 1.6em 3em -1.1em var(--c-shadow),0 0 0 var(--tile-rim,0) rgba(255,255,255,.35)}
+  .tile{display:flex;flex-direction:column;width:fit-content;background:var(--c-surface);border-radius:var(--r-box);overflow:hidden;position:relative;flex:none;padding:.55em;box-shadow:0 1.6em 3em -1.1em var(--c-shadow),0 0 0 var(--tile-rim,0) rgba(255,255,255,.35)}
   .tile .art{width:var(--art-h);height:var(--art-h);border-radius:var(--r-field);overflow:hidden;position:relative;display:block}
-  .tile .tname{width:100%;padding:.55em .35em .3em;text-align:center;font-family:var(--ui);font-weight:800;font-size:.95em;line-height:1.15;color:var(--c-onSurface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tile .tname{width:100%;padding:.65em .45em .4em;text-align:center;font-family:var(--ui);font-weight:800;font-size:.95em;line-height:1.15;color:var(--c-onSurface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .tile.center{--art-h:var(--ah-center,8.2em);z-index:2}
   .tile.side{--art-h:var(--ah-side,6.5em);z-index:1}
   /* unfocused tiles fade toward the theme background — darkens dark themes, washes out light ones */
@@ -394,7 +400,7 @@
         <!-- ============ BROWSE / coverflow ============ -->
         <section class="view on" data-view="browse">
           <div class="topbar">
-            <span class="pill vm"><img class="pad" src="/theme-designer/pad/x.png" alt="">View Mode</span>
+            <span class="pill vm"><i class="pad pad-x"></i>View Mode</span>
             <div class="toolcluster">
               <i class="navi ni-lb"></i>
               <span class="tool sel"><i class="navi ni-grids"></i></span>
@@ -426,8 +432,8 @@
           <div class="browsefoot">
             <span class="sysname">Atari 2600<span class="count">636 Games</span></span>
             <div class="foot-actions">
-              <span class="tbfab set"><img class="pad" src="/theme-designer/pad/y.png" alt="">Options</span>
-              <span class="tbfab enter"><img class="pad" src="/theme-designer/pad/a.png" alt="">Enter</span>
+              <span class="tbfab set"><i class="pad pad-y"></i>Options</span>
+              <span class="tbfab enter"><i class="pad pad-a"></i>Enter</span>
             </div>
           </div>
         </section>
@@ -447,8 +453,8 @@
           </div>
           <div class="leftcol">
             <div class="hints">
-              <span class="hbtn back"><img class="pad" src="/theme-designer/pad/b.png" alt=""><svg class="ico"><use href="#i-back"/></svg></span>
-              <span class="hbtn"><img class="pad" src="/theme-designer/pad/x.png" alt=""><svg class="ico"><use href="#i-grid"/></svg></span>
+              <span class="hbtn back"><i class="pad pad-b"></i><svg class="ico"><use href="#i-back"/></svg></span>
+              <span class="hbtn"><i class="pad pad-x"></i><svg class="ico"><use href="#i-grid"/></svg></span>
               <span class="hbtn"><svg class="ico"><use href="#i-refresh"/></svg><svg class="ico"><use href="#i-dice"/></svg></span>
             </div>
             <span class="syschip">A2600</span>
@@ -479,9 +485,9 @@
                 <div class="actcluster">
                   <span class="act"><svg class="ico"><use href="#i-trophy"/></svg>0 / 48</span>
                   <span class="act"><svg class="ico"><use href="#i-scan"/></svg>Scrape</span>
-                  <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><img class="pad" src="/theme-designer/pad/y.png" alt=""></span>Add Fav</span>
+                  <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><i class="pad pad-y"></i></span>Add Fav</span>
                 </div>
-                <span class="act play"><img class="pad" src="/theme-designer/pad/a.png" alt="">Play</span>
+                <span class="act play"><i class="pad pad-a"></i>Play</span>
               </div>
             </div>
           </div>
@@ -893,15 +899,15 @@ function layoutCards(){
   const cs=getComputedStyle(cf);
   const fs=Number.parseFloat(cs.fontSize)||16;
   const gap=Number.parseFloat(cs.gap)||8;
-  const pad=0.6*fs;        // card padding (0.3em each side)
-  const footer=2.0*fs;     // name strip + its padding
+  const pad=1.1*fs;        // card padding (0.55em each side)
+  const footer=2.4*fs;     // name strip + its padding
   const availW=cf.clientWidth-6;
   const availH=cf.clientHeight-4;
   let art=Math.max(40, availH-footer);
   const fitW=(availW-2*gap-6*pad)/2.6; // center(1) + two sides(0.8)
   art=Math.min(art, fitW);
-  s.style.setProperty('--ah-center', art.toFixed(1)+'px');
-  s.style.setProperty('--ah-side', (art*0.8).toFixed(1)+'px');
+  s.style.setProperty('--ah-center', `${art.toFixed(1)}px`);
+  s.style.setProperty('--ah-side', `${(art*0.8).toFixed(1)}px`);
 }
 
 /* ---- Export builder ---- */

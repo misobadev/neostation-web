@@ -77,7 +77,7 @@ const meta: SiteMeta = {
             <!-- ============ BROWSE / coverflow ============ -->
             <section class="view on" data-view="browse">
               <div class="topbar">
-                <span class="pill vm"><img class="pad" src="/theme-designer/pad/x.png" alt="">View Mode</span>
+                <span class="pill vm"><i class="pad pad-x"></i>View Mode</span>
                 <div class="toolcluster">
                   <i class="navi ni-lb"></i>
                   <span class="tool sel"><i class="navi ni-grids"></i></span>
@@ -109,8 +109,8 @@ const meta: SiteMeta = {
               <div class="browsefoot">
                 <span class="sysname">Atari 2600<span class="count">636 Games</span></span>
                 <div class="foot-actions">
-                  <span class="tbfab set"><img class="pad" src="/theme-designer/pad/y.png" alt="">Options</span>
-                  <span class="tbfab enter"><img class="pad" src="/theme-designer/pad/a.png" alt="">Enter</span>
+                  <span class="tbfab set"><i class="pad pad-y"></i>Options</span>
+                  <span class="tbfab enter"><i class="pad pad-a"></i>Enter</span>
                 </div>
               </div>
             </section>
@@ -130,8 +130,8 @@ const meta: SiteMeta = {
               </div>
               <div class="leftcol">
                 <div class="hints">
-                  <span class="hbtn back"><img class="pad" src="/theme-designer/pad/b.png" alt=""><svg class="ico"><use href="#i-back"/></svg></span>
-                  <span class="hbtn"><img class="pad" src="/theme-designer/pad/x.png" alt=""><svg class="ico"><use href="#i-grid"/></svg></span>
+                  <span class="hbtn back"><i class="pad pad-b"></i><svg class="ico"><use href="#i-back"/></svg></span>
+                  <span class="hbtn"><i class="pad pad-x"></i><svg class="ico"><use href="#i-grid"/></svg></span>
                   <span class="hbtn"><svg class="ico"><use href="#i-refresh"/></svg><svg class="ico"><use href="#i-dice"/></svg></span>
                 </div>
                 <span class="syschip">A2600</span>
@@ -162,9 +162,9 @@ const meta: SiteMeta = {
                     <div class="actcluster">
                       <span class="act"><svg class="ico"><use href="#i-trophy"/></svg>0 / 48</span>
                       <span class="act"><svg class="ico"><use href="#i-scan"/></svg>Scrape</span>
-                      <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><img class="pad" src="/theme-designer/pad/y.png" alt=""></span>Add Fav</span>
+                      <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><i class="pad pad-y"></i></span>Add Fav</span>
                     </div>
-                    <span class="act play"><img class="pad" src="/theme-designer/pad/a.png" alt="">Play</span>
+                    <span class="act play"><i class="pad pad-a"></i>Play</span>
                   </div>
                 </div>
               </div>
@@ -578,15 +578,15 @@ function layoutCards(){
   const cs=getComputedStyle(cf);
   const fs=Number.parseFloat(cs.fontSize)||16;
   const gap=Number.parseFloat(cs.gap)||8;
-  const pad=0.6*fs;        // card padding (0.3em each side)
-  const footer=2.0*fs;     // name strip + its padding
+  const pad=1.1*fs;        // card padding (0.55em each side)
+  const footer=2.4*fs;     // name strip + its padding
   const availW=cf.clientWidth-6;
   const availH=cf.clientHeight-4;
   let art=Math.max(40, availH-footer);
   const fitW=(availW-2*gap-6*pad)/2.6; // center(1) + two sides(0.8)
   art=Math.min(art, fitW);
-  s.style.setProperty('--ah-center', art.toFixed(1)+'px');
-  s.style.setProperty('--ah-side', (art*0.8).toFixed(1)+'px');
+  s.style.setProperty('--ah-center', `${art.toFixed(1)}px`);
+  s.style.setProperty('--ah-side', `${(art*0.8).toFixed(1)}px`);
 }
 
 /* ---- Export builder ---- */
