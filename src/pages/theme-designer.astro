@@ -77,15 +77,15 @@ const meta: SiteMeta = {
             <!-- ============ BROWSE / coverflow ============ -->
             <section class="view on" data-view="browse">
               <div class="topbar">
-                <span class="pill vm"><span class="glyph g-x">X</span>View Mode</span>
+                <span class="pill vm"><img class="pad" src="/theme-designer/pad/x.png" alt="">View Mode</span>
                 <div class="toolcluster">
-                  <span class="shoulder">LB</span>
-                  <span class="tool sel"><svg class="ico"><use href="#i-grid"/></svg></span>
-                  <span class="tool"><svg class="ico"><use href="#i-cloud"/></svg></span>
-                  <span class="tool"><svg class="ico"><use href="#i-trophy"/></svg></span>
-                  <span class="tool"><svg class="ico"><use href="#i-scan"/></svg></span>
-                  <span class="tool"><svg class="ico"><use href="#i-gear"/></svg></span>
-                  <span class="shoulder">RB</span>
+                  <i class="navi ni-lb"></i>
+                  <span class="tool sel"><i class="navi ni-grids"></i></span>
+                  <span class="tool"><i class="navi ni-cloud"></i></span>
+                  <span class="tool"><i class="navi ni-trophy"></i></span>
+                  <span class="tool"><i class="navi ni-romm"></i></span>
+                  <span class="tool"><i class="navi ni-gear"></i></span>
+                  <i class="navi ni-rb"></i>
                 </div>
                 <div class="status">
                   <svg class="ico"><use href="#i-clock"/></svg><span class="clk">18:07</span>
@@ -109,8 +109,8 @@ const meta: SiteMeta = {
               <div class="browsefoot">
                 <span class="sysname">Atari 2600<span class="count">636 Games</span></span>
                 <div class="foot-actions">
-                  <span class="tbfab set"><svg class="ico"><use href="#i-list"/></svg>Settings</span>
-                  <span class="tbfab enter"><span class="glyph g-a">A</span>Enter</span>
+                  <span class="tbfab set"><img class="pad" src="/theme-designer/pad/y.png" alt="">Options</span>
+                  <span class="tbfab enter"><img class="pad" src="/theme-designer/pad/a.png" alt="">Enter</span>
                 </div>
               </div>
             </section>
@@ -120,18 +120,18 @@ const meta: SiteMeta = {
               <!-- detail keeps the same nav toolbar, anchored top-right -->
               <div class="dtoolbar">
                 <div class="toolcluster">
-                  <span class="shoulder">LB</span>
-                  <span class="tool sel"><svg class="ico"><use href="#i-grid"/></svg></span>
-                  <span class="tool"><svg class="ico"><use href="#i-cloud"/></svg></span>
-                  <span class="tool"><svg class="ico"><use href="#i-trophy"/></svg></span>
-                  <span class="tool"><svg class="ico"><use href="#i-gear"/></svg></span>
-                  <span class="shoulder">RB</span>
+                  <i class="navi ni-lb"></i>
+                  <span class="tool sel"><i class="navi ni-grids"></i></span>
+                  <span class="tool"><i class="navi ni-cloud"></i></span>
+                  <span class="tool"><i class="navi ni-trophy"></i></span>
+                  <span class="tool"><i class="navi ni-gear"></i></span>
+                  <i class="navi ni-rb"></i>
                 </div>
               </div>
               <div class="leftcol">
                 <div class="hints">
-                  <span class="hbtn back"><span class="glyph">B</span><svg class="ico"><use href="#i-back"/></svg></span>
-                  <span class="hbtn"><span class="glyph">X</span><svg class="ico"><use href="#i-grid"/></svg></span>
+                  <span class="hbtn back"><img class="pad" src="/theme-designer/pad/b.png" alt=""><svg class="ico"><use href="#i-back"/></svg></span>
+                  <span class="hbtn"><img class="pad" src="/theme-designer/pad/x.png" alt=""><svg class="ico"><use href="#i-grid"/></svg></span>
                   <span class="hbtn"><svg class="ico"><use href="#i-refresh"/></svg><svg class="ico"><use href="#i-dice"/></svg></span>
                 </div>
                 <span class="syschip">A2600</span>
@@ -162,9 +162,9 @@ const meta: SiteMeta = {
                     <div class="actcluster">
                       <span class="act"><svg class="ico"><use href="#i-trophy"/></svg>0 / 48</span>
                       <span class="act"><svg class="ico"><use href="#i-scan"/></svg>Scrape</span>
-                      <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><span class="glyph">Y</span></span>Add Fav</span>
+                      <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><img class="pad" src="/theme-designer/pad/y.png" alt=""></span>Add Fav</span>
                     </div>
-                    <span class="act play"><span class="glyph">A</span>Play</span>
+                    <span class="act play"><img class="pad" src="/theme-designer/pad/a.png" alt="">Play</span>
                   </div>
                 </div>
               </div>
@@ -566,6 +566,27 @@ function applyPreview(){
     if(['primary','secondary','accent','success','error'].includes(f)) chip.setAttribute('data-glow','');
     chip.title=`${f} ${model.colors[f]}`; rail.appendChild(chip);
   }
+  layoutCards();
+}
+
+/* Sizes the browse system cards to fill the preview stage with a small margin:
+   the artwork stays 1:1 and the name footer sits below it. */
+function layoutCards(){
+  const cf=document.querySelector('.view.on .cf');
+  const s=$('#screen');
+  if(!cf){ s.style.removeProperty('--ah-center'); s.style.removeProperty('--ah-side'); return; }
+  const cs=getComputedStyle(cf);
+  const fs=Number.parseFloat(cs.fontSize)||16;
+  const gap=Number.parseFloat(cs.gap)||8;
+  const pad=0.6*fs;        // card padding (0.3em each side)
+  const footer=2.0*fs;     // name strip + its padding
+  const availW=cf.clientWidth-6;
+  const availH=cf.clientHeight-4;
+  let art=Math.max(40, availH-footer);
+  const fitW=(availW-2*gap-6*pad)/2.6; // center(1) + two sides(0.8)
+  art=Math.min(art, fitW);
+  s.style.setProperty('--ah-center', art.toFixed(1)+'px');
+  s.style.setProperty('--ah-side', (art*0.8).toFixed(1)+'px');
 }
 
 /* ---- Export builder ---- */
@@ -609,6 +630,7 @@ function setView(v){
     : v==='detail'
     ? 'Selected list row + Back use <b>primary</b> · "A2600" chip uses <b>primary</b> · action buttons are glass (<b>base-100</b>) · text uses <b>base-content</b>.'
     : 'Every NeoStation UI role at a glance — buttons, toggles, notifications, battery & storage, badges and dialogs. <b>primary</b> / <b>secondary</b> / <b>accent</b> drive actions · <b>success</b> / <b>warning</b> / <b>info</b> / <b>error</b> drive status · surfaces are <b>base-100/200/300</b>, text <b>base-content</b>.';
+  layoutCards();
 }
 
 function initPresetDropdown(){
@@ -657,6 +679,7 @@ function init(){
   $('#tAuthor').addEventListener('input',e=>{model.author=e.target.value;renderJson();});
   $('#brightSeg').addEventListener('click',e=>{const b=e.target.dataset.b; if(b){setBright(b);renderJson();}});
   document.querySelector('.viewtog').addEventListener('click',e=>{const v=e.target.dataset.v; if(v)setView(v);});
+  window.addEventListener('resize',layoutCards);
 
   const copy=()=>navigator.clipboard.writeText(currentExport()).then(()=>toast('JSON copied'));
   $('#copyBtn').addEventListener('click',copy);

@@ -119,6 +119,18 @@
   .ico{width:1.25em;height:1.25em;flex:none;display:block}
   .shoulder{font-family:var(--ui);font-weight:700;font-size:.7em;letter-spacing:.06em;padding:.25em .55em;border-radius:.5em;
     background:color-mix(in srgb,var(--c-onSurface) 16%, transparent);color:var(--c-onSurface)}
+  /* real NeoStation nav + gamepad assets, copied from the app so the preview matches */
+  .navi{width:1.35em;height:1.35em;flex:none;display:block;background:currentColor;
+    -webkit-mask-position:center;-webkit-mask-repeat:no-repeat;-webkit-mask-size:contain;
+    mask-position:center;mask-repeat:no-repeat;mask-size:contain}
+  .ni-grids{-webkit-mask-image:url(/theme-designer/nav/grids.webp);mask-image:url(/theme-designer/nav/grids.webp)}
+  .ni-cloud{-webkit-mask-image:url(/theme-designer/nav/cloud-add.webp);mask-image:url(/theme-designer/nav/cloud-add.webp)}
+  .ni-trophy{-webkit-mask-image:url(/theme-designer/nav/enhance-prize.webp);mask-image:url(/theme-designer/nav/enhance-prize.webp)}
+  .ni-romm{-webkit-mask-image:url(/theme-designer/nav/romm-light.svg);mask-image:url(/theme-designer/nav/romm-light.svg)}
+  .ni-gear{-webkit-mask-image:url(/theme-designer/nav/setting.webp);mask-image:url(/theme-designer/nav/setting.webp)}
+  .ni-lb{-webkit-mask-image:url(/theme-designer/pad/lb.png);mask-image:url(/theme-designer/pad/lb.png);width:1.7em}
+  .ni-rb{-webkit-mask-image:url(/theme-designer/pad/rb.png);mask-image:url(/theme-designer/pad/rb.png);width:1.7em}
+  .pad{width:1.4em;height:1.4em;flex:none;display:block;object-fit:contain}
 
   /* top toolbar — View Mode pinned left, toolbar centered, status pinned right */
   .topbar{display:flex;align-items:center;gap:.7em;position:relative}
@@ -146,8 +158,8 @@
   .tile{display:flex;flex-direction:column;width:fit-content;background:var(--c-surface);border-radius:var(--r-box);overflow:hidden;position:relative;flex:none;padding:.3em;box-shadow:0 1.6em 3em -1.1em var(--c-shadow),0 0 0 var(--tile-rim,0) rgba(255,255,255,.35)}
   .tile .art{width:var(--art-h);height:var(--art-h);border-radius:var(--r-field);overflow:hidden;position:relative;display:block}
   .tile .tname{width:100%;padding:.55em .35em .3em;text-align:center;font-family:var(--ui);font-weight:800;font-size:.95em;line-height:1.15;color:var(--c-onSurface);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-  .tile.center{--art-h:8.2em;z-index:2}
-  .tile.side{--art-h:6.5em;z-index:1}
+  .tile.center{--art-h:var(--ah-center,8.2em);z-index:2}
+  .tile.side{--art-h:var(--ah-side,6.5em);z-index:1}
   /* unfocused tiles fade toward the theme background — darkens dark themes, washes out light ones */
   .tile.side::after{content:"";position:absolute;inset:0;background:var(--c-bg);opacity:.62;pointer-events:none}
   /* the count pill floats over the bottom-left of the artwork */
@@ -382,15 +394,15 @@
         <!-- ============ BROWSE / coverflow ============ -->
         <section class="view on" data-view="browse">
           <div class="topbar">
-            <span class="pill vm"><span class="glyph g-x">X</span>View Mode</span>
+            <span class="pill vm"><img class="pad" src="/theme-designer/pad/x.png" alt="">View Mode</span>
             <div class="toolcluster">
-              <span class="shoulder">LB</span>
-              <span class="tool sel"><svg class="ico"><use href="#i-grid"/></svg></span>
-              <span class="tool"><svg class="ico"><use href="#i-cloud"/></svg></span>
-              <span class="tool"><svg class="ico"><use href="#i-trophy"/></svg></span>
-              <span class="tool"><svg class="ico"><use href="#i-scan"/></svg></span>
-              <span class="tool"><svg class="ico"><use href="#i-gear"/></svg></span>
-              <span class="shoulder">RB</span>
+              <i class="navi ni-lb"></i>
+              <span class="tool sel"><i class="navi ni-grids"></i></span>
+              <span class="tool"><i class="navi ni-cloud"></i></span>
+              <span class="tool"><i class="navi ni-trophy"></i></span>
+              <span class="tool"><i class="navi ni-romm"></i></span>
+              <span class="tool"><i class="navi ni-gear"></i></span>
+              <i class="navi ni-rb"></i>
             </div>
             <div class="status">
               <svg class="ico"><use href="#i-clock"/></svg><span class="clk">18:07</span>
@@ -414,8 +426,8 @@
           <div class="browsefoot">
             <span class="sysname">Atari 2600<span class="count">636 Games</span></span>
             <div class="foot-actions">
-              <span class="tbfab set"><svg class="ico"><use href="#i-list"/></svg>Settings</span>
-              <span class="tbfab enter"><span class="glyph g-a">A</span>Enter</span>
+              <span class="tbfab set"><img class="pad" src="/theme-designer/pad/y.png" alt="">Options</span>
+              <span class="tbfab enter"><img class="pad" src="/theme-designer/pad/a.png" alt="">Enter</span>
             </div>
           </div>
         </section>
@@ -425,18 +437,18 @@
           <!-- detail keeps the same nav toolbar, anchored top-right -->
           <div class="dtoolbar">
             <div class="toolcluster">
-              <span class="shoulder">LB</span>
-              <span class="tool sel"><svg class="ico"><use href="#i-grid"/></svg></span>
-              <span class="tool"><svg class="ico"><use href="#i-cloud"/></svg></span>
-              <span class="tool"><svg class="ico"><use href="#i-trophy"/></svg></span>
-              <span class="tool"><svg class="ico"><use href="#i-gear"/></svg></span>
-              <span class="shoulder">RB</span>
+              <i class="navi ni-lb"></i>
+              <span class="tool sel"><i class="navi ni-grids"></i></span>
+              <span class="tool"><i class="navi ni-cloud"></i></span>
+              <span class="tool"><i class="navi ni-trophy"></i></span>
+              <span class="tool"><i class="navi ni-gear"></i></span>
+              <i class="navi ni-rb"></i>
             </div>
           </div>
           <div class="leftcol">
             <div class="hints">
-              <span class="hbtn back"><span class="glyph">B</span><svg class="ico"><use href="#i-back"/></svg></span>
-              <span class="hbtn"><span class="glyph">X</span><svg class="ico"><use href="#i-grid"/></svg></span>
+              <span class="hbtn back"><img class="pad" src="/theme-designer/pad/b.png" alt=""><svg class="ico"><use href="#i-back"/></svg></span>
+              <span class="hbtn"><img class="pad" src="/theme-designer/pad/x.png" alt=""><svg class="ico"><use href="#i-grid"/></svg></span>
               <span class="hbtn"><svg class="ico"><use href="#i-refresh"/></svg><svg class="ico"><use href="#i-dice"/></svg></span>
             </div>
             <span class="syschip">A2600</span>
@@ -467,9 +479,9 @@
                 <div class="actcluster">
                   <span class="act"><svg class="ico"><use href="#i-trophy"/></svg>0 / 48</span>
                   <span class="act"><svg class="ico"><use href="#i-scan"/></svg>Scrape</span>
-                  <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><span class="glyph">Y</span></span>Add Fav</span>
+                  <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><img class="pad" src="/theme-designer/pad/y.png" alt=""></span>Add Fav</span>
                 </div>
-                <span class="act play"><span class="glyph">A</span>Play</span>
+                <span class="act play"><img class="pad" src="/theme-designer/pad/a.png" alt="">Play</span>
               </div>
             </div>
           </div>
@@ -869,6 +881,27 @@ function applyPreview(){
     if(['primary','secondary','accent','success','error'].includes(f)) chip.setAttribute('data-glow','');
     chip.title=`${f} ${model.colors[f]}`; rail.appendChild(chip);
   }
+  layoutCards();
+}
+
+/* Sizes the browse system cards to fill the preview stage with a small margin:
+   the artwork stays 1:1 and the name footer sits below it. */
+function layoutCards(){
+  const cf=document.querySelector('.view.on .cf');
+  const s=$('#screen');
+  if(!cf){ s.style.removeProperty('--ah-center'); s.style.removeProperty('--ah-side'); return; }
+  const cs=getComputedStyle(cf);
+  const fs=Number.parseFloat(cs.fontSize)||16;
+  const gap=Number.parseFloat(cs.gap)||8;
+  const pad=0.6*fs;        // card padding (0.3em each side)
+  const footer=2.0*fs;     // name strip + its padding
+  const availW=cf.clientWidth-6;
+  const availH=cf.clientHeight-4;
+  let art=Math.max(40, availH-footer);
+  const fitW=(availW-2*gap-6*pad)/2.6; // center(1) + two sides(0.8)
+  art=Math.min(art, fitW);
+  s.style.setProperty('--ah-center', art.toFixed(1)+'px');
+  s.style.setProperty('--ah-side', (art*0.8).toFixed(1)+'px');
 }
 
 /* ---- Export builder ---- */
@@ -912,6 +945,7 @@ function setView(v){
     : v==='detail'
     ? 'Selected list row + Back use <b>primary</b> · "A2600" chip uses <b>primary</b> · action buttons are glass (<b>base-100</b>) · text uses <b>base-content</b>.'
     : 'Every NeoStation UI role at a glance — buttons, toggles, notifications, battery & storage, badges and dialogs. <b>primary</b> / <b>secondary</b> / <b>accent</b> drive actions · <b>success</b> / <b>warning</b> / <b>info</b> / <b>error</b> drive status · surfaces are <b>base-100/200/300</b>, text <b>base-content</b>.';
+  layoutCards();
 }
 
 function initPresetDropdown(){
@@ -960,6 +994,7 @@ function init(){
   $('#tAuthor').addEventListener('input',e=>{model.author=e.target.value;renderJson();});
   $('#brightSeg').addEventListener('click',e=>{const b=e.target.dataset.b; if(b){setBright(b);renderJson();}});
   document.querySelector('.viewtog').addEventListener('click',e=>{const v=e.target.dataset.v; if(v)setView(v);});
+  window.addEventListener('resize',layoutCards);
 
   const copy=()=>navigator.clipboard.writeText(currentExport()).then(()=>toast('JSON copied'));
   $('#copyBtn').addEventListener('click',copy);
