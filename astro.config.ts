@@ -1,6 +1,6 @@
 import fs from "node:fs";
 // Rehype plugins
-import { rehypeHeadingIds } from "@astrojs/markdown-remark";
+import { rehypeHeadingIds, unified } from "@astrojs/markdown-remark";
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@tailwindcss/vite";
@@ -22,6 +22,7 @@ import { expressiveCodeOptions, siteConfig } from "./src/site.config";
 // https://astro.build/config
 export default defineConfig({
 	site: siteConfig.url,
+	compressHTML: true,
 	build: {
 		assets: "_astro",
 		inlineStylesheets: "never",
@@ -71,29 +72,28 @@ export default defineConfig({
 		}),
 	],
 	markdown: {
-		rehypePlugins: [
-			rehypeHeadingIds,
-			[rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: ["not-prose"] } }],
-			[
-				rehypeExternalLinks,
-				{
-					rel: ["noreferrer", "noopener"],
-					target: "_blank",
-				},
+		processor: unified({
+			rehypePlugins: [
+				rehypeHeadingIds,
+				[rehypeAutolinkHeadings, { behavior: "wrap", properties: { className: ["not-prose"] } }],
+				[
+					rehypeExternalLinks,
+					{
+						rel: ["noreferrer", "noopener"],
+						target: "_blank",
+					},
+				],
+				rehypeUnwrapImages,
 			],
-			rehypeUnwrapImages,
-		],
-		remarkPlugins: [remarkReadingTime, remarkDirective, remarkGithubCard, remarkAdmonitions],
-		remarkRehype: {
-			footnoteLabelProperties: {
-				className: [""],
+			remarkPlugins: [remarkReadingTime, remarkDirective, remarkGithubCard, remarkAdmonitions],
+			remarkRehype: {
+				footnoteLabelProperties: {
+					className: [""],
+				},
 			},
-		},
+		}),
 	},
 	vite: {
-		optimizeDeps: {
-			exclude: ["@resvg/resvg-js"],
-		},
 		build: {
 			rollupOptions: {
 				output: {
