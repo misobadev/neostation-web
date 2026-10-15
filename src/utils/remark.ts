@@ -1,6 +1,9 @@
 import { h as _h, type Properties } from "hastscript";
 import type { Node, Paragraph as P } from "mdast";
 import type { Directives } from "mdast-util-directive";
+// The type augmentation for hName/hProperties lives in mdast-util-to-hast.
+// Astro 7 defaults to Sätteri, so it is no longer pulled in transitively.
+import type {} from "mdast-util-to-hast";
 
 /** Checks if a node is a directive. */
 export function isNodeDirective(node: Node): node is Directives {
