@@ -28,7 +28,7 @@ const platforms = [
 ];
 
 const slides = [
-  // Shots from a 4:3 handheld fill the frame; the older 16:9 ones are shown whole.
+  // Shots from a 4:3 handheld; `wide` marks a 16:9 one, shown whole.
   { src: "/screenshots/neostation-01.webp", caption: "Carousel view", wide: false },
   { src: "/screenshots/neostation-03.webp", caption: "Every system on one screen", wide: false },
   { src: "/screenshots/neostation-02.webp", caption: "Game list with artwork, achievements and the Play prompt", wide: false },
@@ -38,7 +38,7 @@ const slides = [
   { src: "/screenshots/neostation-12.webp", caption: "Pick a theme, then tune the glass and the corners", wide: false },
   { src: "/screenshots/neostation-13.webp", caption: "System art packs made by the community", wide: false },
   { src: "/screenshots/neostation-09.webp", caption: "Scraping box art and metadata", wide: false },
-  { src: "/screenshots/neostation-07.webp", caption: "Cloud saves with NeoSync", wide: true },
+  { src: "/screenshots/neostation-07.webp", caption: "Cloud saves with NeoSync", wide: false },
 ];
 
 const steps = [
@@ -118,7 +118,7 @@ const integrations = [
           <span class="text-[0.9375rem] text-bone-2" data-caption aria-live="polite">{slides[0]!.caption}</span>
           <span class="flex shrink-0 items-center gap-2">
             <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-prev aria-label="Previous screenshot">LB</button>
-            <span class="label w-12 text-center" data-count>1 / {slides.length}</span>
+            <span class="label w-16 whitespace-nowrap text-center tabular-nums" data-count>1 / {slides.length}</span>
             <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-next aria-label="Next screenshot">RB</button>
           </span>
         </figcaption>
