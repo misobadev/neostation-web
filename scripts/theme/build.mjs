@@ -105,15 +105,15 @@ const page = `---
 import PageHero from "@/components/PageHero.astro";
 import Base from "@/layouts/Base.astro";
 import "@fontsource/anta";
-// Page-scoped styles (137 KB, mostly inlined art) — imported here rather than
-// in global.css so only /theme-designer/ pays for them.
+// Page-scoped styles, imported here rather than in global.css so only
+// /theme-designer/ pays for them.
 import "@/styles/components/theme-designer.css";
 import type { SiteMeta } from "@/types";
 
 const meta: SiteMeta = {
   title: "Theme Designer",
   description:
-    "Design a NeoStation theme with a live preview of the System Browser and Game Detail screens, then export it as theme JSON and share it on Discord.",
+    "Design a NeoStation theme with a live preview of the systems carousel, the systems grid and the game list, then export it as JSON and import it in NeoStation.",
 };
 ---
 
@@ -122,7 +122,7 @@ const meta: SiteMeta = {
   <PageHero
     label="Theme Designer"
     title="Make NeoStation yours."
-    lead="Pick colours and corners, watch the System Browser and Game Detail screens update live, then export the theme as JSON."
+    lead="Pick colours for the carousel, the grid and the game list and watch them update live. Export the theme as JSON, then import it in NeoStation under Settings › Themes › Import Theme."
   >
     <a
       href="https://discord.gg/xE2kgKsRVq"

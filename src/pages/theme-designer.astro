@@ -5,15 +5,15 @@
 import PageHero from "@/components/PageHero.astro";
 import Base from "@/layouts/Base.astro";
 import "@fontsource/anta";
-// Page-scoped styles (137 KB, mostly inlined art) — imported here rather than
-// in global.css so only /theme-designer/ pays for them.
+// Page-scoped styles, imported here rather than in global.css so only
+// /theme-designer/ pays for them.
 import "@/styles/components/theme-designer.css";
 import type { SiteMeta } from "@/types";
 
 const meta: SiteMeta = {
   title: "Theme Designer",
   description:
-    "Design a NeoStation theme with a live preview of the System Browser and Game Detail screens, then export it as theme JSON and share it on Discord.",
+    "Design a NeoStation theme with a live preview of the systems carousel, the systems grid and the game list, then export it as JSON and import it in NeoStation.",
 };
 ---
 
@@ -22,7 +22,7 @@ const meta: SiteMeta = {
   <PageHero
     label="Theme Designer"
     title="Make NeoStation yours."
-    lead="Pick colours and corners, watch the System Browser and Game Detail screens update live, then export the theme as JSON."
+    lead="Pick colours for the carousel, the grid and the game list and watch them update live. Export the theme as JSON, then import it in NeoStation under Settings › Themes › Import Theme."
   >
     <a
       href="https://discord.gg/xE2kgKsRVq"
@@ -35,276 +35,140 @@ const meta: SiteMeta = {
 
   <div class="tb mt-12 md:mt-16">
     
-    <!-- reusable icons -->
+    
     <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-      <symbol id="i-grid" viewBox="0 0 24 24"><g fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></g></symbol>
-      <symbol id="i-cloud" viewBox="0 0 24 24"><path fill="currentColor" d="M7 18a4 4 0 0 1-.5-7.97A5.5 5.5 0 0 1 17 9.5a3.5 3.5 0 0 1-.5 6.96V18z"/></symbol>
-      <symbol id="i-trophy" viewBox="0 0 24 24"><path fill="currentColor" d="M6 4h12v3a4 4 0 0 1-3 3.87A4 4 0 0 1 13 14v2h2v2H9v-2h2v-2a4 4 0 0 1-2-3.13A4 4 0 0 1 6 7zM4 5h2v2a2 2 0 0 1-2-2m14 0h2a2 2 0 0 1-2 2z"/></symbol>
-      <symbol id="i-scan" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M4 8V5h3M20 8V5h-3M4 16v3h3m13-3v3h-3M8 12h8"/></symbol>
-      <symbol id="i-gear" viewBox="0 0 24 24"><path fill="currentColor" d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8m9 4-2 1 1 2-2 2-2-1-1 2h-2l-1-2-2 1-2-2 1-2-2-1v-2l2-1-1-2 2-2 2 1 1-2h2l1 2 2-1 2 2-1 2 2 1z"/></symbol>
-      <symbol id="i-refresh" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M19 12a7 7 0 1 1-2-4.9M19 4v4h-4"/></symbol>
-      <symbol id="i-heart" viewBox="0 0 24 24"><path fill="currentColor" d="M12 20s-7-4.5-7-9.5A3.5 3.5 0 0 1 12 7a3.5 3.5 0 0 1 7 3.5C19 15.5 12 20 12 20"/></symbol>
-      <symbol id="i-play" viewBox="0 0 24 24"><path fill="currentColor" d="M7 5v14l12-7z"/></symbol>
-      <symbol id="i-clock" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></g></symbol>
-      <symbol id="i-list" viewBox="0 0 24 24"><g fill="currentColor"><rect x="4" y="5" width="16" height="3" rx="1.5"/><rect x="4" y="10.5" width="16" height="3" rx="1.5"/><rect x="4" y="16" width="16" height="3" rx="1.5"/></g></symbol>
-      <symbol id="i-back" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" d="M14 6l-6 6 6 6"/></symbol>
-      <symbol id="i-dice" viewBox="0 0 24 24"><g><rect x="4" y="4" width="16" height="16" rx="3.5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="9" r="1.4" fill="currentColor"/><circle cx="15" cy="15" r="1.4" fill="currentColor"/><circle cx="15" cy="9" r="1.4" fill="currentColor"/><circle cx="9" cy="15" r="1.4" fill="currentColor"/></g></symbol>
+      <symbol id="i-store" viewBox="0 0 24 24"><path d="M4 4h16l1.5 5a3 3 0 0 1-5 2.3 3 3 0 0 1-4.5 0 3 3 0 0 1-4.5 0A3 3 0 0 1 2.5 9zM5 13.4a4.6 4.6 0 0 0 2.5 0V19h9v-5.6a4.6 4.6 0 0 0 2.5 0V21H5z"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0-6 6v4l-2 3v1h16v-1l-2-3V9a6 6 0 0 0-6-6m-2.5 16a2.5 2.5 0 0 0 5 0z"/></symbol>
+      <symbol id="i-bat" viewBox="0 0 26 24"><path d="M3 7h17a2 2 0 0 1 2 2v1h1.5v4H22v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2m0 2v6h17V9z"/><path d="M4.5 10.5h14v3h-14z"/></symbol>
+      <symbol id="i-dpad" viewBox="0 0 24 24"><path d="M9 2h6v7h7v6h-7v7H9v-7H2V9h7z"/></symbol>
+      <symbol id="i-card" viewBox="0 0 24 24"><path d="M4 5h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2m1 3v6h9V8z"/></symbol>
+      <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3 5h7l2 2h8a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1"/></symbol>
+      <symbol id="i-image" viewBox="0 0 24 24"><path d="M4 4h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1m1 13h14l-4.5-6-3.5 4.5-2.5-3z"/></symbol>
+      <symbol id="i-info" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20m-1 8v7h2v-7zm0-3v2h2V7z"/></symbol>
+      <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 3h12v4a6 6 0 0 1-5 5.9V16h3v3H8v-3h3v-3.1A6 6 0 0 1 6 7zM2 4h3v3a3 3 0 0 1-3-3m17 0h3a3 3 0 0 1-3 3z"/></symbol>
+      <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2 3 6.6 7.2.8-5.4 4.9 1.6 7.1L12 17.8l-6.4 3.6 1.6-7.1L1.8 9.4 9 8.6z"/></symbol>
+      <symbol id="i-dice" viewBox="0 0 24 24"><path d="M6 3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3m0 2a1 1 0 0 0-1 1v12a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1zm2.5 2a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m-3.5 3.5a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3M8.5 14a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3m7 0a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3"/></symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 21s-8.5-5.3-8.5-11.2A4.8 4.8 0 0 1 12 6.6a4.8 4.8 0 0 1 8.5 3.2C20.5 15.7 12 21 12 21"/></symbol>
+      <symbol id="i-download" viewBox="0 0 24 24"><path d="M11 3h2v9.2l3.3-3.3 1.4 1.4-5.7 5.7-5.7-5.7 1.4-1.4 3.3 3.3zM4 18h16v2H4z"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20m4.3 6.3-5.8 5.8-2.8-2.8-1.4 1.4 4.2 4.2 7.2-7.2z"/></symbol>
+      <symbol id="i-clock" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 1 0 20 10 10 0 0 1 0-20m0 2a8 8 0 1 0 0 16 8 8 0 0 0 0-16m-1 3h2v5.6l3.6 2.1-1 1.7-4.6-2.7z"/></symbol>
+      <symbol id="i-gear" viewBox="0 0 24 24"><path d="M10.3 2h3.4l.5 2.6 1.9.8 2.2-1.5 2.4 2.4-1.5 2.2.8 1.9 2.6.5v3.4l-2.6.5-.8 1.9 1.5 2.2-2.4 2.4-2.2-1.5-1.9.8-.5 2.6h-3.4l-.5-2.6-1.9-.8-2.2 1.5-2.4-2.4 1.5-2.2-.8-1.9L2 13.7v-3.4l2.6-.5.8-1.9-1.5-2.2 2.4-2.4 2.2 1.5 1.9-.8zM12 8.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7"/></symbol>
     </svg>
     
     <div class="workspace">
-      <!-- ============ PREVIEW STAGE ============ -->
       <main class="stage">
-        <div class="rail" id="ledRail" aria-hidden="true"><span class="lbl">Palette</span></div>
+        <div class="strip" id="strip" aria-hidden="true"><span class="lbl">Palette</span></div>
+    
+        <div class="stage-bar">
+          <fieldset class="seg" id="viewSeg" aria-label="Preview screen">
+            <button type="button" data-v="carousel" class="on">Carousel</button>
+            <button type="button" data-v="grid">Grid</button>
+            <button type="button" data-v="list">Game list</button>
+          </fieldset>
+          <div class="corners">
+            <span class="lbl" id="cornersLbl">Corners</span>
+            <fieldset class="seg small" id="cornerSeg" aria-labelledby="cornersLbl">
+              <button type="button" data-c="0">0</button>
+              <button type="button" data-c="1">XS</button>
+              <button type="button" data-c="2">S</button>
+              <button type="button" data-c="3" class="on">M</button>
+              <button type="button" data-c="4">L</button>
+              <button type="button" data-c="5">XL</button>
+            </fieldset>
+          </div>
+        </div>
     
         <div class="bezel">
-          <fieldset class="viewtog" aria-label="Preview screen">
-            <button type="button" data-v="browse" class="on">Browse</button>
-            <button type="button" data-v="detail">Detail</button>
-            <button type="button" data-v="components">Components</button>
-          </fieldset>
-          <div class="screen" id="screen">
+          <div class="screen">
+            <div class="app" id="app">
     
-            <!-- ============ BROWSE / coverflow ============ -->
-            <section class="view on" data-view="browse">
-              <div class="topbar">
-                <span class="pill vm"><i class="pad pad-x"></i>View Mode</span>
-                <div class="toolcluster">
-                  <i class="navi ni-lb"></i>
-                  <span class="tool sel"><i class="navi ni-grids"></i></span>
-                  <span class="tool"><i class="navi ni-cloud"></i></span>
-                  <span class="tool"><i class="navi ni-trophy"></i></span>
-                  <span class="tool"><i class="navi ni-romm"></i></span>
-                  <span class="tool"><i class="navi ni-gear"></i></span>
-                  <i class="navi ni-rb"></i>
+              <!-- ============ CAROUSEL ============ -->
+              <section class="view on" data-view="carousel">
+                <div class="hdr" data-hdr="systems"></div>
+                <div class="card rim" style="left:calc(var(--u)*-69);top:calc(var(--u)*83);width:calc(var(--u)*229);height:calc(var(--u)*278)">
+                  <span class="art" style="left:calc(var(--u)*9);top:calc(var(--u)*9);right:calc(var(--u)*9);height:calc(var(--u)*218);background-image:url(https://cdn.neoassets.dev/packs/neostation/backgrounds/lynx.webp)"></span>
+                  <span class="logo mask" style="top:calc(var(--u)*227);height:calc(var(--u)*49);left:calc(var(--u)*12);right:calc(var(--u)*12);-webkit-mask-image:url(/theme-designer/logos/lynx.webp);mask-image:url(/theme-designer/logos/lynx.webp)"></span>
                 </div>
-                <div class="status">
-                  <span class="clk">18:07</span>
-                  <span class="batwrap"><span class="bat"><i></i></span></span><span class="pct">80%</span>
+                <div class="card rim" style="left:calc(var(--u)*183);top:calc(var(--u)*57);width:calc(var(--u)*272);height:calc(var(--u)*331)">
+                  <span class="art" style="left:calc(var(--u)*11);top:calc(var(--u)*11);right:calc(var(--u)*11);height:calc(var(--u)*260);background-image:url(https://cdn.neoassets.dev/packs/neostation/backgrounds/neogeo.webp)"></span>
+                  <span class="logo mask" style="top:calc(var(--u)*270.5);height:calc(var(--u)*58.5);left:calc(var(--u)*14);right:calc(var(--u)*14);-webkit-mask-image:url(/theme-designer/logos/neogeo.webp);mask-image:url(/theme-designer/logos/neogeo.webp)"></span>
                 </div>
-              </div>
-    
-              <div class="cf">
-                <div class="tile side"><div class="art a2"></div><div class="tname">Arcade</div></div>
-                <div class="tile center"><div class="art a1"></div><div class="tname">Atari 2600</div></div>
-                <div class="tile side"><div class="art a3"></div><div class="tname">Atari 7800</div></div>
-              </div>
-    
-              <div class="filterrow">
-                <span class="fpill">ALL</span><span class="fpill">ANDROID</span><span class="fpill">ARCADE</span>
-                <span class="fpill sel">A2600</span><span class="fpill">A7800</span><span class="fpill">LYNX</span>
-                <span class="fpill">CV</span><span class="fpill">C64</span><span class="fpill">FDS</span>
-                <span class="fpill">GB</span><span class="fpill">GBA</span><span class="fpill">GBC</span>
-              </div>
-    
-              <div class="browsefoot">
-                <span class="sysname">Atari 2600<span class="count">636 Games</span></span>
-                <div class="foot-actions">
-                  <span class="tbfab set"><i class="pad pad-y"></i>Options</span>
-                  <span class="tbfab enter"><i class="pad pad-a"></i>Enter</span>
+                <div class="card rim" style="left:calc(var(--u)*479);top:calc(var(--u)*83);width:calc(var(--u)*229);height:calc(var(--u)*278)">
+                  <span class="art" style="left:calc(var(--u)*9);top:calc(var(--u)*9);right:calc(var(--u)*9);height:calc(var(--u)*218);background-image:url(https://cdn.neoassets.dev/packs/neostation/backgrounds/gg.webp)"></span>
+                  <span class="logo mask" style="top:calc(var(--u)*227);height:calc(var(--u)*49);left:calc(var(--u)*12);right:calc(var(--u)*12);-webkit-mask-image:url(/theme-designer/logos/gg.webp);mask-image:url(/theme-designer/logos/gg.webp)"></span>
                 </div>
-              </div>
-            </section>
+                <div class="chips" id="chips"></div>
+                <div class="ftr" data-ftr="neogeo|128 Games|Enter"></div>
+              </section>
     
-            <!-- ============ DETAIL / game view ============ -->
-            <section class="view detail" data-view="detail">
-              <!-- detail keeps the same nav toolbar, anchored top-right -->
-              <div class="dtoolbar">
-                <div class="toolcluster">
-                  <i class="navi ni-lb"></i>
-                  <span class="tool sel"><i class="navi ni-grids"></i></span>
-                  <span class="tool"><i class="navi ni-cloud"></i></span>
-                  <span class="tool"><i class="navi ni-trophy"></i></span>
-                  <span class="tool"><i class="navi ni-gear"></i></span>
-                  <i class="navi ni-rb"></i>
+              <!-- ============ GRID ============ -->
+              <section class="view" data-view="grid">
+                <div class="grid" id="grid"></div>
+                <div class="hdr" data-hdr="systems"></div>
+                <div class="ftr" data-ftr="Last Played: Bubble Bobble||Play"></div>
+              </section>
+    
+              <!-- ============ GAME LIST ============ -->
+              <section class="view" data-view="list">
+                <div class="fan" style="background-image:url(/theme-designer/game/bubblebobble-fanart.webp)"></div>
+                <div class="abs side-panel glass rim">
+                  <span class="syslogo mask" style="-webkit-mask-image:url(/theme-designer/game/gba-logo.webp);mask-image:url(/theme-designer/game/gba-logo.webp)"></span>
+                  <div class="rows" id="rows"></div>
                 </div>
-              </div>
-              <div class="leftcol">
-                <div class="hints">
-                  <span class="hbtn back"><i class="pad pad-b"></i><svg class="ico"><use href="#i-back"/></svg></span>
-                  <span class="hbtn"><i class="pad pad-x"></i><svg class="ico"><use href="#i-grid"/></svg></span>
-                  <span class="hbtn"><svg class="ico"><use href="#i-refresh"/></svg><svg class="ico"><use href="#i-dice"/></svg></span>
+                <svg class="dpad" style="left:calc(var(--u)*381)"><use href="#i-dpad"/></svg>
+                <div class="tabs dtabs rim">
+                  <span class="tab sel"><svg class="ico"><use href="#i-card"/></svg></span>
+                  <span class="tab"><svg class="ico"><use href="#i-folder"/></svg></span>
+                  <span class="tab"><svg class="ico"><use href="#i-image"/></svg></span>
+                  <span class="tab"><svg class="ico"><use href="#i-info"/></svg></span>
+                  <span class="tab"><svg class="ico"><use href="#i-trophy"/></svg></span>
                 </div>
-                <span class="syschip">A2600</span>
-                <div class="glist">
-                  <div class="grow">Barnstorming</div>
-                  <div class="grow">Basketball</div>
-                  <div class="grow">Battlezone</div>
-                  <div class="grow sel">Bentley Bear's Crystal Q…</div>
-                  <div class="grow">Berzerk</div>
-                  <div class="grow">BurgerTime</div>
-                  <div class="grow">California Games</div>
-                  <div class="grow">Centipede</div>
-                  <div class="grow">Chopper Command</div>
+                <svg class="dpad" style="right:calc(var(--u)*15)"><use href="#i-dpad"/></svg>
+                <img class="wheel" src="/theme-designer/game/bubblebobble-wheel.webp" alt="" />
+                <div class="romline"><span class="romname">Bubble Bobble - Old &amp; New (USA).zip</span></div>
+                <div class="gfoot rating glass rim"><svg class="ico"><use href="#i-star"/></svg>8</div>
+                <div class="gfoot ra glass rim">
+                  <span class="icon" style="background-image:url(/theme-designer/game/bubblebobble-wheel.webp);background-color:#fff;background-size:90%"></span>
+                  <span class="txt">0/63<span class="bar"><i></i></span></span>
                 </div>
-              </div>
+                <div class="gfoot round glass rim" style="left:calc(var(--u)*401)"><svg class="ico"><use href="#i-dice"/></svg></div>
+                <div class="gfoot round fav glass rim" style="left:calc(var(--u)*446)"><svg class="ico"><use href="#i-heart"/></svg></div>
+                <div class="gfoot round glass rim" style="left:calc(var(--u)*491)"><svg class="ico"><use href="#i-gear"/></svg></div>
+                <div class="gfoot play">PLAY</div>
+              </section>
     
-              <div class="fan">
-                <div class="scan"></div><div class="glow"></div>
-                <div class="fan-bottom">
-                  <div class="ratingrow">
-                    <span class="rating"><span class="star">★</span>9.0</span>
-                    <div class="ttl">
-                      <h3>Bentley Bear's Crystal Quest</h3>
-                      <p>Bentley Bear's Crystal Quest (USA)</p>
-                    </div>
-                  </div>
-                  <div class="actions">
-                    <div class="actcluster">
-                      <span class="act"><svg class="ico"><use href="#i-trophy"/></svg>0 / 48</span>
-                      <span class="act"><svg class="ico"><use href="#i-scan"/></svg>Scrape</span>
-                      <span class="act"><span class="row"><svg class="ico"><use href="#i-heart"/></svg><i class="pad pad-y"></i></span>Add Fav</span>
-                    </div>
-                    <span class="act play"><i class="pad pad-a"></i>Play</span>
-                  </div>
-                </div>
-              </div>
-            </section>
-    
-            <!-- ============ COMPONENTS ============ -->
-            <section class="view components" data-view="components">
-              <div class="gallery">
-    
-                <div class="gcard">
-                  <span class="gh">Buttons</span>
-                  <div class="grow">
-                    <button type="button" class="gb primary">Play</button>
-                    <button type="button" class="gb secondary">Scrape</button>
-                    <button type="button" class="gb accent">Sync</button>
-                  </div>
-                  <div class="grow">
-                    <button type="button" class="gb outline">Cancel</button>
-                    <button type="button" class="gb ghost">Skip</button>
-                    <button type="button" class="gb dis">Disabled</button>
-                  </div>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">Toggles &amp; Radios</span>
-                  <div class="grow" style="justify-content:space-between"><span class="glab">Show hidden games</span><span class="gtog on"></span></div>
-                  <div class="grow" style="justify-content:space-between"><span class="glab">Box art only</span><span class="gtog"></span></div>
-                  <div class="grow"><span class="grad on"></span><span class="glab">List view</span></div>
-                  <div class="grow"><span class="grad"></span><span class="glab">Grid view</span></div>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">Status Badges</span>
-                  <div class="grow">
-                    <span class="gbadge b-success">Installed</span>
-                    <span class="gbadge b-warning">Update</span>
-                  </div>
-                  <div class="grow">
-                    <span class="gbadge b-info">Scanning</span>
-                    <span class="gbadge b-error">Missing</span>
-                  </div>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">Notifications</span>
-                  <div class="gnote n-success"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg>Library sync complete</div>
-                  <div class="gnote n-error"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M18 6 6 18M6 6l12 12"/></svg>Emulator not found</div>
-                  <div class="gnote n-info"><svg class="ni" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 7.5v.5"/></svg>Downloading metadata…</div>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">Battery</span>
-                  <div><div class="mlabel"><span>Controller 1</span><b>92%</b></div><div class="gmeter m-batt-full"><span style="width:92%"></span></div></div>
-                  <div><div class="mlabel"><span>Controller 2</span><b>46%</b></div><div class="gmeter m-batt-med"><span style="width:46%"></span></div></div>
-                  <div><div class="mlabel"><span>Headset</span><b>11%</b></div><div class="gmeter m-batt-low"><span style="width:11%"></span></div></div>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">Storage</span>
-                  <div><div class="mlabel"><span>Internal</span><b>174 / 256 GB</b></div><div class="gmeter m-store"><span style="width:68%"></span></div></div>
-                  <div><div class="mlabel"><span>SD Card</span><b>41 / 128 GB</b></div><div class="gmeter m-store"><span style="width:32%"></span></div></div>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">Game List</span>
-                  <div class="glist2">
-                    <div class="gli">Adventure</div>
-                    <div class="gli sel">Missile Command</div>
-                    <div class="gli">Pitfall!</div>
-                    <div class="gli">River Raid</div>
-                  </div>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">System Filters</span>
-                  <div class="grow">
-                    <span class="gchip on">All</span>
-                    <span class="gchip">A2600</span>
-                    <span class="gchip">A7800</span>
-                    <span class="gchip">Lynx</span>
-                    <span class="gchip">Jaguar</span>
-                  </div>
-                </div>
-    
-                <div class="gcard gtype">
-                  <span class="gh">Typography</span>
-                  <h4>NeoStation</h4>
-                  <span class="t-title">Game Library</span>
-                  <p class="t-body">Browse, scrape and launch your retro collection from one place.</p>
-                  <span class="t-cap">636 Games · 12 Systems</span>
-                </div>
-    
-                <div class="gcard">
-                  <span class="gh">Inputs</span>
-                  <div class="ginput ph">Search games…</div>
-                  <div class="ginput focus">River Raid</div>
-                  <div class="grate"><span class="stars">★★★★<span class="off">★</span></span><span class="num">4.0</span></div>
-                </div>
-    
-                <div class="gcard span2">
-                  <span class="gh">Dialog</span>
-                  <div class="gdlg">
-                    <span class="dt">Delete “Pitfall!”?</span>
-                    <p class="db">This removes the game and its saved states from this device. Cloud backups are kept.</p>
-                    <div class="da">
-                      <button type="button" class="gb ghost">Cancel</button>
-                      <button type="button" class="gb primary">Delete</button>
-                    </div>
-                  </div>
-                </div>
-    
-              </div>
-            </section>
-    
+            </div>
           </div>
         </div>
         <p class="hint" id="legend"></p>
       </main>
     
-      <!-- ============ CONTROL RAIL ============ -->
-      <aside class="rail-col">
-        <div class="setup-row">
-          <div class="source-pick">
-            <span class="fld" id="presetLbl">Start from</span>
-            <div class="dd" id="presetDD">
-              <button class="dd-btn" type="button" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="presetLbl"><span class="dd-val">Dark</span></button>
-              <ul class="dd-menu" aria-label="Starting preset"></ul>
+      <aside class="panel">
+        <div class="stack">
+          <div class="two">
+            <div>
+              <label class="fld" for="preset">Start from</label>
+              <select id="preset"></select>
             </div>
+            <button class="btnx" id="importBtn" type="button">Import JSON</button>
+            <input type="file" id="fileInput" class="file-hide" accept=".json,application/json" />
           </div>
-          <button class="btn" id="importBtn" type="button">Import JSON</button>
-          <input type="file" id="fileInput" class="file-hide" accept=".json,application/json" />
-        </div>
-    
-        <div class="meta-row">
-          <div><label for="tName">Theme name</label><input type="text" id="tName" value="My Custom Theme" /></div>
-          <div><label for="tId">Palette id <span style="text-transform:none">(key used in code)</span></label><input type="text" id="tId" value="my_custom_theme" /></div>
-          <div><label for="tAuthor">Author</label><input type="text" id="tAuthor" placeholder="Your name or handle" /></div>
-          <fieldset class="seg" id="brightSeg" aria-label="Color scheme">
-              <button type="button" data-b="dark" class="on">Dark</button>
-              <button type="button" data-b="light">Light</button>
-            </fieldset>
+          <div><label class="fld" for="tName">Theme name</label><input type="text" id="tName" value="My Custom Theme" /></div>
+          <div><label class="fld" for="tId">Theme id</label><input type="text" id="tId" value="my_custom_theme" spellcheck="false" /></div>
+          <div><label class="fld" for="tAuthor">Author</label><input type="text" id="tAuthor" placeholder="Your name or handle" /></div>
+          <fieldset class="seg full" id="brightSeg" aria-label="Brightness">
+            <button type="button" data-b="dark" class="on">Dark</button>
+            <button type="button" data-b="light">Light</button>
+          </fieldset>
         </div>
     
         <div id="groups"></div>
-        <div id="effects"></div>
-        <div id="glass"></div>
     
-        <div class="export-bar">
-          <button class="btn" id="copyBtn" type="button">Copy JSON</button>
-          <button class="btn primary" id="dlBtn" type="button">Download</button>
+        <p class="note">Corners aren't part of a theme: everyone picks their own in NeoStation under Settings › Themes › Corners. In NeoStation, import the file under Settings › Themes › Import Theme.</p>
+    
+        <div class="export">
+          <button class="btnx" id="copyBtn" type="button">Copy JSON</button>
+          <button class="btnx primary" id="dlBtn" type="button">Download</button>
         </div>
       </aside>
     </div>
@@ -315,79 +179,105 @@ const meta: SiteMeta = {
 
 <script is:inline>
 /* =====================================================================
-   daisyUI theme model — field keys are daisyUI's exact CSS-variable
-   suffixes (base-100, primary-content, …) so export drops straight into
-   an `@plugin "daisyui/theme"` block. Colours are authored in oklch
-   (the daisyUI convention); hex is derived only for the pickers.
+   NeoStation theme model: the 16 colours the app uses, named after where
+   they show. Exported as {"format":"neostation-theme","version":2,…}.
    ===================================================================== */
 const GROUPS = [
-  { key:'base', title:'Base', n:'01', desc:'The surfaces everything sits on.',
-    fields:[
-      ['base-100','Base 100','App / screen background'],
-      ['base-200','Base 200','Toolbars, pills, cards'],
-      ['base-300','Base 300','Deeper surfaces, borders'],
-      ['base-content','Base content','Default text & icons'],
-    ]},
-  { key:'brand', title:'Brand', n:'02', desc:'Primary actions, selection, accents.',
-    fields:[
-      ['primary','Primary','System-name pill, "A2600" chip'],
-      ['primary-content','Primary content','Text over primary'],
-      ['secondary','Secondary','Selected row / tab / filter'],
-      ['secondary-content','Secondary content','Text over secondary'],
-      ['accent','Accent','View Mode / Settings buttons'],
-      ['accent-content','Accent content','Text over accent'],
-      ['neutral','Neutral','Neutral surfaces & badges'],
-      ['neutral-content','Neutral content','Text over neutral'],
-    ]},
-  { key:'status', title:'Status', n:'03', desc:'Semantic feedback colours.',
-    fields:[
-      ['info','Info','Info badges, charging'],
-      ['info-content','Info content','Text over info'],
-      ['success','Success','Enter / Play, battery full'],
-      ['success-content','Success content','Text over success'],
-      ['warning','Warning','Updates, battery medium'],
-      ['warning-content','Warning content','Text over warning'],
-      ['error','Error','Back button, battery low'],
-      ['error-content','Error content','Text over error'],
-    ]},
+  { title:'Base', n:'01', desc:'The screen and everything that sits on it.', fields:[
+    ['background','Background','Screen background'],
+    ['surface','Cards','Cards, pills, panels'],
+    ['text','Text','Text and icons'],
+    ['border','Border','Borders and lines'],
+  ]},
+  { title:'Selection', n:'02', desc:'What the D-pad is on.', fields:[
+    ['selection','Selection','Selected tab, chip and game row'],
+    ['onSelection','Text on selection','Text and icons on it',true],
+    ['selectedCard','Selected card','Selected card in the grid, game count'],
+    ['onSelectedCard','Text on selected card','Logo and text on it',true],
+  ]},
+  { title:'Buttons', n:'03', desc:'The footer’s buttons.', fields:[
+    ['action','Main button','Enter and Play'],
+    ['onAction','Text on main button','Label and glyph on it',true],
+    ['button','Button','Options and Search'],
+    ['onButton','Text on button','Label and glyph on it',true],
+  ]},
+  { title:'Status', n:'04', desc:'Battery, rating, favourites, notifications.', fields:[
+    ['success','Success','Battery full, high ratings'],
+    ['warning','Warning','Battery medium, notifications, achievement progress'],
+    ['error','Error','Battery low, favourites, low ratings'],
+    ['info','Info','Charging'],
+  ]},
 ];
-const COLOR_FIELDS = GROUPS.flatMap(g=>g.fields.map(f=>f[0]));
+const FIELDS = GROUPS.flatMap(g=>g.fields.map(f=>f[0]));
 
-/* Non-colour theme variables (radius / size / border). */
-const EFFECTS = [
-  ['radius-selector','Radius · selector','Checkboxes, toggles, badges', ['0','0.25rem','0.5rem','1rem','2rem']],
-  ['radius-field','Radius · field','Buttons, inputs, pills', ['0','0.25rem','0.5rem','1rem','2rem']],
-  ['radius-box','Radius · box','Cards, tiles, artwork', ['0','0.25rem','0.5rem','1rem','2rem']],
-  ['border','Border','Component border width', ['0','1px','1.5px','2px']],
-];
-const SIZE_DEFAULTS = { 'size-selector':'0.25rem', 'size-field':'0.25rem' };
-
-/* NeoGlass frosted-chrome appearance — the blur/tint/border look the app's
-   glass surfaces and system tiles use. Exported under a top-level `glass`
-   block; applying the theme seeds the user's NeoGlass settings. */
-const GLASS = [
-  ['blur','Glass Blur','Frost strength of the glass chrome', ['0','1','2']],
-  ['transparency','Glass Transparency','Tint see-through (0 = opaque, 30 = max)', ['0','10','20','30']],
-  ['borderWidth','Glass Border','Width of the glass rim & tile border', ['0','1','2','3','4']],
-];
-const GLASS_DEFAULTS = { blur:0, transparency:10, borderWidth:2 };
-
-/* Existing preview `--c-*` vars re-mapped onto the daisyUI token set,
-   so the two-screen mock keeps working unchanged. */
-const PREVIEW_VARS = {
-  '--c-bg':'base-100','--c-surface':'base-200','--c-onSurface':'base-content',
-  '--c-primary':'primary','--c-onPrimary':'primary-content',
-  '--c-secondary':'secondary','--c-onSecondary':'secondary-content',
-  '--c-tertiary':'accent','--c-onTertiary':'accent-content',
-  '--c-neutral':'neutral','--c-onNeutral':'neutral-content',
-  '--c-success':'success','--c-onSuccess':'success-content',
-  '--c-info':'info','--c-onInfo':'info-content',
-  '--c-warning':'warning','--c-onWarning':'warning-content',
-  '--c-error':'error','--c-onError':'error-content',
-  '--c-battFull':'success','--c-outline':'base-300','--c-card':'base-200',
+/* Contrast each colour needs, and against what (WCAG ratios). */
+const CONTRAST = {
+  text:[['background','surface'],4.5],
+  onSelection:[['selection'],4.5], onSelectedCard:[['selectedCard'],4.5],
+  onAction:[['action'],4.5], onButton:[['button'],4.5],
+  selection:[['background'],3], selectedCard:[['background'],3], action:[['background'],3],
+  success:[['background'],3], warning:[['background'],3], error:[['background'],3], info:[['background'],3],
 };
 
-/* ---- oklch <-> sRGB hex (Björn Ottosson's OKLab matrices) ---- */
+/* Art comes from the official NeoStation pack on NeoAssets. */
+const CDN='https://cdn.neoassets.dev/packs/neostation/backgrounds/';
+
+/* System names from the NeoAssets catalog (refresh with systems.mjs). */
+/* <systems> */
+const SYSTEMS = {
+  "neogeo":{"name":"Neo Geo","short":"Neo Geo"},
+  "lynx":{"name":"Atari Lynx","short":"Lynx"},
+  "gg":{"name":"Sega Game Gear","short":"GG"},
+  "sms":{"name":"Sega Master System","short":"SMS"},
+  "pccd":{"name":"PC Engine-CD","short":"PCCD"},
+  "tgcd":{"name":"TurboGrafx-CD","short":"TG-CD"},
+  "gb":{"name":"Game Boy","short":"GB"},
+  "tg16":{"name":"TurboGrafx-16","short":"TG-16"},
+  "snes":{"name":"Super Nintendo Entertainment System","short":"SNES"},
+  "sfc":{"name":"Super Family Computer","short":"SFC"},
+  "scd":{"name":"Sega CD","short":"SCD"},
+  "cps2":{"name":"CP System II","short":"CPSII"},
+  "jag":{"name":"Atari Jaguar","short":"Jaguar"},
+  "arcade":{"name":"Arcade","short":"Arcade"},
+  "a2":{"name":"Apple II","short":"A2"},
+  "2600":{"name":"Atari 2600","short":"A2600"},
+  "cv":{"name":"ColecoVision","short":"CV"},
+  "vect":{"name":"Vectrex","short":"Vect"},
+  "msx":{"name":"MSX","short":"MSX"},
+  "nes":{"name":"Nintendo Entertainment System","short":"NES"},
+  "sg1k":{"name":"Sega SG-1000","short":"SG1K"},
+  "fc":{"name":"Family Computer","short":"FC"},
+  "cpc":{"name":"Amstrad CPC","short":"CPC"},
+  "mark3":{"name":"Sega Mark III","short":"Mark3"},
+  "android":{"name":"Android","short":"Android"},
+};
+/* </systems> */
+
+/* Corners: the app's user setting, external/internal radius in app units. */
+const CORNERS = [[0,0],[3,2],[8,5],[14,10],[16,12],[24,20]];
+
+/* <presets> */
+const PRESETS = {
+  "dark":{"name":"Dark","brightness":"dark","colors":{"background":"#111216","surface":"#24252D","text":"#F1EDE4","border":"#2E3039","selection":"#F1EDE4","onSelection":"#111216","selectedCard":"#F1EDE4","onSelectedCard":"#111216","action":"#FF5A4A","onAction":"#111216","button":"#24252D","onButton":"#F1EDE4","success":"#33C27A","warning":"#F5B83D","error":"#FF5A4A","info":"#6E90FF"}},
+  "light":{"name":"Light","brightness":"light","colors":{"background":"#F1EDE4","surface":"#E3DED3","text":"#111216","border":"#B9B2A3","selection":"#111216","onSelection":"#F1EDE4","selectedCard":"#2E3039","onSelectedCard":"#F1EDE4","action":"#E8402F","onAction":"#111216","button":"#E3DED3","onButton":"#111216","success":"#1E7F4E","warning":"#9A6200","error":"#C8321F","info":"#2F55D9"}},
+  "oled":{"name":"OLED","brightness":"dark","colors":{"background":"#000000","surface":"#141414","text":"#BDBDBD","border":"#212830","selection":"#C9C9C9","onSelection":"#000000","selectedCard":"#8A8A8A","onSelectedCard":"#000000","action":"#C9C9C9","onAction":"#000000","button":"#141414","onButton":"#BDBDBD","success":"#00D390","warning":"#FCB700","error":"#FF627D","info":"#00BAFE"}},
+  "valentine":{"name":"Valentine","brightness":"light","colors":{"background":"#FCF2F8","surface":"#F9CBE5","text":"#830C41","border":"#F9E4F0","selection":"#C2186E","onSelection":"#FFFFFF","selectedCard":"#830C41","onSelectedCard":"#F9CBE5","action":"#C2186E","onAction":"#FFFFFF","button":"#F9CBE5","onButton":"#830C41","success":"#107C53","warning":"#A65300","error":"#C8101C","info":"#00718F"}},
+  "dracula":{"name":"Dracula","brightness":"dark","colors":{"background":"#1F202A","surface":"#282A36","text":"#F8F8F3","border":"#303241","selection":"#FF79C6","onSelection":"#16050E","selectedCard":"#C1AFDA","onSelectedCard":"#0E0819","action":"#FF79C6","onAction":"#16050E","button":"#282A36","onButton":"#F8F8F3","success":"#51FA7B","warning":"#F1FA8C","error":"#FF5555","info":"#8BE9FD"}},
+  "nord":{"name":"Nord","brightness":"light","colors":{"background":"#ECEFF4","surface":"#D8DEE9","text":"#2E3440","border":"#D8DEE9","selection":"#4C6A92","onSelection":"#ECEFF4","selectedCard":"#52698A","onSelectedCard":"#ECEFF4","action":"#4C6A92","onAction":"#ECEFF4","button":"#D8DEE9","onButton":"#2E3440","success":"#5A7046","warning":"#8F6B1E","error":"#A9444E","info":"#86627F"}},
+  "coffee":{"name":"Coffee","brightness":"dark","colors":{"background":"#120A11","surface":"#261B25","text":"#D4B07A","border":"#2E212D","selection":"#DB924C","onSelection":"#110802","selectedCard":"#7FB3B0","onSelectedCard":"#0B1414","action":"#DB924C","onAction":"#110802","button":"#261B25","onButton":"#D4B07A","success":"#9DB787","warning":"#FFD260","error":"#FC9581","info":"#8ECAC1"}},
+  "tokyo_night":{"name":"Tokyo Night","brightness":"dark","colors":{"background":"#1A1B26","surface":"#24283B","text":"#C0CAF5","border":"#414868","selection":"#7AA2F7","onSelection":"#1A1B26","selectedCard":"#9ECE6A","onSelectedCard":"#1A1B26","action":"#7AA2F7","onAction":"#1A1B26","button":"#24283B","onButton":"#C0CAF5","success":"#9ECE6A","warning":"#E0AF68","error":"#F7768E","info":"#7DCFFF"}},
+  "retro":{"name":"Retro","brightness":"light","colors":{"background":"#ECE3CA","surface":"#E4D8B4","text":"#5A2404","border":"#E4D8B4","selection":"#B8333A","onSelection":"#FEF2C6","selectedCard":"#2E7550","onSelectedCard":"#FEF2C6","action":"#B8333A","onAction":"#FEF2C6","button":"#E4D8B4","onButton":"#5A2404","success":"#00776F","warning":"#A83A00","error":"#B8282C","info":"#00649E"}},
+  "abyss":{"name":"Abyss","brightness":"dark","colors":{"background":"#000611","surface":"#001E29","text":"#FFD6A7","border":"#002330","selection":"#BDFF00","onSelection":"#417600","selectedCard":"#CEBEF4","onSelectedCard":"#564775","action":"#BDFF00","onAction":"#417600","button":"#001E29","onButton":"#FFD6A7","success":"#01DF72","warning":"#FFBF00","error":"#F04E4F","info":"#00BAFE"}},
+  "cyberpunk":{"name":"Cyberpunk","brightness":"light","colors":{"background":"#FFF248","surface":"#E3D40E","text":"#111A3B","border":"#E3D40E","selection":"#D1005A","onSelection":"#FFFFFF","selectedCard":"#006B7A","onSelectedCard":"#FFFFFF","action":"#D1005A","onAction":"#FFFFFF","button":"#E3D40E","onButton":"#111A3B","success":"#00704A","warning":"#9A5B00","error":"#C4002B","info":"#005FA3"}},
+  "aqua":{"name":"Aqua","brightness":"dark","colors":{"background":"#162455","surface":"#1A368B","text":"#B8E6FE","border":"#1C3992","selection":"#13ECF3","onSelection":"#015355","selectedCard":"#C0A0DD","onSelectedCard":"#1E0F2E","action":"#13ECF3","onAction":"#015355","button":"#1A368B","onButton":"#B8E6FE","success":"#18A34A","warning":"#D97708","error":"#FF7265","info":"#6B98F7"}},
+  "palenight":{"name":"Palenight","brightness":"dark","colors":{"background":"#292D3E","surface":"#32374D","text":"#C8CCEA","border":"#4B5263","selection":"#8882FF","onSelection":"#14161F","selectedCard":"#D85C7F","onSelectedCard":"#14161F","action":"#8882FF","onAction":"#14161F","button":"#32374D","onButton":"#C8CCEA","success":"#C3E88D","warning":"#FFCB6B","error":"#F07178","info":"#82AAFF"}},
+  "horizon":{"name":"Horizon","brightness":"dark","colors":{"background":"#16161C","surface":"#1C1E26","text":"#D5D8DA","border":"#1F222B","selection":"#E95678","onSelection":"#1A0A0E","selectedCard":"#F09383","onSelectedCard":"#1A0D0B","action":"#E95678","onAction":"#1A0A0E","button":"#1C1E26","onButton":"#D5D8DA","success":"#09F7A0","warning":"#FAB28E","error":"#E9436F","info":"#21BFC2"}},
+  "dmg":{"name":"DMG","brightness":"dark","colors":{"background":"#9BBC0F","surface":"#8BAC0F","text":"#0F380F","border":"#306230","selection":"#0F380F","onSelection":"#9BBC0F","selectedCard":"#306230","onSelectedCard":"#9BBC0F","action":"#0F380F","onAction":"#9BBC0F","button":"#8BAC0F","onButton":"#0F380F","success":"#0F380F","warning":"#306230","error":"#4A2A0F","info":"#0F380F"}},
+  "sixteen_bit":{"name":"16 Bits","brightness":"light","colors":{"background":"#DDDBD6","surface":"#CBC8C1","text":"#2A2C31","border":"#A9A59D","selection":"#3E4248","onSelection":"#EDEBE6","selectedCard":"#2D55B0","onSelectedCard":"#FFFFFF","action":"#CC2F38","onAction":"#FFFFFF","button":"#CBC8C1","onButton":"#2A2C31","success":"#23843F","warning":"#8A6A00","error":"#B42A32","info":"#2D55B0"}},
+};
+/* </presets> */
+
+/* ---- colour helpers ---- */
 function parseOklch(str){
   const m=String(str).match(/oklch\(\s*([\d.]+)%?\s+([\d.]+)\s+([\d.-]+)/i);
   if(!m) return {L:0,C:0,H:0};
@@ -412,277 +302,245 @@ function oklchToHex(str){
   const h2=x=>Math.round(gam(x)*255).toString(16).padStart(2,'0');
   return `#${h2(r)}${h2(g)}${h2(bl)}`;
 }
-function hexToOklch(hex){
-  let h=hex.replace('#',''); if(h.length===3) h=h.split('').map(c=>c+c).join('');
-  const lin=c=>{const v=c/255; return v<=0.04045?v/12.92:((v+0.055)/1.055) ** 2.4;};
-  const r=lin(Number.parseInt(h.slice(0,2),16));
-  const g=lin(Number.parseInt(h.slice(2,4),16));
-  const b=lin(Number.parseInt(h.slice(4,6),16));
-  const l=Math.cbrt(0.4122214708*r+0.5363325363*g+0.0514459929*b);
-  const m=Math.cbrt(0.2119034982*r+0.6806995451*g+0.1073969566*b);
-  const s=Math.cbrt(0.0883024619*r+0.2817188376*g+0.6299787005*b);
-  const L=0.2104542553*l+0.7936177850*m-0.0040720468*s;
-  const a=1.9779984951*l-2.4285922050*m+0.4505937099*s;
-  const bb=0.0259040371*l+0.7827717662*m-0.8086757660*s;
-  const C=Math.sqrt(a*a+bb*bb); let Hh=Math.atan2(bb,a)*180/Math.PI; if(Hh<0)Hh+=360;
-  const r3=n=>+n.toFixed(3);
-  return `oklch(${+(L*100).toFixed(2)}% ${r3(C)} ${+Hh.toFixed(2)})`;
+function toHex(v){
+  const s=String(v||'').trim();
+  if(/oklch/i.test(s)) return oklchToHex(s).toUpperCase();
+  let h=s.replace('#','');
+  if(h.length===3) h=h.split('').map(c=>c+c).join('');
+  if(h.length===8) h=h.slice(2);
+  return /^[0-9a-fA-F]{6}$/.test(h)?`#${h.toUpperCase()}`:null;
 }
+function lum(hex){
+  const h=hex.replace('#','');
+  const c=[0,2,4].map(i=>{const v=Number.parseInt(h.slice(i,i+2),16)/255; return v<=0.03928?v/12.92:((v+0.055)/1.055)**2.4;});
+  return 0.2126*c[0]+0.7152*c[1]+0.0722*c[2];
+}
+function ratio(a,b){ const x=lum(a); const y=lum(b); return (Math.max(x,y)+0.05)/(Math.min(x,y)+0.05); }
 
-/* ---- Presets: colour values copied verbatim from daisyUI (oklch). ---- */
-const EFX_DARK   = {'radius-selector':'0.5rem','radius-field':'0.25rem','radius-box':'0.5rem','border':'1px'};
-const PRESETS = {
-  dark:{ name:'Dark', id:'dark', scheme:'dark', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#1d232a','base-200':'#15191e','base-300':'#212830','base-content':'#ecf9ff','primary':'#605dff','primary-content':'#edf1fe','secondary':'#f43098','secondary-content':'#f9e4f0','accent':'#00d3bb','accent-content':'#084d49','neutral':'#09090b','neutral-content':'#e4e4e7','info':'#00bafe','info-content':'#042e49','success':'#00d390','success-content':'#004c39','warning':'#fcb700','warning-content':'#793205','error':'#ff627d','error-content':'#4d0218'} },
-  light:{ name:'Light', id:'light', scheme:'light', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#ffffff','base-200':'#eeeeee','base-300':'#eeeeee','base-content':'#18181b','primary':'#422ad5','primary-content':'#e0e7ff','secondary':'#f43098','secondary-content':'#f9e4f0','accent':'#00d3bb','accent-content':'#084d49','neutral':'#09090b','neutral-content':'#e4e4e7','info':'#00bafe','info-content':'#042e49','success':'#00d390','success-content':'#084d49','warning':'#fcb700','warning-content':'#793205','error':'#ff627d','error-content':'#4d0218'} },
-  oled:{ name:'OLED', id:'oled', scheme:'dark', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#141414','base-200':'#000000','base-300':'#181818','base-content':'#ecf9ff','primary':'#605dff','primary-content':'#edf1fe','secondary':'#f43098','secondary-content':'#f9e4f0','accent':'#00d3bb','accent-content':'#084d49','neutral':'#141414','neutral-content':'#ecf9ff','info':'#00bafe','info-content':'#042e49','success':'#00d390','success-content':'#004c39','warning':'#fcb700','warning-content':'#793205','error':'#ff627d','error-content':'#4d0218'} },
-  valentine:{ name:'Valentine', id:'valentine', scheme:'light', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#fcf2f7','base-200':'#f9e4f0','base-300':'#f9e4f0','base-content':'#c5005a','primary':'#f43098','primary-content':'#ffffff','secondary':'#ab44ff','secondary-content':'#f8f3fd','accent':'#71d1fe','accent-content':'#014a70','neutral':'#830c41','neutral-content':'#f9cbe5','info':'#51e8fb','info-content':'#005889','success':'#5ce8b3','success-content':'#006044','warning':'#ff8904','warning-content':'#421104','error':'#f82834','error-content':'#fef2f2'} },
-  dracula:{ name:'Dracula', id:'dracula', scheme:'dark', effects:{'radius-selector':'1.25rem','radius-field':'1.25rem','radius-box':'1.5rem','border':'2px'}, colors:{'base-100':'#282a36','base-200':'#1f202a','base-300':'#303241','base-content':'#f8f8f3','primary':'#ff79c6','primary-content':'#16050e','secondary':'#bd93f9','secondary-content':'#0d0815','accent':'#ffb86c','accent-content':'#160d04','neutral':'#414558','neutral-content':'#d6d7db','info':'#8be9fd','info-content':'#071316','success':'#51fa7b','success-content':'#021505','warning':'#f1fa8c','warning-content':'#141507','error':'#ff5555','error-content':'#160202'} },
-  nord:{ name:'Nord', id:'nord', scheme:'light', effects:{'radius-selector':'0.125rem','radius-field':'0.125rem','radius-box':'0.1875rem','border':'2px'}, colors:{'base-100':'#eceff4','base-200':'#d8dee9','base-300':'#d8dee9','base-content':'#2e3440','primary':'#5e81ac','primary-content':'#03060b','secondary':'#81a1c1','secondary-content':'#06090d','accent':'#88c0d0','accent-content':'#070d10','neutral':'#4c566a','neutral-content':'#d8dee9','info':'#b48ead','info-content':'#0c070b','success':'#a3be8d','success-content':'#0a0d07','warning':'#ebcb8b','warning-content':'#130f07','error':'#bf616a','error-content':'#0d0304'} },
-  coffee:{ name:'Coffee', id:'coffee', scheme:'dark', effects:{'radius-selector':'0.75rem','radius-field':'0.75rem','radius-box':'1rem','border':'2px'}, colors:{'base-100':'#261b25','base-200':'#120a11','base-300':'#2e212d','base-content':'#c59f61','primary':'#db924c','primary-content':'#110802','secondary':'#273e3f','secondary-content':'#bad5d5','accent':'#11576d','accent-content':'#d0dbe0','neutral':'#120c12','neutral-content':'#c9c7c9','info':'#8ecac1','info-content':'#070f0e','success':'#9db787','success-content':'#090c07','warning':'#ffd260','warning-content':'#161003','error':'#fc9581','error-content':'#150806'} },
-  tokyo_night:{ name:'Tokyo Night', id:'tokyo_night', scheme:'dark', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#24283b','base-200':'#1a1b26','base-300':'#414868','base-content':'#c0caf5','primary':'#7aa2f7','primary-content':'#1a1b26','secondary':'#9ece6a','secondary-content':'#1a1b26','accent':'#7dcfff','accent-content':'#1a1b26','neutral':'#414868','neutral-content':'#c0caf5','info':'#7dcfff','info-content':'#1a1b26','success':'#9ece6a','success-content':'#1a1b26','warning':'#e0af68','warning-content':'#1a1b26','error':'#f7768e','error-content':'#1a1b26'} },
-  retro:{ name:'Retro', id:'retro', scheme:'light', effects:{'radius-selector':'0.3125rem','radius-field':'0.3125rem','radius-box':'0.5rem','border':'2px'}, colors:{'base-100':'#ece3ca','base-200':'#e4d8b4','base-300':'#e4d8b4','base-content':'#793205','primary':'#e97072','primary-content':'#801518','secondary':'#b7f6cd','secondary-content':'#00642e','accent':'#d08700','accent-content':'#793205','neutral':'#56524c','neutral-content':'#d4d0ce','info':'#0082ce','info-content':'#fef2c6','success':'#00776f','success-content':'#fef2c6','warning':'#f34700','warning-content':'#fef2c6','error':'#ff6266','error-content':'#7c2808'} },
-  abyss:{ name:'Abyss', id:'abyss', scheme:'dark', effects:{'radius-selector':'0.3125rem','radius-field':'0.3125rem','radius-box':'0.5rem','border':'2px'}, colors:{'base-100':'#001e29','base-200':'#000611','base-300':'#002330','base-content':'#ffd6a7','primary':'#bdff00','primary-content':'#417600','secondary':'#cebef4','secondary-content':'#564775','accent':'#505050','accent-content':'#f8f8f8','neutral':'#003743','neutral-content':'#ffd6a7','info':'#00bafe','info-content':'#042e49','success':'#01df72','success-content':'#022d14','warning':'#ffbf00','warning-content':'#854200','error':'#f04e4f','error-content':'#690000'} },
-  cyberpunk:{ name:'Cyberpunk', id:'cyberpunk', scheme:'light', effects:{'radius-selector':'0','radius-field':'0','radius-box':'0','border':'2px'}, colors:{'base-100':'#fff248','base-200':'#e3d40e','base-300':'#e3d40e','base-content':'#000000','primary':'#ff6596','primary-content':'#180408','secondary':'#00e8ff','secondary-content':'#001316','accent':'#ce74ff','accent-content':'#0f0517','neutral':'#111a3b','neutral-content':'#fff248','info':'#00b5ff','info-content':'#000000','success':'#00a96e','success-content':'#000000','warning':'#ffbe00','warning-content':'#000000','error':'#ff5861','error-content':'#000000'} },
-  aqua:{ name:'Aqua', id:'aqua', scheme:'dark', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#1a368b','base-200':'#162455','base-300':'#1c3992','base-content':'#b8e6fe','primary':'#13ecf3','primary-content':'#015355','secondary':'#966fb3','secondary-content':'#f2f0fc','accent':'#ffe999','accent-content':'#161309','neutral':'#05176c','neutral-content':'#90baff','info':'#2563eb','info-content':'#d2e2ff','success':'#18a34a','success-content':'#000a02','warning':'#d97708','warning-content':'#431700','error':'#ff7265','error-content':'#180403'} },
-  palenight:{ name:'Palenight', id:'palenight', scheme:'dark', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#32374d','base-200':'#292d3e','base-300':'#4b5263','base-content':'#a6accd','primary':'#82aaff','primary-content':'#292d3e','secondary':'#c3e88d','secondary-content':'#292d3e','accent':'#89ddff','accent-content':'#292d3e','neutral':'#444267','neutral-content':'#a6accd','info':'#82aaff','info-content':'#292d3e','success':'#c3e88d','success-content':'#292d3e','warning':'#ffcb6b','warning-content':'#292d3e','error':'#f07178','error-content':'#292d3e'} },
-  horizon:{ name:'Horizon', id:'horizon', scheme:'dark', effects:{'radius-selector':'0.625rem','radius-field':'0.625rem','radius-box':'0.875rem','border':'2px'}, colors:{'base-100':'#1c1e26','base-200':'#16161c','base-300':'#1f222b','base-content':'#6c6f93','primary':'#e95678','primary-content':'#4b1c27','secondary':'#f09383','secondary-content':'#50312c','accent':'#25b2bc','accent-content':'#0d4044','neutral':'#2e303e','neutral-content':'#6c6f93','info':'#21bfc2','info-content':'#0a3738','success':'#09f7a0','success-content':'#03422b','warning':'#fab28e','warning-content':'#49342a','error':'#e9436f','error-content':'#471522'} },
-  dmg:{ name:'Dmg', id:'dmg_theme', scheme:'dark', effects:{'radius-selector':'0','radius-field':'2rem','radius-box':'2rem','border':'2px'}, colors:{'base-100':'#9bbc0f','base-200':'#8bac0f','base-300':'#306230','base-content':'#0f380f','primary':'#306230','primary-content':'#9bbc0f','secondary':'#0f380f','secondary-content':'#9bbc0f','accent':'#8bac0f','accent-content':'#0f380f','neutral':'#306230','neutral-content':'#8bac0f','info':'#306230','info-content':'#9bbc0f','success':'#0f380f','success-content':'#9bbc0f','warning':'#8bac0f','warning-content':'#0f380f','error':'#4a2a0f','error-content':'#9bbc0f'} },
-};
-
-function newModel(){ return { name:'My Custom Theme', id:'my_custom_theme', author:'', scheme:'dark',
-  colors:{}, oklch:{}, effects:{...EFX_DARK}, glass:{...GLASS_DEFAULTS} }; }
-let model = newModel();
-
+/* ---- model ---- */
+function newModel(){ return { name:'My Custom Theme', id:'my_custom_theme', author:'', brightness:'dark', colors:{} }; }
+let model=newModel();
+let corner=3;
 const $=s=>document.querySelector(s);
-const inputs={};
-const efxInputs={};
-const glassInputs={};
+const rows={};
 
 function buildGroups(){
   const root=$('#groups'); root.innerHTML='';
   for(const g of GROUPS){
     const el=document.createElement('div'); el.className='group';
     el.innerHTML=`<h3><span class="n">${g.n}</span>${g.title}</h3><p>${g.desc}</p>`;
-    for(const [field,label,desc] of g.fields){
-      const row=document.createElement('div'); row.className='swatch';
+    for(const [field,label,desc,isOn] of g.fields){
+      const row=document.createElement('div'); row.className='sw';
       row.innerHTML=`
-        <span class="pick"><input type="color" aria-label="${label} color" /></span>
-        <span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span>
+        <span class="pick"><input type="color" aria-label="${label} colour" /></span>
+        <span class="${isOn?'on-row':''}"><span class="nm">${label}</span><span class="ds">${desc}</span></span>
+        <span class="cr"></span>
         <input class="hex" type="text" spellcheck="false" maxlength="7" aria-label="${label} hex" />`;
       const color=row.querySelector('input[type=color]');
       const hex=row.querySelector('.hex');
-      inputs[field]={color,hex,pick:row.querySelector('.pick')};
+      rows[field]={color,hex,pick:row.querySelector('.pick'),cr:row.querySelector('.cr')};
       color.addEventListener('input',()=>setField(field,color.value));
-      hex.addEventListener('input',()=>{ if(/^#?[0-9a-fA-F]{6}$/.test(hex.value)) setField(field,`#${hex.value.replace('#','')}`); });
+      hex.addEventListener('input',()=>{ const h=toHex(hex.value); if(h&&hex.value.replace('#','').length===6) setField(field,h,true); });
       hex.addEventListener('blur',()=>syncOne(field));
       el.appendChild(row);
     }
     root.appendChild(el);
   }
 }
-function buildEffects(){
-  const root=$('#effects'); root.innerHTML='';
-  const el=document.createElement('div'); el.className='group';
-  el.innerHTML=`<h3><span class="n">04</span>Effects</h3><p>daisyUI radius &amp; border.</p>`;
-  for(const [key,label,desc,opts] of EFFECTS){
-    const row=document.createElement('div'); row.className='efx';
-    if(opts==='toggle'){
-      row.innerHTML=`<span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span>
-        <div class="tog" data-k="${key}"><button type="button" data-val="0">Off</button><button type="button" data-val="1">On</button></div>`;
-      row.querySelector('.tog').addEventListener('click',e=>{ const v=e.target.dataset.val; if(v!=null) setEffect(key,v); });
-    }else{
-      const o=opts.map(v=>`<option value="${v}">${v==='0'?'0 (none)':v}</option>`).join('');
-      row.innerHTML=`<span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span><select data-k="${key}">${o}</select>`;
-      row.querySelector('select').addEventListener('change',e=>setEffect(key,e.target.value));
-    }
-    efxInputs[key]=row; el.appendChild(row);
-  }
-  root.appendChild(el);
-}
-function buildGlass(){
-  const root=$('#glass'); root.innerHTML='';
-  const el=document.createElement('div'); el.className='group';
-  el.innerHTML=`<h3><span class="n">05</span>Glass</h3><p>NeoGlass frosted chrome &amp; tile border.</p>`;
-  for(const [key,label,desc,opts] of GLASS){
-    const row=document.createElement('div'); row.className='efx';
-    const o=opts.map(v=>`<option value="${v}">${v==='0'?'0 (none)':v}</option>`).join('');
-    row.innerHTML=`<span class="info"><span class="nm">${label}</span><span class="ds">${desc}</span></span><select data-k="${key}">${o}</select>`;
-    row.querySelector('select').addEventListener('change',e=>setGlass(key,e.target.value));
-    glassInputs[key]=row; el.appendChild(row);
-  }
-  root.appendChild(el);
-}
-function syncGlass(){
-  for(const [key] of GLASS){ const row=glassInputs[key]; if(row) row.querySelector('select').value=String(model.glass[key]); }
-}
-function setGlass(key,val){ model.glass[key]=Number(val)||0; syncGlass(); applyPreview(); renderJson(); }
-function syncEffects(){
-  for(const [key,,,opts] of EFFECTS){
-    const v=model.effects[key];
-    const row=efxInputs[key]; if(!row) continue;
-    if(opts==='toggle') for(const b of row.querySelectorAll('.tog button')) b.classList.toggle('on',b.dataset.val===String(v));
-    else row.querySelector('select').value=v;
-  }
-}
-function setEffect(key,val){ model.effects[key]=val; syncEffects(); applyPreview(); renderJson(); }
 
-function setField(field,hex){ const h=hex.toUpperCase(); model.colors[field]=h; model.oklch[field]=hexToOklch(h); syncOne(field); applyPreview(); renderJson(); }
-function syncOne(field){ const v=model.colors[field];
-const i=inputs[field]; if(!i||!v)return; i.color.value=v; i.hex.value=v; i.pick.style.background=v; }
-function syncAll(){ for(const f in inputs) syncOne(f); }
+function setField(field,hex,fromHex){ model.colors[field]=hex.toUpperCase(); if(!fromHex) syncOne(field); else syncSwatch(field); refresh(); }
+function syncSwatch(field){ const r=rows[field]; const v=model.colors[field]; if(!r||!v) return; r.color.value=v.toLowerCase(); r.pick.style.background=v; }
+function syncOne(field){ syncSwatch(field); const r=rows[field]; if(r) r.hex.value=model.colors[field]; }
+function syncAll(){ for(const f of FIELDS) syncOne(f); }
 
+function syncContrast(){
+  for(const [field,[against,min]] of Object.entries(CONTRAST)){
+    const r=rows[field]; if(!r) continue;
+    const v=Math.min(...against.map(a=>ratio(model.colors[field],model.colors[a])));
+    r.cr.textContent=`${v.toFixed(1)}:1`;
+    r.cr.className=`cr ${v>=min?'ok':'bad'}`;
+    r.cr.title=v>=min?`Readable (needs ${min}:1)`:`Hard to read: needs at least ${min}:1`;
+  }
+}
+
+/* Paints the mock with the model. */
 function applyPreview(){
-  const s=$('#screen');
-  for(const [cssVar,field] of Object.entries(PREVIEW_VARS)) s.style.setProperty(cssVar,model.colors[field]);
-  // daisyUI radius tokens -> preview em scale (×3 keeps the default look); rem maps to em, px stays px
-  const remEm=v=>{ const n=Number.parseFloat(v)||0; return String(v||'').includes('rem')?`${n*3}em`:(n?`${n*3}px`:'0'); };
-  s.style.setProperty('--r-sel',  remEm(model.effects['radius-selector']));
-  s.style.setProperty('--r-field',remEm(model.effects['radius-field']));
-  s.style.setProperty('--r-box',  remEm(model.effects['radius-box']));
-  s.style.setProperty('--brd', model.effects.border!=null?String(model.effects.border):'1px');
-  // NeoGlass: frosted chrome tint/blur + the rim the app draws on system tiles.
-  const glassBlur=Number(model.glass.blur)||0;
-  const glassTransparency=Number(model.glass.transparency)||0;
-  const glassBorder=Number(model.glass.borderWidth)||0;
-  s.style.setProperty('--glass-blur', `${glassBlur*1.4}px`);
-  s.style.setProperty('--glass-pct', `${Math.round(50 + (30 - glassTransparency)/30*28)}%`);
-  s.style.setProperty('--tile-rim', `${(glassBorder*0.09).toFixed(3)}em`);
-  const rail=$('#ledRail');
-  for(const c of rail.querySelectorAll('.led-chip')) c.remove();
-  const order=['primary','secondary','accent','neutral','base-100','base-200','base-300','base-content','info','success','warning','error'];
-  for(const f of order){
-    const chip=document.createElement('span'); chip.className='led-chip';
-    chip.style.background=model.colors[f]; chip.style.color=model.colors[f];
-    if(['primary','secondary','accent','success','error'].includes(f)) chip.setAttribute('data-glow','');
-    chip.title=`${f} ${model.colors[f]}`; rail.appendChild(chip);
+  const app=$('#app'); const c=model.colors;
+  const vars={'--bg':c.background,'--surface':c.surface,'--text':c.text,'--border':c.border,
+    '--sel':c.selection,'--onSel':c.onSelection,'--scard':c.selectedCard,'--onScard':c.onSelectedCard,
+    '--act':c.action,'--onAct':c.onAction,'--btn':c.button,'--onBtn':c.onButton,
+    '--ok':c.success,'--warn':c.warning,'--err':c.error,'--info':c.info};
+  for(const [k,v] of Object.entries(vars)) app.style.setProperty(k,v);
+  // The app's glass rim: a faint white highlight on dark grounds, the text
+  // colour on light ones, where a highlight would vanish.
+  const light=lum(c.background)>0.4;
+  const ink=a=>`color-mix(in srgb, ${c.text} ${a}%, transparent)`;
+  app.style.setProperty('--rimg', light
+    ? `linear-gradient(to bottom right, ${ink(22)} 0%, ${ink(16)} 60%, ${ink(12)} 100%)`
+    : 'linear-gradient(to bottom right, rgba(255,255,255,.08) 0%, rgba(255,255,255,.05) 60%, rgba(255,255,255,.012) 100%)');
+  app.style.setProperty('--rimblend', light?'normal':'plus-lighter');
+  const [rx,rxi]=CORNERS[corner];
+  app.style.setProperty('--rx',rx); app.style.setProperty('--rxi',rxi);
+  const strip=$('#strip');
+  for(const d of strip.querySelectorAll('.dot')) d.remove();
+  for(const f of FIELDS){ const d=document.createElement('span'); d.className='dot'; d.style.background=c[f]; d.title=`${f} ${c[f]}`; strip.appendChild(d); }
+}
+function refresh(){ applyPreview(); syncContrast(); }
+
+/* ---- shared mock pieces ---- */
+function buildHeaders(){
+  for(const h of document.querySelectorAll('[data-hdr]')){
+    h.innerHTML=`
+      <span class="pill search rim"><span class="mask pad-x"></span>Search</span>
+      <span class="bump mask ni-lb" style="left:calc(var(--u)*209)"></span>
+      <span class="tabs rim" style="left:calc(var(--u)*235)">
+        <span class="tab sel"><span class="mask ni-grids"></span></span>
+        <span class="tab"><svg class="ico"><use href="#i-store"/></svg></span>
+        <span class="tab"><span class="mask ni-cloud"></span></span>
+        <span class="tab"><span class="mask ni-trophy"></span></span>
+        <span class="tab"><span class="mask ni-gear"></span></span>
+      </span>
+      <span class="bump mask ni-rb" style="left:calc(var(--u)*411)"></span>
+      <span class="pill status rim"><svg class="ico"><use href="#i-bell"/></svg>15:07<span class="bat"><svg class="ico" viewBox="0 0 26 24"><use href="#i-bat"/></svg>100%</span></span>`;
   }
-  layoutCards();
+  for(const f of document.querySelectorAll('[data-ftr]')){
+    const [id,count,enter]=f.dataset.ftr.split('|');
+    const name=SYSTEMS[id]?.short||id;
+    const countChip=count?`<span class="count">${count}</span>`:'';
+    f.innerHTML=`
+      <span class="pill name rim">${name}${countChip}</span>
+      <span class="pill fbtn opts rim" style="left:calc(var(--u)*463)"><span class="mask pad-menu"></span>Options</span>
+      <span class="pill fbtn enter rim" style="left:calc(var(--u)*557)"><span class="mask pad-a"></span>${enter}</span>`;
+  }
 }
 
-/* Sizes the browse system cards to fill the preview stage with a small margin:
-   the artwork stays 1:1 and the name footer sits below it. */
-function layoutCards(){
-  const cf=document.querySelector('.view.on .cf');
-  const s=$('#screen');
-  if(!cf){ s.style.removeProperty('--ah-center'); s.style.removeProperty('--ah-side'); return; }
-  const cs=getComputedStyle(cf);
-  const fs=Number.parseFloat(cs.fontSize)||16;
-  const gap=Number.parseFloat(cs.gap)||8;
-  const pad=1.1*fs;        // card padding (0.55em each side)
-  const footer=3.0*fs;     // name strip + its padding
-  const availW=cf.clientWidth-6;
-  const availH=cf.clientHeight-4;
-  let art=Math.max(40, availH-footer);
-  const fitW=(availW-2*gap-6*pad)/2.6; // center(1) + two sides(0.8)
-  art=Math.min(art, fitW);
-  s.style.setProperty('--ah-center', `${art.toFixed(1)}px`);
-  s.style.setProperty('--ah-side', `${(art*0.8).toFixed(1)}px`);
+/* The systems grid: six columns, the recent game spanning two. */
+function buildGrid(){
+  // Measured on the device: 92-wide cards, 10 between columns, 7.5 between rows.
+  const cols=6; const x0=18; const w=92; const gap=10; const y0=55; const h=117; const vgap=7.5;
+  const cards=[
+    ['recent',1],['all'],['favorites'],['collections'],['android'],
+    ['arc'],['a2'],['2600'],['cv'],['vect'],['msx'],
+    ['nes'],['sg1k'],['fc'],['cpc'],['sms'],['mark3'],
+    ['lynx'],['neogeo'],['gg'],['snes'],['favorites'],['arc'],
+  ];
+  let col=0; let row=0; let html='';
+  for(const [id,sel] of cards){
+    const span=id==='recent'?2:1;
+    if(col+span>cols){ col=0; row++; }
+    const left=x0+col*(w+gap); const top=y0+row*(h+vgap); const width=w*span+gap*(span-1);
+    const inner=id==='recent'
+      // The last game played: its logo over its own art.
+      ? `<span class="art" style="left:calc(var(--u)*4);top:calc(var(--u)*4);right:calc(var(--u)*4);height:calc(var(--u)*81);background-image:url(/theme-designer/game/bubblebobble-wheel.webp),url(/theme-designer/game/bubblebobble-fanart.webp);background-size:auto 80%,cover"></span>`
+      : id==='all'
+      ? '<span class="art logo-all" style="left:calc(var(--u)*4);top:calc(var(--u)*4);right:calc(var(--u)*4);height:calc(var(--u)*85)"></span>'
+      : `<span class="art" style="left:calc(var(--u)*4);top:calc(var(--u)*4);right:calc(var(--u)*4);height:calc(var(--u)*85);background-image:url(${CDN}${id}.webp)"></span>`;
+    const foot=id==='recent'
+      ? '<span class="foot" style="top:calc(var(--u)*85);height:calc(var(--u)*32)">TIME PLAYED: 4 SECONDS</span>'
+      : `<span class="logo mask" style="top:calc(var(--u)*89);height:calc(var(--u)*26);left:calc(var(--u)*8);right:calc(var(--u)*8);-webkit-mask-image:url(/theme-designer/logos/${id}.webp);mask-image:url(/theme-designer/logos/${id}.webp)"></span>`;
+    html+=`<div class="card rim${sel?' selcard':''}${id==='recent'?' rec':''}" style="left:calc(var(--u)*${left});top:calc(var(--u)*${top});width:calc(var(--u)*${width});height:calc(var(--u)*${h})">${inner}${foot}</div>`;
+    col+=span;
+  }
+  $('#grid').innerHTML=html;
 }
 
-/* ---- Export builder ---- */
-function jsonExport(){
-  const colors={}; for(const f of COLOR_FIELDS) colors[f]=model.colors[f];
-  return JSON.stringify({ name:model.name, id:model.id, author:model.author, colorScheme:model.scheme, colors, effects:{...model.effects,...SIZE_DEFAULTS}, glass:{...model.glass} }, null, 2);
+/* The carousel's chip track, centred on the selected system as in the app. */
+function buildChips(){
+  const chip=(id,sel)=>`<span class="chip rim${sel?' sel':''}">${(SYSTEMS[id]?.short||id).toUpperCase()}</span>`;
+  $('#chips').innerHTML=
+    `<div class="side l">${['sms','pccd','tgcd','gb','tg16','lynx'].map(id=>chip(id)).join('')}</div>`+
+    chip('neogeo',true)+
+    `<div class="side">${['gg','snes','sfc','scd','cps2','jag'].map(id=>chip(id)).join('')}</div>`;
 }
-function renderJson(){}
-function currentExport(){ return jsonExport(); }
 
-function loadModel(m){
+function buildRows(){
+  const games=['007 : Nightfire','Ace Combat Advance','Action Man : Robot Atak','Activision Anthology','Advance Guardian Heroes','Advance Wars','Advance Wars 2 : Black Hole Rising','Aladdin','Alien Hominid','Alienators : Evolution Continues','An American Tail: Fievel’s Gold Rush','Animal Snap : Rescue Them 2 by 2','Army Men : Operation Green'];
+  const heart='<svg class="ico heart"><use href="#i-heart"/></svg>';
+  $('#rows').innerHTML=
+    `<div class="row sel">${heart}<span class="t">Bubble Bobble : Old &amp; New</span><svg class="ico"><use href="#i-download"/></svg></div>`+
+    `<div class="row">${heart}<span class="t">Goodboy Galaxy</span></div>`+
+    games.map(g=>`<div class="row"><span class="t">${g}</span></div>`).join('');
+}
+
+const LEGEND={
+  carousel:'Screen <b>Background</b> · cards, chips and pills <b>Cards</b> with <b>Text</b> · selected tab and chip <b>Selection</b> · game count <b>Selected card</b> · Options and Search <b>Button</b> · Enter <b>Main button</b> · battery <b>Success</b>. The centred card keeps the card colour.',
+  grid:'Selected card (here the last game played) <b>Selected card</b> with its text in <b>Text on selected card</b> · other cards <b>Cards</b> · selected tab <b>Selection</b> · Options <b>Button</b> · Play <b>Main button</b>.',
+  list:'Sidebar, rating, achievements and round buttons are glass: <b>Background</b> let through over the game art · selected game <b>Selection</b> · PLAY <b>Main button</b> · achievement progress <b>Warning</b> · favourite hearts <b>Error</b> · rating star mixes <b>Error</b> and <b>Success</b>. The file name is always white, as in the app.',
+};
+function setView(v){
+  for(const el of document.querySelectorAll('.view')) el.classList.toggle('on',el.dataset.view===v);
+  for(const b of document.querySelectorAll('#viewSeg button')) b.classList.toggle('on',b.dataset.v===v);
+  $('#legend').innerHTML=LEGEND[v];
+}
+function setCorner(i){
+  corner=i;
+  for(const b of document.querySelectorAll('#cornerSeg button')) b.classList.toggle('on',Number(b.dataset.c)===i);
+  applyPreview();
+}
+function setBright(b){ model.brightness=b==='light'?'light':'dark'; for(const x of document.querySelectorAll('#brightSeg button')) x.classList.toggle('on',x.dataset.b===model.brightness); }
+
+/* ---- import / export ---- */
+function snake(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_+|_+$/g,'')||'my_theme'; }
+
+/* Accepts the v2 format and the older daisyUI-style JSON. */
+function fromJson(m){
   const src=m.colors||m;
-  const isOklch=v=>/oklch/i.test(v||'');
-  model=newModel();
-  model.name=m.name||'Imported Theme';
-  model.id=m.id||(m.name||'imported').toLowerCase().replace(/[^a-z0-9]+/g,'_');
-  model.author=m.author||'';
-  model.scheme=m.scheme||m.colorScheme||m.brightness||'dark';
+  const pick=(k,fb)=>toHex(src[k])||fb;
   const base=PRESETS.dark.colors;
-  for(const f of COLOR_FIELDS){
-    const raw=src[f]!=null?src[f]:base[f];
-    if(isOklch(raw)){ model.oklch[f]=raw; model.colors[f]=oklchToHex(raw).toUpperCase(); }
-    else { model.colors[f]=String(raw).toUpperCase(); model.oklch[f]=hexToOklch(raw); }
+  const colors={};
+  if(m.format==='neostation-theme'||src.background!=null){
+    for(const f of FIELDS) colors[f]=pick(f,base[f]);
+  }else{
+    const map={background:'base-100',surface:'base-200',text:'base-content',border:'base-300',
+      selection:'primary',onSelection:'primary-content',selectedCard:'secondary',onSelectedCard:'secondary-content',
+      action:'primary',onAction:'primary-content',button:'base-200',onButton:'base-content',
+      success:'success',warning:'warning',error:'error',info:'info'};
+    for(const f of FIELDS) colors[f]=pick(map[f],base[f]);
   }
-  model.effects={...EFX_DARK, ...(m.effects||{})};
-  model.glass={...GLASS_DEFAULTS};
-  if(m.glass&&typeof m.glass==='object') for(const [k] of GLASS){ if(m.glass[k]!=null) model.glass[k]=Number(m.glass[k])||0; }
-  $('#tName').value=model.name; $('#tId').value=model.id; $('#tAuthor').value=model.author;
-  setBright(model.scheme); syncAll(); syncEffects(); syncGlass(); applyPreview(); renderJson();
+  const b=String(m.brightness||m.colorScheme||m.scheme||'dark').toLowerCase();
+  return { name:m.name||'Imported Theme', id:snake(m.id||m.name), author:m.author||'', brightness:b==='light'?'light':'dark', colors };
 }
-function setBright(b){ model.scheme=b; for(const x of $('#brightSeg').querySelectorAll('button')) x.classList.toggle('on',x.dataset.b===b); }
+function loadModel(m){
+  model=fromJson(m);
+  $('#tName').value=model.name; $('#tId').value=model.id; $('#tAuthor').value=model.author;
+  setBright(model.brightness); syncAll(); refresh();
+}
+function exportJson(){
+  const colors={}; for(const f of FIELDS) colors[f]=model.colors[f];
+  return JSON.stringify({ format:'neostation-theme', version:2, name:model.name, id:snake(model.id||model.name),
+    author:model.author, brightness:model.brightness, colors }, null, 2);
+}
 
 let toastT;
 function toast(msg){ const t=$('#toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),1600); }
 
-function setView(v){
-  for(const el of document.querySelectorAll('.view')) el.classList.toggle('on',el.dataset.view===v);
-  for(const b of document.querySelectorAll('.viewtog button')) b.classList.toggle('on',b.dataset.v===v);
-  $('#legend').innerHTML = v==='browse'
-    ? 'Each system card carries the 1:1 artwork with the name in its footer, wearing the NeoGlass rim. Screen is <b>base-100</b>, cards/chrome <b>base-200</b>, text <b>base-content</b> · active tab uses <b>primary</b> · footer pill + Options + View Mode use <b>neutral</b> · Enter uses <b>accent</b> · count chip uses <b>base-100</b> · count uses <b>base-300</b> outline.'
-    : v==='detail'
-    ? 'Selected list row + Back use <b>primary</b> · "A2600" chip uses <b>primary</b> · action buttons are glass (<b>base-100</b>) · text uses <b>base-content</b>.'
-    : 'Every NeoStation UI role at a glance — buttons, toggles, notifications, battery & storage, badges and dialogs. <b>primary</b> / <b>secondary</b> / <b>accent</b> drive actions · <b>success</b> / <b>warning</b> / <b>info</b> / <b>error</b> drive status · surfaces are <b>base-100/200/300</b>, text <b>base-content</b>.';
-  layoutCards();
-}
-
-function initPresetDropdown(){
-  const dd=$('#presetDD');
-  const btn=dd.querySelector('.dd-btn');
-  const val=dd.querySelector('.dd-val');
-  const menu=dd.querySelector('.dd-menu');
-  let active=-1;
-  const items=[];
-  for(const [k,p] of Object.entries(PRESETS)){
-    const li=document.createElement('li'); li.setAttribute('role','option'); li.dataset.k=k; li.textContent=p.name;
-    li.setAttribute('aria-selected', k==='dark'?'true':'false');
-    if(k==='dark') val.textContent=p.name;
-    li.addEventListener('click',()=>select(k));
-    li.addEventListener('mousemove',()=>setActive(items.indexOf(li)));
-    menu.appendChild(li); items.push(li);
-  }
-  function setActive(i){ for(let n=0;n<items.length;n++) items[n].classList.toggle('active',n===i); active=i;
-    if(items[i]) items[i].scrollIntoView({block:'nearest'}); }
-  function select(k){ const p=PRESETS[k]; val.textContent=p.name;
-    for(const li of items) li.setAttribute('aria-selected', li.dataset.k===k?'true':'false');
-    close();
-    loadModel({name:$('#tName').value,id:$('#tId').value,author:$('#tAuthor').value,scheme:p.scheme,colors:p.colors,effects:p.effects});
-    toast(`${p.name} loaded`); }
-  function open(){ dd.classList.add('open'); btn.setAttribute('aria-expanded','true');
-    setActive(Math.max(0,items.findIndex(li=>li.getAttribute('aria-selected')==='true'))); }
-  function close(){ dd.classList.remove('open'); btn.setAttribute('aria-expanded','false'); for(const li of items) li.classList.remove('active'); }
-  btn.addEventListener('click',e=>{ e.stopPropagation(); dd.classList.contains('open')?close():open(); });
-  btn.addEventListener('keydown',e=>{
-    if(e.key==='ArrowDown'||e.key==='ArrowUp'){ e.preventDefault();
-      if(!dd.classList.contains('open')){ open(); return; }
-      setActive((active+(e.key==='ArrowDown'?1:-1)+items.length)%items.length); }
-    else if(e.key==='Enter'||e.key===' '){ e.preventDefault();
-      if(dd.classList.contains('open')&&active>=0) select(items[active].dataset.k); else open(); }
-    else if(e.key==='Escape'){ close(); }
-  });
-  document.addEventListener('click',e=>{ if(!dd.contains(e.target)) close(); });
-}
-
 function init(){
-  buildGroups(); buildEffects(); buildGlass();
-  initPresetDropdown();
-
-  $('#tName').addEventListener('input',e=>{model.name=e.target.value;renderJson();});
-  $('#tId').addEventListener('input',e=>{model.id=e.target.value.trim().replace(/\s+/g,'_');renderJson();applyPreview();});
-  $('#tAuthor').addEventListener('input',e=>{model.author=e.target.value;renderJson();});
-  $('#brightSeg').addEventListener('click',e=>{const b=e.target.dataset.b; if(b){setBright(b);renderJson();}});
-  document.querySelector('.viewtog').addEventListener('click',e=>{const v=e.target.dataset.v; if(v)setView(v);});
-  window.addEventListener('resize',layoutCards);
-
-  const copy=()=>navigator.clipboard.writeText(currentExport()).then(()=>toast('JSON copied'));
-  $('#copyBtn').addEventListener('click',copy);
+  buildGroups(); buildHeaders(); buildGrid(); buildChips(); buildRows();
+  const sel=$('#preset');
+  for(const [k,p] of Object.entries(PRESETS)){ const o=document.createElement('option'); o.value=k; o.textContent=p.name; sel.appendChild(o); }
+  sel.value='dark';
+  sel.addEventListener('change',()=>{ const p=PRESETS[sel.value];
+    loadModel({name:$('#tName').value,id:$('#tId').value,author:$('#tAuthor').value,brightness:p.brightness,colors:p.colors});
+    toast(`${p.name} loaded`); });
+  $('#tName').addEventListener('input',e=>{ model.name=e.target.value; });
+  $('#tId').addEventListener('input',e=>{ model.id=e.target.value.trim(); });
+  $('#tId').addEventListener('blur',e=>{ model.id=snake(e.target.value); e.target.value=model.id; });
+  $('#tAuthor').addEventListener('input',e=>{ model.author=e.target.value; });
+  $('#brightSeg').addEventListener('click',e=>{ const b=e.target.dataset.b; if(b) setBright(b); });
+  $('#viewSeg').addEventListener('click',e=>{ const v=e.target.dataset.v; if(v) setView(v); });
+  $('#cornerSeg').addEventListener('click',e=>{ const c=e.target.dataset.c; if(c!=null) setCorner(Number(c)); });
+  $('#copyBtn').addEventListener('click',()=>navigator.clipboard.writeText(exportJson()).then(()=>toast('JSON copied')));
   $('#dlBtn').addEventListener('click',()=>{
-    const blob=new Blob([currentExport()],{type:'application/json'});
-    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`${model.id||'theme'}.json`;
+    const blob=new Blob([exportJson()],{type:'application/json'});
+    const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=`${snake(model.id)}.json`;
     a.click(); URL.revokeObjectURL(a.href); toast('Downloaded'); });
   $('#importBtn').addEventListener('click',()=>$('#fileInput').click());
-  $('#fileInput').addEventListener('change',e=>{ const f=e.target.files[0]; if(!f)return;
-    const r=new FileReader(); r.onload=()=>{ try{ loadModel(JSON.parse(r.result)); toast('Imported'); }catch(_err){ toast('Invalid JSON'); } };
+  $('#fileInput').addEventListener('change',e=>{ const f=e.target.files[0]; if(!f) return;
+    const r=new FileReader(); r.onload=()=>{ try{ loadModel(JSON.parse(r.result)); sel.value=''; toast('Imported'); }catch(_err){ toast('Not a theme file'); } };
     r.readAsText(f); e.target.value=''; });
 
-  loadModel({...PRESETS.dark, name:'My Custom Theme', id:'my_custom_theme'}); setView('browse');
+  loadModel({...PRESETS.dark, name:'My Custom Theme', id:'my_custom_theme'});
+  setView('carousel');
 }
 init();
 </script>
