@@ -73,6 +73,7 @@ const integrations = [
   { name: "ScreenScraper", img: "/providers/screenscraper.svg", url: "https://www.screenscraper.fr", role: "Metadata", body: "Box art, screenshots, descriptions and ratings, fetched while you scan." },
   { name: "RomM", img: "/providers/romm.svg", url: "https://romm.app/", role: "ROM manager", body: "Browse and download from your self-hosted RomM library." },
   { name: "RetroArch", img: "/providers/retroarch.svg", url: "https://www.retroarch.com", role: "Emulation", body: "Launches cores directly, alongside standalone emulators." },
+  { name: "NeoAssets", img: "/providers/neoassets.svg", url: "https://neoassets.dev", role: "Art and metadata", body: "Community system art packs and game metadata, shared and reviewed on neoassets.dev.", soon: true },
 ];
 ---
 
@@ -224,7 +225,10 @@ const integrations = [
             class="group grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-5 gap-y-1 border-b border-line py-5 transition-colors hover:bg-ink-2 md:grid-cols-[2.5rem_14rem_10rem_1fr_auto] md:px-3"
           >
             <img src={i.img} alt="" class="h-10 w-10 object-contain" width="40" height="40" loading="lazy" />
-            <span class="font-semibold">{i.name}</span>
+            <span class="flex items-center gap-2 font-semibold">
+              {i.name}
+              {i.soon && <span class="rounded-full border border-start/60 px-2 py-0.5 font-mono text-[0.625rem] font-medium uppercase tracking-[0.08em] text-start">Soon</span>}
+            </span>
             <span class="label hidden md:block">{i.role}</span>
             <span class="col-start-2 text-[0.9375rem] text-bone-2 md:col-start-auto">{i.body}</span>
             <Icon name="heroicons:arrow-up-right" class="row-start-1 col-start-3 h-4 w-4 text-bone-3 transition-colors group-hover:text-bone md:row-start-auto md:col-start-auto" aria-label="opens in a new tab" />
