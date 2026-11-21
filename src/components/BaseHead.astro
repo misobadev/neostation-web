@@ -10,11 +10,10 @@ const { articleDate, description, ogImage, title, twitterCard, twitterImage } = 
 const titleSeparator = "•";
 const siteTitle = `${title} ${titleSeparator} ${siteConfig.title}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const socialImageURL = new URL(ogImage ? ogImage : "/ogImageBig.png", Astro.site).href;
-const twitterImageURL = new URL(
-  twitterImage ? twitterImage : ogImage ? ogImage : "/ogImageSmall.png",
-  Astro.site,
-).href;
+// A new file name (not the same name with new contents) is what makes link
+// previews pick up a changed image: Discord, X and Slack cache by URL.
+const socialImageURL = new URL(ogImage ? ogImage : "/og-image.png", Astro.site).href;
+const twitterImageURL = new URL(twitterImage ? twitterImage : ogImage ? ogImage : "/og-image.png", Astro.site).href;
 const twitterCardType = twitterCard ? twitterCard : "summary_large_image";
 ---
 
@@ -49,6 +48,7 @@ const twitterCardType = twitterCard ? twitterCard : "summary_large_image";
 <meta content={socialImageURL} property="og:image" />
 <meta content="1200" property="og:image:width" />
 <meta content="630" property="og:image:height" />
+<meta content="NeoStation, a retro gaming frontend" property="og:image:alt" />
 {
   articleDate && (
     <>
@@ -67,14 +67,5 @@ const twitterCardType = twitterCard ? twitterCard : "summary_large_image";
 
 {/* Sitemap */}
 <link href="/sitemap-index.xml" rel="sitemap" />
-
-{/* RSS auto-discovery */}
-<link href="/rss.xml" title="Blog" rel="alternate" type="application/rss+xml" />
-<link
-  href="/notes/rss.xml"
-  title="Notes"
-  rel="alternate"
-  type="application/rss+xml"
-/>
 
 <meta content={Astro.generator} name="generator" />

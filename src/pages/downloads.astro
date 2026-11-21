@@ -7,27 +7,23 @@ import type { SiteMeta } from "@/types";
 const meta: SiteMeta = {
   description:
     "Download NeoStation for Windows, Android, Linux and macOS. Free and open source, with system requirements for each platform.",
-  ogImage: "/ogImageBig.png",
   title: "Download",
-  twitterCard: "summary",
-  twitterImage: "/ogImageSmall.png",
 };
 
-const latestVersion = "Beta 0.7.4+89";
-const releaseDate = "May 01, 2026";
+// What crawlers and visitors without JavaScript see; the script below swaps in
+// the latest release from GitHub. Keep it on the newest stable release.
+const fallbackTag = "0.16.1+2134";
+const latestVersion = `Beta ${fallbackTag}`;
+const releaseDate = "Nov 08, 2026";
+const asset = (file: string) =>
+  `https://github.com/misobadev/neostation-frontend/releases/download/v${fallbackTag}/${file}`;
 const releaseUrl =
   "https://github.com/misobadev/neostation-frontend/releases/latest";
-
-const windowsLink =
-  "https://github.com/misobadev/neostation-frontend/releases/download/v0.7.4+89/neostation-windows-x64-0.7.4+89.zip";
-const androidApkLink =
-  "https://github.com/misobadev/neostation-frontend/releases/download/v0.7.4+89/neostation-android-arm64-v8a-0.7.4+89.apk";
-const linuxX64Link =
-  "https://github.com/misobadev/neostation-frontend/releases/download/v0.7.4+89/neostation-linux-x86_64-0.7.4+89.AppImage";
-const linuxArm64Link =
-  "https://github.com/misobadev/neostation-frontend/releases/download/v0.7.4+89/neostation-linux-arm64-0.7.4+89.AppImage";
-const macosLink =
-  "https://github.com/misobadev/neostation-frontend/releases/download/v0.7.4+89/neostation-macos-universal-0.7.4+89.dmg";
+const windowsLink = asset(`neostation-windows-x64-${fallbackTag}.zip`);
+const androidApkLink = asset(`neostation-android-arm64-v8a-${fallbackTag}.apk`);
+const linuxX64Link = asset(`neostation-linux-x86_64-${fallbackTag}.AppImage`);
+const linuxArm64Link = asset(`neostation-linux-arm64-${fallbackTag}.AppImage`);
+const macosLink = asset(`neostation-macos-universal-${fallbackTag}.dmg`);
 
 const platforms = [
   {

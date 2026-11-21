@@ -8,7 +8,6 @@ const meta = {
   description:
     "NeoStation is the free, open-source retro gaming frontend with nothing to set up: pick your ROMs folder and play, on Windows, Android, macOS and Linux.",
   title: "Pick your ROMs. That's it.",
-  ogImage: "/screenshots/neostation-01.webp?v=20261121",
 };
 
 // Same source as the guide's compatibility table
@@ -67,6 +66,23 @@ const controls = [
   { keys: ["LB", "RB"], action: "Switch between library, artwork, achievements and settings" },
 ];
 
+// Tells search engines what NeoStation is. No version number, so it never goes stale.
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "NeoStation",
+  description: meta.description,
+  url: "https://neostation.dev/",
+  applicationCategory: "GameApplication",
+  operatingSystem: "Windows, Android, macOS, Linux",
+  license: "https://www.gnu.org/licenses/gpl-3.0.html",
+  isAccessibleForFree: true,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+  downloadUrl: "https://neostation.dev/downloads/",
+  screenshot: "https://neostation.dev/og-image.png",
+  sameAs: ["https://github.com/misobadev/neostation-frontend"],
+};
+
 const integrations = [
   { name: "NeoSync", img: "/providers/neosync.svg", url: "https://neosync.cloud", role: "Cloud saves", body: "Saves and states follow you between Windows, Android, macOS and Linux." },
   { name: "RetroAchievements", img: "/providers/retroachievements.svg", url: "https://retroachievements.org", role: "Achievements", body: "Sign in once and see your progress for each game, in the game list." },
@@ -78,6 +94,7 @@ const integrations = [
 ---
 
 <PageLayout meta={meta}>
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
   <!-- Hero -->
   <section class="mx-auto max-w-[76rem] px-5 pt-12 md:px-8 md:pt-16">
     <!-- Text beside the screen on wide displays, so the whole screenshot is in view with the pitch -->

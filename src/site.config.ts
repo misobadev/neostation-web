@@ -15,7 +15,7 @@ export const siteConfig: SiteConfig = {
 	},
 	// Used as the default description meta property and webmanifest description
 	description:
-		"NeoStation is a modern, user-centric frontend for retro gaming that prioritizes exceptional UX/UI design and seamless cross-platform compatibility.",
+		"NeoStation is the free, open-source retro gaming frontend with nothing to set up: pick your ROMs folder and play with a controller on Windows, Android, macOS and Linux.",
 	// HTML lang property, found in src/layouts/Base.astro L:18 & astro.config.ts L:48
 	lang: "en-US",
 	// Meta property, found in src/components/BaseHead.astro L:42
