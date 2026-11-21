@@ -65,7 +65,7 @@ brand never borrows a theme colour and the site shows the app as it is, in its s
   in `public/brand/`, `public/favicon.svg`, `public/favicon.png` and `public/icons/apple-touch-icon.png`.
 - On light backgrounds the wordmark is ink and the badge keeps its colours. One-colour versions exist for print.
 - Isotype and app icon come in colour, white and black. The app icon is a square tile with no rounding (stores and
-  launchers apply their own mask) and the badge at 60 % of its width (tested under square, rounded, circle and teardrop masks); the favicon uses 72 % so it reads at 16 px.
+  launchers apply their own mask) and the badge at 50 % of its width (tested under square, rounded, circle and teardrop masks); the favicon uses the same 50 %.
 - Never recolour the bands, reorder them, or use the yellow tile alone as the logo.
 
 ## Colors

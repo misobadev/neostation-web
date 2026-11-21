@@ -16,13 +16,13 @@ const BANDS = ["#4A74FF", "#FF5A4A", "#FFD23F"];
 // Recolour the three bands: null keeps the brand colours, a hex paints all three.
 const badge = (paint) => (paint ? BANDS.reduce((g, c) => g.replaceAll(`fill="${c}"`, `fill="${paint}"`), iconBody) : iconBody);
 
-// App icon: square tile (no rounding, platforms apply their own mask) with the badge at 60 % of the width.
-// Tested under square, rounded-square, circle and teardrop masks: at 60 % the badge's farthest corner sits at
-// 73 % of the radius, well inside Android's adaptive safe zone (92 %), and it does not look small in a square.
+// App icon: square tile (no rounding, platforms apply their own mask) with the badge at 50 % of the width.
+// Tested under square, rounded-square, circle and teardrop masks: at 50 % the badge's farthest corner sits at
+// 61 % of the radius, well inside Android's adaptive safe zone (92 %), with room to breathe in every shape.
 // OPTICAL shifts the badge left: the yellow tile pulls the ink centroid 2.2 % right of the geometric centre,
 // so it is moved back by half of that.
 const OPTICAL = ((0.515 - 0.493) / 2) * 512;
-const tile = (size, { bg = INK, paint = null, fill = 0.6 } = {}) => {
+const tile = (size, { bg = INK, paint = null, fill = 0.5 } = {}) => {
   const s = (size * fill) / BOX.w, tx = (size - BOX.w * s) / 2 - BOX.x * s - OPTICAL * s, ty = (size - BOX.h * s) / 2 - BOX.y * s;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}"><rect width="${size}" height="${size}" fill="${bg}"/>` +
     `<g transform="translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${s.toFixed(4)})">${badge(paint)}</g></svg>\n`;
@@ -51,8 +51,8 @@ for (const [k, paint] of Object.entries(ISOTYPES)) fs.writeFileSync(`public/bran
 for (const [k, opts] of Object.entries(APPICONS)) fs.writeFileSync(`public/brand/neostation-appicon-${k}.svg`, tile(512, opts));
 
 // Favicons and touch icon
-// The favicon keeps a larger badge (72 %) so it still reads at 16 px.
-fs.writeFileSync("public/favicon.svg", tile(64, { fill: 0.72 }));
+// The favicon uses the same proportions as the app icon.
+fs.writeFileSync("public/favicon.svg", tile(64));
 const raster = (svg, size, out) => { fs.writeFileSync("/tmp/ns-tile.svg", svg); execFileSync("rsvg-convert", ["-w", String(size), "-h", String(size), "/tmp/ns-tile.svg", "-o", out]); };
 raster(tile(512), 512, "public/favicon.png");
 fs.mkdirSync("public/icons", { recursive: true });
