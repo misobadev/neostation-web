@@ -28,13 +28,15 @@ const platforms = [
 ];
 
 const slides = [
-  { src: "/screenshots/neostation-01.webp", caption: "Game list with artwork, achievements and the Play prompt" },
-  { src: "/screenshots/neostation-03.webp", caption: "Every system on one screen" },
-  { src: "/screenshots/neostation-02.webp", caption: "Carousel view" },
-  { src: "/screenshots/neostation-04.webp", caption: "RetroAchievements for each game" },
-  { src: "/screenshots/neostation-05.webp", caption: "Themes: the app comes in many colours" },
-  { src: "/screenshots/neostation-09.webp", caption: "Scraping box art and metadata" },
-  { src: "/screenshots/neostation-07.webp", caption: "Cloud saves with NeoSync" },
+  // Shots from a 4:3 handheld fill the frame; the older 16:9 ones are shown whole.
+  { src: "/screenshots/neostation-01.webp", caption: "Carousel view", wide: false },
+  { src: "/screenshots/neostation-03.webp", caption: "Every system on one screen", wide: false },
+  { src: "/screenshots/neostation-02.webp", caption: "Game list with artwork, achievements and the Play prompt", wide: false },
+  { src: "/screenshots/neostation-04.webp", caption: "RetroAchievements for each game", wide: false },
+  { src: "/screenshots/neostation-11.webp", caption: "Your RetroAchievements profile, unlocks and awards", wide: false },
+  { src: "/screenshots/neostation-05.webp", caption: "Themes: the app comes in many colours", wide: false },
+  { src: "/screenshots/neostation-09.webp", caption: "Scraping box art and metadata", wide: false },
+  { src: "/screenshots/neostation-07.webp", caption: "Cloud saves with NeoSync", wide: true },
 ];
 
 const steps = [
@@ -74,54 +76,52 @@ const integrations = [
 
 <PageLayout meta={meta}>
   <!-- Hero -->
-  <section class="mx-auto max-w-[76rem] px-5 pt-14 md:px-8 md:pt-24">
-    <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
-      <div class="lg:col-span-8">
+  <section class="mx-auto max-w-[76rem] px-5 pt-12 md:px-8 md:pt-16">
+    <!-- Text beside the screen on wide displays, so the whole screenshot is in view with the pitch -->
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-center lg:gap-12">
+      <div class="lg:col-span-5">
         <p class="label">Open-source retro gaming frontend</p>
         <h1 class="display mt-5 text-display">All your retro games, everywhere.</h1>
-      </div>
-      <div class="lg:col-span-4 lg:pb-2">
-        <p class="max-w-[36rem] text-lead text-bone-2">
+        <p class="mt-6 max-w-[36rem] text-lead text-bone-2">
           NeoStation turns your ROM collection into one library you play with a controller, on your PC, your TV and
           your handheld.
         </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="/downloads/" class="btn btn-primary btn-lg pl-2">
+            <span class="pad bg-ink text-start" aria-hidden="true">A</span>
+            Download for free
+          </a>
+          <a href="/guide/" class="btn btn-secondary btn-lg">Read the guide</a>
+          <span class="label ml-1">Free · GPL-3.0</span>
+        </div>
       </div>
-    </div>
 
-    <div class="mt-9 flex flex-wrap items-center gap-3">
-      <a href="/downloads/" class="btn btn-primary btn-lg pl-2">
-        <span class="pad bg-ink text-start" aria-hidden="true">A</span>
-        Download for free
-      </a>
-      <a href="/guide/" class="btn btn-secondary btn-lg">Read the guide</a>
-      <span class="label ml-1">Free · GPL-3.0</span>
+      <!-- Screen with LB / RB switcher -->
+      <figure class="lg:col-span-7" data-slider>
+        <div class="screen relative aspect-[4/3]">
+          {slides.map((s, i) => (
+            <img
+              src={s.src}
+              alt={s.caption}
+              width={s.wide ? 1920 : 1280}
+              height={s.wide ? 1080 : 960}
+              class:list={["absolute inset-0 h-full w-full transition-opacity duration-300", s.wide ? "object-contain" : "object-cover", i === 0 ? "opacity-100" : "opacity-0"]}
+              loading={i === 0 ? "eager" : "lazy"}
+              data-slide={i}
+              aria-hidden={i === 0 ? undefined : "true"}
+            />
+          ))}
+        </div>
+        <figcaption class="mt-4 flex items-center justify-between gap-4">
+          <span class="text-[0.9375rem] text-bone-2" data-caption aria-live="polite">{slides[0]!.caption}</span>
+          <span class="flex shrink-0 items-center gap-2">
+            <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-prev aria-label="Previous screenshot">LB</button>
+            <span class="label w-12 text-center" data-count>1 / {slides.length}</span>
+            <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-next aria-label="Next screenshot">RB</button>
+          </span>
+        </figcaption>
+      </figure>
     </div>
-
-    <!-- Screen with LB / RB switcher -->
-    <figure class="mt-14 md:mt-16" data-slider>
-      <div class="screen relative aspect-video">
-        {slides.map((s, i) => (
-          <img
-            src={s.src}
-            alt={s.caption}
-            width="1920"
-            height="1080"
-            class:list={["absolute inset-0 h-full w-full object-cover transition-opacity duration-300", i === 0 ? "opacity-100" : "opacity-0"]}
-            loading={i === 0 ? "eager" : "lazy"}
-            data-slide={i}
-            aria-hidden={i === 0 ? undefined : "true"}
-          />
-        ))}
-      </div>
-      <figcaption class="mt-4 flex items-center justify-between gap-4">
-        <span class="text-[0.9375rem] text-bone-2" data-caption aria-live="polite">{slides[0]!.caption}</span>
-        <span class="flex shrink-0 items-center gap-2">
-          <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-prev aria-label="Previous screenshot">LB</button>
-          <span class="label w-12 text-center" data-count>1 / {slides.length}</span>
-          <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-next aria-label="Next screenshot">RB</button>
-        </span>
-      </figcaption>
-    </figure>
 
     <!-- Platforms -->
     <ul class="mt-14 grid grid-cols-2 border-y border-line md:grid-cols-4">
@@ -157,7 +157,7 @@ const integrations = [
         <img src="/guide/guide-01.webp" alt="A ROMs folder with one subfolder per system" class="h-full w-full object-cover object-left-top" loading="lazy" width="723" height="392" />
       </div>
       <div class="screen aspect-video">
-        <img src="/screenshots/neostation-03.webp" alt="The same collection in NeoStation, one card per system" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
+        <img src="/screenshots/neostation-03.webp" alt="The same collection in NeoStation, one card per system" class="h-full w-full object-cover object-top" loading="lazy" width="1280" height="960" />
       </div>
     </div>
     <p class="mt-4 text-sm text-bone-3">
@@ -191,11 +191,11 @@ const integrations = [
           <img src="/screenshots/neostation-08.webp" alt="Game list with the controller prompts on the left" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
         </div>
         <div class="mt-4 grid grid-cols-2 gap-4">
-          <div class="screen aspect-video">
-            <img src="/screenshots/neostation-06.webp" alt="Game info panel" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
+          <div class="screen aspect-[4/3]">
+            <img src="/screenshots/neostation-06.webp" alt="Box art for each game" class="h-full w-full object-cover" loading="lazy" width="1280" height="960" />
           </div>
-          <div class="screen aspect-video">
-            <img src="/screenshots/neostation-10.webp" alt="A light theme" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
+          <div class="screen aspect-[4/3]">
+            <img src="/screenshots/neostation-10.webp" alt="A light theme" class="h-full w-full object-cover" loading="lazy" width="1280" height="960" />
           </div>
         </div>
       </div>
