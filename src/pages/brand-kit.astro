@@ -10,7 +10,7 @@ const meta = {
     "The NeoStation logo, app icon, colours and typefaces, with downloads and usage rules for articles, videos and community projects.",
 };
 
-const kit = { href: "/brand/neostation-brand-kit.zip", size: "628 KB" };
+const kit = { href: "/brand/neostation-brand-kit.zip", size: "752 KB" };
 
 const logos = [
   { file: "neostation-logo.svg", title: "Logo for dark backgrounds", note: "Bone wordmark. The default version.", bg: "bg-ink" },
@@ -47,11 +47,12 @@ const variants = [
 ];
 
 const colours = [
-  { name: "Start", hex: "#FFD23F", rgb: "255 210 63", role: "The brand colour. One main action per screen.", text: "text-ink" },
+  { name: "Sand", hex: "#EBD196", rgb: "235 209 150", role: "The console. The colour of the logo.", text: "text-ink" },
   { name: "Red", hex: "#FF5A4A", rgb: "255 90 74", role: "Speed trail, next to the console.", text: "text-ink" },
-  { name: "Blue", hex: "#4A74FF", rgb: "74 116 255", role: "Speed trail, the farthest stripe.", text: "text-ink" },
-  { name: "Slate", hex: "#4A4C58", rgb: "74 76 88", role: "The console's screen.", text: "text-bone" },
-  { name: "Deep yellow", hex: "#E0A800", rgb: "224 168 0", role: "The console's controls.", text: "text-ink" },
+  { name: "Orange", hex: "#FF8A1F", rgb: "255 138 31", role: "Speed trail, the farthest stripe.", text: "text-ink" },
+  { name: "Espresso", hex: "#3B3A36", rgb: "59 58 54", role: "The console's screen.", text: "text-bone" },
+  { name: "Toffee", hex: "#C29F5E", rgb: "194 159 94", role: "The console's controls.", text: "text-ink" },
+  { name: "Start", hex: "#FFD23F", rgb: "255 210 63", role: "The website's one main action per screen.", text: "text-ink" },
   { name: "Cabinet", hex: "#111216", rgb: "17 18 22", role: "Backgrounds and text on colour.", text: "text-bone" },
   { name: "Bone", hex: "#F1EDE4", rgb: "241 237 228", role: "Wordmark and text on dark.", text: "text-ink" },
 ];
@@ -99,8 +100,8 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
     <div class="mt-6 grid gap-6 lg:grid-cols-12">
       <h2 class="heading text-h2 lg:col-span-7">A retro handheld, leaving a trail of colour.</h2>
       <p class="text-bone-2 lg:col-span-5">
-        A Start-yellow pocket console with a slate screen, a d-pad and a button, leaning at the angle of the wordmark.
-        A red and a blue stripe trail behind it: your library, moving with you from screen to screen.
+        A sand-coloured pocket console with an espresso screen, a d-pad and a button, leaning at the angle of the
+        wordmark. A red and an orange stripe trail behind it: your library, moving with you from screen to screen.
       </p>
     </div>
 
@@ -206,13 +207,13 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
     <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
       <p class="label section-label">Colour</p>
       <div class="mt-6 grid gap-6 lg:grid-cols-12">
-        <h2 class="heading text-h2 lg:col-span-7">Cabinet black, hardware bone, Start yellow.</h2>
+        <h2 class="heading text-h2 lg:col-span-7">Sand console, warm trail, cabinet black.</h2>
         <p class="text-bone-2 lg:col-span-5">
           Text on any brand colour is Cabinet. The brand colours are separate from the app's themes, which each person
           picks for themselves.
         </p>
       </div>
-      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
+      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
         {colours.map((c) => (
           <li class="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink">
             <div class={`flex h-32 items-end p-4 ${c.text}`} style={`background:${c.hex}`}>

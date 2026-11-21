@@ -1,4 +1,4 @@
-// Builds the site's brand files from logos/export (the handheld isotype, tone D).
+// Builds the site's brand files from logos/export (the handheld isotype, "Arena 2" palette).
 // Run: node logos/tools/export-handheld.mjs && node logos/tools/brand-assets.mjs
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -13,8 +13,8 @@ const iconBody = icon.match(/<g id="icon"[^>]*>[\s\S]*?<\/g>/)[0];
 // Drawing box of the isotype inside its 512 box, measured by export-handheld.mjs.
 const BOX = JSON.parse(fs.readFileSync(`${ex}/icon-box.json`, "utf8"));
 // Colour roles: the console and its trail, and the details (screen and controls).
-const COLOURS = ["#4A74FF", "#FF5A4A", "#FFD23F"];
-const DETAILS = ["#4A4C58", "#E0A800"];
+const COLOURS = ["#FF8A1F", "#FF5A4A", "#EBD196"];
+const DETAILS = ["#3B3A36", "#C29F5E"];
 // Recolour: `paint` repaints the console and trail, `detail` repaints screen and controls (null keeps brand colours).
 const badge = ({ paint = null, detail = null } = {}) => {
   let g = iconBody;
@@ -98,11 +98,12 @@ Logo
 Colours
 - Cabinet ink   #111216  background
 - Bone          #F1EDE4  text and wordmark on dark
-- Start yellow  #FFD23F  brand colour, the console body
-- Red           #FF5A4A  speed trail
-- Blue          #4A74FF  speed trail
-- Slate         #4A4C58  console screen
-- Deep yellow   #E0A800  console controls
+- Sand          #EBD196  the console body
+- Red           #FF5A4A  speed trail, next to the console
+- Orange        #FF8A1F  speed trail, the farthest stripe
+- Espresso      #3B3A36  console screen
+- Toffee        #C29F5E  console controls
+- Start yellow  #FFD23F  the website's main action colour
 Text on any brand colour is ink (#111216).
 
 Type

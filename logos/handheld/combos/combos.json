@@ -1,0 +1,101 @@
+[
+ [
+  "1",
+  "Actual (tono D)",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#FFD23F",
+   "screen": "#4A4C58",
+   "ctrl": "#E0A800"
+  }
+ ],
+ [
+  "2",
+  "Botones m\u00e1s oscuros",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#FFD23F",
+   "screen": "#4A4C58",
+   "ctrl": "#C28E00"
+  }
+ ],
+ [
+  "3",
+  "Botones a\u00fan m\u00e1s oscuros",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#FFD23F",
+   "screen": "#4A4C58",
+   "ctrl": "#9C7400"
+  }
+ ],
+ [
+  "4",
+  "Botones grafito",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#FFD23F",
+   "screen": "#4A4C58",
+   "ctrl": "#2E3039"
+  }
+ ],
+ [
+  "5",
+  "Pantalla azul noche",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#FFD23F",
+   "screen": "#2D3A6B",
+   "ctrl": "#B8860B"
+  }
+ ],
+ [
+  "6",
+  "Consola hueso",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#F1EDE4",
+   "screen": "#4A4C58",
+   "ctrl": "#B8B2A4"
+  }
+ ],
+ [
+  "7",
+  "Consola azul, estela c\u00e1lida",
+  {
+   "far": "#FFD23F",
+   "near": "#FF5A4A",
+   "body": "#4A74FF",
+   "screen": "#24252D",
+   "ctrl": "#2F55D9"
+  }
+ ],
+ [
+  "8",
+  "Consola roja, estela fr\u00eda",
+  {
+   "far": "#4A74FF",
+   "near": "#FFD23F",
+   "body": "#FF5A4A",
+   "screen": "#24252D",
+   "ctrl": "#D9402F"
+  }
+ ],
+ [
+  "9",
+  "Consola grafito, pantalla encendida",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#3A3C48",
+   "screen": "#FFD23F",
+   "ctrl": "#5A5D6B"
+  }
+ ]
+]

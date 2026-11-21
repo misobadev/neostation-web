@@ -1,0 +1,123 @@
+[
+ [
+  "ref",
+  "Base elegida (combinaci\u00f3n 2)",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#FFD23F",
+   "screen": "#4A4C58",
+   "ctrl": "#C28E00"
+  }
+ ],
+ [
+  "a",
+  "Arcade cl\u00e1sico: rojo, amarillo, azul",
+  {
+   "far": "#FFD23F",
+   "near": "#4A74FF",
+   "body": "#FF5A4A",
+   "screen": "#2A2B33",
+   "ctrl": "#C23A2C"
+  }
+ ],
+ [
+  "b",
+  "Menta y coral",
+  {
+   "far": "#FF7A59",
+   "near": "#FFB547",
+   "body": "#3DD69B",
+   "screen": "#2C3B36",
+   "ctrl": "#22A877"
+  }
+ ],
+ [
+  "c",
+  "Turquesa y sol",
+  {
+   "far": "#FF5A4A",
+   "near": "#FFD23F",
+   "body": "#22C3B5",
+   "screen": "#24343A",
+   "ctrl": "#14958A"
+  }
+ ],
+ [
+  "d",
+  "Naranja atardecer",
+  {
+   "far": "#4A74FF",
+   "near": "#FF4F7B",
+   "body": "#FF8A1F",
+   "screen": "#3A2E2A",
+   "ctrl": "#D0650A"
+  }
+ ],
+ [
+  "e",
+  "Cielo y lim\u00f3n",
+  {
+   "far": "#FF5A4A",
+   "near": "#FFD23F",
+   "body": "#5BB8FF",
+   "screen": "#253246",
+   "ctrl": "#2F86D1"
+  }
+ ],
+ [
+  "f",
+  "Lima el\u00e9ctrica",
+  {
+   "far": "#4A74FF",
+   "near": "#FF5A4A",
+   "body": "#C6E33F",
+   "screen": "#363C24",
+   "ctrl": "#94AD1F"
+  }
+ ],
+ [
+  "g",
+  "Rosa arcade",
+  {
+   "far": "#FFD23F",
+   "near": "#4A74FF",
+   "body": "#FF5FA2",
+   "screen": "#3A2733",
+   "ctrl": "#D23C7F"
+  }
+ ],
+ [
+  "h",
+  "Amarillo con estela verde y azul",
+  {
+   "far": "#4A74FF",
+   "near": "#33C27A",
+   "body": "#FFD23F",
+   "screen": "#4A4C58",
+   "ctrl": "#C28E00"
+  }
+ ],
+ [
+  "i",
+  "Amarillo con estela coral y menta",
+  {
+   "far": "#3DD69B",
+   "near": "#FF7A59",
+   "body": "#FFD23F",
+   "screen": "#4A4C58",
+   "ctrl": "#C28E00"
+  }
+ ],
+ [
+  "j",
+  "Retro c\u00e1lido: crema, rojo y naranja",
+  {
+   "far": "#FF8A1F",
+   "near": "#FF5A4A",
+   "body": "#F4E3B5",
+   "screen": "#3B3A36",
+   "ctrl": "#C9A96A"
+  }
+ ]
+]

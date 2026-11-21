@@ -1,13 +1,13 @@
-// Exports the final NeoStation logo (handheld, tone D) from logos/handheld into logos/export.
+// Exports the final NeoStation logo (handheld, "Arena 2" palette) from logos/handheld/final into logos/export.
 // Run from the repo root: node logos/tools/export-handheld.mjs
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 
-const SRC = "logos/handheld/tones/D.svg";
-const SRC_ICON = "logos/handheld/tones/D-icon.svg";
+const SRC = "logos/handheld/final/logo-dark.svg";
+const SRC_ICON = "logos/handheld/final/icon.svg";
 const INK = "#111216", BONE = "#F1EDE4";
-export const SCREEN = "#4A4C58", CONTROLS = "#E0A800";
-const COLOURS = ["#4A74FF", "#FF5A4A", "#FFD23F"];
+export const SCREEN = "#3B3A36", CONTROLS = "#C29F5E";
+const COLOURS = ["#FF8A1F", "#FF5A4A", "#EBD196"];
 
 // Tight bounding box of an SVG's drawing, measured on a 4x render (viewBox units).
 function bbox(svg, vbW, vbH) {

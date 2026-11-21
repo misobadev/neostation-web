@@ -1,6 +1,6 @@
 ---
 name: NeoStation Web
-description: A retro handheld on the move. Cabinet black, hardware bone, one Start-yellow action, and blue/red only in the console's trail.
+description: A retro handheld on the move. A sand console with a warm red and orange trail, cabinet black, hardware bone, and one Start-yellow action on the site.
 colors:
   ink: "#111216"        # Cabinet: page ground
   ink-2: "#1a1b21"      # plates, header, footer, inset panels
@@ -9,11 +9,13 @@ colors:
   bone: "#f1ede4"       # Bone: titles, primary text, wordmark (16:1 on ink)
   bone-2: "#b9b4a8"     # body copy (9:1)
   bone-3: "#8d897f"     # captions, labels, meta (5.4:1)
-  start: "#ffd23f"      # Start yellow: the brand colour; the one main action per view, focus ring
-  red: "#ff5a4a"        # speed trail; errors
-  blue: "#4a74ff"       # speed trail; info
-  slate: "#4a4c58"      # the console's screen (logo only)
-  deep-yellow: "#e0a800" # the console's controls (logo only)
+  start: "#ffd23f"      # Start yellow: the site's accent; the one main action per view, focus ring
+  red: "#ff5a4a"        # logo speed trail (near); errors
+  blue: "#4a74ff"       # info only
+  sand: "#ebd196"       # the console (logo only)
+  orange: "#ff8a1f"     # logo speed trail (far) (logo only)
+  espresso: "#3b3a36"   # the console's screen (logo only)
+  toffee: "#c29f5e"     # the console's controls (logo only)
   green: "#33c27a"      # success only
   on-colour: "#111216"  # text on any brand colour is always ink (every pair is 4.6:1 or more)
 typography:
@@ -57,9 +59,10 @@ brand never borrows a theme colour and the site shows the app as it is, in its s
 
 ## Logo
 
-- Isotype **Handheld in motion**: a Start-yellow portrait console with a slate screen (#4A4C58), a d-pad and one
-  button in deep yellow (#E0A800), leaning about 10° (the italic angle of the wordmark), with a red and a blue stripe
-  trailing behind it. Source: `logos/handheld/` (concepts, iterations, tones); the chosen file is tone D of iteration 1.
+- Isotype **Handheld in motion**: a sand (#EBD196) portrait console with an espresso screen (#3B3A36), a d-pad and
+  one button in toffee (#C29F5E), leaning about 10° (the italic angle of the wordmark), with a red (#FF5A4A) and an
+  orange (#FF8A1F) stripe trailing behind it. Source: `logos/handheld/final/` (palette "Arena 2"); the explorations
+  are in `logos/handheld/` (concepts, iterations, tones, combos, palettes).
 - Logotype: "NeoStation" in Bai Jamjuree Bold Italic, mixed case, tracking +0.02em, outlined.
 - Lockup: isotype 1.4 × cap height, centred on the caps, gap 0.55 × cap height.
 - Source of truth: `logos/` (`export/` is the current logo; `export-soft-era/` keeps the previous badge).
@@ -77,8 +80,8 @@ brand never borrows a theme colour and the site shows the app as it is, in its s
 - **Ink** carries every page. Plates are ink-2 with a 1px line; nothing floats on shadows, blur or glow.
 - **Start yellow** marks the single main action of a view (Download), the focus ring and small markers. One yellow
   button per screen at most.
-- **Blue and red** live in the console's trail. In the UI they only mark info and errors. Never use the three together
-  outside the logo, so the logo stays the only place where they meet.
+- **Logo colours** (sand, espresso, toffee, red and orange) stay in the logo. In the UI, red marks errors and blue marks
+  info; Start yellow remains the site's accent for the main action.
 - Text on any brand colour is ink. Text on ink is bone, bone-2 or bone-3.
 - No gradients, no gradient text, no purple.
 
