@@ -1,4 +1,5 @@
 ﻿---
+import PageHero from "@/components/PageHero.astro";
 import PageLayout from "@/layouts/Base.astro";
 import { Icon } from "astro-icon/components";
 import fs from "node:fs";
@@ -7,7 +8,7 @@ import path from "node:path";
 const meta = {
   description:
     "Comprehensive guide to setting up and using NeoStation across all platforms.",
-  title: "User Guide - NeoStation",
+  title: "User guide",
 };
 
 // Automate Folder Compatibility Table
@@ -42,731 +43,582 @@ const neosyncCompatibleCount = sortedSystems.filter(
   (s) => s.neosync.sync,
 ).length;
 
-const systemTypeMeta: Record<string, { label: string; icon: string; color: string }> = {
-  console: { label: "Console", icon: "mdi:television-classic", color: "text-primary" },
-  handheld: { label: "Handheld", icon: "mdi:hand-coin", color: "text-success" },
-  computer: { label: "Computer", icon: "mdi:desktop-tower-monitor", color: "text-info" },
-  virtual: { label: "Virtual", icon: "mdi:memory", color: "text-warning" },
-  arcade: { label: "Arcade", icon: "mdi:gamepad-variant", color: "text-secondary" },
+const systemTypeMeta: Record<string, { label: string; icon: string }> = {
+  console: { label: "Console", icon: "mdi:television-classic" },
+  handheld: { label: "Handheld", icon: "mdi:hand-coin" },
+  computer: { label: "Computer", icon: "mdi:desktop-tower-monitor" },
+  virtual: { label: "Virtual", icon: "mdi:memory" },
+  arcade: { label: "Arcade", icon: "mdi:gamepad-variant" },
 };
 
 const systemTypes = Object.entries(systemTypeMeta);
 
 const toc = [
-  { id: "getting-started", label: "Getting Started", icon: "heroicons:flag" },
-  { id: "installation", label: "Installation", icon: "heroicons:arrow-down-tray" },
+  { id: "getting-started", label: "Getting Started" },
+  { id: "installation", label: "Installation" },
+  { id: "setup-configuration", label: "Setup & Config" },
+  { id: "neosync", label: "Integrations" },
+  { id: "folder-compatibility", label: "Folder Structure" },
+  { id: "wiki", label: "Wiki" },
+];
+
+const integrations = [
   {
-    id: "setup-configuration",
-    label: "Setup & Config",
-    icon: "heroicons:cog-6-tooth",
+    name: "NeoSync",
+    img: "/providers/neosync.svg",
+    role: "Cloud saves",
+    url: "https://neosync.cloud",
+    host: "neosync.cloud",
+    body: "NeoStation's cloud save engine. Saves and states sync atomically across Windows, Android, macOS and Linux, with no manual intervention needed.",
+    tagsLabel: "Emulators",
+    tags: ["RetroArch", "RetroArch32", "RetroArch64", "Eden", "Citro", "NetherSX2"],
+    note: "The Free Plan (4 MB) is enough for thousands of save files. NeoSync is optional: NeoStation works fully offline. RetroArch saves sync on their own; for standalone emulators, set each save folder once in NeoSync → Custom Save Folders.",
+    wiki: "https://wiki.neostation.dev/features/neosync/",
   },
-  { id: "neosync", label: "Integrations", icon: "heroicons:bolt" },
   {
-    id: "folder-compatibility",
-    label: "Folder Structure",
-    icon: "heroicons:folder-open",
+    name: "RomM",
+    img: "/providers/romm.svg",
+    role: "ROM manager",
+    url: "https://romm.app/",
+    host: "romm.app",
+    body: "Self-hosted ROM manager with a web interface. Manage your library from anywhere while keeping full control of your data on your own server.",
+    tagsLabel: "Features",
+    tags: ["Self-hosted", "Web UI", "Metadata", "Multi-user"],
+    note: "Your collection lives on your hardware, full privacy.",
+  },
+  {
+    name: "RetroAchievements",
+    img: "/providers/retroachievements.svg",
+    role: "Achievements",
+    url: "https://retroachievements.org",
+    host: "retroachievements.org",
+    body: "The community achievement system for classic games. Log in with your account and unlock trophies right inside NeoStation.",
+    tagsLabel: "Features",
+    tags: ["Login in-app", "Progress tracking", "Leaderboards"],
+    note: "Systems without RA support are hidden automatically.",
+    wiki: "https://wiki.neostation.dev/features/retroachievements/",
+  },
+  {
+    name: "ScreenScraper",
+    img: "/providers/screenscraper.svg",
+    role: "Metadata",
+    url: "https://www.screenscraper.fr",
+    host: "screenscraper.fr",
+    body: "The largest community game database in emulation. Box art, screenshots, descriptions and release dates, scraped automatically for your whole library.",
+    tagsLabel: "Features",
+    tags: ["Batch scraping", "Box art", "Real game names"],
+    note: "Raw ROM filenames become real game names in the UI.",
+    wiki: "https://wiki.neostation.dev/features/scraping-and-metadata/",
+  },
+  {
+    name: "RetroArch",
+    img: "/providers/retroarch.svg",
+    role: "Emulation",
+    url: "https://www.retroarch.com",
+    host: "retroarch.com",
+    body: "The multi-system emulator frontend at the heart of the retro scene. NeoStation pairs with RetroArch for emulation and deeply integrates its save and state system.",
+    tagsLabel: "Features",
+    tags: ["LibRetro cores", "Save states", "SRAM saves", "Cross-platform"],
+    note: "Cloud saves, achievements and scraping are all built on RetroArch data.",
+    wiki: "https://wiki.neostation.dev/configuration/configuring-emulators/",
   },
 ];
+
+const wikiPages = [
+  { href: "/getting-started/getting-started/", title: "Getting started", body: "Add a ROM folder, scan it and choose an emulator." },
+  { href: "/library/adding-your-games/", title: "Adding your games", body: "ROM folders, subfolders, rescans and Android storage access." },
+  { href: "/library/multi-disc-games/", title: "Multi-disc games", body: "Group disc sets into folders with .m3u playlists automatically." },
+  { href: "/configuration/configuring-emulators/", title: "Configuring emulators", body: "RetroArch cores, standalone executables, PS3 and native ports." },
+  { href: "/features/neosync/", title: "NeoSync", body: "How saves are found, synced, listed and restored, and custom save folders." },
+  { href: "/features/retroachievements/", title: "RetroAchievements", body: "Sign in, match your library, profiles, AOTW and leaderboards." },
+  { href: "/features/scraping-and-metadata/", title: "Scraping & metadata", body: "Connect ScreenScraper and choose media, region and language." },
+  { href: "/platforms/steam-deck-and-steamos/", title: "Steam Deck & SteamOS", body: "Run the AppImage through Steam for proper controller input." },
+  { href: "/troubleshooting/", title: "Troubleshooting", body: "Games missing, launches failing, scraping or sync problems." },
+  { href: "/faqs/", title: "FAQs", body: "Themes, scrapers, social features and other common questions." },
+];
+
+const h2 = "heading mt-6 text-h2";
+const h3 = "text-h3 font-bold leading-[1.2] tracking-[-0.01em]";
+const prose = "max-w-[40rem] text-bone-2 leading-[1.65]";
+const link = "text-bone underline decoration-bone-3 underline-offset-4 transition-colors hover:decoration-bone";
+const code = "rounded-md bg-ink-3 px-1.5 py-0.5 font-mono text-[0.875em] text-bone";
 ---
 <PageLayout meta={meta}>
-  <div class="relative py-12 md:py-20">
-    <div class="max-w-7xl mx-auto px-4">
-      <!-- Hero -->
-      <div class="text-center mb-16">
-        <div
-          class="inline-flex items-center gap-2 px-4 py-2 bg-base-content/5 rounded-full border border-base-content/20 text-xs font-bold text-base-content/70 uppercase tracking-widest mb-6"
-        >
-          <Icon name="heroicons:book-open" class="w-4 h-4 text-primary" />
-          Complete Manual
-        </div>
-        <h1
-          class="text-4xl md:text-6xl font-black text-base-content mb-6 tracking-tight"
-        >
-          User <span class="text-primary">Guide</span>
-        </h1>
-        <div class="max-w-3xl mx-auto">
-          <p class="text-lg md:text-xl text-base-content/60 leading-relaxed mb-10">
-            Master your experience with NeoStation. From basic setup to
-            fine-tuning cloud saves, this complete manual has you covered.
+  <!-- Hero -->
+  <PageHero
+    label="Complete manual"
+    title="User guide."
+    lead="Master your experience with NeoStation. From basic setup to fine-tuning cloud saves, this manual has you covered."
+  >
+    <dl class="mt-12 grid grid-cols-3 border-y border-line">
+      <div class="py-5 pr-4">
+        <dt class="label">Systems supported</dt>
+        <dd class="mt-2 font-mono text-2xl font-semibold text-bone">{emulationCompatibleCount}</dd>
+      </div>
+      <div class="border-l border-line py-5 pl-4 md:pl-6">
+        <dt class="label">NeoSync ready</dt>
+        <dd class="mt-2 font-mono text-2xl font-semibold text-bone">{neosyncCompatibleCount}</dd>
+      </div>
+      <div class="border-l border-line py-5 pl-4 md:pl-6">
+        <dt class="label">Systems tracked</dt>
+        <dd class="mt-2 font-mono text-2xl font-semibold text-bone">{totalSystems}</dd>
+      </div>
+    </dl>
+  </PageHero>
+
+  <div class="mx-auto max-w-[76rem] px-5 pb-22 md:px-8 lg:pb-32">
+    <div class="lg:grid lg:grid-cols-[13rem_minmax(0,1fr)] lg:gap-16">
+      <!-- Table of contents -->
+      <aside class="pt-10 lg:pt-16">
+        <!-- Mobile: collapsible -->
+        <details class="toc-mobile rounded-2xl border border-line bg-ink-2 lg:hidden">
+          <summary class="flex cursor-pointer list-none items-center justify-between px-5 py-4">
+            <span class="label">On this page</span>
+            <Icon name="heroicons:chevron-down" class="toc-chevron h-4 w-4 text-bone-3 transition-transform" aria-hidden="true" />
+          </summary>
+          <ol class="border-t border-line px-5 py-2">
+            {toc.map((item, i) => (
+              <li>
+                <a href={`#${item.id}`} class="flex items-baseline gap-4 py-2.5 text-bone-2 hover:text-bone">
+                  <span class="font-mono text-xs text-bone-3">{String(i + 1).padStart(2, "0")}</span>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+        </details>
+
+        <!-- Desktop: sticky -->
+        <nav class="sticky top-28 hidden lg:block" aria-label="On this page">
+          <p class="label">On this page</p>
+          <ol class="mt-4 border-l border-line">
+            {toc.map((item, i) => (
+              <li>
+                <a href={`#${item.id}`} class="toc-link flex items-baseline gap-3 py-2 pl-4 text-[0.9375rem] text-bone-3 transition-colors hover:text-bone" data-toc={item.id}>
+                  <span class="font-mono text-xs">{String(i + 1).padStart(2, "0")}</span>
+                  {item.label}
+                </a>
+              </li>
+            ))}
+          </ol>
+          <div class="mt-10 border-t border-line pt-5">
+            <p class="text-sm text-bone-3">Need more help? Join our community.</p>
+            <a href="https://discord.gg/xE2kgKsRVq" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm mt-3">
+              <Icon name="simple-icons:discord" class="h-4 w-4" aria-hidden="true" />
+              Discord server
+            </a>
+            <a href="https://wiki.neostation.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm mt-2">
+              <Icon name="heroicons:book-open" class="h-4 w-4" aria-hidden="true" />
+              Wiki
+            </a>
+          </div>
+        </nav>
+      </aside>
+
+      <!-- Content -->
+      <div class="min-w-0">
+        <!-- Getting Started -->
+        <section id="getting-started" class="scroll-mt-24 pt-16 lg:pt-16">
+          <p class="label section-label">01 · Start</p>
+          <h2 class={h2}>Getting started</h2>
+          <ol class="mt-10 max-w-[40rem] border-t border-line">
+            <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 border-b border-line py-5">
+              <span class="font-mono text-sm text-start">01</span>
+              <div>
+                <h3 class="font-semibold text-bone">Download</h3>
+                <p class="mt-1 text-bone-2">Get the application from the <a href="/downloads/" class={link}>downloads page</a>.</p>
+              </div>
+            </li>
+            <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 border-b border-line py-5">
+              <span class="font-mono text-sm text-start">02</span>
+              <div>
+                <h3 class="font-semibold text-bone">Install</h3>
+                <p class="mt-1 text-bone-2">Install the app on your device following the <a href="#installation" class={link}>platform-specific steps</a>.</p>
+              </div>
+            </li>
+            <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 border-b border-line py-5">
+              <span class="font-mono text-sm text-start">03</span>
+              <div>
+                <h3 class="font-semibold text-bone">Add your ROMs</h3>
+                <p class="mt-1 text-bone-2">Open <strong class="font-semibold text-bone">Settings → Directories → Add ROM Folder</strong> and pick the folder that holds your games, organised in the <a href="#folder-compatibility" class={link}>standard structure</a>. You can add up to five folders; use <strong class="font-semibold text-bone">Rescan All ROM Folders</strong> after adding files.</p>
+              </div>
+            </li>
+            <li class="grid grid-cols-[2.5rem_1fr] gap-x-4 border-b border-line py-5">
+              <span class="font-mono text-sm text-start">04</span>
+              <div>
+                <h3 class="font-semibold text-bone">Play</h3>
+                <p class="mt-1 text-bone-2">Open a system, choose its emulator, select a game and press A. NeoStation launches RetroArch or the standalone emulator you picked; emulators are installed separately.</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+
+        <!-- Installation -->
+        <section id="installation" class="scroll-mt-24 pt-16 lg:pt-20">
+          <p class="label section-label">02 · Install</p>
+          <h2 class={h2}>Installation</h2>
+
+          <div class="mt-10 border-t border-line">
+            <!-- Windows -->
+            <article class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-[12rem_minmax(0,1fr)]">
+              <div class="flex items-center gap-3 md:items-start">
+                <Icon name="simple-icons:windows" class="h-5 w-5 shrink-0 text-bone-2 md:mt-1" aria-hidden="true" />
+                <div>
+                  <h3 class={h3}>Windows</h3>
+                  <p class="label mt-1">ZIP · portable</p>
+                </div>
+              </div>
+              <div class="max-w-[40rem]">
+                <p class="text-bone-2">Simple and portable. No installer needed.</p>
+                <p class="mt-3 text-bone-2">Unzip the ZIP file into a folder and run <code class={code}>neostation.exe</code>.</p>
+              </div>
+            </article>
+
+            <!-- Android -->
+            <article class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-[12rem_minmax(0,1fr)]">
+              <div class="flex items-center gap-3 md:items-start">
+                <Icon name="simple-icons:android" class="h-5 w-5 shrink-0 text-bone-2 md:mt-1" aria-hidden="true" />
+                <div>
+                  <h3 class={h3}>Android</h3>
+                  <p class="label mt-1">APK</p>
+                </div>
+              </div>
+              <div class="max-w-[40rem]">
+                <p class="text-bone-2">Optimized for touch and handheld screens.</p>
+                <p class="mt-3 text-bone-2">Install the APK manually from our <a href="/downloads/" class={link}>downloads page</a>.</p>
+                <div class="mt-5 rounded-2xl border border-line bg-ink-2 px-5 py-4" role="note">
+                  <p class="label text-red">Important</p>
+                  <p class="mt-1.5 text-[0.9375rem] text-bone-2">On Android 11+, you must enable "All Files Access" in settings to manage games.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Linux -->
+            <article class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-[12rem_minmax(0,1fr)]">
+              <div class="flex items-center gap-3 md:items-start">
+                <Icon name="simple-icons:linux" class="h-5 w-5 shrink-0 text-bone-2 md:mt-1" aria-hidden="true" />
+                <div>
+                  <h3 class={h3}>Linux</h3>
+                  <p class="label mt-1">AppImage</p>
+                </div>
+              </div>
+              <div class="max-w-[40rem]">
+                <p class="text-bone-2">Universal AppImage support.</p>
+                <pre class="mt-4 overflow-x-auto rounded-2xl border border-line bg-ink-2 px-5 py-4 font-mono text-sm text-bone"><code><span class="select-none text-bone-3">$ </span>chmod +x NeoStation-Linux.AppImage</code></pre>
+                <p class="mt-3 text-bone-2">Make the file executable and run it via terminal or file manager.</p>
+                <div class="mt-5 rounded-2xl border border-line bg-ink-2 px-5 py-4" role="note">
+                  <p class="label">Steam Deck</p>
+                  <p class="mt-1.5 text-[0.9375rem] text-bone-2">Add the x86_64 AppImage to Steam with <strong class="font-semibold text-bone">Games → Add a Non-Steam Game</strong> and launch it from Steam, so the controller works properly. <a href="https://wiki.neostation.dev/platforms/steam-deck-and-steamos/" target="_blank" rel="noopener noreferrer" class={link}>Full steps in the wiki</a>.</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- macOS -->
+            <article class="grid gap-x-8 gap-y-3 border-b border-line py-8 md:grid-cols-[12rem_minmax(0,1fr)]">
+              <div class="flex items-center gap-3 md:items-start">
+                <Icon name="simple-icons:apple" class="h-5 w-5 shrink-0 text-bone-2 md:mt-1" aria-hidden="true" />
+                <div>
+                  <h3 class={h3}>macOS</h3>
+                  <p class="label mt-1">DMG · Intel + Apple silicon</p>
+                </div>
+              </div>
+              <div class="max-w-[40rem]">
+                <p class="text-bone-2">Native DMG for Intel and Apple silicon.</p>
+                <div class="mt-5 rounded-2xl border border-line bg-ink-2 px-5 py-4" role="note">
+                  <p class="label">Note</p>
+                  <p class="mt-1.5 text-[0.9375rem] text-bone-2">If the app is blocked, go to <strong class="font-semibold text-bone">Privacy &amp; Security Settings</strong> and click "Open Anyway".</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- Setup & Configuration -->
+        <section id="setup-configuration" class="scroll-mt-24 pt-16 lg:pt-20">
+          <p class="label section-label">03 · Configure</p>
+          <h2 class={h2}>Setup &amp; configuration</h2>
+
+          <!-- ROMs structure -->
+          <div class="mt-10 grid gap-8 border-t border-line pt-8 xl:grid-cols-[minmax(0,1fr)_20rem]">
+            <div>
+              <h3 class={h3}>ROMs folder structure</h3>
+              <p class:list={[prose, "mt-3"]}>
+                Your ROMs folder must contain subfolders organized by system (e.g. <code class={code}>nes</code>,
+                <code class={code}>snes</code>). NeoStation auto-detects these based on the standard naming convention.
+              </p>
+              <a href="#folder-compatibility" class="btn btn-ghost btn-sm mt-5">
+                View all folder names
+                <Icon name="heroicons:arrow-down" class="h-4 w-4" aria-hidden="true" />
+              </a>
+            </div>
+            <div class="screen self-start">
+              <img src="/guide/guide-01.webp" alt="Example ROMs folder with one subfolder per system" class="block h-auto w-full" width="723" height="392" loading="lazy" />
+            </div>
+          </div>
+
+          <!-- RetroArch Android -->
+          <div class="mt-10 border-t border-line pt-8">
+            <h3 class={h3}>RetroArch (Android) version</h3>
+            <div class="mt-4 max-w-[40rem] rounded-2xl border border-line bg-ink-2 px-5 py-4" role="note">
+              <p class="label text-red">Warning</p>
+              <p class="mt-1.5 text-bone-2">
+                For NeoSync to work on Android, <strong class="font-semibold text-bone">do not use the Play Store version</strong>.
+                It has file restrictions that block cloud saves.
+                <strong class="font-semibold text-bone">Use the version direct from <a href="https://retroarch.com/?page=platforms" target="_blank" rel="noopener noreferrer" class={link}>retroarch.com</a></strong>.
+              </p>
+            </div>
+            <div class="mt-3 max-w-[40rem] rounded-2xl border border-line bg-ink-2 px-5 py-4" role="note">
+              <p class="label">Tip</p>
+              <p class="mt-1.5 text-[0.9375rem] text-bone-2">Back up your saves before switching! Place them in <code class={code}>/RetroArch/saves</code>.</p>
+            </div>
+          </div>
+
+          <!-- Desktop binary -->
+          <div class="mt-10 grid gap-8 border-t border-line pt-8 xl:grid-cols-[minmax(0,1fr)_20rem]">
+            <div>
+              <h3 class={h3}>Desktop binary setup</h3>
+              <p class:list={[prose, "mt-3"]}>
+                On Windows, macOS and Linux, point NeoStation at each emulator once: open
+                <strong class="font-semibold text-bone">Settings → Emulators → Standalone Emulators</strong>, pick the system and the
+                emulator, and select its executable (e.g. <code class={code}>retroarch.exe</code>). On Android the emulator app is
+                opened directly, with no executable to pick.
+              </p>
+              <a href="https://wiki.neostation.dev/configuration/configuring-emulators/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm mt-5">
+                Configuring emulators in the wiki
+                <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-label="opens in a new tab" />
+              </a>
+            </div>
+            <div class="screen self-start">
+              <img src="/guide/guide-03.webp" alt="System settings with the Emulators tab open and RetroArch selected" class="block h-auto w-full" loading="lazy" />
+            </div>
+          </div>
+        </section>
+
+        <!-- Integrations -->
+        <section id="neosync" class="scroll-mt-24 pt-16 lg:pt-20">
+          <p class="label section-label">04 · Connect</p>
+          <h2 class={h2}>Integrations</h2>
+          <p class:list={[prose, "mt-5"]}>
+            NeoStation plugs directly into the services powering the modern emulation scene. Every integration works out
+            of the box.
           </p>
 
-          <div class="flex flex-wrap justify-center gap-3">
-            <div
-              class="inline-flex items-center gap-3 px-5 py-3 bg-primary/10 rounded-2xl border border-primary/20"
-            >
-              <Icon name="heroicons:check-circle" class="w-6 h-6 text-primary" />
-              <div class="text-left">
-                <div class="text-xl font-black text-base-content leading-none">
-                  {emulationCompatibleCount}
+          <ul class="mt-10 border-t border-line">
+            {integrations.map((i) => (
+              <li class="grid gap-x-8 gap-y-4 border-b border-line py-8 md:grid-cols-[12rem_minmax(0,1fr)]">
+                <div class="flex items-center gap-3 md:flex-col md:items-start">
+                  <img src={i.img} alt="" class="h-10 w-10 shrink-0 object-contain" width="40" height="40" loading="lazy" />
+                  <div>
+                    <h3 class={h3}>{i.name}</h3>
+                    <p class="label mt-1">{i.role}</p>
+                  </div>
                 </div>
-                <div class="text-[10px] text-base-content/50 uppercase tracking-widest font-bold mt-1">
-                  Systems Supported
+                <div class="max-w-[40rem]">
+                  <p class="text-bone-2">{i.body}</p>
+                  <dl class="mt-4 flex flex-wrap gap-x-3 gap-y-1">
+                    <dt class="label">{i.tagsLabel}</dt>
+                    <dd class="font-mono text-xs leading-[1.4] text-bone-2">{i.tags.join(" · ")}</dd>
+                  </dl>
+                  <p class="mt-3 text-[0.9375rem] text-bone-3">{i.note}</p>
+                  <div class="mt-5 flex flex-wrap gap-2">
+                    <a href={i.url} target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+                      {i.host}
+                      <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-label="opens in a new tab" />
+                    </a>
+                    {i.wiki && (
+                      <a href={i.wiki} target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">
+                        Setup in the wiki
+                        <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-label="opens in a new tab" />
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div
-              class="inline-flex items-center gap-3 px-5 py-3 bg-info/10 rounded-2xl border border-info/20"
-            >
-              <Icon name="heroicons:cloud-arrow-up" class="w-6 h-6 text-info" />
-              <div class="text-left">
-                <div class="text-xl font-black text-base-content leading-none">
-                  {neosyncCompatibleCount}
-                </div>
-                <div class="text-[10px] text-base-content/50 uppercase tracking-widest font-bold mt-1">
-                  NeoSync Ready
-                </div>
-              </div>
-            </div>
-            <div
-              class="inline-flex items-center gap-3 px-5 py-3 bg-warning/10 rounded-2xl border border-warning/20"
-            >
-              <Icon name="heroicons:globe-alt" class="w-6 h-6 text-warning" />
-              <div class="text-left">
-                <div class="text-xl font-black text-base-content leading-none">
-                  {totalSystems}
-                </div>
-                <div class="text-[10px] text-base-content/50 uppercase tracking-widest font-bold mt-1">
-                  Systems Tracked
-                </div>
-              </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <!-- Folder compatibility -->
+        <section id="folder-compatibility" class="scroll-mt-24 pt-16 lg:pt-20">
+          <p class="label section-label">05 · Folders</p>
+          <h2 class={h2}>Folder structure</h2>
+          <p class:list={[prose, "mt-5"]}>
+            Automatically generated from system metadata. NeoStation auto-detects folders by these standard names.
+          </p>
+          <p class="label mt-4">Systems data v{systemsVersion} · {totalSystems} systems</p>
+
+          <div class="mt-8 flex flex-col gap-4">
+            <label class="flex h-11 items-center gap-3 rounded-full border border-line bg-ink-2 px-4 transition-colors focus-within:border-bone-3">
+              <Icon name="heroicons:magnifying-glass" class="h-4 w-4 shrink-0 text-bone-3" aria-hidden="true" />
+              <span class="sr-only">Search systems</span>
+              <input
+                id="system-search"
+                type="text"
+                class="w-full min-w-0 bg-transparent text-[0.9375rem] text-bone outline-none placeholder:text-bone-3"
+                placeholder="Search systems…"
+                autocomplete="off"
+              />
+            </label>
+            <div class="flex flex-wrap gap-2" id="system-type-filters" role="group" aria-label="Filter by system type">
+              <button type="button" data-type="all" class="type-filter is-active" aria-pressed="true">All</button>
+              {systemTypes.map(([key, t]) => (
+                <button type="button" data-type={key} class="type-filter" aria-pressed="false">
+                  <Icon name={t.icon} class="h-3.5 w-3.5" aria-hidden="true" />
+                  {t.label}
+                </button>
+              ))}
             </div>
           </div>
-        </div>
-      </div>
 
-      <div class="flex flex-col lg:flex-row gap-12 relative items-start">
-        <!-- Sidebar / Table of Contents -->
-        <aside class="lg:w-72 shrink-0 lg:sticky lg:top-24">
-          <div class="card card-border bg-base-200">
-            <div class="card-body p-6">
-              <h3 class="text-sm font-bold text-primary uppercase tracking-widest mb-4">Navigation</h3>
-              <ul class="menu">
-                {toc.map((item) => (
-                  <li><a href={`#${item.id}`} class="flex items-center gap-3 text-sm">
-                    <Icon name={item.icon} class="w-4 h-4 text-primary" />
-                    {item.label}
-                  </a></li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          <div class="card card-border bg-primary/10 mt-6">
-            <div class="card-body items-center text-center">
-              <p class="text-xs text-base-content/60 italic mb-4">Need more help? Join our community.</p>
-              <a href="https://discord.gg/xE2kgKsRVq" target="_blank" class="btn btn-secondary btn-sm btn-block">Discord Server</a>
-            </div>
-          </div>
-        </aside>
-
-        <!-- Main Content Area -->
-        <div class="flex-grow space-y-16">
-          <!-- Getting Started -->
-          <section id="getting-started" class="scroll-mt-24">
-            <div class="flex items-center gap-4 mb-8">
-              <h2
-                class="text-3xl font-bold text-base-content pl-6 border-l-4 border-primary"
-              >
-                Getting Started
-              </h2>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center">
-                      <Icon name="heroicons:arrow-down-tray" class="w-6 h-6 text-primary" />
-                    </div>
-                    <span class="text-4xl font-black text-base-content/10">1</span>
-                  </div>
-                  <h3 class="font-bold text-base-content mb-1">Download</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed">
-                    Get the application from the <a
-                      href="/downloads"
-                      class="text-primary hover:underline font-medium"
-                      >downloads page</a
-                    >.
-                  </p>
-                </div>
-              </div>
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-info/10 flex items-center justify-center">
-                      <Icon name="heroicons:computer-desktop" class="w-6 h-6 text-info" />
-                    </div>
-                    <span class="text-4xl font-black text-base-content/10">2</span>
-                  </div>
-                  <h3 class="font-bold text-base-content mb-1">Install</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed">
-                    Install the app on your device following the platform-specific steps.
-                  </p>
-                </div>
-              </div>
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-warning/10 flex items-center justify-center">
-                      <Icon name="heroicons:folder-open" class="w-6 h-6 text-warning" />
-                    </div>
-                    <span class="text-4xl font-black text-base-content/10">3</span>
-                  </div>
-                  <h3 class="font-bold text-base-content mb-1">Add your ROMs</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed">
-                    Select your ROMs folder, following the <a
-                      href="#folder-compatibility"
-                      class="text-primary hover:underline font-medium"
-                      >standard structure</a
-                    >.
-                  </p>
-                </div>
-              </div>
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div class="flex items-center justify-between mb-4">
-                    <div class="w-12 h-12 rounded-2xl bg-success/10 flex items-center justify-center">
-                      <Icon name="heroicons:rocket-launch" class="w-6 h-6 text-success" />
-                    </div>
-                    <span class="text-4xl font-black text-base-content/10">4</span>
-                  </div>
-                  <h3 class="font-bold text-base-content mb-1">Play</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed">
-                    Launch the app and follow the on-screen instructions to start gaming.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Installation -->
-          <section id="installation" class="scroll-mt-24">
-            <div class="flex items-center gap-4 mb-8">
-              <h2
-                class="text-3xl font-bold text-base-content pl-6 border-l-4 border-primary"
-              >
-                Installation
-              </h2>
-            </div>
-
-            <div class="grid sm:grid-cols-2 gap-6">
-              <!-- Win -->
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div
-                    class="w-14 h-14 rounded-2xl bg-info/10 flex items-center justify-center mb-4"
-                  >
-                    <Icon name="simple-icons:windows" class="w-8 h-8 text-info" />
-                  </div>
-                  <h3 class="text-xl font-bold text-base-content mb-4">Windows</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-6">
-                    Simple and portable. No installer needed.
-                  </p>
-                  <div class="p-4 bg-base-content/5 rounded-2xl border border-base-content/10">
-                    <p class="text-xs text-base-content/70">
-                      Unzip the ZIP file into a folder and run <code
-                        class="text-primary bg-primary/10 px-1.5 py-0.5 rounded font-mono"
-                        >neostation.exe</code
-                      >.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Android -->
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div
-                    class="w-14 h-14 rounded-2xl bg-success/10 flex items-center justify-center mb-4"
-                  >
-                    <Icon name="simple-icons:android" class="w-8 h-8 text-success" />
-                  </div>
-                  <h3 class="text-xl font-bold text-base-content mb-4">Android</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-6">
-                    Optimized for touch and handheld screens.
-                  </p>
-                  <div class="space-y-3">
-                    <div class="alert alert-warning">
-                      <p class="text-xs leading-relaxed">
-                        <strong>Important:</strong> On Android 11+, you must enable "All Files Access" in settings to manage games.
-                      </p>
-                    </div>
-                    <div class="alert alert-info">
-                      <p class="text-xs leading-relaxed">
-                        Install the APK manually from our <a href="/downloads" class="text-primary hover:underline">downloads page</a>.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Linux -->
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div
-                    class="w-14 h-14 rounded-2xl bg-warning/10 flex items-center justify-center mb-4"
-                  >
-                    <Icon name="simple-icons:linux" class="w-8 h-8 text-warning" />
-                  </div>
-                  <h3 class="text-xl font-bold text-base-content mb-4">Linux</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-6">
-                    Universal AppImage support.
-                  </p>
-                  <div
-                    class="bg-base-100 p-3 rounded-xl border border-base-content/10 font-mono text-xs text-warning"
-                  >
-                    chmod +x NeoStation-Linux.AppImage
-                  </div>
-                  <p class="text-xs text-base-content/50 mt-4 leading-relaxed">
-                    Make the file executable and run it via terminal or file
-                    manager.
-                  </p>
-                </div>
-              </div>
-
-              <!-- macOS -->
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div
-                    class="w-14 h-14 rounded-2xl bg-secondary/10 flex items-center justify-center mb-4"
-                  >
-                    <Icon name="simple-icons:apple" class="w-8 h-8 text-secondary" />
-                  </div>
-                  <h3 class="text-xl font-bold text-base-content mb-4">macOS</h3>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-6">
-                    Native DMG for Intel & Silicon.
-                  </p>
-                  <div class="alert alert-warning">
-                    <p class="text-xs leading-relaxed">
-                      If blocked, go to <strong>Privacy &amp; Security Settings</strong> and click "Open Anyway".
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Setup & Configuration -->
-          <section id="setup-configuration" class="scroll-mt-24">
-            <div class="flex items-center gap-4 mb-8">
-              <h2
-                class="text-3xl font-bold text-base-content pl-6 border-l-4 border-primary"
-              >
-                Setup & Configuration
-              </h2>
-            </div>
-
-            <div class="space-y-8">
-              <!-- ROMS Structure -->
-              <div class="card card-border bg-base-200">
-                <div class="card-body">
-                  <div class="flex flex-col xl:flex-row gap-8 items-center">
-                    <div class="flex-grow">
-                      <h3
-                        class="text-xl font-bold text-base-content mb-4 flex items-center gap-3"
-                      >
-                        <Icon
-                          name="heroicons:folder-open"
-                          class="text-warning w-6 h-6"
-                        />
-                        ROMs Folder Structure
-                      </h3>
-                      <p class="text-base-content/60 text-sm leading-relaxed mb-6">
-                        Your ROMs folder must contain subfolders organized by
-                        system (e.g., <code class="text-warning">nes</code>, <code
-                          class="text-warning">snes</code
-                        >). NeoStation will auto-detect these based on the
-                        standard naming convention.
-                      </p>
-                      <a
-                        href="#folder-compatibility"
-                        class="text-xs font-bold text-warning uppercase tracking-widest"
-                        >View all folder names →</a
-                      >
-                    </div>
-                    <div class="shrink-0 max-w-sm">
-                      <img
-                        src="/guide/guide-01.webp"
-                        alt="Structure Example"
-                        class="rounded-2xl border border-base-content/20"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- RetroArch Warning -->
-              <div class="card card-border bg-base-200 relative overflow-hidden">
-                <div class="card-body">
-                  <div class="flex flex-col xl:flex-row gap-8 items-center">
-                    <div class="flex-grow">
-                      <h3
-                        class="text-xl font-bold text-base-content mb-4 flex items-center gap-3"
-                      >
-                        <Icon
-                          name="heroicons:exclamation-circle"
-                          class="text-info w-6 h-6"
-                        />
-                        RetroArch (Android) Version
-                      </h3>
-                      <p class="text-base-content/60 text-sm leading-relaxed mb-6">
-                        For NeoSync to work on Android, **do not use the Play
-                        Store version**. It has file restrictions that block cloud
-                        saves.
-                        <strong
-                          >Use the version direct from <a
-                            href="https://retroarch.com/?page=platforms"
-                            target="_blank"
-                            class="text-info hover:underline">retroarch.com</a
-                          ></strong
-                        >.
-                      </p>
-                      <div class="alert alert-info">
-                        <p class="text-xs italic leading-relaxed">
-                          Backup your saves before switching! Place them in: <code
-                            class="text-info font-mono"
-                            >/RetroArch/saves</code
-                          >
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Desktop Config -->
-              <div class="card card-border bg-base-200">
-                <div class="card-body">
-                  <div class="flex flex-col xl:flex-row gap-8 items-center">
-                    <div class="flex-grow">
-                      <h3
-                        class="text-xl font-bold text-base-content mb-4 flex items-center gap-3"
-                      >
-                        <Icon
-                          name="heroicons:pencil-square"
-                          class="text-info w-6 h-6"
-                        />
-                        Desktop Binary Setup
-                      </h3>
-                      <p class="text-base-content/60 text-sm leading-relaxed mb-6">
-                        On PC/Mac, you must manually point to your emulator
-                        executable (e.g., <code class="text-info"
-                          >retroarch.exe</code
-                        >) in the application's General Settings.
-                      </p>
-                    </div>
-                    <div class="shrink-0 max-w-sm">
-                      <img
-                        src="/guide/guide-03.webp"
-                        alt="Desktop Setup"
-                        class="rounded-2xl border border-base-content/20"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Integrations -->
-          <section id="neosync" class="scroll-mt-24">
-            <div class="flex items-center gap-4 mb-8">
-              <h2
-                class="text-3xl font-bold text-base-content pl-6 border-l-4 border-primary"
-              >
-                Integrations
-              </h2>
-            </div>
-
-            <p class="text-base-content/60 text-sm leading-relaxed mb-8">
-              NeoStation plugs directly into the services powering the modern
-              emulation scene. Every integration works out of the box.
-            </p>
-
-            <!-- Integration Cards -->
-            <div class="grid md:grid-cols-2 gap-6">
-
-              <!-- NeoSync -->
-              <div class="card card-border bg-base-200">
-                <div class="card-body">
-                  <div class="flex items-center gap-4 mb-5">
-                    <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 p-2.5">
-                      <img src="/providers/neosync.svg" alt="NeoSync" class="w-full h-full object-contain" />
-                    </div>
-                    <div>
-                      <h3 class="card-title">NeoSync</h3>
-                      <span class="badge badge-primary badge-sm">Cloud Saves</span>
-                    </div>
-                  </div>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-5">
-                    NeoStation's cloud save engine. Saves and states sync
-                    atomically across Windows, Android, macOS, and Linux, no
-                    manual intervention needed.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-5">
-                    {["RetroArch", "RetroArch32", "RetroArch64", "Eden", "Citro", "NetherSX2"].map((emu) => (
-                      <span class="badge badge-primary badge-outline badge-sm">{emu}</span>
-                    ))}
-                  </div>
-                  <div class="alert alert-info p-3">
-                    <Icon name="heroicons:information-circle" class="w-4 h-4 shrink-0" />
-                    <span class="text-xs text-base-content/60">
-                      <strong class="text-base-content">Free Plan (4 MB)</strong> is enough for thousands of save files. Optional, NeoStation works fully offline.
-                    </span>
-                  </div>
-                  <a href="https://neosync.cloud" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block mt-5">
-                    neosync.cloud <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
-              <!-- RomM -->
-              <div class="card card-border bg-base-200">
-                <div class="card-body">
-                  <div class="flex items-center gap-4 mb-5">
-                    <div class="w-14 h-14 rounded-2xl bg-base-content/5 flex items-center justify-center shrink-0 p-2.5">
-                      <img src="/providers/romm.svg" alt="RomM" class="w-full h-full object-contain" />
-                    </div>
-                    <div>
-                      <h3 class="card-title">RomM</h3>
-                      <span class="badge badge-ghost badge-sm">ROM Manager</span>
-                    </div>
-                  </div>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-5">
-                    Self-hosted ROM manager with a beautiful web interface.
-                    Manage your library from anywhere while keeping full control
-                    of your data on your own server.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-5">
-                    {["Self-hosted", "Web UI", "Metadata", "Multi-user"].map((f) => (
-                      <span class="badge badge-ghost badge-outline badge-sm">{f}</span>
-                    ))}
-                  </div>
-                  <div class="alert alert-info p-3">
-                    <Icon name="heroicons:information-circle" class="w-4 h-4 shrink-0" />
-                    <span class="text-xs text-base-content/60">
-                      Your collection lives on your hardware, full privacy.
-                    </span>
-                  </div>
-                  <a href="https://romm.app/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block mt-5">
-                    romm.app <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
-              <!-- RetroAchievements -->
-              <div class="card card-border bg-base-200">
-                <div class="card-body">
-                  <div class="flex items-center gap-4 mb-5">
-                    <div class="w-14 h-14 rounded-2xl bg-warning/10 flex items-center justify-center shrink-0 p-2.5">
-                      <img src="/providers/retroachievements.svg" alt="RetroAchievements" class="w-full h-full object-contain" />
-                    </div>
-                    <div>
-                      <h3 class="card-title">RetroAchievements</h3>
-                      <span class="badge badge-warning badge-sm">Achievements</span>
-                    </div>
-                  </div>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-5">
-                    The community achievement system for classic games. Login with
-                    your account and unlock trophies right inside NeoStation.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-5">
-                    {["Login in-app", "Progress tracking", "Leaderboards"].map((f) => (
-                      <span class="badge badge-warning badge-outline badge-sm">{f}</span>
-                    ))}
-                  </div>
-                  <div class="alert alert-info p-3">
-                    <Icon name="heroicons:information-circle" class="w-4 h-4 shrink-0" />
-                    <span class="text-xs text-base-content/60">
-                      Systems without RA support are hidden automatically.
-                    </span>
-                  </div>
-                  <a href="https://retroachievements.org" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block mt-5">
-                    retroachievements.org <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
-              <!-- ScreenScraper -->
-              <div class="card card-border bg-base-200">
-                <div class="card-body">
-                  <div class="flex items-center gap-4 mb-5">
-                    <div class="w-14 h-14 rounded-2xl bg-info/10 flex items-center justify-center shrink-0 p-2.5">
-                      <img src="/providers/screenscraper.svg" alt="ScreenScraper" class="w-full h-full object-contain" />
-                    </div>
-                    <div>
-                      <h3 class="card-title">ScreenScraper</h3>
-                      <span class="badge badge-info badge-sm">Metadata</span>
-                    </div>
-                  </div>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-5">
-                    The largest community game database in emulation. Box art,
-                    screenshots, descriptions, and release dates scraped
-                    automatically for your whole library.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-5">
-                    {["Batch scraping", "Box art", "Real game names"].map((f) => (
-                      <span class="badge badge-info badge-outline badge-sm">{f}</span>
-                    ))}
-                  </div>
-                  <div class="alert alert-info p-3">
-                    <Icon name="heroicons:information-circle" class="w-4 h-4 shrink-0" />
-                    <span class="text-xs text-base-content/60">
-                      Raw ROM filenames become real game names in the UI.
-                    </span>
-                  </div>
-                  <a href="https://www.screenscraper.fr" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block mt-5">
-                    screenscraper.fr <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-
-              <!-- RetroArch -->
-              <div class="card card-border bg-base-200 md:col-span-2">
-                <div class="card-body">
-                  <div class="flex items-center gap-4 mb-5">
-                    <div class="w-14 h-14 rounded-2xl bg-success/10 flex items-center justify-center shrink-0 p-2.5">
-                      <img src="/providers/retroarch.svg" alt="RetroArch" class="w-full h-full object-contain" />
-                    </div>
-                    <div>
-                      <h3 class="card-title">RetroArch</h3>
-                      <span class="badge badge-success badge-sm">Emulation</span>
-                    </div>
-                  </div>
-                  <p class="text-base-content/60 text-sm leading-relaxed mb-5">
-                    The multi-system emulator frontend at the heart of the retro
-                    scene. NeoStation pairs with RetroArch for emulation and
-                    deeply integrates its save and state system.
-                  </p>
-                  <div class="flex flex-wrap gap-2 mb-5">
-                    {["LibRetro cores", "Save states", "SRAM saves", "Cross-platform"].map((f) => (
-                      <span class="badge badge-success badge-outline badge-sm">{f}</span>
-                    ))}
-                  </div>
-                  <div class="alert alert-info p-3">
-                    <Icon name="heroicons:information-circle" class="w-4 h-4 shrink-0" />
-                    <span class="text-xs text-base-content/60">
-                      Cloud saves, achievements, and scraping all built on RetroArch data.
-                    </span>
-                  </div>
-                  <a href="https://www.retroarch.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block mt-5">
-                    retroarch.com <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          <!-- Dynamic Folders -->
-          <section id="folder-compatibility" class="scroll-mt-24">
-            <div class="flex items-center gap-4 mb-8">
-              <h2
-                class="text-3xl font-bold text-base-content pl-6 border-l-4 border-primary"
-              >
-                Folder Structure
-              </h2>
-              <div class="flex-grow h-px bg-base-content/5"></div>
-            </div>
-
-            <div class="card card-border bg-base-200 overflow-hidden">
-              <div class="p-6 border-b border-base-content/10 flex flex-col md:flex-row md:items-center gap-4">
-                <p class="text-xs text-base-content/60 italic flex-grow">
-                  Automatically generated from system metadata. NeoStation
-                  auto-detects folders by these standard names.
-                </p>
-                <div class="flex items-center gap-2 text-xs text-base-content/50 font-bold shrink-0">
-                  <Icon name="heroicons:tag" class="w-4 h-4 text-primary" />
-                  v{systemsVersion}
-                </div>
-                <div class="flex items-center gap-2 text-xs text-base-content/50 font-bold shrink-0">
-                  <Icon name="heroicons:squares-2x2" class="w-4 h-4 text-primary" />
-                  {totalSystems} systems
-                </div>
-              </div>
-
-              <div class="p-4 border-b border-base-content/10 bg-base-100/40 space-y-4">
-                <div class="flex flex-col sm:flex-row gap-3">
-                  <label class="input input-bordered input-sm flex items-center gap-2 flex-grow">
-                    <Icon name="heroicons:magnifying-glass" class="w-4 h-4 opacity-50" />
-                    <input
-                      id="system-search"
-                      type="text"
-                      class="grow"
-                      placeholder="Search systems…"
-                    />
-                  </label>
-                </div>
-                <div class="flex flex-wrap gap-2" id="system-type-filters">
-                  <button data-type="all" class="btn btn-xs btn-primary btn-outline">All</button>
-                  {systemTypes.map(([key, t]) => (
-                    <button data-type={key} class="btn btn-xs btn-outline">
-                      <Icon name={t.icon} class={`w-3.5 h-3.5 ${t.color}`} />
-                      {t.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              <div class="overflow-hidden border-t border-base-300">
-                <div class="overflow-x-auto max-h-[32rem] overflow-y-auto">
-                  <table class="w-full text-left text-sm">
-                    <thead class="sticky top-0 z-10 bg-base-300/80 backdrop-blur">
-                      <tr>
-                        <th class="px-4 py-3 text-xs font-bold uppercase tracking-widest text-base-content/50 w-56">System</th>
-                        <th class="px-4 py-3 text-xs font-bold uppercase tracking-widest text-base-content/50 w-64">Folders</th>
-                        <th class="hidden md:table-cell px-4 py-3 text-xs font-bold uppercase tracking-widest text-base-content/50">Extensions</th>
+          <div class="mt-6 max-h-[32rem] overflow-auto rounded-2xl border border-line">
+            <table class="w-full min-w-[34rem] border-collapse text-left text-sm">
+              <thead class="sticky top-0 z-10 bg-ink-2">
+                <tr>
+                  <th scope="col" class="label w-[40%] border-b border-line px-4 py-3 font-medium">System</th>
+                  <th scope="col" class="label border-b border-line px-4 py-3 font-medium">Folders</th>
+                  <th scope="col" class="label hidden border-b border-line px-4 py-3 font-medium md:table-cell">Extensions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {
+                  sortedSystems.map((s) => {
+                    const type = s.system.details?.type ?? "console";
+                    const t = systemTypeMeta[type] ?? { label: "Console", icon: "mdi:television-classic" };
+                    return (
+                      <tr data-system data-name={(s.system.name || "").toLowerCase()} data-type={type} class="border-t border-line transition-colors first:border-t-0 hover:bg-ink-2">
+                        <td class="px-4 py-2.5 align-top">
+                          <div class="flex items-start gap-3">
+                            <Icon name={t.icon} class="mt-0.5 h-4 w-4 shrink-0 text-bone-3" aria-label={t.label} />
+                            <div class="min-w-0">
+                              <div class="font-semibold leading-tight text-bone">{s.system.name}</div>
+                              <div class="mt-0.5 text-xs text-bone-3">{s.system.details?.manufacturer ?? "N/A"}</div>
+                            </div>
+                          </div>
+                        </td>
+                        <td class="px-4 py-2.5 align-top">
+                          <div class="font-mono text-xs leading-relaxed text-bone">
+                            {s.system.folders.join(", ")}
+                          </div>
+                        </td>
+                        <td class="hidden px-4 py-2.5 align-top md:table-cell">
+                          <div class="font-mono text-xs leading-relaxed text-bone-3">
+                            {s.system.extensions?.map((e: string) => `.${e}`).join("  ") ?? "N/A"}
+                          </div>
+                        </td>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {
-                        sortedSystems.map((s) => {
-                          const type = s.system.details?.type ?? "console";
-                          const t = systemTypeMeta[type] ?? { label: "Console", icon: "mdi:television-classic", color: "text-primary" };
-                          return (
-                            <tr data-system data-name={(s.system.name || "").toLowerCase()} data-type={type} class="border-t border-base-300/50 transition-colors hover:bg-base-100/60">
-                              <td class="px-4 py-3">
-                                <div class="flex items-center gap-3">
-                                  <div class={`w-9 h-9 rounded-lg ${t.color === "text-primary" ? "bg-primary/10" : t.color === "text-success" ? "bg-success/10" : t.color === "text-info" ? "bg-info/10" : t.color === "text-warning" ? "bg-warning/10" : "bg-secondary/10"} flex items-center justify-center shrink-0`}>
-                                    <Icon name={t.icon} class={`w-5 h-5 ${t.color}`} />
-                                  </div>
-                                  <div class="min-w-0">
-                                    <div class="font-semibold leading-tight text-base-content">{s.system.name}</div>
-                                    <div class="text-[11px] text-base-content/45">{s.system.details?.manufacturer ?? "N/A"}</div>
-                                  </div>
-                                </div>
-                              </td>
-                              <td class="px-4 py-3">
-                                <div class="font-mono text-xs text-base-content/70 leading-relaxed">
-                                  {s.system.folders.join(", ")}
-                                </div>
-                              </td>
-                              <td class="hidden md:table-cell px-4 py-3">
-                                <div class="font-mono text-xs text-primary/80 leading-relaxed">
-                                  {s.system.extensions?.map((e: string) => `.${e}`).join("  ") ?? "N/A"}
-                                </div>
-                              </td>
-                            </tr>
-                          );
-                        })
-                      }
-                    </tbody>
-                  </table>
-                </div>
-              </div>
+                    );
+                  })
+                }
+              </tbody>
+            </table>
+          </div>
 
-              <div class="p-4 border-t border-base-content/10 text-center">
-                <p class="text-xs text-base-content/50" id="system-results-count">
-                  Showing {totalSystems} systems
-                </p>
-              </div>
-            </div>
-          </section>
+          <p class="mt-4 font-mono text-xs text-bone-3" id="system-results-count" aria-live="polite">
+            Showing {totalSystems} systems
+          </p>
+        </section>
+
+        <!-- Wiki -->
+        <section id="wiki" class="scroll-mt-24 pt-16 lg:pt-20">
+          <p class="label section-label">06 · Wiki</p>
+          <h2 class={h2}>Go deeper in the wiki</h2>
+          <p class:list={[prose, "mt-5"]}>
+            This guide covers the essentials. The NeoStation wiki lives next to the source code and is updated with
+            every release, with step-by-step pages for each feature.
+          </p>
+          <ul class="mt-10 grid border-t border-line md:grid-cols-2">
+            {wikiPages.map((w, n) => (
+              <li class:list={["border-b border-line", n % 2 === 0 && "md:border-r md:pr-6", n % 2 === 1 && "md:pl-6"]}>
+                <a href={`https://wiki.neostation.dev${w.href}`} target="_blank" rel="noopener noreferrer" class="group flex items-start justify-between gap-4 py-5">
+                  <span>
+                    <span class="block font-semibold text-bone">{w.title}</span>
+                    <span class="mt-1 block text-[0.9375rem] text-bone-2">{w.body}</span>
+                  </span>
+                  <Icon name="heroicons:arrow-up-right" class="mt-1 h-4 w-4 shrink-0 text-bone-3 transition-colors group-hover:text-bone" aria-label="opens in a new tab" />
+                </a>
+              </li>
+            ))}
+          </ul>
+          <a href="https://wiki.neostation.dev/" target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-8">
+            Open wiki.neostation.dev
+            <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
+          </a>
+        </section>
+
+        <!-- Help (mobile; desktop has it in the sidebar) -->
+        <div class="mt-16 border-t border-line pt-6 lg:hidden">
+          <p class="text-sm text-bone-3">Need more help? Join our community.</p>
+          <a href="https://discord.gg/xE2kgKsRVq" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm mt-3">
+            <Icon name="simple-icons:discord" class="h-4 w-4" aria-hidden="true" />
+            Discord server
+          </a>
         </div>
       </div>
     </div>
   </div>
 </PageLayout>
 
+<style>
+  /* Table of contents: the current section gets a small Start-yellow bar on the rule */
+  .toc-link {
+    position: relative;
+    margin-left: -1px;
+    border-left: 1px solid transparent;
+  }
+  .toc-link[aria-current="true"] {
+    color: var(--color-bone);
+  }
+  .toc-link[aria-current="true"]::before {
+    content: "";
+    position: absolute;
+    left: -1px;
+    top: 50%;
+    width: 2px;
+    height: 1.25rem;
+    transform: translateY(-50%);
+    border-radius: 2px;
+    background: var(--color-start);
+  }
+
+  .toc-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+  .toc-mobile[open] .toc-chevron {
+    transform: rotate(180deg);
+  }
+
+  /* Type filters: small pills, the active one is bone-filled */
+  .type-filter {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    height: 2rem;
+    padding-inline: 0.875rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-line);
+    color: var(--color-bone-2);
+    font-size: 0.8125rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+      background-color 0.15s ease,
+      border-color 0.15s ease,
+      color 0.15s ease;
+  }
+  .type-filter:hover {
+    color: var(--color-bone);
+    border-color: var(--color-bone-3);
+    background-color: var(--color-ink-3);
+  }
+  .type-filter.is-active {
+    background-color: var(--color-bone);
+    border-color: var(--color-bone);
+    color: var(--color-ink);
+  }
+</style>
+
 <script>
+  // Compatibility table: search and type filters
   const searchInput = document.getElementById("system-search") as HTMLInputElement | null;
   const typeButtons = document.querySelectorAll<HTMLButtonElement>("#system-type-filters button");
   const rows = document.querySelectorAll<HTMLElement>("#folder-compatibility tbody tr[data-system]");
@@ -795,11 +647,53 @@ const toc = [
 
     typeButtons.forEach((btn) => {
       btn.addEventListener("click", () => {
-        typeButtons.forEach((b) => b.classList.remove("btn-primary"));
-        btn.classList.add("btn-primary");
+        typeButtons.forEach((b) => {
+          b.classList.remove("is-active");
+          b.setAttribute("aria-pressed", "false");
+        });
+        btn.classList.add("is-active");
+        btn.setAttribute("aria-pressed", "true");
         activeType = btn.getAttribute("data-type") ?? "all";
         applyFilters();
       });
     });
+  }
+
+  // Table of contents: mark the section being read
+  const tocLinks = document.querySelectorAll<HTMLAnchorElement>("[data-toc]");
+  const sections = [...tocLinks]
+    .map((a) => document.getElementById(a.dataset.toc ?? ""))
+    .filter((s): s is HTMLElement => s !== null);
+
+  if (sections.length > 0) {
+    const setCurrent = () => {
+      const line = window.innerHeight * 0.3;
+      let current = sections[0]!.id;
+      for (const s of sections) {
+        if (s.getBoundingClientRect().top <= line) current = s.id;
+      }
+      // At the bottom of the page the last section is the current one
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = sections[sections.length - 1]!.id;
+      }
+      tocLinks.forEach((a) => {
+        if (a.dataset.toc === current) a.setAttribute("aria-current", "true");
+        else a.removeAttribute("aria-current");
+      });
+    };
+    let ticking = false;
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (ticking) return;
+        ticking = true;
+        requestAnimationFrame(() => {
+          setCurrent();
+          ticking = false;
+        });
+      },
+      { passive: true },
+    );
+    setCurrent();
   }
 </script>

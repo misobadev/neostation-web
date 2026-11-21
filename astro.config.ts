@@ -61,8 +61,8 @@ export default defineConfig({
 				},
 			],
 			start_url: "/",
-			background_color: "#1d2024",
-			theme_color: "#2fa593",
+			background_color: "#111216",
+			theme_color: "#111216",
 			display: "standalone",
 			config: {
 				insertFaviconLinks: false,

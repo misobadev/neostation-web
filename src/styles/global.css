@@ -1,29 +1,63 @@
 @import "tailwindcss";
+@import "@fontsource/bai-jamjuree/latin-400.css";
+@import "@fontsource/bai-jamjuree/latin-500.css";
+@import "@fontsource/bai-jamjuree/latin-600.css";
+@import "@fontsource/bai-jamjuree/latin-700.css";
+@import "@fontsource/bai-jamjuree/latin-700-italic.css";
+@import "@fontsource/bai-jamjuree/latin-ext-400.css";
+@import "@fontsource/bai-jamjuree/latin-ext-700.css";
+@import "@fontsource-variable/jetbrains-mono";
 @plugin "@tailwindcss/typography";
 
 /*
- * NeoStation web design system, modeled on the neosync-web design language
- * (pure Tailwind, no daisyUI). The daisyUI class names used across the pages
- * are re-implemented here as Tailwind utilities so the markup keeps working
- * while the look matches the neosync-web aesthetic.
+ * NeoStation web design system. Tokens and rules are documented in DESIGN.md.
+ * The older component class names (btn, card, badge…) are kept as Tailwind utilities so every page
+ * picks up the same tokens.
  */
 
 @theme {
-	/* Brand + semantic colors */
-	--color-primary: #7c6cff;
-	--color-primary-soft: #9d8bff;
-	--color-secondary: #e879f9;
-	--color-success: #34d399;
-	--color-warning: #fbbf24;
-	--color-error: #f87171;
-	--color-info: #38bdf8;
-	--color-accent: #7c6cff;
+	--font-sans: "Bai Jamjuree", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+	/* Type scale (DESIGN.md): compact headings */
+	--text-display: clamp(2.25rem, 4.4vw, 3.5rem);
+	--text-display--line-height: 1.02;
+	--text-h2: clamp(1.625rem, 2.6vw, 2.125rem);
+	--text-h2--line-height: 1.12;
+	--text-h3: 1.1875rem;
+	--text-h3--line-height: 1.3;
+	--text-lead: 1.0625rem;
+	--text-lead--line-height: 1.6;
 
-	/* Surfaces (dark default) */
-	--color-base-100: #0a0a0c;
-	--color-base-200: #111114;
-	--color-base-300: #1d1d24;
-	--color-base-content: #f4f4f5;
+	--font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+	/* Brand */
+	--color-ink: #111216;
+	--color-ink-2: #1a1b21;
+	--color-ink-3: #24252d;
+	--color-line: #2e3039;
+	--color-bone: #f1ede4;
+	--color-bone-2: #b9b4a8;
+	--color-bone-3: #8d897f;
+	--color-start: #ffd23f;
+	--color-start-hover: #ffdd6b;
+	--color-red: #ff5a4a;
+	--color-blue: #4a74ff;
+	--color-green: #33c27a;
+
+	/* Semantic names used across the pages */
+	--color-primary: var(--color-start);
+	--color-primary-soft: var(--color-start-hover);
+	--color-primary-content: var(--color-ink);
+	--color-secondary: var(--color-blue);
+	--color-accent: var(--color-start);
+	--color-success: var(--color-green);
+	--color-warning: #fbbf24;
+	--color-error: var(--color-red);
+	--color-info: var(--color-blue);
+
+	--color-base-100: var(--color-ink);
+	--color-base-200: var(--color-ink-2);
+	--color-base-300: var(--color-line);
+	--color-base-content: var(--color-bone);
 
 	/* Animations */
 	--animate-fade-in: fade-in 0.4s ease-out both;
@@ -61,19 +95,9 @@
 }
 
 :root {
-	--default-border-color: #1d1d24;
+	--default-border-color: var(--color-line);
 	color-scheme: dark;
-	font-family:
-		"Inter",
-		ui-sans-serif,
-		system-ui,
-		-apple-system,
-		"Segoe UI",
-		Roboto,
-		Helvetica,
-		Arial,
-		sans-serif;
-	font-feature-settings: "cv11", "ss01";
+	font-family: var(--font-sans);
 }
 
 html {
@@ -81,8 +105,8 @@ html {
 }
 
 body {
-	background-color: var(--color-base-100);
-	color: var(--color-base-content);
+	background-color: var(--color-ink);
+	color: var(--color-bone);
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;
 }
@@ -94,12 +118,13 @@ body {
 }
 
 ::selection {
-	background: color-mix(in oklab, var(--color-primary) 35%, transparent);
+	background: var(--color-start);
+	color: var(--color-ink);
 }
 
 :focus-visible {
-	outline: 2px solid color-mix(in oklab, var(--color-primary) 55%, transparent);
-	outline-offset: 2px;
+	outline: 2px solid var(--color-start);
+	outline-offset: 3px;
 }
 
 ::-webkit-scrollbar {
@@ -122,18 +147,7 @@ body {
    Backgrounds
    ------------------------------------------------------------------------- */
 @utility bg-grid {
-	background-image:
-		linear-gradient(
-			to right,
-			color-mix(in oklab, var(--color-base-300) 60%, transparent) 1px,
-			transparent 1px
-		),
-		linear-gradient(
-			to bottom,
-			color-mix(in oklab, var(--color-base-300) 60%, transparent) 1px,
-			transparent 1px
-		);
-	background-size: 44px 44px;
+	background-image: none;
 }
 
 /* -------------------------------------------------------------------------
@@ -141,8 +155,8 @@ body {
    ------------------------------------------------------------------------- */
 @utility card {
 	border-radius: 1rem;
-	border: 1px solid var(--color-base-300);
-	background-color: var(--color-base-200);
+	border: 1px solid var(--color-line);
+	background-color: var(--color-ink-2);
 }
 
 @utility card-border {
@@ -151,15 +165,12 @@ body {
 
 @utility card-hover {
 	transition:
-		border-color 0.2s ease,
-		background-color 0.2s ease,
-		transform 0.2s ease,
-		box-shadow 0.2s ease;
+		border-color 0.15s ease,
+		background-color 0.15s ease;
 
 	&:hover {
-		border-color: color-mix(in oklab, var(--color-primary) 45%, var(--color-base-300));
-		transform: translateY(-2px);
-		box-shadow: 0 12px 32px -16px rgb(0 0 0 / 0.5);
+		border-color: var(--color-bone-3);
+		background-color: var(--color-ink-3);
 	}
 }
 
@@ -187,9 +198,10 @@ body {
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	gap: 0.5rem;
-	border-radius: 0.625rem;
-	font-size: 0.875rem;
+	gap: 0.625rem;
+	min-height: 2.5rem;
+	border-radius: 9999px;
+	font-size: 0.9375rem;
 	font-weight: 600;
 	line-height: 1.25rem;
 	white-space: nowrap;
@@ -198,14 +210,9 @@ body {
 	transition:
 		background-color 0.15s ease,
 		border-color 0.15s ease,
-		color 0.15s ease,
-		box-shadow 0.15s ease,
-		transform 0.15s ease;
-	padding: 0.625rem 1rem;
+		color 0.15s ease;
+	padding: 0.5rem 1.125rem;
 
-	&:active {
-		transform: scale(0.98);
-	}
 	&:disabled {
 		pointer-events: none;
 		opacity: 0.5;
@@ -213,33 +220,34 @@ body {
 }
 
 @utility btn-primary {
-	background-color: var(--color-primary);
-	color: #fff;
+	background-color: var(--color-start);
+	color: var(--color-ink);
 	border: 1px solid transparent;
-	box-shadow: 0 8px 24px -8px color-mix(in oklab, var(--color-primary) 55%, transparent);
 
 	&:hover {
-		background-color: color-mix(in oklab, var(--color-primary) 88%, #000);
+		background-color: var(--color-start-hover);
 	}
 }
 
 @utility btn-secondary {
-	border: 1px solid var(--color-base-300);
-	background-color: var(--color-base-200);
-	color: var(--color-base-content);
+	border: 1px solid var(--color-bone-3);
+	background-color: transparent;
+	color: var(--color-bone);
 
 	&:hover {
-		background-color: var(--color-base-300);
+		border-color: var(--color-bone);
+		background-color: var(--color-ink-3);
 	}
 }
 
 @utility btn-ghost {
-	color: color-mix(in oklab, var(--color-base-content) 65%, transparent);
-	border: 1px solid transparent;
+	color: var(--color-bone-2);
+	border: 1px solid var(--color-line);
 
 	&:hover {
-		color: var(--color-base-content);
-		background-color: var(--color-base-300);
+		color: var(--color-bone);
+		border-color: var(--color-bone-3);
+		background-color: var(--color-ink-3);
 	}
 }
 
@@ -254,18 +262,19 @@ body {
 }
 
 @utility btn-outline {
-	border: 1px solid var(--color-base-300);
+	border: 1px solid var(--color-bone-3);
 	background-color: transparent;
-	color: var(--color-base-content);
+	color: var(--color-bone);
 
 	&:hover {
-		background-color: var(--color-base-300);
+		border-color: var(--color-bone);
+		background-color: var(--color-ink-3);
 	}
 }
 
 @utility btn-lg {
-	height: 3rem;
-	padding-inline: 1.5rem;
+	min-height: 3rem;
+	padding-inline: 1.375rem;
 	font-size: 1rem;
 }
 
@@ -307,9 +316,9 @@ body {
 }
 
 @utility badge-primary {
-	border-color: color-mix(in oklab, var(--color-primary) 40%, transparent);
-	background-color: color-mix(in oklab, var(--color-primary) 14%, transparent);
-	color: var(--color-primary-soft);
+	border-color: color-mix(in oklab, var(--color-start) 45%, transparent);
+	background-color: color-mix(in oklab, var(--color-start) 12%, transparent);
+	color: var(--color-start);
 }
 
 @utility badge-secondary {
@@ -607,15 +616,11 @@ body {
 }
 
 @utility glass {
-	background-color: color-mix(in oklab, var(--color-base-100) 78%, transparent);
-	backdrop-filter: blur(16px) saturate(140%);
+	background-color: var(--color-ink-2);
 }
 
 @utility text-gradient {
-	background-image: linear-gradient(120deg, var(--color-primary-soft), var(--color-secondary));
-	background-clip: text;
-	-webkit-background-clip: text;
-	color: transparent;
+	color: var(--color-bone);
 }
 
 @utility pill {
@@ -676,6 +681,71 @@ body {
 @utility rating {
 	display: inline-flex;
 	align-items: center;
+}
+
+/* -------------------------------------------------------------------------
+   Brand components (see DESIGN.md)
+   ------------------------------------------------------------------------- */
+@utility label {
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	line-height: 1.4;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	color: var(--color-bone-3);
+}
+
+/* mono label followed by a hairline rule */
+@utility section-label {
+	display: flex;
+	align-items: center;
+	gap: 0.875rem;
+
+	&::after {
+		content: "";
+		flex: 1;
+		height: 1px;
+		background: var(--color-line);
+	}
+}
+
+/* the logotype's voice: Bai Jamjuree Bold Italic, used for the hero and big statements only */
+@utility display {
+	font-weight: 700;
+	font-style: italic;
+	letter-spacing: -0.02em;
+	line-height: 1;
+}
+
+@utility heading {
+	font-weight: 700;
+	letter-spacing: -0.015em;
+	line-height: 1.08;
+}
+
+/* controller button glyph: round for A/B/X/Y, pill for LB/RB */
+@utility pad {
+	display: inline-grid;
+	place-items: center;
+	min-width: 1.75rem;
+	height: 1.75rem;
+	padding-inline: 0.5rem;
+	border-radius: 9999px;
+	background: var(--color-ink-3);
+	color: var(--color-bone);
+	font-family: var(--font-mono);
+	font-size: 0.75rem;
+	font-weight: 600;
+	line-height: 1;
+}
+
+/* screenshots framed as a display */
+@utility screen {
+	border-radius: 18px;
+	border: 1px solid var(--color-line);
+	background: var(--color-ink-2);
+	overflow: hidden;
 }
 
 /* base layer tweaks */

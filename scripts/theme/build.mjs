@@ -6,7 +6,7 @@
 // Source of truth is scripts/theme/source.html (the standalone tool). Re-run
 // `npm run build:theme` after updating it. The tool's CSS/DOM are scoped under
 // `.tb` so they can't leak into the rest of the site, and its three fonts are
-// remapped onto the repo's self-hosted families (Sora + JetBrains Mono load
+// remapped onto the repo's self-hosted families (Bai Jamjuree + JetBrains Mono load
 // globally via global.css; Anta is imported by the generated page).
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -32,7 +32,7 @@ css = css.replace(/\n\s*html\{[^}]*\}/g, "");
 css = css.replace(/\n\s*\*\{box-sizing:border-box\}/g, "\n.tb *{box-sizing:border-box}");
 
 // Remap the tool's font families onto the repo's self-hosted fonts.
-// Sora + JetBrains Mono load site-wide (global.css) as *Variable* families;
+// JetBrains Mono loads site-wide (global.css) as a *Variable* family; the body font comes from --font-sans;
 // Anta is added as a dependency and imported by the generated page.
 css = css.replace(/'Sora'/g, "'Sora Variable'");
 css = css.replace(/'JetBrains Mono'/g, "'JetBrains Mono Variable'");
@@ -102,6 +102,7 @@ const page = `---
 // NeoStation Theme Designer — route: /theme-designer/.
 // GENERATED from scripts/theme/source.html by scripts/theme/build.mjs.
 // Do not edit by hand — edit source.html and run \`npm run build:theme\`.
+import PageHero from "@/components/PageHero.astro";
 import Base from "@/layouts/Base.astro";
 import "@fontsource/anta";
 // Page-scoped styles (137 KB, mostly inlined art) — imported here rather than
@@ -110,40 +111,29 @@ import "@/styles/components/theme-designer.css";
 import type { SiteMeta } from "@/types";
 
 const meta: SiteMeta = {
-  title: "Theme Designer - NeoStation",
+  title: "Theme Designer",
   description:
-    "Design a NeoStation theme with a live preview of the System Browser and Game Detail screens, then export it as theme JSON built on daisyUI tokens and share it in our Discord.",
+    "Design a NeoStation theme with a live preview of the System Browser and Game Detail screens, then export it as theme JSON and share it on Discord.",
 };
 ---
 
 <Base meta={meta}>
-  <div class="relative py-12 md:py-20">
-    <div class="max-w-7xl mx-auto px-4">
-      <!-- Hero -->
-      <div class="text-center">
-        <h1
-          class="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
-        >
-          Theme <span class="text-primary">Designer</span>
-        </h1>
-        <div class="max-w-3xl mx-auto">
-          <p class="text-lg md:text-xl text-base-content/60 leading-relaxed">
-            Design your own NeoStation theme with a live preview of the System
-            Browser and Game Detail screens, then export it as theme JSON built
-            on daisyUI colour and radius tokens. Share your themes with the
-            community in our
-            <a
-              href="https://discord.gg/xE2kgKsRVq"
-              target="_blank"
-              rel="noopener"
-              class="text-primary hover:underline">Discord server</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- Intro -->
+  <PageHero
+    label="Theme Designer"
+    title="Make NeoStation yours."
+    lead="Pick colours and corners, watch the System Browser and Game Detail screens update live, then export the theme as JSON."
+  >
+    <a
+      href="https://discord.gg/xE2kgKsRVq"
+      target="_blank"
+      rel="noopener"
+      class="label mt-5 inline-block underline decoration-bone-3 underline-offset-4 transition-colors hover:text-bone hover:decoration-bone"
+      >Share themes on Discord</a
+    >
+  </PageHero>
 
-  <div class="tb">
+  <div class="tb mt-12 md:mt-16">
 ${body
 	.trimEnd()
 	.split("\n")

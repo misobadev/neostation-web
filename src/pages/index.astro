@@ -1,381 +1,294 @@
 ---
+import fs from "node:fs";
+import path from "node:path";
 import { Icon } from "astro-icon/components";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
   description:
-    "NeoStation is a modern, multiplatform retro gaming frontend. Beautiful UI, automatic metadata scraping, achievement tracking, cloud saves and deep integrations with the emulation ecosystem.",
-  title: "NeoStation - Modern Retro Gaming Frontend",
+    "NeoStation is a free, open-source retro gaming frontend for Windows, Android, macOS and Linux. Point it at your ROMs, pick up a controller and play.",
+  title: "All your retro games, everywhere",
   ogImage: "/screenshots/neostation-01.webp",
 };
 
+// Same source as the guide's compatibility table
+const systemsDir = path.resolve("./public/systems");
+const systems = fs
+  .readdirSync(systemsDir)
+  .filter((f) => f.endsWith(".json") && !["all.json", "android.json", "manifest.json"].includes(f))
+  .map((f) => JSON.parse(fs.readFileSync(path.join(systemsDir, f), "utf-8")));
+const systemCount = systems.length;
+
+
 const platforms = [
-  { name: "Windows", icon: "simple-icons:windows", color: "text-info", note: "10 / 11 (64-bit)" },
-  { name: "Android", icon: "simple-icons:android", color: "text-success", note: "7.0+ (API 24+)" },
-  { name: "Linux", icon: "simple-icons:linux", color: "text-warning", note: "AppImage (x64 / ARM64)" },
-  { name: "macOS", icon: "simple-icons:apple", color: "text-secondary", note: "Intel & Apple Silicon" },
+  { name: "Windows", icon: "simple-icons:windows", note: "10 / 11 · x64" },
+  { name: "Android", icon: "simple-icons:android", note: "7.0+ · APK" },
+  { name: "macOS", icon: "simple-icons:apple", note: "Intel + Apple silicon" },
+  { name: "Linux", icon: "simple-icons:linux", note: "AppImage · x64 / ARM64" },
+];
+
+const slides = [
+  { src: "/screenshots/neostation-01.webp", caption: "Game list with artwork, achievements and the Play prompt" },
+  { src: "/screenshots/neostation-03.webp", caption: "Every system on one screen" },
+  { src: "/screenshots/neostation-02.webp", caption: "Carousel view" },
+  { src: "/screenshots/neostation-04.webp", caption: "RetroAchievements for each game" },
+  { src: "/screenshots/neostation-05.webp", caption: "Themes: the app comes in many colours" },
+  { src: "/screenshots/neostation-09.webp", caption: "Scraping box art and metadata" },
+  { src: "/screenshots/neostation-07.webp", caption: "Cloud saves with NeoSync" },
+];
+
+const steps = [
+  {
+    n: "01",
+    title: "Pick your ROMs folder",
+    body: "One folder with a subfolder per system, the layout most collections already use.",
+  },
+  {
+    n: "02",
+    title: "Let it scan",
+    body: `NeoStation detects ${systemCount} systems, then fetches box art, descriptions and ratings for every game.`,
+  },
+  {
+    n: "03",
+    title: "Press A",
+    body: "Games open in RetroArch or the standalone emulator you choose for each system.",
+  },
+];
+
+const controls = [
+  { keys: ["A"], action: "Play the selected game" },
+  { keys: ["B"], action: "Go back" },
+  { keys: ["Y"], action: "Add to favourites" },
+  { keys: ["X"], action: "Change the view" },
+  { keys: ["LB", "RB"], action: "Switch between library, artwork, achievements and settings" },
 ];
 
 const integrations = [
-  { name: "NeoSync", img: "/providers/neosync.svg", url: "https://neosync.cloud", note: "Cloud Saves" },
-  { name: "RomM", img: "/providers/romm.svg", url: "https://romm.app/", note: "ROM Manager" },
-  { name: "RetroAchievements", img: "/providers/retroachievements.svg", url: "https://retroachievements.org", note: "Achievements" },
-  { name: "ScreenScraper", img: "/providers/screenscraper.svg", url: "https://www.screenscraper.fr", note: "Metadata" },
-  { name: "RetroArch", img: "/providers/retroarch.svg", url: "https://www.retroarch.com", note: "Emulation" },
+  { name: "NeoSync", img: "/providers/neosync.svg", url: "https://neosync.cloud", role: "Cloud saves", body: "Saves and states follow you between Windows, Android, macOS and Linux." },
+  { name: "RetroAchievements", img: "/providers/retroachievements.svg", url: "https://retroachievements.org", role: "Achievements", body: "Sign in once and see your progress for each game, in the game list." },
+  { name: "ScreenScraper", img: "/providers/screenscraper.svg", url: "https://www.screenscraper.fr", role: "Metadata", body: "Box art, screenshots, descriptions and ratings, fetched while you scan." },
+  { name: "RomM", img: "/providers/romm.svg", url: "https://romm.app/", role: "ROM manager", body: "Browse and download from your self-hosted RomM library." },
+  { name: "RetroArch", img: "/providers/retroarch.svg", url: "https://www.retroarch.com", role: "Emulation", body: "Launches cores directly, alongside standalone emulators." },
 ];
 ---
 
 <PageLayout meta={meta}>
   <!-- Hero -->
-  <section class="relative overflow-hidden">
-    <div
-      class="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,color-mix(in_oklab,var(--color-primary)_20%,transparent),transparent)] pointer-events-none"
-      aria-hidden="true"
-    ></div>
-    <div class="max-w-7xl mx-auto px-4 relative">
-      <div class="hero py-12 md:py-20">
-        <div class="hero-content text-center max-w-4xl">
-          <div class="space-y-10">
-            <div
-              class="inline-flex items-center gap-2 px-4 py-2 bg-base-content/5 rounded-full border border-base-content/20 text-xs font-bold text-base-content/70 uppercase tracking-widest"
-            >
-              <Icon name="heroicons:sparkles" class="w-4 h-4 text-primary" />
-              Modern Retro Gaming Frontend
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black tracking-tight leading-[1.05]">
-              The <span class="text-primary">Multiplatform</span> Frontend.
-            </h1>
-            <p class="text-lg md:text-xl text-base-content/60 max-w-2xl mx-auto leading-relaxed">
-              A unified gaming experience for Windows, Android, macOS, and Linux.
-              Beautiful UI, automatic metadata scraping, achievement tracking and
-              cross-device save sync, built for the emulation ecosystem.
-            </p>
-            <div class="flex flex-wrap justify-center gap-4">
-              <a href="/downloads/" class="btn btn-primary btn-lg px-8 shadow-xl shadow-primary/20">
-                Get Started
-                <Icon name="heroicons:arrow-right" class="w-5 h-5" />
-              </a>
-              <a href="/guide/" class="btn btn-ghost btn-lg px-8 border border-base-content/20">
-                User Guide
-              </a>
-            </div>
-
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 max-w-2xl mx-auto">
-              {platforms.map((p) => (
-                <div class="card card-border bg-base-200/70">
-                  <div class="card-body flex flex-col items-center gap-3 p-5 text-center min-h-[7.5rem]">
-                    <div class="flex items-center justify-center h-9">
-                      <Icon name={p.icon} class={`w-8 h-8 ${p.color}`} />
-                    </div>
-                    <div class="min-w-0">
-                      <div class="text-sm font-bold leading-tight">{p.name}</div>
-                      <div class="text-[10px] text-base-content/50 leading-snug mt-0.5">{p.note}</div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+  <section class="mx-auto max-w-[76rem] px-5 pt-14 md:px-8 md:pt-24">
+    <div class="grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-8">
+        <p class="label">Open-source retro gaming frontend</p>
+        <h1 class="display mt-5 text-display">All your retro games, everywhere.</h1>
+      </div>
+      <div class="lg:col-span-4 lg:pb-2">
+        <p class="max-w-[36rem] text-lead text-bone-2">
+          NeoStation turns your ROM collection into one library you play with a controller, on your PC, your TV and
+          your handheld.
+        </p>
       </div>
     </div>
-  </section>
 
-  <!-- Screenshot Slider -->
-  <section class="max-w-7xl mx-auto px-4 mb-24">
-    <div class="relative max-w-5xl mx-auto">
-      <div
-        class="relative w-full aspect-video rounded-3xl overflow-hidden shadow-2xl border border-base-content/20 bg-base-200"
-        id="hero-slider"
-      >
-        {[1, 2, 3, 4].map((num, index) => (
+    <div class="mt-9 flex flex-wrap items-center gap-3">
+      <a href="/downloads/" class="btn btn-primary btn-lg pl-2">
+        <span class="pad bg-ink text-start" aria-hidden="true">A</span>
+        Download for free
+      </a>
+      <a href="/guide/" class="btn btn-secondary btn-lg">Read the guide</a>
+      <span class="label ml-1">Free · GPL-3.0</span>
+    </div>
+
+    <!-- Screen with LB / RB switcher -->
+    <figure class="mt-14 md:mt-16" data-slider>
+      <div class="screen relative aspect-video">
+        {slides.map((s, i) => (
           <img
-            src={`/screenshots/neostation-0${num}.webp`}
-            alt={`NeoStation Interface ${num}`}
-            class={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === 0 ? "opacity-100" : "opacity-0"}`}
-            data-index={index}
+            src={s.src}
+            alt={s.caption}
+            width="1920"
+            height="1080"
+            class:list={["absolute inset-0 h-full w-full object-cover transition-opacity duration-300", i === 0 ? "opacity-100" : "opacity-0"]}
+            loading={i === 0 ? "eager" : "lazy"}
+            data-slide={i}
+            aria-hidden={i === 0 ? undefined : "true"}
           />
         ))}
       </div>
-    </div>
-  </section>
+      <figcaption class="mt-4 flex items-center justify-between gap-4">
+        <span class="text-[0.9375rem] text-bone-2" data-caption aria-live="polite">{slides[0]!.caption}</span>
+        <span class="flex shrink-0 items-center gap-2">
+          <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-prev aria-label="Previous screenshot">LB</button>
+          <span class="label w-12 text-center" data-count>1 / {slides.length}</span>
+          <button type="button" class="pad h-9 min-w-12 cursor-pointer transition-colors hover:bg-line" data-next aria-label="Next screenshot">RB</button>
+        </span>
+      </figcaption>
+    </figure>
 
-  <!-- Instant Setup -->
-  <section class="max-w-7xl mx-auto px-4 mb-24">
-    <div class="card bg-base-200 border border-base-content/10 overflow-hidden relative">
-      <div
-        class="absolute inset-0 bg-[radial-gradient(ellipse_50%_60%_at_80%_20%,color-mix(in_oklab,var(--color-primary)_14%,transparent),transparent)] pointer-events-none"
-        aria-hidden="true"
-      ></div>
-      <div class="card-body relative p-10 md:p-16">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="space-y-8">
-            <div
-              class="inline-flex items-center gap-2 px-4 py-1.5 bg-success/10 rounded-full border border-success/20 text-xs font-bold text-success uppercase tracking-widest"
-            >
-              <Icon name="heroicons:bolt" class="w-4 h-4" />
-              Set up in seconds
-            </div>
-            <h2 class="text-3xl md:text-5xl font-black tracking-tight leading-tight">
-              Point to your ROMs folder.
-              <span class="text-success">That's it.</span>
-            </h2>
-            <p class="text-base-content/60 text-lg leading-relaxed">
-              No per-system configuration. No hours of tweaking. NeoStation
-              scans your directory, auto-detects each system, and pulls the
-              metadata and artwork automatically.
-            </p>
-            <ul class="space-y-4">
-              <li class="flex items-start gap-3">
-                <div class="size-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0">
-                  <Icon name="heroicons:folder-open" class="w-4 h-4 text-success" />
-                </div>
-                <div>
-                  <div class="text-sm font-bold">Select your ROMs directory</div>
-                  <div class="text-sm text-base-content/60">One time, done in a minute.</div>
-                </div>
-              </li>
-              <li class="flex items-start gap-3">
-                <div class="size-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0">
-                  <Icon name="heroicons:magnifying-glass-circle" class="w-4 h-4 text-success" />
-                </div>
-                <div>
-                  <div class="text-sm font-bold">Everything is auto-detected</div>
-                  <div class="text-sm text-base-content/60">Systems, games, artwork, and descriptions.</div>
-                </div>
-              </li>
-              <li class="flex items-start gap-3">
-                <div class="size-8 rounded-lg bg-success/10 flex items-center justify-center shrink-0">
-                  <Icon name="heroicons:adjustments-horizontal" class="w-4 h-4 text-success" />
-                </div>
-                <div>
-                  <div class="text-sm font-bold">Optional deep customization</div>
-                  <div class="text-sm text-base-content/60">Tweak per-system settings only if you want more control.</div>
-                </div>
-              </li>
-            </ul>
-            <a href="/guide/" class="btn btn-success">
-              See the quick start
-              <Icon name="heroicons:arrow-right" class="w-4 h-4" />
-            </a>
-          </div>
-
-          <div class="relative hidden lg:block">
-            <div class="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-base-content/20 bg-base-100">
-              <img
-                src="/home/plug-and-play.webp"
-                alt="NeoStation instant library setup"
-                class="w-full h-full object-cover"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 bg-black/50 backdrop-blur rounded-full text-xs font-bold text-success">
-                  <Icon name="heroicons:check-circle" class="w-4 h-4" />
-                  Ready to play
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Integrations Strip -->
-  <section class="max-w-7xl mx-auto px-4 mb-24">
-    <div class="card card-border bg-base-200 overflow-hidden">
-      <div class="card-body p-8 md:p-12">
-        <div class="text-center mb-10">
-          <div
-            class="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 rounded-full border border-primary/20 text-xs font-bold text-primary uppercase tracking-widest mb-5"
-          >
-            <Icon name="heroicons:bolt" class="w-4 h-4" />
-            Native Integrations
-          </div>
-          <h2 class="text-3xl md:text-4xl font-black text-base-content tracking-tight">
-            Works with the tools you already <span class="text-primary">love.</span>
-          </h2>
-          <p class="text-base-content/60 mt-4 max-w-xl mx-auto">
-            NeoStation plugs directly into the services powering the modern
-            emulation scene.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-          {integrations.map((i) => (
-            <a
-              href={i.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="group flex flex-col items-center gap-3 rounded-2xl border border-base-300 bg-base-100 p-6 text-center transition-all hover:border-primary/50 hover:bg-base-content/5"
-            >
-              <div class="size-14 flex items-center justify-center p-2.5">
-                <img
-                  src={i.img}
-                  alt={i.name}
-                  class="w-full h-full object-contain opacity-80 transition-opacity group-hover:opacity-100"
-                />
-              </div>
-              <div>
-                <div class="text-sm font-bold text-base-content">{i.name}</div>
-                <div class="text-[11px] text-base-content/50">{i.note}</div>
-              </div>
-            </a>
-          ))}
-        </div>
-
-        <div class="text-center mt-10">
-          <a href="/integrations/" class="btn btn-ghost border border-base-content/20">
-            Explore all integrations
-            <Icon name="heroicons:arrow-right" class="w-4 h-4" />
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Gallery -->
-  <section class="max-w-7xl mx-auto px-4 mb-24">
-    <div class="text-center mb-14">
-      <h2 class="text-3xl md:text-4xl font-black text-base-content tracking-tight">
-        Visual <span class="text-primary">Journey.</span>
-      </h2>
-      <p class="text-base-content/60 mt-4 max-w-xl mx-auto">
-        A look at NeoStation in action across your favorite retro systems.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-      {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-        <div
-          class="card card-border bg-base-200 group relative aspect-video overflow-hidden cursor-pointer modal-trigger"
-          data-image={`/screenshots/neostation-0${num}.webp`}
-        >
-          <img
-            src={`/screenshots/neostation-0${num}.webp`}
-            alt={`NeoStation Screenshot ${num}`}
-            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-70 group-hover:opacity-100"
-            loading="lazy"
-          />
-          <div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-4">
-            <span class="text-white text-xs font-bold uppercase tracking-widest">
-              Enlarge
-            </span>
-          </div>
-        </div>
+    <!-- Platforms -->
+    <ul class="mt-14 grid grid-cols-2 border-y border-line md:grid-cols-4">
+      {platforms.map((p, i) => (
+        <li class:list={["flex items-center gap-3 py-5 md:px-5", i % 2 === 1 && "pl-4 border-l border-line", i > 0 && "md:border-l md:border-line", i === 0 && "md:pl-0", i > 1 && "border-t border-line md:border-t-0"]}>
+          <Icon name={p.icon} class="h-5 w-5 shrink-0 text-bone-2" aria-hidden="true" />
+          <span>
+            <span class="block font-semibold">{p.name}</span>
+            <span class="block font-mono text-xs text-bone-3">{p.note}</span>
+          </span>
+        </li>
       ))}
+    </ul>
+  </section>
+
+  <!-- Setup -->
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">Set up</p>
+    <div class="mt-6 grid gap-10 lg:grid-cols-12">
+      <h2 class="heading text-h2 lg:col-span-7">Point it at your ROMs. That is the whole setup.</h2>
+    </div>
+    <ol class="mt-12 grid gap-8 md:grid-cols-3">
+      {steps.map((s) => (
+        <li class="border-t border-bone-3 pt-5">
+          <span class="font-mono text-sm text-start">{s.n}</span>
+          <h3 class="mt-3 text-h3 font-bold leading-tight tracking-[-0.01em]">{s.title}</h3>
+          <p class="mt-2 max-w-[36ch] text-bone-2">{s.body}</p>
+        </li>
+      ))}
+    </ol>
+    <div class="mt-14 grid gap-4 md:grid-cols-2">
+      <div class="screen aspect-video">
+        <img src="/guide/guide-01.webp" alt="A ROMs folder with one subfolder per system" class="h-full w-full object-cover object-left-top" loading="lazy" width="723" height="392" />
+      </div>
+      <div class="screen aspect-video">
+        <img src="/screenshots/neostation-03.webp" alt="The same collection in NeoStation, one card per system" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
+      </div>
+    </div>
+    <p class="mt-4 text-sm text-bone-3">
+      Folder names for each system are in the <a href="/guide/#folder-compatibility" class="text-bone-2 underline decoration-bone-3 underline-offset-4 hover:text-bone">compatibility table</a>.
+    </p>
+  </section>
+
+  <!-- Controller -->
+  <section class="border-y border-line bg-ink-2">
+    <div class="mx-auto grid max-w-[76rem] gap-12 px-5 py-16 md:px-8 lg:grid-cols-12 lg:py-24">
+      <div class="lg:col-span-5">
+        <p class="label section-label">Controller first</p>
+        <h2 class="heading mt-6 text-h2">Made for the couch, not the desk.</h2>
+        <p class="mt-5 max-w-[36rem] text-bone-2">
+          Every screen works with a gamepad, and the buttons do the same thing everywhere. Keyboard, mouse and touch work
+          too.
+        </p>
+        <dl class="mt-10 border-t border-line">
+          {controls.map((c) => (
+            <div class="flex items-center gap-5 border-b border-line py-3.5">
+              <dt class="flex w-24 shrink-0 gap-1.5">
+                {c.keys.map((k) => <kbd class:list={["pad", k === "A" && "bg-start text-ink"]}>{k}</kbd>)}
+              </dt>
+              <dd class="text-[0.9375rem]">{c.action}</dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+      <div class="lg:col-span-7 lg:pt-14">
+        <div class="screen aspect-video">
+          <img src="/screenshots/neostation-08.webp" alt="Game list with the controller prompts on the left" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
+        </div>
+        <div class="mt-4 grid grid-cols-2 gap-4">
+          <div class="screen aspect-video">
+            <img src="/screenshots/neostation-06.webp" alt="Game info panel" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
+          </div>
+          <div class="screen aspect-video">
+            <img src="/screenshots/neostation-10.webp" alt="A light theme" class="h-full w-full object-cover" loading="lazy" width="1920" height="1080" />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- Support Section -->
-  <section class="max-w-7xl mx-auto px-4 mb-24">
-    <div class="card bg-base-200 border border-base-content/10">
-      <div class="card-body p-10 md:p-16">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-12">
-          <div class="text-center lg:text-left space-y-6 max-w-2xl">
-            <h2 class="text-3xl md:text-5xl font-black tracking-tight">
-              Support <span class="text-primary">NeoStation.</span>
-            </h2>
-            <p class="text-base-content/60 text-lg leading-relaxed">
-              NeoStation is a labor of love and remains free for everyone. Your
-              support helps cover infrastructure costs and allows me to dedicate
-              more time to improving the project.
-            </p>
-          </div>
+  <!-- Integrations -->
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">Integrations</p>
+    <div class="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+      <h2 class="heading max-w-[18ch] text-h2">Works with the services you already use.</h2>
+      <a href="/integrations/" class="btn btn-secondary self-start lg:self-auto">
+        How each one works
+        <Icon name="heroicons:arrow-right" class="h-4 w-4" aria-hidden="true" />
+      </a>
+    </div>
+    <ul class="mt-12 border-t border-line">
+      {integrations.map((i) => (
+        <li>
+          <a
+            href={i.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group grid grid-cols-[2.5rem_1fr_auto] items-center gap-x-5 gap-y-1 border-b border-line py-5 transition-colors hover:bg-ink-2 md:grid-cols-[2.5rem_14rem_10rem_1fr_auto] md:px-3"
+          >
+            <img src={i.img} alt="" class="h-10 w-10 object-contain" width="40" height="40" loading="lazy" />
+            <span class="font-semibold">{i.name}</span>
+            <span class="label hidden md:block">{i.role}</span>
+            <span class="col-start-2 text-[0.9375rem] text-bone-2 md:col-start-auto">{i.body}</span>
+            <Icon name="heroicons:arrow-up-right" class="row-start-1 col-start-3 h-4 w-4 text-bone-3 transition-colors group-hover:text-bone md:row-start-auto md:col-start-auto" aria-label="opens in a new tab" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 
-          <div class="flex flex-col sm:flex-row gap-4 w-full lg:w-auto">
-            <a
-              href="https://www.patreon.com/cw/NeoStation"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn btn-lg"
-              style="background-color:#FF424D; color:#fff; border-color:#FF424D;"
-            >
-              <Icon name="simple-icons:patreon" class="w-5 h-5" />
-              Become a Patron
-            </a>
-          </div>
-        </div>
+  <!-- Open source -->
+  <section class="bg-start text-ink">
+    <div class="mx-auto grid max-w-[76rem] gap-10 px-5 py-20 md:px-8 lg:grid-cols-12 lg:py-28">
+      <div class="lg:col-span-7">
+        <p class="font-mono text-xs font-medium uppercase tracking-[0.08em]">Free and open source · GPL-3.0</p>
+        <h2 class="heading mt-5 text-h2">Free to use, free to read, free to change.</h2>
+        <p class="mt-5 max-w-[36rem] text-ink/80">
+          NeoStation has no ads and no paywall, and every line is on GitHub. Read the code, report a bug, send a pull
+          request, or help pay for the servers on Patreon.
+        </p>
+      </div>
+      <div class="flex flex-col gap-3 sm:flex-row lg:col-span-5 lg:flex-col lg:items-stretch lg:justify-end">
+        <a href="https://github.com/misobadev/neostation-frontend" target="_blank" rel="noopener noreferrer" class="btn btn-lg justify-between bg-ink text-bone hover:bg-ink-3">
+          <span class="flex items-center gap-3"><Icon name="simple-icons:github" class="h-5 w-5" aria-hidden="true" />Source on GitHub</span>
+          <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
+        </a>
+        <a href="https://discord.gg/xE2kgKsRVq" target="_blank" rel="noopener noreferrer" class="btn btn-lg justify-between border border-ink/40 text-ink hover:bg-ink/10">
+          <span class="flex items-center gap-3"><Icon name="simple-icons:discord" class="h-5 w-5" aria-hidden="true" />Join the Discord</span>
+          <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
+        </a>
+        <a href="https://www.patreon.com/cw/NeoStation" target="_blank" rel="noopener noreferrer" class="btn btn-lg justify-between border border-ink/40 text-ink hover:bg-ink/10">
+          <span class="flex items-center gap-3"><Icon name="simple-icons:patreon" class="h-5 w-5" aria-hidden="true" />Support on Patreon</span>
+          <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
+        </a>
       </div>
     </div>
   </section>
 </PageLayout>
 
-<!-- Image Modal -->
-<div
-  id="imageModal"
-  class="fixed inset-0 bg-black/75 hidden z-50 flex items-center justify-center p-4"
-  onclick="closeModal()"
->
-  <div class="relative max-w-4xl max-h-full">
-    <img
-      id="modalImage"
-      src=""
-      alt="NeoStation Screenshot"
-      class="rounded-xl max-w-full max-h-full object-contain"
-    />
-    <button
-      onclick="closeModal()"
-      class="absolute top-4 right-4 text-white text-2xl font-bold hover:text-base-content/80 transition-colors"
-    >
-      ×
-    </button>
-  </div>
-</div>
-
 <script>
-  let currentSlide = 0;
-  const slides = document.querySelectorAll("#hero-slider img");
-  const totalSlides = slides.length;
+  function initSlider() {
+    const root = document.querySelector<HTMLElement>("[data-slider]");
+    if (!root) return;
+    const slides = [...root.querySelectorAll<HTMLImageElement>("[data-slide]")];
+    const caption = root.querySelector("[data-caption]");
+    const count = root.querySelector("[data-count]");
+    let current = 0;
 
-  if (totalSlides > 0) {
-    setInterval(() => {
-      slides[currentSlide]!.classList.remove("opacity-100");
-      slides[currentSlide]!.classList.add("opacity-0");
-      currentSlide = (currentSlide + 1) % totalSlides;
-      slides[currentSlide]!.classList.remove("opacity-0");
-      slides[currentSlide]!.classList.add("opacity-100");
-    }, 5000);
-  }
-
-  function openModal(imageSrc: string) {
-    const modal = document.getElementById("imageModal");
-    const modalImage = document.getElementById("modalImage") as HTMLImageElement | null;
-    if (modal && modalImage) {
-      modalImage.src = imageSrc;
-      modal.classList.remove("hidden");
-      document.body.style.overflow = "hidden";
-    }
-  }
-
-  function closeModal() {
-    const modal = document.getElementById("imageModal");
-    if (modal) {
-      modal.classList.add("hidden");
-      document.body.style.overflow = "auto";
-    }
-  }
-
-  function initModal() {
-    const modalTriggers = document.querySelectorAll(".modal-trigger");
-    modalTriggers.forEach((img) => {
-      (img as HTMLElement).addEventListener("click", () => {
-        const imageSrc = img.getAttribute("data-image");
-        if (imageSrc) openModal(imageSrc);
+    const show = (i: number) => {
+      current = (i + slides.length) % slides.length;
+      slides.forEach((img, n) => {
+        img.classList.toggle("opacity-100", n === current);
+        img.classList.toggle("opacity-0", n !== current);
+        if (n === current) img.removeAttribute("aria-hidden");
+        else img.setAttribute("aria-hidden", "true");
       });
-    });
+      if (caption) caption.textContent = slides[current]!.alt;
+      if (count) count.textContent = `${current + 1} / ${slides.length}`;
+    };
 
-    const modal = document.getElementById("imageModal");
-    if (modal) {
-      modal.addEventListener("click", (e) => {
-        if (e.target === modal) closeModal();
-      });
-    }
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeModal();
+    root.querySelector("[data-prev]")?.addEventListener("click", () => show(current - 1));
+    root.querySelector("[data-next]")?.addEventListener("click", () => show(current + 1));
+    root.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") show(current - 1);
+      if (e.key === "ArrowRight") show(current + 1);
     });
   }
 
-  document.addEventListener("astro:page-load", initModal);
+  initSlider();
 </script>

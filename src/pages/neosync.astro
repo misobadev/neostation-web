@@ -5,401 +5,246 @@ import PageLayout from "@/layouts/Base.astro";
 const meta = {
   description:
     "Learn how NeoSync Cloud Save Synchronization works across all your devices.",
-  title: "NeoSync - Cloud Saves for NeoStation",
+  title: "NeoSync cloud saves",
 };
 
 const plans = [
+  { name: "Free", cap: "4 MB", price: "Free", annual: "Free" },
+  { name: "Micro", cap: "16 MB", price: "$2 / mo", annual: "$20 / yr" },
+  { name: "Mini", cap: "64 MB", price: "$3 / mo", annual: "$30 / yr" },
+  { name: "Mega", cap: "256 MB", price: "$4 / mo", annual: "$40 / yr" },
+  { name: "Ultra", cap: "1 GB", price: "$5 / mo", annual: "$50 / yr" },
+];
+
+const engine = [
+  { title: "Atomic sync", body: "Fast, low-bandwidth updates that send only what changed." },
+  { title: "Multi-platform", body: "Works between Windows, Android, macOS and Linux." },
+];
+
+const kinds = [
   {
-    name: "Free",
-    cap: "4 MB",
-    price: "Free",
-    annual: "Free",
-    color: "text-primary",
-    badge: "badge-primary",
-    bg: "bg-primary/5",
-    border: "border-primary/20",
+    title: "Atomic saves",
+    body: "The native files the game writes to the console's memory (RAM/SRAM/EEPROM). They are your \"official\" progress.",
+    points: [
+      { good: true, text: "Extremely small files (bytes to KBs)." },
+      { good: true, text: "Fully compatible between different emulators." },
+      { good: true, text: "No risk of corruption between core versions." },
+    ],
   },
   {
-    name: "Micro",
-    cap: "16 MB",
-    price: "$2 / mo",
-    annual: "$20 / yr",
-    color: "text-info",
-    badge: "badge-info",
-    bg: "bg-info/5",
-    border: "border-info/20",
+    title: "Capture states",
+    body: "Snapshots created by the emulator core. They let you resume exactly where you left off, down to the frame.",
+    points: [
+      { good: true, text: "Load and resume instantly." },
+      { good: false, text: "Large files (can reach 100MB+ for modern systems)." },
+      { good: false, text: "Needs identical core versions on every device." },
+    ],
+  },
+];
+
+const emulators = ["RetroArch", "RetroArch32", "RetroArch64", "Eden", "Citro", "NetherSX2"];
+
+const terms = [
+  {
+    term: "Privacy",
+    body: "No telemetry, no tracking and no data harvesting. We don't want your personal data, only your saves.",
   },
   {
-    name: "Mini",
-    cap: "64 MB",
-    price: "$3 / mo",
-    annual: "$30 / yr",
-    color: "text-purple-400",
-    badge: "badge-accent",
-    bg: "bg-purple-400/5",
-    border: "border-purple-400/20",
+    term: "Account",
+    body: "Accounts are created only inside the NeoStation app, with no long forms. We only need your email address to confirm the account.",
   },
   {
-    name: "Mega",
-    cap: "256 MB",
-    price: "$4 / mo",
-    annual: "$40 / yr",
-    color: "text-warning",
-    badge: "badge-warning",
-    bg: "bg-orange-400/5",
-    border: "border-warning/20",
+    term: "Payments",
+    body: "Payments are processed by Stripe, used by millions of businesses. NeoGameLab and NeoStation do not store any of your payment or credit card information.",
   },
   {
-    name: "Ultra",
-    cap: "1 GB",
-    price: "$5 / mo",
-    annual: "$50 / yr",
-    color: "text-error",
-    badge: "badge-error",
-    bg: "bg-error/5",
-    border: "border-error/20",
+    term: "Changes",
+    body: "Unsubscribe or change your plan at any time. Subscriptions are managed directly in the NeoStation app.",
+  },
+  {
+    term: "Optional",
+    body: "NeoSync is optional. NeoStation works fully offline for local collections.",
   },
 ];
 ---
 
 <PageLayout meta={meta}>
-  <div class="relative py-12 md:py-24 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
-      <!-- Hero Section -->
-      <div class="text-center mb-20 md:mb-32">
-        <div
-          class="inline-flex items-center gap-3 px-4 py-2 bg-base-content/5 rounded-full border border-base-content/20 text-xs font-bold text-primary uppercase tracking-widest mb-6"
-        >
-          <Icon name="heroicons:cloud-arrow-up" class="w-4 h-4 animate-pulse" />
-          Next-Gen Cloud Synchronization
-        </div>
-        <h1
-          class="text-5xl md:text-7xl font-black text-base-content tracking-tight leading-tight mb-8"
-        >
-          Your Progress. <span class="text-primary">Everywhere.</span>
-        </h1>
-        <p
-          class="text-xl text-base-content/60 max-w-3xl mx-auto leading-relaxed font-medium"
-        >
-          NeoSync is a specialized synchronization engine designed <strong
-            >exclusively for game progress</strong
-          >. It bridges your Windows PC, Android handheld, and Linux station,
-          ensuring your journey never misses a beat.
+  <!-- Hero -->
+  <section class="mx-auto max-w-[76rem] px-5 pt-14 md:px-8 md:pt-24">
+    <div class="flex items-center gap-3">
+      <img src="/providers/neosync.svg" alt="" class="h-10 w-10 object-contain" width="40" height="40" />
+      <p class="label">NeoSync · Cloud saves for NeoStation</p>
+    </div>
+    <div class="mt-5 grid gap-10 lg:grid-cols-12 lg:items-end">
+      <div class="lg:col-span-7">
+        <h1 class="display text-display">Your progress. Everywhere.</h1>
+      </div>
+      <div class="lg:col-span-5 lg:pb-2">
+        <p class="max-w-[40rem] text-lead text-bone-2">
+          NeoSync syncs game progress and nothing else. Your saves move between your Windows PC, your Android handheld
+          and your Linux machine, so you pick up where you stopped.
         </p>
       </div>
+    </div>
 
-      <!-- Main Feature Grid -->
-      <div class="grid lg:grid-cols-2 gap-12 items-center mb-32">
-        <div class="space-y-8">
-          <div class="card card-border bg-base-200">
-            <div class="card-body">
-              <h2 class="card-title">
-                <Icon name="heroicons:circle-stack" class="text-primary w-7 h-7" />
-                Saves & States Only
-              </h2>
-              <p class="text-base-content/60">
-                NeoSync is a high-performance engine architected specifically for
-                tiny, frequent updates. It is optimized to handle <strong
-                  >SRAM saves and RetroArch snapshots</strong
-                >, keeping your progress atomic without ever touching your game
-                library.
-              </p>
-            </div>
-          </div>
+    <div class="mt-9 flex flex-wrap items-center gap-3">
+      <a href="/downloads/" class="btn btn-primary btn-lg pl-2">
+        <span class="pad bg-ink text-start" aria-hidden="true">A</span>
+        Get started free
+      </a>
+      <a href="/guide/#neosync" class="btn btn-secondary btn-lg">View setup guide</a>
+    </div>
 
-          <div class="grid sm:grid-cols-2 gap-6">
-            <div class="card card-border bg-base-200">
-              <div class="card-body">
-                <Icon
-                  name="heroicons:bolt"
-                  class="w-8 h-8 text-warning mb-2"
-                />
-                <h3 class="card-title">Atomic Sync</h3>
-                <p class="text-sm text-base-content/60">
-                  Fast, low-bandwidth updates that track only what changed.
-                </p>
-              </div>
-            </div>
-            <div class="card card-border bg-base-200">
-              <div class="card-body">
-                <Icon name="heroicons:computer-desktop" class="w-8 h-8 text-info mb-2" />
-                <h3 class="card-title">Multi-Platform</h3>
-                <p class="text-sm text-base-content/60">
-                  Cross-platform compatibility between Windows, Android, macOS,
-                  and Linux.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div class="screen mt-14 md:mt-16">
+      <img src="/screenshots/neostation-07.webp" alt="NeoSync Dashboard" class="block w-full" width="1920" height="1080" />
+    </div>
+  </section>
 
-        <div class="relative group">
-          <img
-            src="/screenshots/neostation-07.webp"
-            alt="NeoSync Dashboard"
-            class="relative w-full rounded-2xl shadow-[0_32px_64px_-16px_rgba(0,0,0,0.5)] border border-base-content/20 transition-transform duration-700 group-hover:scale-[1.02]"
-          />
-        </div>
+  <!-- What it syncs -->
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">What it syncs</p>
+    <div class="mt-6 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="heading text-h2">Saves and states only.</h2>
+        <p class="mt-5 max-w-[36rem] text-bone-2">
+          NeoSync is built for small, frequent updates. It handles SRAM saves and RetroArch snapshots, keeps each update
+          atomic, and never touches your game library.
+        </p>
       </div>
-
-      <!-- Saves vs States -->
-      <section class="mb-32">
-        <div class="flex items-center gap-4 mb-12">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-base-content pl-6 border-l-4 border-blue-500 italic tracking-tight"
-          >
-            Saves vs. States
-          </h2>
-          <div class="flex-grow h-[1px] bg-base-content/5"></div>
-        </div>
-
-        <div class="grid md:grid-cols-2 gap-8">
-          <!-- Atomic Saves -->
-          <div class="card card-border bg-base-200">
-            <div class="card-body">
-              <div class="flex items-center gap-4 mb-6">
-                <div
-                  class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center"
-                >
-                  <Icon name="heroicons:document" class="w-8 h-8 text-primary" />
-                </div>
-                <h3 class="card-title text-2xl">Atomic Saves</h3>
-              </div>
-              <p class="text-base-content/60 mb-6">
-                These are the native files generated by the game inside the
-                console's memory (RAM/SRAM/EEPROM). They represent your "official"
-                progress.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-center gap-3 text-sm text-base-content/60 italic">
-                  <Icon name="heroicons:check-circle" class="text-primary w-4 h-4" />
-                  Extremely small file size (bytes to KBs).
-                </li>
-                <li class="flex items-center gap-3 text-sm text-base-content/60 italic">
-                  <Icon name="heroicons:check-circle" class="text-primary w-4 h-4" />
-                  Fully compatible between different emulators.
-                </li>
-                <li class="flex items-center gap-3 text-sm text-base-content/60 italic">
-                  <Icon name="heroicons:check-circle" class="text-primary w-4 h-4" />
-                  Zero risk of corruption between core versions.
-                </li>
-              </ul>
-            </div>
+      <dl class="border-t border-line lg:col-span-5 lg:mt-2">
+        {engine.map((e) => (
+          <div class="grid gap-1 border-b border-line py-4 sm:grid-cols-[10rem_1fr] sm:gap-5">
+            <dt class="label pt-0.5">{e.title}</dt>
+            <dd class="text-[0.9375rem]">{e.body}</dd>
           </div>
+        ))}
+      </dl>
+    </div>
+  </section>
 
-          <!-- Save States -->
-          <div class="card card-border bg-base-200">
-            <div class="card-body">
-              <div class="flex items-center gap-4 mb-6">
-                <div
-                  class="w-14 h-14 rounded-2xl bg-info/10 flex items-center justify-center"
-                >
-                  <Icon name="heroicons:camera" class="w-8 h-8 text-info" />
-                </div>
-                <h3 class="card-title text-2xl">Capture States</h3>
-              </div>
-              <p class="text-base-content/60 mb-6">
-                These are snapshots created by the emulator core. They allow you
-                to resume exactly where you left off, down to the frame.
-              </p>
-              <ul class="space-y-3">
-                <li class="flex items-center gap-3 text-sm text-base-content/60 italic">
-                  <Icon name="heroicons:check-circle" class="text-info w-4 h-4" />
-                  Instant load and resume capability.
+  <!-- Saves vs states -->
+  <section class="border-y border-line bg-ink-2">
+    <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+      <p class="label section-label">Saves vs. states</p>
+      <div class="mt-6 grid gap-10 lg:grid-cols-12">
+        <h2 class="heading text-h2 lg:col-span-8">Two kinds of progress, with different trade-offs.</h2>
+      </div>
+      <div class="mt-12 grid gap-12 md:grid-cols-2 md:gap-10">
+        {kinds.map((k) => (
+          <div class="border-t border-bone-3 pt-5">
+            <h3 class="text-h3 font-bold leading-tight">{k.title}</h3>
+            <p class="mt-3 max-w-[36rem] text-bone-2">{k.body}</p>
+            <ul class="mt-6 border-t border-line">
+              {k.points.map((p) => (
+                <li class="flex items-start gap-3 border-b border-line py-3.5">
+                  <Icon
+                    name={p.good ? "heroicons:check" : "heroicons:exclamation-triangle"}
+                    class:list={["mt-1 h-4 w-4 shrink-0", p.good ? "text-bone-3" : "text-bone"]}
+                    aria-label={p.good ? "Advantage" : "Drawback"}
+                  />
+                  <span class="text-[0.9375rem] text-bone-2">{p.text}</span>
                 </li>
-                <li class="flex items-center gap-3 text-sm text-base-content/60 italic">
-                  <Icon name="heroicons:exclamation-triangle" class="text-warning w-4 h-4" />
-                  Large file sizes (can reach 100MB+ for modern systems).
-                </li>
-                <li class="flex items-center gap-3 text-sm text-base-content/60 italic">
-                  <Icon name="heroicons:exclamation-triangle" class="text-warning w-4 h-4" />
-                  Requires identical core versions on all devices.
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Supported Emulators -->
-      <section class="mb-32">
-        <div class="flex items-center gap-4 mb-12">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-base-content pl-6 border-l-4 border-primary italic tracking-tight"
-          >
-            Supported Emulators
-          </h2>
-          <div class="flex-grow h-[1px] bg-base-content/5"></div>
-        </div>
-
-        <div class="card card-border bg-base-200">
-          <div class="card-body">
-            <p class="text-base-content/60 mb-6">
-              NeoSync is currently compatible with saves and states from the following emulators:
-            </p>
-            <div class="flex flex-wrap gap-3">
-              {["RetroArch", "RetroArch32", "RetroArch64", "Eden", "Citro", "NetherSX2"].map((emu) => (
-                <span class="badge badge-primary badge-lg gap-2">
-                  <Icon name="heroicons:play-circle" class="w-4 h-4" />
-                  {emu}
-                </span>
               ))}
-            </div>
+            </ul>
           </div>
-        </div>
-      </section>
-
-      <!-- Pricing Plans -->
-      <section class="mb-32">
-        <div class="flex items-center gap-4 mb-12">
-          <h2
-            class="text-3xl md:text-4xl font-bold text-base-content pl-6 border-l-4 border-orange-500 italic tracking-tight"
-          >
-            Storage Plans
-          </h2>
-          <div class="flex-grow h-[1px] bg-base-content/5"></div>
-        </div>
-
-        <div class="grid sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-12">
-          {
-            plans.map((plan) => (
-              <div class="card card-border bg-base-200">
-                <div class="card-body items-center text-center">
-                  <span class={`badge ${plan.badge} badge-sm mb-3`}>{plan.name}</span>
-                  <div class={`text-3xl font-black ${plan.color} mb-2`}>
-                    {plan.cap}
-                  </div>
-                  <div class="space-y-1 mb-6">
-                    <div class="text-lg font-bold">{plan.price}</div>
-                    {plan.name !== "Free" && (
-                      <div class="flex items-center justify-center gap-2">
-                        <span class="text-[10px] font-bold text-primary uppercase tracking-tighter">
-                          or {plan.annual}
-                        </span>
-                        <span class="px-1.5 py-0.5 bg-primary text-[8px] font-black text-white rounded-full uppercase leading-none">
-                          Save 17%
-                        </span>
-                      </div>
-                    )}
-                  </div>
-                  <div class="divider my-2"></div>
-                  <p class="text-[10px] text-base-content/60 italic">
-                    {plan.name === "Free"
-                      ? "Perfect for classic 8/16-bit collections. No tricks, totally free."
-                      : "Ideal for modern systems and heavy state usage."}
-                  </p>
-                </div>
-              </div>
-            ))
-          }
-        </div>
-
-        <!-- Privacy & Trust Section -->
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="card card-border bg-base-200">
-            <div class="card-body">
-              <h3 class="card-title">
-                <Icon name="heroicons:shield-check" class="text-info w-6 h-6" />
-                Privacy First
-              </h3>
-              <p class="text-sm text-base-content/60 italic">
-                NeoSync is built on trust. There is <strong>no telemetry</strong>,
-                no tracking, and no data harvesting. We don't want your personal
-                data, we only want to save your games.
-              </p>
-            </div>
-          </div>
-          <div class="card card-border bg-base-200">
-            <div class="card-body">
-              <h3 class="card-title">
-                <Icon name="heroicons:user-plus" class="text-primary w-6 h-6" />
-                Simple Registration
-              </h3>
-              <p class="text-sm text-base-content/60 italic">
-                Accounts are created <strong
-                  >exclusively through the application</strong
-                >. No complex forms. We only require your email address for
-                account confirmation, nothing else.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="card card-border bg-base-200 mt-12 max-w-4xl mx-auto">
-          <div class="card-body text-center">
-            <p class="text-sm text-base-content/60">
-              <strong class="text-base-content italic">Security & Privacy:</strong> Payments are processed securely via 
-              <strong class="text-base-content font-bold">Stripe</strong>, a global leader in online payments used by millions of businesses. 
-              <strong class="text-primary">NeoGameLab and NeoStation do not store any of your payment or credit card information.</strong>
-              <br /><br />
-              <strong class="text-base-content/70">Total Flexibility:</strong> You can <strong class="text-base-content/90">unsubscribe or change your plan at any time</strong>. 
-              All subscription management is handled <strong class="text-base-content">directly within the NeoStation application</strong>.
-              <br /><br />
-              <span class="text-[10px] opacity-60 italic">NeoSync is purely optional. NeoStation works perfectly offline for local collections.</span>
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- CTA -->
-      <div class="card card-border bg-base-200 rounded-[3rem] p-12 md:p-20 text-center">
-        <div class="space-y-8">
-          <h2
-            class="text-3xl md:text-5xl font-black text-base-content tracking-tight leading-tight"
-          >
-            Ready to Synchronize?
-          </h2>
-          <p class="text-lg text-base-content/60 max-w-2xl mx-auto font-medium">
-            NeoSync is integrated directly into the NeoStation application.
-            Simply log in with your account to start syncing across Windows,
-            Android, and Linux.
-          </p>
-          <div class="flex flex-wrap justify-center gap-6">
-            <a
-              href="/downloads"
-              class="btn btn-primary text-lg px-10 py-5 h-auto shadow-xl shadow-primary/20"
-            >
-              <Icon name="heroicons:cloud-arrow-up" class="w-6 h-6" />
-              Get Started Free
-            </a>
-            <a
-              href="/guide#neosync"
-              class="btn btn-ghost text-lg px-10 py-5 h-auto border border-base-content/20"
-            >
-              <Icon name="heroicons:question-mark-circle" class="w-6 h-6" />
-              View Setup Guide
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Legal & Functional Disclaimer -->
-      <div class="mt-20 max-w-4xl mx-auto">
-        <div class="card card-border bg-base-200 opacity-60 hover:opacity-100 transition-opacity">
-          <div class="card-body flex flex-col md:flex-row items-center gap-6">
-            <div
-              class="w-16 h-16 rounded-2xl bg-warning/10 flex items-center justify-center shrink-0"
-            >
-              <Icon name="heroicons:scale" class="w-10 h-10 text-warning" />
-            </div>
-            <div class="space-y-2 text-center md:text-left">
-              <h3
-                class="text-lg font-bold text-warning uppercase tracking-widest"
-              >
-                Legal & Functional Disclaimer
-              </h3>
-              <p class="text-sm text-base-content/60 leading-relaxed font-medium">
-                NeoSync <strong>does not synchronize games (ROMs)</strong>.
-                Backing up interactive software you do not own is illegal. This
-                service is strictly designed to synchronize <strong
-                  >user-generated progress</strong
-                > (Saves and States) across devices. The user is responsible for their
-                own legal game library.
-              </p>
-            </div>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- Supported emulators -->
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">Supported emulators</p>
+    <div class="mt-6 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="heading text-h2">Works with these emulators today.</h2>
+        <p class="mt-5 max-w-[36rem] text-bone-2">NeoSync currently syncs saves and states from the following emulators.</p>
+      </div>
+    </div>
+    <ul class="mt-12 grid grid-cols-2 border-t border-line md:grid-cols-3">
+      {emulators.map((emu) => (
+        <li class="border-b border-line py-4 font-mono text-[0.9375rem] font-medium">{emu}</li>
+      ))}
+    </ul>
+  </section>
+
+  <!-- Plans -->
+  <section class="mx-auto max-w-[76rem] px-5 pb-22 md:px-8 lg:pb-32">
+    <p class="label section-label">Storage plans</p>
+    <div class="mt-6 grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <h2 class="heading text-h2">Start free. Pay only for more space.</h2>
+        <p class="mt-5 max-w-[36rem] text-bone-2">
+          The free plan is enough for classic 8/16-bit collections, with no tricks. Paid plans suit modern systems and
+          heavy use of states. Paying yearly saves 17%.
+        </p>
+      </div>
+    </div>
+
+    <table class="mt-12 w-full border-collapse text-left">
+      <thead>
+        <tr class="border-b border-bone-3">
+          <th scope="col" class="label py-3 pr-3 font-medium">Plan</th>
+          <th scope="col" class="label py-3 pr-3 font-medium">Storage</th>
+          <th scope="col" class="label py-3 pr-3 font-medium">Monthly</th>
+          <th scope="col" class="label py-3 font-medium">Yearly</th>
+        </tr>
+      </thead>
+      <tbody>
+        {plans.map((plan) => (
+          <tr class="border-b border-line">
+            <th scope="row" class="py-4 pr-3 font-semibold">{plan.name}</th>
+            <td class="py-4 pr-3 font-mono text-[0.9375rem] font-semibold">{plan.cap}</td>
+            <td class="py-4 pr-3 font-mono text-[0.9375rem] text-bone-2">{plan.price}</td>
+            <td class="py-4 font-mono text-[0.9375rem] text-bone-2">
+              <span class="whitespace-nowrap">{plan.annual}</span>
+              {plan.name !== "Free" && <span class="label mt-0.5 block sm:ml-2 sm:mt-0 sm:inline">Save 17%</span>}
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+    <dl class="mt-16 border-t border-line">
+      {terms.map((t) => (
+        <div class="grid gap-1 border-b border-line py-4 md:grid-cols-12 md:gap-8">
+          <dt class="label pt-0.5 md:col-span-3">{t.term}</dt>
+          <dd class="max-w-[40rem] text-[0.9375rem] text-bone-2 md:col-span-9">{t.body}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <!-- Closing -->
+  <section class="border-t border-line">
+    <div class="mx-auto grid max-w-[76rem] gap-10 px-5 py-16 md:px-8 lg:grid-cols-12 lg:items-end lg:py-24">
+      <div class="lg:col-span-7">
+        <p class="label section-label">Start syncing</p>
+        <h2 class="heading mt-6 text-h2">Ready to synchronize?</h2>
+        <p class="mt-5 max-w-[36rem] text-bone-2">
+          NeoSync is built into the NeoStation app. Log in with your account to start syncing across Windows, Android
+          and Linux.
+        </p>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
+        <a href="/downloads/" class="btn btn-primary btn-lg pl-2">
+          <span class="pad bg-ink text-start" aria-hidden="true">A</span>
+          Get started free
+        </a>
+        <a href="/guide/#neosync" class="btn btn-secondary btn-lg">View setup guide</a>
+      </div>
+    </div>
+
+    <!-- Legal & functional disclaimer -->
+    <div class="mx-auto max-w-[76rem] px-5 pb-22 md:px-8 lg:pb-32">
+      <div class="rounded-2xl border border-line bg-ink-2 p-6 md:p-8">
+        <p class="label">Legal and functional disclaimer</p>
+        <p class="mt-3 max-w-[48rem] text-[0.9375rem] text-bone-2">
+          NeoSync <strong class="font-semibold text-bone">does not synchronize games (ROMs)</strong>. Backing up
+          interactive software you do not own is illegal. The service only synchronizes user-generated progress (saves
+          and states) across devices. You are responsible for your own legal game library.
+        </p>
+      </div>
+    </div>
+  </section>
 </PageLayout>

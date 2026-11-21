@@ -1,0 +1,234 @@
+---
+import { Icon } from "astro-icon/components";
+import Isotype from "@/assets/brand/isotype.svg";
+import PageHero from "@/components/PageHero.astro";
+import PageLayout from "@/layouts/Base.astro";
+
+const meta = {
+  title: "Brand kit",
+  description:
+    "The NeoStation logo, app icon, colours and typefaces, with downloads and usage rules for articles, videos and community projects.",
+};
+
+const kit = { href: "/brand/neostation-brand-kit.zip", size: "436 KB" };
+
+const logos = [
+  { file: "neostation-logo.svg", title: "Logo for dark backgrounds", note: "Bone wordmark. The default version.", bg: "bg-ink" },
+  { file: "neostation-logo-light.svg", title: "Logo for light backgrounds", note: "Ink wordmark, same badge.", bg: "bg-bone" },
+];
+
+const variants = [
+  {
+    group: "Isotype",
+    note: "The badge alone, for small spaces and avatars.",
+    items: [
+      { file: "neostation-isotype-color.svg", title: "Colour", bg: "bg-ink", h: "h-14" },
+      { file: "neostation-isotype-white.svg", title: "White", bg: "bg-ink", h: "h-14" },
+      { file: "neostation-isotype-black.svg", title: "Black", bg: "bg-white", h: "h-14" },
+    ],
+  },
+  {
+    group: "App icon",
+    note: "Square tile; stores and launchers apply their own corner mask.",
+    items: [
+      { file: "neostation-appicon-color.svg", title: "Colour", bg: "bg-ink-2", h: "h-24" },
+      { file: "neostation-appicon-white.svg", title: "White", bg: "bg-ink-2", h: "h-24" },
+      { file: "neostation-appicon-black.svg", title: "Black", bg: "bg-ink-2", h: "h-24" },
+    ],
+  },
+  {
+    group: "Logo in one colour",
+    note: "For print, embroidery, engraving and single-colour stamps.",
+    items: [
+      { file: "neostation-logo-mono-bone.svg", title: "Bone", bg: "bg-ink", h: "h-7" },
+      { file: "neostation-logo-mono-ink.svg", title: "Ink", bg: "bg-bone", h: "h-7" },
+    ],
+  },
+];
+
+const colours = [
+  { name: "Start", hex: "#FFD23F", rgb: "255 210 63", role: "The brand colour. One main action per screen.", text: "text-ink" },
+  { name: "Red", hex: "#FF5A4A", rgb: "255 90 74", role: "Second band of the badge.", text: "text-ink" },
+  { name: "Blue", hex: "#4A74FF", rgb: "74 116 255", role: "First band of the badge.", text: "text-ink" },
+  { name: "Cabinet", hex: "#111216", rgb: "17 18 22", role: "Backgrounds and text on colour.", text: "text-bone" },
+  { name: "Bone", hex: "#F1EDE4", rgb: "241 237 228", role: "Wordmark and text on dark.", text: "text-ink" },
+];
+
+const donts = [
+  "Recolour, reorder or remove the bands.",
+  "Stretch, rotate, outline or add shadows and glows.",
+  "Use the yellow tile alone as the logo.",
+  "Set the wordmark in another typeface or weight.",
+  "Place the dark-background logo on light or busy images.",
+  "Use the logo to suggest that NeoStation endorses another product.",
+];
+
+const fonts = [
+  { name: "Bai Jamjuree Bold Italic", use: "Wordmark and big headlines", sample: "All your retro games, everywhere.", cls: "font-sans text-2xl font-bold italic", href: "https://fonts.google.com/specimen/Bai+Jamjuree" },
+  { name: "Bai Jamjuree", use: "Interface and text, 400 to 700", sample: "Point it at your ROMs and press A.", cls: "font-sans text-xl", href: "https://fonts.google.com/specimen/Bai+Jamjuree" },
+  { name: "JetBrains Mono", use: "Labels, versions and data", sample: "v0.16.1 · GPL-3.0 · 119 systems", cls: "font-mono text-base", href: "https://fonts.google.com/specimen/JetBrains+Mono" },
+];
+
+const dl = "inline-flex items-center gap-1.5 text-sm text-bone-2 underline decoration-bone-3 underline-offset-4 transition-colors hover:text-bone hover:decoration-bone";
+---
+
+<PageLayout meta={meta}>
+  <PageHero
+    label="Brand kit"
+    title="The NeoStation brand."
+    lead="Logo, app icon, colours and typefaces for articles, videos and community projects. Everything is in one download."
+  >
+    <div class="mt-9 flex flex-wrap items-center gap-3">
+      <a href={kit.href} download class="btn btn-primary btn-lg pl-2">
+        <span class="pad bg-ink text-start" aria-hidden="true">A</span>
+        Download brand kit
+      </a>
+      <span class="label">.zip · {kit.size} · SVG and PNG</span>
+    </div>
+  </PageHero>
+
+  <!-- Logo -->
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">Logo</p>
+    <div class="mt-6 grid gap-6 lg:grid-cols-12">
+      <h2 class="heading text-h2 lg:col-span-7">A 1992 game-box badge, drawn like a modern app icon.</h2>
+      <p class="text-bone-2 lg:col-span-5">
+        Two bands and a Start-yellow tile, slanted at the angle of the wordmark. Every corner is rounded except the
+        tile's top right, the one hard edge kept from the era.
+      </p>
+    </div>
+
+    <div class="mt-12 grid gap-4 md:grid-cols-2">
+      {logos.map((l) => (
+        <figure class="overflow-hidden rounded-2xl border border-line">
+          <div class={`flex h-56 items-center justify-center px-8 ${l.bg}`}>
+            <img src={`/brand/${l.file}`} alt={l.title} class="h-12 w-auto max-w-full" width="358" height="48" />
+          </div>
+          <figcaption class="flex flex-wrap items-center justify-between gap-3 border-t border-line bg-ink-2 px-5 py-4">
+            <span>
+              <span class="block font-semibold">{l.title}</span>
+              <span class="block text-sm text-bone-3">{l.note}</span>
+            </span>
+            <a href={`/brand/${l.file}`} download class={dl}>
+              <Icon name="heroicons:arrow-down-tray" class="h-4 w-4" aria-hidden="true" />SVG
+            </a>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  </section>
+
+  <!-- Marks -->
+  <section class="border-y border-line bg-ink-2">
+    <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+      <p class="label section-label">Isotype and variants</p>
+      <h2 class="heading mt-6 text-h2 lg:max-w-[36rem]">One badge, in colour, white and black.</h2>
+      {variants.map((v) => (
+        <div class="mt-12">
+          <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-3">
+            <h3 class="text-h3 font-bold">{v.group}</h3>
+            <p class="text-sm text-bone-3">{v.note}</p>
+          </div>
+          <ul class="mt-4 grid gap-4 sm:grid-cols-3">
+            {v.items.map((m) => (
+              <li class="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink">
+                <div class={`flex h-40 items-center justify-center px-6 ${m.bg}`}>
+                  <img src={`/brand/${m.file}`} alt={`${v.group}, ${m.title.toLowerCase()}`} class={`${m.h} w-auto max-w-full`} loading="lazy" />
+                </div>
+                <div class="flex items-center justify-between border-t border-line px-5 py-3">
+                  <span class="font-semibold">{m.title}</span>
+                  <a href={`/brand/${m.file}`} download class={dl}>
+                    <Icon name="heroicons:arrow-down-tray" class="h-4 w-4" aria-hidden="true" />SVG
+                  </a>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      <p class="mt-6 text-sm text-bone-3">PNG versions from 256 to 2400 px are in the brand kit download.</p>
+    </div>
+  </section>
+
+  <!-- Usage -->
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">Usage</p>
+    <div class="mt-6 grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-6">
+        <h2 class="heading text-h2">Give it room.</h2>
+        <p class="mt-5 max-w-[36rem] text-bone-2">
+          Keep clear space around the logo equal to the height of the capital N in the wordmark. Use the full logo
+          from 96 px wide; below that, use the isotype on its own, which holds down to 16 px.
+        </p>
+        <div class="mt-8 flex items-end gap-6 rounded-2xl border border-line bg-ink-2 p-6">
+          {[64, 32, 24, 16].map((s) => (
+            <div class="flex flex-col items-center gap-2">
+              <Isotype width={s} height={s} aria-hidden="true" />
+              <span class="font-mono text-xs text-bone-3">{s}px</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div class="lg:col-span-6">
+        <h2 class="heading text-h2">Please don't.</h2>
+        <ul class="mt-5 border-t border-line">
+          {donts.map((d) => (
+            <li class="flex items-start gap-3 border-b border-line py-3.5 text-[0.9375rem] text-bone-2">
+              <Icon name="heroicons:x-mark" class="mt-0.5 h-4 w-4 shrink-0 text-red" aria-hidden="true" />
+              {d}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Colour -->
+  <section class="border-y border-line bg-ink-2">
+    <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+      <p class="label section-label">Colour</p>
+      <div class="mt-6 grid gap-6 lg:grid-cols-12">
+        <h2 class="heading text-h2 lg:col-span-7">Cabinet black, hardware bone, Start yellow.</h2>
+        <p class="text-bone-2 lg:col-span-5">
+          Text on any brand colour is Cabinet. The brand colours are separate from the app's themes, which each person
+          picks for themselves.
+        </p>
+      </div>
+      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-5">
+        {colours.map((c) => (
+          <li class="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink">
+            <div class={`flex h-32 items-end p-4 ${c.text}`} style={`background:${c.hex}`}>
+              <span class="text-lg font-bold">{c.name}</span>
+            </div>
+            <dl class="flex flex-1 flex-col gap-1 px-4 py-4 font-mono text-xs">
+              <div class="flex justify-between gap-2"><dt class="text-bone-3">HEX</dt><dd class="text-bone">{c.hex}</dd></div>
+              <div class="flex justify-between gap-2"><dt class="text-bone-3">RGB</dt><dd class="text-bone">{c.rgb}</dd></div>
+              <dd class="mt-2 font-sans text-sm text-bone-2">{c.role}</dd>
+            </dl>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <!-- Type -->
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">Type</p>
+    <h2 class="heading mt-6 text-h2 lg:max-w-[36rem]">Two families, both free.</h2>
+    <ul class="mt-12 border-t border-line">
+      {fonts.map((f) => (
+        <li class="grid gap-3 border-b border-line py-6 md:grid-cols-12 md:items-center">
+          <div class="md:col-span-4">
+            <span class="block font-semibold">{f.name}</span>
+            <span class="block text-sm text-bone-3">{f.use}</span>
+          </div>
+          <p class={`md:col-span-6 ${f.cls}`}>{f.sample}</p>
+          <a href={f.href} target="_blank" rel="noopener noreferrer" class={`${dl} md:col-span-2 md:justify-self-end`}>
+            Google Fonts <Icon name="heroicons:arrow-up-right" class="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+        </li>
+      ))}
+    </ul>
+    <p class="mt-6 text-sm text-bone-3">Both are released under the SIL Open Font License.</p>
+  </section>
+</PageLayout>

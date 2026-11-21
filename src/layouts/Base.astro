@@ -25,16 +25,9 @@ const {
     />
   </head>
   <body
-    class="bg-base-100 text-base-content min-h-screen font-sans antialiased"
+    class="bg-ink text-bone min-h-screen font-sans antialiased"
   >
-    <div
-      aria-hidden="true"
-      class="pointer-events-none fixed inset-0 z-0"
-    >
-      <div class="absolute inset-0 bg-grid opacity-60 [mask-image:radial-gradient(ellipse_70%_50%_at_50%_0%,#000,transparent)]" />
-      <div class="absolute inset-0 bg-[radial-gradient(ellipse_70%_45%_at_50%_-10%,color-mix(in_oklab,var(--color-primary)_16%,transparent),transparent)]" />
-    </div>
-    <div class="relative z-10 flex min-h-screen flex-col">
+    <div class="flex min-h-screen flex-col">
       <SkipLink />
       <Header />
       <main id="main" class="flex-1">

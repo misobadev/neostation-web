@@ -1,230 +1,159 @@
 ---
 import { Icon } from "astro-icon/components";
+import PageHero from "@/components/PageHero.astro";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
   description:
     "NeoStation ships with complete integrations for the emulation ecosystem: NeoSync, RomM, RetroAchievements, ScreenScraper, and RetroArch.",
-  title: "Integrations - NeoStation",
+  title: "Integrations",
 };
+
+const integrations = [
+  {
+    id: "neosync",
+    name: "NeoSync",
+    img: "/providers/neosync.svg",
+    url: "https://neosync.cloud",
+    host: "neosync.cloud",
+    role: "Cloud saves",
+    body: "NeoStation's official cloud save synchronization engine. Saves and states are atomically synced across all your devices without manual intervention.",
+    facts: [
+      "Automatic cloud saves across Windows, Android, macOS, and Linux.",
+      "Optimized for SRAM saves and RetroArch states.",
+      "Free tier included, paid plans for larger collections.",
+    ],
+  },
+  {
+    id: "romm",
+    name: "RomM",
+    img: "/providers/romm.svg",
+    url: "https://romm.app/",
+    host: "romm.app",
+    role: "ROM manager",
+    body: "Self-hosted ROM manager with a beautiful web interface. Keep full control over your game library on your own server.",
+    facts: [
+      "Browse and manage your ROM collection from anywhere.",
+      "Automatic metadata and box art via built-in scraping.",
+      "Self-hosted, your data stays on your hardware.",
+    ],
+  },
+  {
+    id: "retroachievements",
+    name: "RetroAchievements",
+    img: "/providers/retroachievements.svg",
+    url: "https://retroachievements.org",
+    host: "retroachievements.org",
+    role: "Achievements",
+    body: "The community-driven achievement system for classic games. Unlock achievements in your favorite retro titles.",
+    facts: [
+      "Login with your RetroAchievements account directly in the app.",
+      "View per-game achievement progress and unlocks at a glance.",
+      "Incompatible systems are automatically hidden from RA UI elements.",
+    ],
+  },
+  {
+    id: "screenscraper",
+    name: "ScreenScraper",
+    img: "/providers/screenscraper.svg",
+    url: "https://www.screenscraper.fr",
+    host: "screenscraper.fr",
+    role: "Metadata",
+    body: "The largest community database of game metadata for the emulation world. Enrich your library automatically.",
+    facts: [
+      "Scrape box art, screenshots, descriptions, and release dates.",
+      "Batch scrape entire libraries or scrape games on demand.",
+      "Real game names replace raw ROM filenames in the UI.",
+    ],
+  },
+  {
+    id: "retroarch",
+    name: "RetroArch",
+    img: "/providers/retroarch.svg",
+    url: "https://www.retroarch.com",
+    host: "retroarch.com",
+    role: "Emulation",
+    body: "The multi-system emulator frontend and core framework at the heart of the modern retro scene. NeoStation pairs with RetroArch for emulation and deeply integrates with its save and state system.",
+    facts: [
+      "Full emulation of dozens of classic systems through LibRetro cores.",
+      "Seamless support for RetroArch save files and save states.",
+      "Cloud sync, achievements, and scraping all built on RetroArch data.",
+    ],
+  },
+];
 ---
 
 <PageLayout meta={meta}>
-  <div class="relative py-12 md:py-24 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 relative z-10">
+  <!-- Intro -->
+  <PageHero
+    label="Integrations"
+    title="Built on the tools the retro community already uses."
+    lead="Cloud saves, a self-hosted ROM library, achievements, metadata scraping and emulation cores, all wired in and working together out of the box."
+  >
+    <!-- Index -->
+    <ul class="mt-12 flex flex-wrap gap-x-6 gap-y-2" aria-label="On this page">
+      {integrations.map((i, n) => (
+        <li>
+          <a href={`#${i.id}`} class="group inline-flex items-baseline gap-2 text-[0.9375rem] text-bone-2 hover:text-bone">
+            <span class="font-mono text-xs text-bone-3">{String(n + 1).padStart(2, "0")}</span>
+            <span class="underline decoration-line underline-offset-4 group-hover:decoration-bone-3">{i.name}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </PageHero>
 
-      <!-- Hero -->
-      <div class="text-center mb-20 md:mb-24">
-        <div
-          class="inline-flex items-center gap-3 px-4 py-2 bg-base-content/5 rounded-full border border-base-content/20 text-xs font-bold text-primary uppercase tracking-widest mb-6"
-        >
-          <Icon name="heroicons:bolt" class="w-4 h-4 animate-pulse" />
-          Built for the Emulation Ecosystem
-        </div>
-        <h1
-          class="text-5xl md:text-7xl font-black text-base-content tracking-tight leading-tight mb-8"
-        >
-          NeoStation is <span class="text-primary">fully integrated.</span>
-        </h1>
-        <p class="text-xl text-base-content/60 max-w-3xl mx-auto leading-relaxed font-medium">
-          NeoStation plugs directly into the tools the retro community already
-          uses. From cloud saves and self-hosted ROM management to achievements,
-          metadata scraping, and emulation cores, everything works together out
-          of the box.
-        </p>
-      </div>
-
-      <!-- Integrations Grid -->
-      <div class="grid md:grid-cols-2 gap-6 mb-12">
-
-        <!-- NeoSync -->
-        <div class="card card-border bg-base-200">
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="size-14 rounded-2xl bg-primary/10 flex items-center justify-center shrink-0 p-2.5">
-                <img src="/providers/neosync.svg" alt="NeoSync" class="w-full h-full object-contain" />
-              </div>
-              <div>
-                <h3 class="card-title">NeoSync</h3>
-                <a href="https://neosync.cloud" target="_blank" rel="noopener noreferrer" class="text-xs text-base-content/50 hover:text-primary transition-colors">neosync.cloud ↗</a>
+  <!-- Rows -->
+  <section class="mx-auto max-w-[76rem] px-5 pt-14 pb-22 md:px-8 lg:pb-32">
+    <div class="border-t border-line">
+      {integrations.map((i, n) => (
+        <article id={i.id} class="grid scroll-mt-24 gap-8 border-b border-line py-12 lg:grid-cols-12 lg:gap-10 lg:py-16">
+          <header class="lg:col-span-4">
+            <div class="flex items-center gap-4">
+              <span class="grid h-14 w-14 shrink-0 place-items-center rounded-2xl border border-line bg-ink-2 p-2.5">
+                <img src={i.img} alt="" class="h-full w-full object-contain" width="36" height="36" loading={n < 2 ? "eager" : "lazy"} />
+              </span>
+              <div class="min-w-0">
+                <p class="label">
+                  {String(n + 1).padStart(2, "0")} · {i.role}
+                </p>
+                <h2 class="mt-1 text-h3 font-bold leading-tight tracking-[-0.01em]">{i.name}</h2>
               </div>
             </div>
-            <p class="text-sm text-base-content/60 leading-relaxed mb-4">
-              NeoStation's official cloud save synchronization engine. Saves and
-              states are atomically synced across all your devices without manual
-              intervention.
-            </p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Automatic cloud saves across Windows, Android, macOS, and Linux.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Optimized for SRAM saves and RetroArch states.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Free tier included, paid plans for larger collections.</span>
-              </li>
+          </header>
+
+          <div class="lg:col-span-8">
+            <p class="max-w-[40rem] text-[1.0625rem] leading-[1.6] text-bone-2">{i.body}</p>
+            <ul class="mt-7 max-w-[40rem] border-t border-line">
+              {i.facts.map((f) => (
+                <li class="flex items-start gap-4 border-b border-line py-3.5 text-[0.9375rem]">
+                  <span class="mt-[0.55rem] h-1.5 w-1.5 shrink-0 rounded-full bg-start" aria-hidden="true"></span>
+                  <span>{f}</span>
+                </li>
+              ))}
             </ul>
-            <a href="https://neosync.cloud" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block">
-              <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />neosync.cloud
+            <a href={i.url} target="_blank" rel="noopener noreferrer" class="btn btn-secondary mt-7">
+              {i.host}
+              <Icon name="heroicons:arrow-up-right" class="h-4 w-4" aria-hidden="true" />
+              <span class="sr-only">(opens in a new tab)</span>
             </a>
           </div>
-        </div>
-
-        <!-- RomM -->
-        <div class="card card-border bg-base-200">
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="size-14 rounded-2xl bg-base-content/5 flex items-center justify-center shrink-0 p-2.5">
-                <img src="/providers/romm.svg" alt="RomM" class="w-full h-full object-contain" />
-              </div>
-              <div>
-                <h3 class="card-title">RomM</h3>
-                <a href="https://romm.app/" target="_blank" rel="noopener noreferrer" class="text-xs text-base-content/50 hover:text-primary transition-colors">romm.app ↗</a>
-              </div>
-            </div>
-            <p class="text-sm text-base-content/60 leading-relaxed mb-4">
-              Self-hosted ROM manager with a beautiful web interface. Keep full
-              control over your game library on your own server.
-            </p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Browse and manage your ROM collection from anywhere.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Automatic metadata and box art via built-in scraping.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Self-hosted, your data stays on your hardware.</span>
-              </li>
-            </ul>
-            <a href="https://romm.app/" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block">
-              romm.app <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-
-        <!-- RetroAchievements -->
-        <div class="card card-border bg-base-200">
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="size-14 rounded-2xl bg-warning/10 flex items-center justify-center shrink-0 p-2.5">
-                <img src="/providers/retroachievements.svg" alt="RetroAchievements" class="w-full h-full object-contain" />
-              </div>
-              <div>
-                <h3 class="card-title">RetroAchievements</h3>
-                <a href="https://retroachievements.org" target="_blank" rel="noopener noreferrer" class="text-xs text-base-content/50 hover:text-warning transition-colors">retroachievements.org ↗</a>
-              </div>
-            </div>
-            <p class="text-sm text-base-content/60 leading-relaxed mb-4">
-              The community-driven achievement system for classic games. Unlock
-              achievements in your favorite retro titles.
-            </p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-warning mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Login with your RetroAchievements account directly in the app.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-warning mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">View per-game achievement progress and unlocks at a glance.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-warning mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Incompatible systems are automatically hidden from RA UI elements.</span>
-              </li>
-            </ul>
-            <a href="https://retroachievements.org" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block">
-              retroachievements.org <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-
-        <!-- ScreenScraper -->
-        <div class="card card-border bg-base-200">
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="size-14 rounded-2xl bg-info/10 flex items-center justify-center shrink-0 p-2.5">
-                <img src="/providers/screenscraper.svg" alt="ScreenScraper" class="w-full h-full object-contain" />
-              </div>
-              <div>
-                <h3 class="card-title">ScreenScraper</h3>
-                <a href="https://www.screenscraper.fr" target="_blank" rel="noopener noreferrer" class="text-xs text-base-content/50 hover:text-info transition-colors">screenscraper.fr ↗</a>
-                </div>
-            </div>
-            <p class="text-sm text-base-content/60 leading-relaxed mb-4">
-              The largest community database of game metadata for the emulation
-              world. Enrich your library automatically.
-            </p>
-            <ul class="space-y-2 mb-6">
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-info mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Scrape box art, screenshots, descriptions, and release dates.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-info mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Batch scrape entire libraries or scrape games on demand.</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-info mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Real game names replace raw ROM filenames in the UI.</span>
-              </li>
-            </ul>
-            <a href="https://www.screenscraper.fr" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block">
-              screenscraper.fr <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-
-        <!-- RetroArch -->
-        <div class="card card-border bg-base-200 md:col-span-2">
-          <div class="card-body">
-            <div class="flex items-center gap-4 mb-6">
-              <div class="size-14 rounded-2xl bg-success/10 flex items-center justify-center shrink-0 p-2.5">
-                <img src="/providers/retroarch.svg" alt="RetroArch" class="w-full h-full object-contain" />
-              </div>
-              <div>
-                <h3 class="card-title">RetroArch</h3>
-                <a href="https://www.retroarch.com" target="_blank" rel="noopener noreferrer" class="text-xs text-base-content/50 hover:text-success transition-colors">retroarch.com ↗</a>
-              </div>
-            </div>
-            <p class="text-sm text-base-content/60 leading-relaxed mb-4">
-              The multi-system emulator frontend and core framework at the heart
-              of the modern retro scene. NeoStation pairs with RetroArch for
-              emulation and deeply integrates with its save and state system.
-            </p>
-            <div class="grid sm:grid-cols-3 gap-4">
-              <div class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Full emulation of dozens of classic systems through LibRetro cores.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Seamless support for RetroArch save files and save states.</span>
-              </div>
-              <div class="flex items-start gap-3">
-                <Icon name="heroicons:check-circle" class="w-4 h-4 text-success mt-0.5 shrink-0" />
-                <span class="text-sm text-base-content/60">Cloud sync, achievements, and scraping all built on RetroArch data.</span>
-              </div>
-            </div>
-            <a href="https://www.retroarch.com" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-block mt-6">
-              retroarch.com <Icon name="heroicons:arrow-top-right-on-square" class="w-4 h-4" />
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <p class="text-center text-xs text-base-content/40 italic">
-        All integrations are native and complete. This is the world of emulation,
-        and NeoStation speaks its language. More integrations planned.
-      </p>
-
+        </article>
+      ))}
     </div>
-  </div>
+
+    <div class="mt-12 grid gap-8 lg:grid-cols-12 lg:items-center">
+      <p class="max-w-[36rem] text-bone-2 lg:col-span-7">
+        Every integration is native and complete. More are planned; ideas and requests are welcome on GitHub or
+        Discord.
+      </p>
+      <div class="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
+        <a href="/downloads/" class="btn btn-primary pl-2">
+          <span class="pad bg-ink text-start" aria-hidden="true">A</span>
+          Download for free
+        </a>
+        <a href="/guide/" class="btn btn-secondary">Read the guide</a>
+      </div>
+    </div>
+  </section>
 </PageLayout>

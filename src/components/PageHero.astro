@@ -1,0 +1,28 @@
+---
+// Opening block for inner pages (DESIGN.md): mono label, display title in the logotype's italic, lead below.
+// Default slot: actions or extras under the lead. "aside" slot: optional facts column on the right.
+interface Props {
+  label: string;
+  title: string;
+  lead?: string;
+}
+
+const { label, title, lead } = Astro.props;
+const hasAside = Astro.slots.has("aside");
+---
+
+<section class="mx-auto max-w-[76rem] px-5 pt-14 md:px-8 md:pt-24">
+  <div class:list={["grid gap-12", hasAside && "lg:grid-cols-12 lg:items-end"]}>
+    <div class:list={[hasAside && "lg:col-span-7"]}>
+      <p class="label">{label}</p>
+      <h1 class="display mt-5 text-display">{title}</h1>
+      {lead && <p class="mt-6 max-w-[40rem] text-lead text-bone-2">{lead}</p>}
+      <slot />
+    </div>
+    {hasAside && (
+      <div class="lg:col-span-5">
+        <slot name="aside" />
+      </div>
+    )}
+  </div>
+</section>

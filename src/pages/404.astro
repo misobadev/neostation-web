@@ -1,29 +1,54 @@
 ---
+import { Icon } from "astro-icon/components";
+import Isotype from "@/assets/brand/isotype.svg";
 import PageLayout from "@/layouts/Base.astro";
 
 const meta = {
-	description: "Oops! It looks like this page is lost in space!",
-	title: "404 • Page Not Found",
+  description: "This page does not exist or has moved. Head back to the NeoStation home page, downloads or guide.",
+  title: "Page not found",
 };
+
+const links = [
+  { href: "/guide/", label: "Guide", note: "Setup, folders and compatibility" },
+  { href: "/integrations/", label: "Integrations", note: "NeoSync, RomM, RetroAchievements and more" },
+];
 ---
 
 <PageLayout meta={meta}>
-  <div class="hero min-h-[60vh]">
-    <div class="hero-content text-center">
-      <div class="max-w-md">
-        <div class="mb-8">
-          <span class="text-[10rem] font-black leading-none text-base-content/10 select-none">404</span>
-        </div>
-        <h1 class="text-4xl md:text-5xl font-black text-base-content tracking-tight mb-4">
-          Page Not <span class="text-primary">Found</span>
-        </h1>
-        <p class="text-base-content/60 text-lg mb-10 leading-relaxed">
-          The page you're looking for doesn't exist or has been moved. Let's get you back on track.
+  <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+    <p class="label section-label">Error 404 · Page not found</p>
+
+    <div class="mt-10 grid gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-7">
+        <Isotype class="h-12 w-auto" aria-hidden="true" />
+        <h1 class="display mt-8 text-display">Game over? Not quite.</h1>
+        <p class="mt-6 max-w-[36rem] text-lead text-bone-2">
+          This page does not exist or has moved. Press continue and pick up where you left off.
         </p>
-        <a href="/" class="btn btn-primary btn-lg">
-          ← Back to Home
-        </a>
+        <div class="mt-9 flex flex-wrap items-center gap-3">
+          <a href="/" class="btn btn-primary btn-lg pl-2">
+            <span class="pad bg-ink text-start" aria-hidden="true">A</span>
+            Continue to home
+          </a>
+          <a href="/downloads/" class="btn btn-secondary btn-lg">Download</a>
+        </div>
       </div>
+
+      <nav class="lg:col-span-5 lg:pt-20" aria-label="Other pages">
+        <ul class="border-t border-line">
+          {links.map((l) => (
+            <li>
+              <a href={l.href} class="group flex items-center justify-between gap-4 border-b border-line py-4 transition-colors hover:bg-ink-2 md:px-3">
+                <span class="min-w-0">
+                  <span class="block font-semibold">{l.label}</span>
+                  <span class="block text-sm text-bone-3">{l.note}</span>
+                </span>
+                <Icon name="heroicons:arrow-right" class="h-4 w-4 shrink-0 text-bone-3 transition-colors group-hover:text-bone" aria-hidden="true" />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
-  </div>
+  </section>
 </PageLayout>

@@ -1,106 +1,101 @@
 ---
 import { Icon } from "astro-icon/components";
+import Logo from "@/assets/brand/logo-horizontal.svg";
 import { menuLinks, siteConfig } from "@/site.config";
+
+const links = menuLinks;
+const isActive = (path: string) => Astro.url.pathname === path || Astro.url.pathname === path.replace(/\/$/, "");
 ---
 
-<header class="sticky top-0 z-40 glass border-b border-base-300">
-  <nav class="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6">
-    <div class="flex items-center gap-1.5">
-      <div class="dropdown lg:hidden">
-        <button type="button" data-mobile-menu-toggle aria-expanded="false" aria-controls="mobile-menu" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-base-300 bg-base-200 text-base-content/70 transition hover:bg-base-300 hover:text-base-content lg:hidden" aria-label="Toggle navigation menu">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-        </button>
-        <ul id="mobile-menu" class="dropdown-content menu menu-sm mt-3 w-52 bg-base-100/95 backdrop-blur-xl border border-base-300">
-          {menuLinks.map((link) => (
-            <li>
-              <a
-                href={link.path}
-                class="block rounded-lg px-3 py-2 text-sm font-medium transition-colors"
-                aria-current={Astro.url.pathname === link.path ? "page" : undefined}
-              >
-                {link.title}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </div>
-      <a href="/" class="rounded-lg px-1.5 py-1.5">
-        <img src="/neostation-logo-dark-v2.webp" alt={siteConfig.title} class="h-8 w-auto" width="160" height="40" />
-      </a>
-    </div>
+<header class="sticky top-0 z-40 border-b border-line bg-ink-2">
+  <nav class="mx-auto flex h-16 max-w-[76rem] items-center justify-between gap-4 px-5 md:px-8" aria-label="Main">
+    <a href="/" class="-ml-1 flex items-center rounded-md p-1 text-bone" aria-label={`${siteConfig.title} home`}>
+      <Logo height="26" width="194" class="h-[26px] w-auto" aria-hidden="true" />
+    </a>
 
-    <div class="hidden items-center gap-1 lg:flex">
-      {menuLinks.map((link) => {
-        const active = Astro.url.pathname === link.path;
-        return (
+    <ul class="hidden items-center gap-1 lg:flex">
+      {links.map((link) => (
+        <li>
           <a
             href={link.path}
-            class={`rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
-              active ? "text-base-content" : "text-base-content/60 hover:text-base-content"
-            }`}
-            aria-current={active ? "page" : undefined}
+            class:list={[
+              "relative rounded-md px-3 py-2 text-[0.9375rem] font-medium transition-colors",
+              isActive(link.path) ? "text-bone" : "text-bone-2 hover:text-bone",
+            ]}
+            aria-current={isActive(link.path) ? "page" : undefined}
           >
             {link.title}
+            {isActive(link.path) && <span class="absolute inset-x-3 -bottom-[13px] h-0.5 rounded-full bg-start" aria-hidden="true" />}
           </a>
-        );
-      })}
-    </div>
+        </li>
+      ))}
+    </ul>
 
     <div class="flex items-center gap-2">
       <a
         href="https://github.com/misobadev/neostation-frontend"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-base-300 bg-base-200 text-base-content/70 transition hover:border-base-300/70 hover:bg-base-300/60 hover:text-base-content"
-        aria-label="NeoStation source code on GitHub (GPL v3)"
+        class="hidden h-10 items-center gap-2 rounded-full border border-line px-3.5 text-sm font-medium text-bone-2 transition hover:border-bone-3 hover:text-bone sm:inline-flex"
       >
-        <Icon name="simple-icons:github" class="h-4 w-4" />
+        <Icon name="simple-icons:github" class="h-4 w-4" aria-hidden="true" />
+        Source
       </a>
-      <a
-        href="https://discord.gg/xE2kgKsRVq"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-base-300 bg-base-200 text-base-content/70 transition hover:border-base-300/70 hover:bg-base-300/60 hover:text-base-content"
-        aria-label="Join our Discord community"
+      <a href="/downloads/" class="hidden h-10 items-center rounded-full border border-bone bg-bone px-3.5 text-sm font-medium text-ink transition hover:border-white hover:bg-white sm:inline-flex">Download</a>
+      <button
+        type="button"
+        data-menu-toggle
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-full border border-line text-bone-2 transition hover:text-bone lg:hidden"
+        aria-label="Open menu"
       >
-        <Icon name="simple-icons:discord" class="h-4 w-4" />
-      </a>
-      <a href="/downloads/" class="btn btn-primary h-9 px-4">
-        Get NeoStation
-      </a>
+        <Icon name="heroicons:bars-2" class="h-5 w-5" aria-hidden="true" />
+      </button>
     </div>
   </nav>
+
+  <div id="mobile-menu" class="hidden border-t border-line lg:hidden">
+    <ul class="mx-auto max-w-[76rem] px-5 py-3 md:px-8">
+      {menuLinks.map((link) => (
+        <li>
+          <a
+            href={link.path}
+            class:list={[
+              "flex items-center justify-between border-b border-line py-3.5 text-base font-medium last:border-0",
+              isActive(link.path) ? "text-bone" : "text-bone-2",
+            ]}
+            aria-current={isActive(link.path) ? "page" : undefined}
+          >
+            {link.title}
+            {isActive(link.path) && <span class="h-2 w-2 rounded-full bg-start" aria-hidden="true" />}
+          </a>
+        </li>
+      ))}
+      <li class="flex gap-2 pt-4 pb-2">
+        <a href="/downloads/" class="btn btn-primary flex-1">Download</a>
+        <a href="https://github.com/misobadev/neostation-frontend" target="_blank" rel="noopener noreferrer" class="btn btn-secondary flex-1">Source on GitHub</a>
+      </li>
+    </ul>
+  </div>
 </header>
 
 <script>
-  const dropdown = document.querySelector<HTMLElement>(".dropdown");
-  const toggle = document.querySelector<HTMLButtonElement>("[data-mobile-menu-toggle]");
+  const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
+  const menu = document.getElementById("mobile-menu");
 
-  function openMenu(open: boolean) {
-    if (!dropdown) return;
-    dropdown.classList.toggle("open", open);
+  function setOpen(open: boolean) {
+    menu?.classList.toggle("hidden", !open);
     toggle?.setAttribute("aria-expanded", String(open));
+    toggle?.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   }
 
-  toggle?.addEventListener("click", (event) => {
-    event.stopPropagation();
-    openMenu(!dropdown?.classList.contains("open"));
-  });
-
-  document.addEventListener("click", (event) => {
-    if (dropdown && !dropdown.contains(event.target as Node)) {
-      openMenu(false);
-    }
-  });
-
+  toggle?.addEventListener("click", () => setOpen(menu?.classList.contains("hidden") ?? false));
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      openMenu(false);
+    if (event.key === "Escape" && !menu?.classList.contains("hidden")) {
+      setOpen(false);
       toggle?.focus();
     }
   });
-
-  dropdown?.querySelectorAll("a").forEach((link) => {
-    link.addEventListener("click", () => openMenu(false));
-  });
+  menu?.querySelectorAll("a").forEach((link) => link.addEventListener("click", () => setOpen(false)));
 </script>

@@ -1,85 +1,75 @@
 ---
-import { Icon } from "astro-icon/components";
+import Logo from "@/assets/brand/logo-horizontal.svg";
 import { siteConfig } from "@/site.config";
 
 const year = new Date().getFullYear();
 
-const titleClass = "text-xs font-semibold uppercase tracking-widest text-base-content/40";
-const linkClass =
-  "text-sm text-base-content/60 transition-colors hover:text-primary";
+const columns = [
+  {
+    title: "Product",
+    links: [
+      { href: "/downloads/", label: "Download" },
+      { href: "/guide/", label: "Guide" },
+      { href: "/integrations/", label: "Integrations" },
+      { href: "/theme-designer/", label: "Theme Designer" },
+    ],
+  },
+  {
+    title: "Project",
+    links: [
+      { href: "https://github.com/misobadev/neostation-frontend", label: "Source code" },
+      { href: "https://github.com/misobadev/neostation-frontend/issues", label: "Report an issue" },
+      { href: "https://github.com/misobadev/neostation-frontend/releases", label: "Releases" },
+      { href: "https://github.com/misobadev/neostation-web", label: "This website" },
+      { href: "/brand-kit/", label: "Brand kit" },
+    ],
+  },
+  {
+    title: "Community",
+    links: [
+      { href: "https://discord.gg/xE2kgKsRVq", label: "Discord" },
+      { href: "https://www.patreon.com/cw/NeoStation", label: "Patreon" },
+    ],
+  },
+];
+
+const linkClass = "text-[0.9375rem] text-bone-2 transition-colors hover:text-bone";
 ---
 
-<footer class="border-t border-base-300 bg-base-200 px-6 py-14">
-  <div class="mx-auto grid max-w-7xl gap-10 sm:grid-cols-2 lg:grid-cols-4">
-    <div>
-      <a href="/" class="inline-flex items-center">
-        <img
-          src="/neostation-logo-dark-v2.webp"
-          alt={siteConfig.title}
-          class="h-8 w-auto"
-          width="160"
-          height="40"
-        />
+<footer class="border-t border-line bg-ink-2">
+  <div class="mx-auto grid max-w-[76rem] gap-12 px-5 py-16 md:grid-cols-12 md:px-8">
+    <div class="md:col-span-5">
+      <a href="/" class="inline-flex text-bone" aria-label={`${siteConfig.title} home`}>
+        <Logo height="30" width="224" class="h-[30px] w-auto" aria-hidden="true" />
       </a>
-      <p class="mt-4 max-w-xs text-sm leading-relaxed text-base-content/50">
-        A modern, user-centric frontend for retro gaming. The app is open source
-        under <strong class="text-base-content/70">GPL v3</strong>; this website
-        is <strong class="text-base-content/70">MIT</strong> licensed.
+      <p class="mt-5 max-w-sm text-[0.9375rem] leading-relaxed text-bone-2">
+        All your retro games on every screen you own. Free and open source.
       </p>
-      <div class="mt-5 flex items-center gap-2">
-        <a
-          href="https://github.com/misobadev/neostation-frontend"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-base-300 bg-base-100 text-base-content/60 transition hover:border-primary/50 hover:text-primary"
-          aria-label="NeoStation on GitHub"
-        >
-          <Icon name="simple-icons:github" class="h-4 w-4" />
-        </a>
-        <a
-          href="https://discord.gg/xE2kgKsRVq"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-base-300 bg-base-100 text-base-content/60 transition hover:border-primary/50 hover:text-primary"
-          aria-label="NeoStation on Discord"
-        >
-          <Icon name="simple-icons:discord" class="h-4 w-4" />
-        </a>
-        <a
-          href="https://www.patreon.com/cw/NeoStation"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-base-300 bg-base-100 text-base-content/60 transition hover:border-primary/50 hover:text-primary"
-          aria-label="Become a Patron on Patreon"
-        >
-          <Icon name="simple-icons:patreon" class="h-4 w-4" />
-        </a>
-      </div>
     </div>
 
-    <nav class="flex flex-col gap-2.5">
-      <h6 class={titleClass}>Product</h6>
-      <a href="/downloads/" class={linkClass}>Downloads</a>
-      <a href="/integrations/" class={linkClass}>Integrations</a>
-      <a href="/guide/" class={linkClass}>Guide</a>
-    </nav>
-
-    <nav class="flex flex-col gap-2.5">
-      <h6 class={titleClass}>Community</h6>
-      <a href="https://github.com/misobadev/neostation-frontend" target="_blank" rel="noopener noreferrer" class={linkClass}>GitHub</a>
-      <a href="https://discord.gg/xE2kgKsRVq" target="_blank" rel="noopener noreferrer" class={linkClass}>Discord</a>
-      <a href="/theme-designer/" class={linkClass}>Theme Designer</a>
-    </nav>
-
-    <nav class="flex flex-col gap-2.5">
-      <h6 class={titleClass}>Support</h6>
-      <a href="https://www.patreon.com/cw/NeoStation" target="_blank" rel="noopener noreferrer" class={linkClass}>Patreon</a>
-      <a href="https://github.com/misobadev/neostation-frontend/issues" target="_blank" rel="noopener noreferrer" class={linkClass}>Report an issue</a>
-    </nav>
+    {columns.map((col) => (
+      <nav class="md:col-span-2 lg:col-span-2" aria-label={col.title}>
+        <h2 class="label">{col.title}</h2>
+        <ul class="mt-4 flex flex-col gap-2.5">
+          {col.links.map((l) => {
+            const external = l.href.startsWith("http");
+            return (
+              <li>
+                <a href={l.href} class={linkClass} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                  {l.label}
+                </a>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+    ))}
   </div>
 
-  <div class="mx-auto mt-12 flex max-w-7xl flex-col items-center justify-between gap-3 border-t border-base-300 pt-8 text-xs text-base-content/40 sm:flex-row">
-    <span>&copy; {year} {siteConfig.title}. All rights reserved.</span>
-    <span>Made for the retro community.</span>
+  <div class="border-t border-line">
+    <div class="mx-auto flex max-w-[76rem] flex-col gap-2 px-5 py-6 font-mono text-xs text-bone-3 sm:flex-row sm:justify-between md:px-8">
+      <span>&copy; {year} {siteConfig.title}</span>
+      <span>App GPL-3.0 · Website MIT</span>
+    </div>
   </div>
 </footer>
