@@ -10,28 +10,30 @@ const meta = {
     "The NeoStation logo, app icon, colours and typefaces, with downloads and usage rules for articles, videos and community projects.",
 };
 
-const kit = { href: "/brand/neostation-brand-kit.zip", size: "752 KB" };
+const kit = { href: "/brand/neostation-brand-kit.zip", size: "1.4 MB" };
 
 const logos = [
   { file: "neostation-logo.svg", title: "Logo for dark backgrounds", note: "Bone wordmark. The default version.", bg: "bg-ink" },
-  { file: "neostation-logo-light.svg", title: "Logo for light backgrounds", note: "Ink wordmark, same console.", bg: "bg-bone" },
+  { file: "neostation-logo-light.svg", title: "Logo for light backgrounds", note: "Ink wordmark, deeper grey and red.", bg: "bg-white" },
 ];
 
 const variants = [
   {
     group: "Isotype",
-    note: "The console and its trail, for small spaces and avatars.",
+    note: "The eye on its own, for small spaces and avatars.",
     items: [
-      { file: "neostation-isotype-color.svg", title: "Colour", bg: "bg-ink", h: "h-14" },
-      { file: "neostation-isotype-white.svg", title: "White", bg: "bg-ink", h: "h-14" },
-      { file: "neostation-isotype-black.svg", title: "Black", bg: "bg-white", h: "h-14" },
+      { file: "neostation-isotype-color.svg", title: "Colour, on dark", bg: "bg-ink", h: "h-16" },
+      { file: "neostation-isotype-light.svg", title: "Colour, on light", bg: "bg-white", h: "h-16" },
+      { file: "neostation-isotype-white.svg", title: "White", bg: "bg-ink", h: "h-16" },
+      { file: "neostation-isotype-black.svg", title: "Black", bg: "bg-white", h: "h-16" },
     ],
   },
   {
     group: "App icon",
     note: "Square tile; stores and launchers apply their own corner mask.",
     items: [
-      { file: "neostation-appicon-color.svg", title: "Colour", bg: "bg-ink-2", h: "h-24" },
+      { file: "neostation-appicon-color.svg", title: "Colour, dark", bg: "bg-ink-2", h: "h-24" },
+      { file: "neostation-appicon-light.svg", title: "Colour, light", bg: "bg-ink-2", h: "h-24" },
       { file: "neostation-appicon-white.svg", title: "White", bg: "bg-ink-2", h: "h-24" },
       { file: "neostation-appicon-black.svg", title: "Black", bg: "bg-ink-2", h: "h-24" },
     ],
@@ -41,26 +43,25 @@ const variants = [
     note: "For print, embroidery, engraving and single-colour stamps.",
     items: [
       { file: "neostation-logo-mono-bone.svg", title: "Bone", bg: "bg-ink", h: "h-7" },
-      { file: "neostation-logo-mono-ink.svg", title: "Ink", bg: "bg-bone", h: "h-7" },
+      { file: "neostation-logo-mono-ink.svg", title: "Ink", bg: "bg-white", h: "h-7" },
     ],
   },
 ];
 
 const colours = [
-  { name: "Sand", hex: "#EBD196", rgb: "235 209 150", role: "The console. The colour of the logo.", text: "text-ink" },
-  { name: "Red", hex: "#FF5A4A", rgb: "255 90 74", role: "Speed trail, next to the console.", text: "text-ink" },
-  { name: "Orange", hex: "#FF8A1F", rgb: "255 138 31", role: "Speed trail, the farthest stripe.", text: "text-ink" },
-  { name: "Espresso", hex: "#3B3A36", rgb: "59 58 54", role: "The console's screen.", text: "text-bone" },
-  { name: "Toffee", hex: "#C29F5E", rgb: "194 159 94", role: "The console's controls.", text: "text-ink" },
-  { name: "Start", hex: "#FFD23F", rgb: "255 210 63", role: "The website's one main action per screen.", text: "text-ink" },
-  { name: "Cabinet", hex: "#111216", rgb: "17 18 22", role: "Backgrounds and text on colour.", text: "text-bone" },
-  { name: "Bone", hex: "#F1EDE4", rgb: "241 237 228", role: "Wordmark and text on dark.", text: "text-ink" },
+  { name: "Cabinet", hex: "#111216", rgb: "17 18 22", role: "Backgrounds, and text on bone and red.", text: "text-bone" },
+  { name: "Bone", hex: "#F1EDE4", rgb: "241 237 228", role: "The thick half of the ring, the wordmark and text on dark.", text: "text-ink" },
+  { name: "Grey", hex: "#B9B4A8", rgb: "185 180 168", role: "The thin half of the ring, and body text on dark.", text: "text-ink" },
+  { name: "Signal red", hex: "#FF5A4A", rgb: "255 90 74", role: "The pupil, and the one main action on each page of the site.", text: "text-ink" },
+  { name: "Grey on light", hex: "#77736A", rgb: "119 115 106", role: "The thin half of the ring on white and light grounds.", text: "text-bone" },
+  { name: "Red on light", hex: "#E8402F", rgb: "232 64 47", role: "The pupil on white and light grounds.", text: "text-ink" },
 ];
 
 const donts = [
-  "Recolour the console, or reorder or remove the trail.",
-  "Stretch, rotate, outline or add shadows and glows.",
-  "Use the console without its trail as the logo (the favicon is the only exception).",
+  "Recolour the eye, or swap the thick and thin halves of the ring.",
+  "Rotate the eye: its two gaps always sit on the up-right diagonal.",
+  "Stretch, outline or add shadows and glows.",
+  "Animate it any other way than looking and blinking along its diagonal.",
   "Set the wordmark in another typeface or weight.",
   "Place the dark-background logo on light or busy images.",
   "Use the logo to suggest that NeoStation endorses another product.",
@@ -70,6 +71,15 @@ const fonts = [
   { name: "Bai Jamjuree Bold Italic", use: "Wordmark and big headlines", sample: "All your retro games, everywhere.", cls: "font-sans text-2xl font-bold italic", href: "https://fonts.google.com/specimen/Bai+Jamjuree" },
   { name: "Bai Jamjuree", use: "Interface and text, 400 to 700", sample: "Point it at your ROMs and press A.", cls: "font-sans text-xl", href: "https://fonts.google.com/specimen/Bai+Jamjuree" },
   { name: "JetBrains Mono", use: "Labels, versions and data", sample: "v0.16.1 · GPL-3.0 · 119 systems", cls: "font-mono text-base", href: "https://fonts.google.com/specimen/JetBrains+Mono" },
+];
+
+const motion = [
+  { title: "Animated SVG, for dark", file: "/brand/neostation-isotype-animated.svg", kind: "SVG" },
+  { title: "Animated SVG, for light", file: "/brand/neostation-isotype-animated-light.svg", kind: "SVG" },
+  { title: "GIF, dark", file: "/brand/motion/neostation-isotype-dark.gif", kind: "GIF" },
+  { title: "GIF, light", file: "/brand/motion/neostation-isotype-light.gif", kind: "GIF" },
+  { title: "Video, dark", file: "/brand/motion/neostation-isotype-dark.mp4", kind: "MP4" },
+  { title: "Video, light", file: "/brand/motion/neostation-isotype-light.mp4", kind: "MP4" },
 ];
 
 const dl = "inline-flex items-center gap-1.5 text-sm text-bone-2 underline decoration-bone-3 underline-offset-4 transition-colors hover:text-bone hover:decoration-bone";
@@ -83,14 +93,14 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
   <PageHero
     label="Brand kit"
     title="The NeoStation brand."
-    lead="Logo, app icon, colours and typefaces for articles, videos and community projects. Everything is in one download."
+    lead="Logo, app icon, motion, colours and typefaces for articles, videos and community projects. Everything is in one download."
   >
     <div class="mt-9 flex flex-wrap items-center gap-3">
       <a href={kit.href} download class="btn btn-primary btn-lg pl-2">
         <span class="pad bg-ink text-start" aria-hidden="true">A</span>
         Download brand kit
       </a>
-      <span class="label">.zip · {kit.size} · SVG and PNG</span>
+      <span class="label">.zip · {kit.size} · SVG, PNG, GIF and MP4</span>
     </div>
   </PageHero>
 
@@ -98,10 +108,10 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
   <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
     <p class="label section-label">Logo</p>
     <div class="mt-6 grid gap-6 lg:grid-cols-12">
-      <h2 class="heading text-h2 lg:col-span-7">A retro handheld, leaving a trail of colour.</h2>
+      <h2 class="heading text-h2 lg:col-span-7">An eye on your whole library.</h2>
       <p class="text-bone-2 lg:col-span-5">
-        A sand-coloured pocket console with an espresso screen, a d-pad and a button, leaning at the angle of the
-        wordmark. A red and an orange stripe trail behind it: your library, moving with you from screen to screen.
+        A ring in two weights around a red pupil: NeoStation looks after every game you own and shows it on every
+        screen. The ring's two gaps sit on one diagonal, and the eye looks and blinks along that same line.
       </p>
     </div>
 
@@ -131,18 +141,53 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
     </div>
   </section>
 
+  <!-- Motion -->
+  <section class="border-t border-line">
+    <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
+      <p class="label section-label">Motion</p>
+      <div class="mt-6 grid gap-6 lg:grid-cols-12">
+        <h2 class="heading text-h2 lg:col-span-7">It looks around, then blinks.</h2>
+        <p class="text-bone-2 lg:col-span-5">
+          The eye glances up-right, then down-left, along the gaps in its ring, comes back and blinks on the same
+          diagonal. Use it for splash screens, loading and social posts; keep the logo still everywhere else.
+        </p>
+      </div>
+      <div class="mt-12 grid gap-4 md:grid-cols-12">
+        <div class="flex h-72 items-center justify-center rounded-2xl border border-line bg-ink-2 md:col-span-4">
+          <img src="/brand/neostation-isotype-animated.svg" alt="The NeoStation eye looking around and blinking, on dark" class="h-36 w-36" />
+        </div>
+        <div class="flex h-72 items-center justify-center rounded-2xl border border-line bg-white md:col-span-4">
+          <img src="/brand/neostation-isotype-animated-light.svg" alt="The NeoStation eye looking around and blinking, on light" class="h-36 w-36" />
+        </div>
+        <ul class="border-t border-line md:col-span-4">
+          {motion.map((m) => (
+            <li class="flex items-center justify-between gap-3 border-b border-line py-3">
+              <span class="text-[0.9375rem]">{m.title}</span>
+              <a href={m.file} download class={dl}>
+                <Icon name="heroicons:arrow-down-tray" class="h-4 w-4" aria-hidden="true" />{m.kind}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <p class="mt-6 text-sm text-bone-3">
+        The animated SVGs loop every 4 seconds and stay still for people who turn on reduced motion.
+      </p>
+    </div>
+  </section>
+
   <!-- Marks -->
   <section class="border-y border-line bg-ink-2">
     <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
       <p class="label section-label">Isotype and variants</p>
-      <h2 class="heading mt-6 text-h2 lg:max-w-[36rem]">One console, in colour, white and black.</h2>
+      <h2 class="heading mt-6 text-h2 lg:max-w-[36rem]">One eye, on dark and light, in white and black.</h2>
       {variants.map((v) => (
         <div class="mt-12">
           <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-3">
             <h3 class="text-h3 font-bold">{v.group}</h3>
             <p class="text-sm text-bone-3">{v.note}</p>
           </div>
-          <ul class="mt-4 grid gap-4 sm:grid-cols-3">
+          <ul class:list={["mt-4 grid gap-4", v.items.length === 4 ? "grid-cols-2 lg:grid-cols-4" : "sm:grid-cols-2"]}>
             {v.items.map((m) => (
               <li class="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink">
                 <div class={`flex h-40 items-center justify-center px-6 ${m.bg}`}>
@@ -207,13 +252,13 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
     <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
       <p class="label section-label">Colour</p>
       <div class="mt-6 grid gap-6 lg:grid-cols-12">
-        <h2 class="heading text-h2 lg:col-span-7">Sand console, warm trail, cabinet black.</h2>
+        <h2 class="heading text-h2 lg:col-span-7">Bone, grey and one red light.</h2>
         <p class="text-bone-2 lg:col-span-5">
-          Text on any brand colour is Cabinet. The brand colours are separate from the app's themes, which each person
+          Text on bone and red is Cabinet. Red is kept for the pupil and the one main action per page. The brand colours are separate from the app's themes, which each person
           picks for themselves.
         </p>
       </div>
-      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4">
+      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-3">
         {colours.map((c) => (
           <li class="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink">
             <div class={`flex h-32 items-end p-4 ${c.text}`} style={`background:${c.hex}`}>

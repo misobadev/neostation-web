@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="69.00 69.00 356.25 356.25"><style>@keyframes ns-look-pupil {
+  0% { transform: translate(0px, 0px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  15% { transform: translate(0px, 0px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  21.25% { transform: translate(22px, -22px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  36.25% { transform: translate(22px, -22px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  45% { transform: translate(-22px, 22px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  60% { transform: translate(-22px, 22px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  66.25% { transform: translate(0px, 0px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  68.75% { transform: translate(0px, 0px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0); }
+  71% { transform: translate(0px, 0px) rotate(-45deg) scale(1.14, 0.17) rotate(45deg); animation-timing-function: linear; }
+  72% { transform: translate(0px, 0px) rotate(-45deg) scale(1.14, 0.17) rotate(45deg); animation-timing-function: cubic-bezier(0.34, 1.7, 0.64, 1); }
+  75.75% { transform: translate(0px, 0px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  100% { transform: translate(0px, 0px) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+}
+@keyframes ns-look-ring {
+  0% { transform: rotate(0deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  15% { transform: rotate(0deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  21.25% { transform: rotate(6deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  36.25% { transform: rotate(6deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  45% { transform: rotate(-6deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  60% { transform: rotate(-6deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.65, 0, 0.35, 1); }
+  66.25% { transform: rotate(0deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  68.75% { transform: rotate(0deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: cubic-bezier(0.32, 0, 0.67, 0); }
+  71% { transform: rotate(0deg) rotate(-45deg) scale(1.03, 0.92) rotate(45deg); animation-timing-function: linear; }
+  72% { transform: rotate(0deg) rotate(-45deg) scale(1.03, 0.92) rotate(45deg); animation-timing-function: cubic-bezier(0.34, 1.7, 0.64, 1); }
+  75.75% { transform: rotate(0deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+  100% { transform: rotate(0deg) rotate(-45deg) scale(1, 1) rotate(45deg); animation-timing-function: linear; }
+}
+ .ns-pupil,  .ns-ring { transform-box: fill-box; transform-origin: center; }
+ .ns-pupil { animation: ns-look-pupil 4s infinite; }
+ .ns-ring { animation: ns-look-ring 4s infinite; }
+@media (prefers-reduced-motion: reduce) {  .ns-pupil,  .ns-ring { animation: none; } }
+</style><g id="icon"><g class="ns-ring"><circle cx="256" cy="256" r="183" fill="none"/><path fill="none" stroke="#F1EDE4" stroke-width="66" stroke-linecap="round" d="M120.5 320.3A150 150 0 0 1 320.3 120.5"/><path fill="none" stroke="#B9B4A8" stroke-width="30" stroke-linecap="round" d="M382.8 175.8A150 150 0 0 1 175.8 382.8"/></g><circle class="ns-pupil" cx="256.0" cy="256.0" r="53" fill="#FF5A4A"/></g></svg>

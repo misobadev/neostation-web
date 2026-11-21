@@ -7,6 +7,7 @@
 @import "@fontsource/bai-jamjuree/latin-ext-400.css";
 @import "@fontsource/bai-jamjuree/latin-ext-700.css";
 @import "@fontsource-variable/jetbrains-mono";
+@import "./brand-motion.css";
 @plugin "@tailwindcss/typography";
 
 /*
@@ -37,8 +38,8 @@
 	--color-bone: #f1ede4;
 	--color-bone-2: #b9b4a8;
 	--color-bone-3: #8d897f;
-	--color-start: #ffd23f;
-	--color-start-hover: #ffdd6b;
+	--color-start: #ff5a4a;
+	--color-start-hover: #ff7b6e;
 	--color-red: #ff5a4a;
 	--color-blue: #4a74ff;
 	--color-green: #33c27a;
