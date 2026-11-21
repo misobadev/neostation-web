@@ -1,6 +1,6 @@
 ---
 name: NeoStation Web
-description: Soft era. A 1992 game-box badge drawn as a modern app icon: cabinet black, hardware bone, one Start-yellow action, and blue/red only where the badge lives.
+description: A retro handheld on the move. Cabinet black, hardware bone, one Start-yellow action, and blue/red only in the console's trail.
 colors:
   ink: "#111216"        # Cabinet: page ground
   ink-2: "#1a1b21"      # plates, header, footer, inset panels
@@ -10,8 +10,10 @@ colors:
   bone-2: "#b9b4a8"     # body copy (9:1)
   bone-3: "#8d897f"     # captions, labels, meta (5.4:1)
   start: "#ffd23f"      # Start yellow: the brand colour; the one main action per view, focus ring
-  red: "#ff5a4a"        # badge band 2; errors
-  blue: "#4a74ff"       # badge band 1; info
+  red: "#ff5a4a"        # speed trail; errors
+  blue: "#4a74ff"       # speed trail; info
+  slate: "#4a4c58"      # the console's screen (logo only)
+  deep-yellow: "#e0a800" # the console's controls (logo only)
   green: "#33c27a"      # success only
   on-colour: "#111216"  # text on any brand colour is always ink (every pair is 4.6:1 or more)
 typography:
@@ -45,9 +47,9 @@ shadow: none. Depth comes from ink-2 plates and hairlines.
 
 ## Direction
 
-**"Soft era."** NeoStation puts a whole retro library on every screen a person owns. The brand mark is a 1992
-game-box badge (slanted bands leading into a yellow tile) drawn with the rounded corners of a modern app icon. The
-site follows the same balance: retro in its colour and slant, calm and modern in its layout. Screenshots of the app
+**"A retro handheld on the move."** NeoStation puts a whole retro library on every screen a person owns. The brand
+mark is a pocket console leaning forward at the wordmark's italic angle, leaving a red and blue speed trail behind it.
+The site follows the same balance: retro in its colour and slant, calm and modern in its layout. Screenshots of the app
 are the only imagery; type and ruled facts do the rest.
 
 Brand colours are independent from the app's themes. The app ships many themes and each person picks one; the
@@ -55,26 +57,28 @@ brand never borrows a theme colour and the site shows the app as it is, in its s
 
 ## Logo
 
-- Isotype **Soft era badge**: a blue band, a red band and a wider Start-yellow tile, slanted about 10° (the italic
-  angle of the wordmark), every corner rounded with one radius (22/512) except the yellow tile's clipped top-right
-  corner, the one hard edge carried over from 1992.
+- Isotype **Handheld in motion**: a Start-yellow portrait console with a slate screen (#4A4C58), a d-pad and one
+  button in deep yellow (#E0A800), leaning about 10° (the italic angle of the wordmark), with a red and a blue stripe
+  trailing behind it. Source: `logos/handheld/` (concepts, iterations, tones); the chosen file is tone D of iteration 1.
 - Logotype: "NeoStation" in Bai Jamjuree Bold Italic, mixed case, tracking +0.02em, outlined.
 - Lockup: isotype 1.4 × cap height, centred on the caps, gap 0.55 × cap height.
-- Source of truth: `logos/` (concepts, iterations, `export/`). `node logos/tools/brand-assets.mjs` writes
+- Source of truth: `logos/` (`export/` is the current logo; `export-soft-era/` keeps the previous badge).
+  `node logos/tools/export-handheld.mjs && node logos/tools/brand-assets.mjs` writes
   `src/assets/brand/logo-horizontal.svg` (wordmark in `currentColor`), `src/assets/brand/isotype.svg`, the public kit
   in `public/brand/`, `public/favicon.svg`, `public/favicon.png` and `public/icons/apple-touch-icon.png`.
-- On light backgrounds the wordmark is ink and the badge keeps its colours. One-colour versions exist for print.
+- On light backgrounds the wordmark is ink and the console keeps its colours. One-colour versions exist for print, with
+  the screen and controls as cut-outs.
 - Isotype and app icon come in colour, white and black. The app icon is a square tile with no rounding (stores and
-  launchers apply their own mask) and the badge at 50 % of its width (tested under square, rounded, circle and teardrop masks); the favicon uses the same 50 %.
-- Never recolour the bands, reorder them, or use the yellow tile alone as the logo.
+  launchers apply their own mask) and the isotype at 50 % of its width (tested under square, rounded, circle and teardrop masks); the favicon uses the same 50 %.
+- Never recolour the console, reorder or drop its trail, or use the console alone as the logo (only the favicon may).
 
 ## Colors
 
 - **Ink** carries every page. Plates are ink-2 with a 1px line; nothing floats on shadows, blur or glow.
 - **Start yellow** marks the single main action of a view (Download), the focus ring and small markers. One yellow
   button per screen at most.
-- **Blue and red** live in the badge. In the UI they only mark info and errors. Never use the three together outside
-  the logo, so the badge stays the only place where they meet.
+- **Blue and red** live in the console's trail. In the UI they only mark info and errors. Never use the three together
+  outside the logo, so the logo stays the only place where they meet.
 - Text on any brand colour is ink. Text on ink is bone, bone-2 or bone-3.
 - No gradients, no gradient text, no purple.
 

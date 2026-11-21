@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <g id="icon">
+    <g transform="matrix(1 0 -0.16 1 40.55 0)">
+      <rect fill="#FFD23F" x="60" y="132" width="392" height="248" rx="72"/>
+      <rect fill="#111216" x="152" y="160" width="208" height="192" rx="28"/>
+      <path fill="#FFD23F" transform="matrix(1 0 0.16 1 -40.55 0)" d="M217 175h18v18h18v18h18v18h18v18h18v18h-18v18h-18v18h-18v18h-18v18h-18z"/>
+      <path fill="#111216" d="M93 224a6 6 0 0 1 6-6h12a6 6 0 0 1 6 6v20h20a6 6 0 0 1 6 6v12a6 6 0 0 1-6 6h-20v20a6 6 0 0 1-6 6h-12a6 6 0 0 1-6-6v-20h-20a6 6 0 0 1-6-6v-12a6 6 0 0 1 6-6h20z"/>
+      <circle fill="#FF5A4A" cx="418" cy="232" r="19"/>
+      <circle fill="#4A74FF" cx="396" cy="280" r="19"/>
+    </g>
+  </g>
+</svg>

@@ -14,13 +14,13 @@ const kit = { href: "/brand/neostation-brand-kit.zip", size: "628 KB" };
 
 const logos = [
   { file: "neostation-logo.svg", title: "Logo for dark backgrounds", note: "Bone wordmark. The default version.", bg: "bg-ink" },
-  { file: "neostation-logo-light.svg", title: "Logo for light backgrounds", note: "Ink wordmark, same badge.", bg: "bg-bone" },
+  { file: "neostation-logo-light.svg", title: "Logo for light backgrounds", note: "Ink wordmark, same console.", bg: "bg-bone" },
 ];
 
 const variants = [
   {
     group: "Isotype",
-    note: "The badge alone, for small spaces and avatars.",
+    note: "The console and its trail, for small spaces and avatars.",
     items: [
       { file: "neostation-isotype-color.svg", title: "Colour", bg: "bg-ink", h: "h-14" },
       { file: "neostation-isotype-white.svg", title: "White", bg: "bg-ink", h: "h-14" },
@@ -48,16 +48,18 @@ const variants = [
 
 const colours = [
   { name: "Start", hex: "#FFD23F", rgb: "255 210 63", role: "The brand colour. One main action per screen.", text: "text-ink" },
-  { name: "Red", hex: "#FF5A4A", rgb: "255 90 74", role: "Second band of the badge.", text: "text-ink" },
-  { name: "Blue", hex: "#4A74FF", rgb: "74 116 255", role: "First band of the badge.", text: "text-ink" },
+  { name: "Red", hex: "#FF5A4A", rgb: "255 90 74", role: "Speed trail, next to the console.", text: "text-ink" },
+  { name: "Blue", hex: "#4A74FF", rgb: "74 116 255", role: "Speed trail, the farthest stripe.", text: "text-ink" },
+  { name: "Slate", hex: "#4A4C58", rgb: "74 76 88", role: "The console's screen.", text: "text-bone" },
+  { name: "Deep yellow", hex: "#E0A800", rgb: "224 168 0", role: "The console's controls.", text: "text-ink" },
   { name: "Cabinet", hex: "#111216", rgb: "17 18 22", role: "Backgrounds and text on colour.", text: "text-bone" },
   { name: "Bone", hex: "#F1EDE4", rgb: "241 237 228", role: "Wordmark and text on dark.", text: "text-ink" },
 ];
 
 const donts = [
-  "Recolour, reorder or remove the bands.",
+  "Recolour the console, or reorder or remove the trail.",
   "Stretch, rotate, outline or add shadows and glows.",
-  "Use the yellow tile alone as the logo.",
+  "Use the console without its trail as the logo (the favicon is the only exception).",
   "Set the wordmark in another typeface or weight.",
   "Place the dark-background logo on light or busy images.",
   "Use the logo to suggest that NeoStation endorses another product.",
@@ -95,10 +97,10 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
   <section class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
     <p class="label section-label">Logo</p>
     <div class="mt-6 grid gap-6 lg:grid-cols-12">
-      <h2 class="heading text-h2 lg:col-span-7">A 1992 game-box badge, drawn like a modern app icon.</h2>
+      <h2 class="heading text-h2 lg:col-span-7">A retro handheld, leaving a trail of colour.</h2>
       <p class="text-bone-2 lg:col-span-5">
-        Two bands and a Start-yellow tile, slanted at the angle of the wordmark. Every corner is rounded except the
-        tile's top right, the one hard edge kept from the era.
+        A Start-yellow pocket console with a slate screen, a d-pad and a button, leaning at the angle of the wordmark.
+        A red and a blue stripe trail behind it: your library, moving with you from screen to screen.
       </p>
     </div>
 
@@ -132,7 +134,7 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
   <section class="border-y border-line bg-ink-2">
     <div class="mx-auto max-w-[76rem] px-5 py-16 md:px-8 lg:py-24">
       <p class="label section-label">Isotype and variants</p>
-      <h2 class="heading mt-6 text-h2 lg:max-w-[36rem]">One badge, in colour, white and black.</h2>
+      <h2 class="heading mt-6 text-h2 lg:max-w-[36rem]">One console, in colour, white and black.</h2>
       {variants.map((v) => (
         <div class="mt-12">
           <div class="flex flex-wrap items-baseline justify-between gap-2 border-b border-line pb-3">
@@ -210,7 +212,7 @@ const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/
           picks for themselves.
         </p>
       </div>
-      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-5">
+      <ul class="mt-12 grid grid-cols-2 gap-4 md:grid-cols-4 lg:grid-cols-7">
         {colours.map((c) => (
           <li class="flex flex-col overflow-hidden rounded-2xl border border-line bg-ink">
             <div class={`flex h-32 items-end p-4 ${c.text}`} style={`background:${c.hex}`}>

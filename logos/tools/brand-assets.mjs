@@ -1,53 +1,58 @@
-// Builds the site's brand files from logos/export (iteration 5, "Soft era").
-// Run: node logos/tools/brand-assets.mjs
+// Builds the site's brand files from logos/export (the handheld isotype, tone D).
+// Run: node logos/tools/export-handheld.mjs && node logos/tools/brand-assets.mjs
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
 
 const ex = "logos/export";
 const INK = "#111216";
+const WHITE = "#FFFFFF";
 const logo = fs.readFileSync(`${ex}/logo.svg`, "utf8");
 const icon = fs.readFileSync(`${ex}/icon.svg`, "utf8");
-const iconBody = icon.match(/<g id="icon">[\s\S]*?<\/g>/)[0];
+const iconBody = icon.match(/<g id="icon"[^>]*>[\s\S]*?<\/g>/)[0];
 
-// Icon artwork spans x 45.75–460.03, y 104–408 inside its 512 box.
-const BOX = { x: 45.75, y: 104, w: 414.28, h: 304 };
-const WHITE = "#FFFFFF";
-const BANDS = ["#4A74FF", "#FF5A4A", "#FFD23F"];
-// Recolour the three bands: null keeps the brand colours, a hex paints all three.
-const badge = (paint) => (paint ? BANDS.reduce((g, c) => g.replaceAll(`fill="${c}"`, `fill="${paint}"`), iconBody) : iconBody);
+// Drawing box of the isotype inside its 512 box, measured by export-handheld.mjs.
+const BOX = JSON.parse(fs.readFileSync(`${ex}/icon-box.json`, "utf8"));
+// Colour roles: the console and its trail, and the details (screen and controls).
+const COLOURS = ["#4A74FF", "#FF5A4A", "#FFD23F"];
+const DETAILS = ["#4A4C58", "#E0A800"];
+// Recolour: `paint` repaints the console and trail, `detail` repaints screen and controls (null keeps brand colours).
+const badge = ({ paint = null, detail = null } = {}) => {
+  let g = iconBody;
+  if (paint) for (const c of COLOURS) g = g.replaceAll(`fill="${c}"`, `fill="${paint}"`);
+  if (detail) for (const c of DETAILS) g = g.replaceAll(`fill="${c}"`, `fill="${detail}"`);
+  return g;
+};
 
-// App icon: square tile (no rounding, platforms apply their own mask) with the badge at 50 % of the width.
-// Tested under square, rounded-square, circle and teardrop masks: at 50 % the badge's farthest corner sits at
-// 61 % of the radius, well inside Android's adaptive safe zone (92 %), with room to breathe in every shape.
-// OPTICAL shifts the badge left: the yellow tile pulls the ink centroid 2.2 % right of the geometric centre,
-// so it is moved back by half of that.
-const OPTICAL = ((0.515 - 0.493) / 2) * 512;
-const tile = (size, { bg = INK, paint = null, fill = 0.5 } = {}) => {
+// App icon: square tile (no rounding, platforms apply their own mask) with the isotype at 50 % of the width,
+// tested under square, rounded-square and circle masks. OPTICAL shifts it left: the console outweighs the trail,
+// so the ink centroid sits 3.3 % right of the drawing's centre; it is moved back by half of that.
+const OPTICAL = ((0.541 - 0.508) / 2) * 512;
+const tile = (size, { bg = INK, fill = 0.5, ...colours } = {}) => {
   const s = (size * fill) / BOX.w, tx = (size - BOX.w * s) / 2 - BOX.x * s - OPTICAL * s, ty = (size - BOX.h * s) / 2 - BOX.y * s;
   return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}"><rect width="${size}" height="${size}" fill="${bg}"/>` +
-    `<g transform="translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${s.toFixed(4)})">${badge(paint)}</g></svg>\n`;
+    `<g transform="translate(${tx.toFixed(2)} ${ty.toFixed(2)}) scale(${s.toFixed(4)})">${badge(colours)}</g></svg>\n`;
 };
-const isotype = (paint = null) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${BOX.x - 4} ${BOX.y - 4} ${BOX.w + 8} ${BOX.h + 8}">${badge(paint)}</svg>\n`;
+const isotype = (colours = {}) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="${(BOX.x - 4).toFixed(2)} ${(BOX.y - 4).toFixed(2)} ${(BOX.w + 8).toFixed(2)} ${(BOX.h + 8).toFixed(2)}">${badge(colours)}</svg>\n`;
 const tight = isotype();
 
 // Variants: colour, white and black, for both the isotype and the app icon.
-const ISOTYPES = { color: null, white: WHITE, black: INK };
+const ISOTYPES = { color: {}, white: { paint: WHITE, detail: INK }, black: { paint: INK, detail: WHITE } };
 const APPICONS = {
   color: { bg: INK },
-  white: { bg: INK, paint: WHITE },
-  black: { bg: WHITE, paint: INK },
+  white: { bg: INK, paint: WHITE, detail: INK },
+  black: { bg: WHITE, paint: INK, detail: WHITE },
 };
 
 // Site logo: the wordmark follows currentColor so header/footer can theme it.
 fs.mkdirSync("src/assets/brand", { recursive: true });
-fs.writeFileSync("src/assets/brand/logo-horizontal.svg", logo.replace('<g id="wordmark" fill="#F1EDE4">', '<g id="wordmark" fill="currentColor">'));
+fs.writeFileSync("src/assets/brand/logo-horizontal.svg", logo.replace(/(<g id="wordmark"[^>]*>\s*<path fill=")#F1EDE4/, "$1currentColor"));
 fs.writeFileSync("src/assets/brand/isotype.svg", tight);
 
 // Public brand kit
 fs.rmSync("public/brand", { recursive: true, force: true });
 fs.mkdirSync("public/brand", { recursive: true });
 for (const f of ["logo.svg", "logo-light.svg", "logo-mono-ink.svg", "logo-mono-bone.svg"]) fs.copyFileSync(`${ex}/${f}`, `public/brand/neostation-${f}`);
-for (const [k, paint] of Object.entries(ISOTYPES)) fs.writeFileSync(`public/brand/neostation-isotype-${k}.svg`, isotype(paint));
+for (const [k, colours] of Object.entries(ISOTYPES)) fs.writeFileSync(`public/brand/neostation-isotype-${k}.svg`, isotype(colours));
 for (const [k, opts] of Object.entries(APPICONS)) fs.writeFileSync(`public/brand/neostation-appicon-${k}.svg`, tile(512, opts));
 
 // Favicons and touch icon
@@ -85,17 +90,19 @@ Logo
 - neostation-logo.svg: for dark backgrounds (bone wordmark).
 - neostation-logo-light.svg: for light backgrounds (ink wordmark).
 - neostation-logo-mono-*.svg: one-colour versions for print or embroidery.
-- neostation-isotype-{color,white,black}.svg: the badge alone.
-- neostation-appicon-{color,white,black}.svg: the badge on a square tile (platforms apply their own corner mask).
+- neostation-isotype-{color,white,black}.svg: the handheld isotype alone.
+- neostation-appicon-{color,white,black}.svg: the isotype on a square tile (platforms apply their own corner mask).
 - Keep clear space around the logo equal to the height of the wordmark's capital N.
-- Do not recolour, reorder, stretch, rotate or outline the bands, and do not use the yellow tile alone.
+- Do not recolour, reorder, stretch or outline the console and its trail, and do not drop the trail from the logo.
 
 Colours
 - Cabinet ink   #111216  background
 - Bone          #F1EDE4  text and wordmark on dark
-- Start yellow  #FFD23F  brand colour
-- Red           #FF5A4A  badge band
-- Blue          #4A74FF  badge band
+- Start yellow  #FFD23F  brand colour, the console body
+- Red           #FF5A4A  speed trail
+- Blue          #4A74FF  speed trail
+- Slate         #4A4C58  console screen
+- Deep yellow   #E0A800  console controls
 Text on any brand colour is ink (#111216).
 
 Type
