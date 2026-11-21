@@ -10,7 +10,7 @@ const meta = {
     "The NeoStation logo, app icon, colours and typefaces, with downloads and usage rules for articles, videos and community projects.",
 };
 
-const kit = { href: "/brand/neostation-brand-kit.zip", size: "436 KB" };
+const kit = { href: "/brand/neostation-brand-kit.zip", size: "644 KB" };
 
 const logos = [
   { file: "neostation-logo.svg", title: "Logo for dark backgrounds", note: "Bone wordmark. The default version.", bg: "bg-ink" },
@@ -70,6 +70,10 @@ const fonts = [
 ];
 
 const dl = "inline-flex items-center gap-1.5 text-sm text-bone-2 underline decoration-bone-3 underline-offset-4 transition-colors hover:text-bone hover:decoration-bone";
+
+// PNG widths published in /brand/png/ by logos/tools/brand-assets.mjs
+const pngSizes = (file: string) => (file.startsWith("neostation-logo") ? [600, 1200, 2400] : [256, 512, 1024]);
+const pngHref = (file: string, w: number) => `/brand/png/${file.replace(/\.svg$/, "")}-${w}.png`;
 ---
 
 <PageLayout meta={meta}>
@@ -109,9 +113,15 @@ const dl = "inline-flex items-center gap-1.5 text-sm text-bone-2 underline decor
               <span class="block font-semibold">{l.title}</span>
               <span class="block text-sm text-bone-3">{l.note}</span>
             </span>
-            <a href={`/brand/${l.file}`} download class={dl}>
-              <Icon name="heroicons:arrow-down-tray" class="h-4 w-4" aria-hidden="true" />SVG
-            </a>
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <a href={`/brand/${l.file}`} download class={dl}>
+                <Icon name="heroicons:arrow-down-tray" class="h-4 w-4" aria-hidden="true" />SVG
+              </a>
+              <span class="font-mono text-xs text-bone-3">PNG</span>
+              {pngSizes(l.file).map((w) => (
+                <a href={pngHref(l.file, w)} download class="font-mono text-xs text-bone-2 underline decoration-bone-3 underline-offset-4 transition-colors hover:text-bone hover:decoration-bone">{w}</a>
+              ))}
+            </div>
           </figcaption>
         </figure>
       ))}
@@ -135,18 +145,24 @@ const dl = "inline-flex items-center gap-1.5 text-sm text-bone-2 underline decor
                 <div class={`flex h-40 items-center justify-center px-6 ${m.bg}`}>
                   <img src={`/brand/${m.file}`} alt={`${v.group}, ${m.title.toLowerCase()}`} class={`${m.h} w-auto max-w-full`} loading="lazy" />
                 </div>
-                <div class="flex items-center justify-between border-t border-line px-5 py-3">
+                <div class="flex flex-col gap-2 border-t border-line px-5 py-3">
                   <span class="font-semibold">{m.title}</span>
-                  <a href={`/brand/${m.file}`} download class={dl}>
-                    <Icon name="heroicons:arrow-down-tray" class="h-4 w-4" aria-hidden="true" />SVG
-                  </a>
+                  <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                    <a href={`/brand/${m.file}`} download class={dl}>
+                      <Icon name="heroicons:arrow-down-tray" class="h-4 w-4" aria-hidden="true" />SVG
+                    </a>
+                    <span class="font-mono text-xs text-bone-3">PNG</span>
+                    {pngSizes(m.file).map((w) => (
+                      <a href={pngHref(m.file, w)} download class="font-mono text-xs text-bone-2 underline decoration-bone-3 underline-offset-4 transition-colors hover:text-bone hover:decoration-bone">{w}</a>
+                    ))}
+                  </div>
                 </div>
               </li>
             ))}
           </ul>
         </div>
       ))}
-      <p class="mt-6 text-sm text-bone-3">PNG versions from 256 to 2400 px are in the brand kit download.</p>
+      <p class="mt-6 text-sm text-bone-3">PNG widths are in pixels. Everything is also in the brand kit download.</p>
     </div>
   </section>
 

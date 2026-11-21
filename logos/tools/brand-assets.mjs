@@ -64,15 +64,21 @@ const kit = "/tmp/neostation-brand-kit";
 fs.rmSync(kit, { recursive: true, force: true });
 for (const d of ["svg", "png"]) fs.mkdirSync(`${kit}/${d}`, { recursive: true });
 for (const f of fs.readdirSync("public/brand").filter((f) => f.endsWith(".svg"))) fs.copyFileSync(`public/brand/${f}`, `${kit}/svg/${f}`);
-const png = (src, out, w, h) => execFileSync("rsvg-convert", ["-w", String(w), ...(h ? ["-h", String(h)] : []), src, "-o", `${kit}/png/${out}`]);
-for (const w of [600, 1200, 2400]) {
-  png("public/brand/neostation-logo.svg", `neostation-logo-dark-${w}.png`, w);
-  png("public/brand/neostation-logo-light.svg", `neostation-logo-light-${w}.png`, w);
-}
-for (const s of [256, 512, 1024]) {
-  for (const k of Object.keys(ISOTYPES)) png(`public/brand/neostation-isotype-${k}.svg`, `neostation-isotype-${k}-${s}.png`, s);
-  for (const k of Object.keys(APPICONS)) png(`public/brand/neostation-appicon-${k}.svg`, `neostation-appicon-${k}-${s}.png`, s, s);
-}
+// PNGs are named after their SVG plus the width, and published both in the kit and in public/brand/png/.
+const PNG_SIZES = {
+  logo: [600, 1200, 2400],
+  isotype: [256, 512, 1024],
+  appicon: [256, 512, 1024],
+};
+fs.mkdirSync("public/brand/png", { recursive: true });
+const png = (svgName, w, square) => {
+  const out = `${svgName.replace(/\.svg$/, "")}-${w}.png`;
+  execFileSync("rsvg-convert", ["-w", String(w), ...(square ? ["-h", String(w)] : []), `public/brand/${svgName}`, "-o", `public/brand/png/${out}`]);
+  fs.copyFileSync(`public/brand/png/${out}`, `${kit}/png/${out}`);
+};
+for (const f of ["neostation-logo.svg", "neostation-logo-light.svg", "neostation-logo-mono-ink.svg", "neostation-logo-mono-bone.svg"]) for (const w of PNG_SIZES.logo) png(f, w);
+for (const k of Object.keys(ISOTYPES)) for (const w of PNG_SIZES.isotype) png(`neostation-isotype-${k}.svg`, w);
+for (const k of Object.keys(APPICONS)) for (const w of PNG_SIZES.appicon) png(`neostation-appicon-${k}.svg`, w, true);
 fs.writeFileSync(`${kit}/README.txt`, `NeoStation brand kit
 
 Logo

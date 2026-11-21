@@ -71,14 +71,14 @@ const platforms = [
     isLinux: true,
     links: [
       {
-        label: "Download for Linux (x64)",
+        label: "Download x64",
         url: linuxX64Link,
         primary: true,
         recommended: false,
         dataKey: "linux-x64",
       },
       {
-        label: "Download for Linux (ARM64)",
+        label: "Download ARM64",
         url: linuxArm64Link,
         primary: false,
         recommended: false,
@@ -185,37 +185,36 @@ const defaultDownload = { key: "windows", label: "Download for Windows", url: wi
           <a href="#all-platforms" class="btn btn-secondary btn-lg">Other platforms</a>
         </div>
         <p class="mt-4 font-mono text-xs break-all text-bone-3" data-primary-file></p>
-    <Fragment slot="aside">
-      <dl class="border-t border-line font-mono text-sm">
-        <div class="flex items-baseline justify-between gap-6 border-b border-line py-3">
-          <dt class="text-bone-3">Version</dt>
-          <dd class="text-right text-bone" data-release-version>{latestVersion}</dd>
-        </div>
-        <div class="flex items-baseline justify-between gap-6 border-b border-line py-3">
-          <dt class="text-bone-3">Released</dt>
-          <dd class="text-right text-bone" data-release-date>{releaseDate}</dd>
-        </div>
-        <div class="flex items-baseline justify-between gap-6 border-b border-line py-3">
-          <dt class="text-bone-3">Channel</dt>
-          <dd class="text-right text-bone">Latest stable beta</dd>
-        </div>
-        <div class="flex items-baseline justify-between gap-6 border-b border-line py-3">
-          <dt class="text-bone-3">Notes</dt>
-          <dd class="text-right">
-            <a
-              href={releaseUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              data-release-badge
-              class="inline-flex items-center gap-1.5 text-bone underline decoration-bone-3 underline-offset-4 hover:decoration-bone"
-            >
-              Release on GitHub
-              <Icon name="heroicons:arrow-up-right" class="h-3.5 w-3.5" aria-label="opens in a new tab" />
-            </a>
-          </dd>
-        </div>
-      </dl>
-    </Fragment>
+
+        <dl class="mt-10 grid max-w-[44rem] grid-cols-2 gap-x-8 gap-y-5 border-t border-line pt-6 sm:grid-cols-4">
+          <div>
+            <dt class="label">Version</dt>
+            <dd class="mt-1.5 font-mono text-sm text-bone" data-release-version>{latestVersion}</dd>
+          </div>
+          <div>
+            <dt class="label">Released</dt>
+            <dd class="mt-1.5 font-mono text-sm text-bone" data-release-date>{releaseDate}</dd>
+          </div>
+          <div>
+            <dt class="label">Channel</dt>
+            <dd class="mt-1.5 font-mono text-sm text-bone">Stable beta</dd>
+          </div>
+          <div>
+            <dt class="label">Notes</dt>
+            <dd class="mt-1.5 font-mono text-sm">
+              <a
+                href={releaseUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-release-badge
+                class="inline-flex items-center gap-1.5 text-bone underline decoration-bone-3 underline-offset-4 hover:decoration-bone"
+              >
+                On GitHub
+                <Icon name="heroicons:arrow-up-right" class="h-3.5 w-3.5" aria-label="opens in a new tab" />
+              </a>
+            </dd>
+          </div>
+        </dl>
   </PageHero>
 
   <!-- All platforms -->
@@ -225,7 +224,7 @@ const defaultDownload = { key: "windows", label: "Download for Windows", url: wi
       <h2 class="heading text-h2 lg:col-span-8">Every file in the release, for every device.</h2>
     </div>
 
-    <div class="mt-12 hidden grid-cols-[12rem_1fr_10rem_auto] gap-x-6 border-b border-line pb-3 md:grid md:px-3">
+    <div class="mt-12 hidden gap-x-6 border-b border-line pb-3 md:grid md:px-3 md:grid-cols-[11rem_minmax(0,1fr)_10rem_19rem]">
       <span class="label">Platform</span>
       <span class="label">Requirements</span>
       <span class="label">Package</span>
@@ -237,11 +236,11 @@ const defaultDownload = { key: "windows", label: "Download for Windows", url: wi
         const keys = links.map((l) => l.dataKey).filter(Boolean).join(" ");
         return (
           <li class="border-b border-line py-6 md:px-3" data-platform-row={keys}>
-            <div class="grid gap-x-6 gap-y-3 md:grid-cols-[12rem_1fr_10rem_auto] md:items-center">
-              <div class="flex items-center gap-3">
+            <div class="grid gap-x-6 gap-y-3 md:items-center md:grid-cols-[11rem_minmax(0,1fr)_10rem_19rem]">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <Icon name={p.icon} class="h-5 w-5 shrink-0 text-bone-2" aria-hidden="true" />
                 <span class="text-[1.125rem] font-semibold">{p.name}</span>
-                <span class="label hidden whitespace-nowrap text-start" data-platform-marker>This device</span>
+                <span class="label hidden basis-full whitespace-nowrap pl-8 text-start" data-platform-marker>This device</span>
               </div>
               <span class="font-mono text-sm text-bone">{p.requirements}</span>
               <span class="font-mono text-sm text-bone-2">{packages[p.name]}</span>
@@ -260,7 +259,7 @@ const defaultDownload = { key: "windows", label: "Download for Windows", url: wi
               </div>
             </div>
             {p.note && (
-              <p class="mt-3 max-w-[44rem] text-sm text-bone-3 md:ml-[12rem] md:pl-6">
+              <p class="mt-3 max-w-[44rem] text-sm text-bone-3 md:ml-[11rem] md:pl-6">
                 <span set:html={p.note} />
               </p>
             )}
