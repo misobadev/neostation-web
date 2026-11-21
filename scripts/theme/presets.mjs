@@ -37,6 +37,11 @@ const THEMES = [
 	["horizon", "Horizon"],
 	["dmg", "DMG"],
 	["sixteen_bit", "16 Bits"],
+	["sunset", "Sunset"],
+	["neon_arcade", "Neon Arcade"],
+	["deep_sea", "Deep Sea"],
+	["matcha", "Matcha"],
+	["famicom", "Famicom"],
 ];
 
 function readTheme(id) {
