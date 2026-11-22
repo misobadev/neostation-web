@@ -2,6 +2,9 @@
 import { Icon } from "astro-icon/components";
 import Logo from "@/assets/brand/logo-horizontal.svg";
 import { menuLinks, siteConfig } from "@/site.config";
+import { DISCORD_URL, formatCount, getDiscordCounts } from "@/utils/discord";
+
+const discord = await getDiscordCounts();
 
 const links = menuLinks;
 const isActive = (path: string) => Astro.url.pathname === path || Astro.url.pathname === path.replace(/\/$/, "");
@@ -32,6 +35,17 @@ const isActive = (path: string) => Astro.url.pathname === path || Astro.url.path
     </ul>
 
     <div class="flex items-center gap-2">
+      <a
+        href={DISCORD_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex h-10 items-center gap-2 rounded-full border border-line px-3.5 text-sm font-medium text-bone-2 transition hover:border-[#5865f2] hover:text-bone"
+        aria-label={discord ? `Join our Discord, ${discord.members} members` : "Join our Discord"}
+        data-discord-badge
+      >
+        <Icon name="simple-icons:discord" class="h-4 w-4 text-[#5865f2]" aria-hidden="true" />
+        <span data-discord-count class="tabular-nums">{discord ? formatCount(discord.members) : "Discord"}</span>
+      </a>
       <a
         href="https://github.com/misobadev/neostation-frontend"
         target="_blank"
@@ -81,6 +95,17 @@ const isActive = (path: string) => Astro.url.pathname === path || Astro.url.path
 </header>
 
 <script>
+  import { fetchDiscordCounts, formatCount } from "@/utils/discord";
+
+  // The build bakes in a count; refresh it so the number stays current between deploys.
+  fetchDiscordCounts().then((counts) => {
+    if (!counts) return;
+    document.querySelectorAll<HTMLElement>("[data-discord-count]").forEach((el) => (el.textContent = formatCount(counts.members)));
+    document
+      .querySelectorAll("[data-discord-badge]")
+      .forEach((el) => el.setAttribute("aria-label", `Join our Discord, ${counts.members} members`));
+  });
+
   const toggle = document.querySelector<HTMLButtonElement>("[data-menu-toggle]");
   const menu = document.getElementById("mobile-menu");
 
