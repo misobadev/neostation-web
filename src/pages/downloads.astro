@@ -363,8 +363,15 @@ const defaultDownload = { key: "windows", label: "Download for Windows", url: wi
     function detectPlatform(): string | null {
       const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
       const ua = `${nav.userAgentData?.platform ?? ""} ${navigator.userAgent}`.toLowerCase();
+      // Touch-only device: no mouse or trackpad at all. Phones, tablets and handhelds
+      // that send a desktop user agent ("desktop site", large-screen Chrome, Firefox) still match.
+      const touchOnly =
+        navigator.maxTouchPoints > 0 && !window.matchMedia("(any-pointer: fine)").matches;
       if (/iphone|ipad|ipod/.test(ua)) return null;
+      // iPadOS reports itself as a Mac
+      if (/mac/.test(ua) && navigator.maxTouchPoints > 1) return null;
       if (/android/.test(ua)) return "android-apk";
+      if (touchOnly && /linux|x11|windows/.test(ua)) return "android-apk";
       if (/windows/.test(ua)) return "windows";
       if (/mac/.test(ua)) return "macos";
       if (/linux|x11|cros/.test(ua)) return "linux-x64";
