@@ -155,6 +155,28 @@ const integrations = [
         </li>
       ))}
     </ul>
+
+    <!-- Support: NeoStation is free and is kept going by the people who use it -->
+    <aside class="mt-10 grid gap-6 rounded-2xl border border-line bg-ink-2 p-6 md:p-8 lg:grid-cols-12 lg:items-center" aria-labelledby="support-title">
+      <div class="flex gap-5 lg:col-span-7">
+        <Icon name="heroicons:heart" class="mt-1 h-6 w-6 shrink-0 text-start" aria-hidden="true" />
+        <div>
+          <h2 id="support-title" class="text-h3 font-bold">Free and open source, kept going by its players.</h2>
+          <p class="mt-2 max-w-[38rem] text-bone-2">
+            NeoStation has no ads and no paywall. If you enjoy it, a donation on Patreon goes a long way: it pays for
+            the servers and the time to keep improving it. Sharing it with your friends helps just as much.
+          </p>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-3 lg:col-span-5 lg:justify-end">
+        <a href="https://www.patreon.com/cw/NeoStation" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-lg">
+          <Icon name="simple-icons:patreon" class="h-4 w-4" aria-hidden="true" />Support on Patreon
+        </a>
+        <button type="button" class="btn btn-ghost btn-lg cursor-pointer" data-share>
+          <Icon name="heroicons:share" class="h-5 w-5" aria-hidden="true" /><span data-share-label>Share NeoStation</span>
+        </button>
+      </div>
+    </aside>
   </section>
 
   <!-- Setup -->
@@ -285,6 +307,26 @@ const integrations = [
 </PageLayout>
 
 <script>
+  // Share: the system share sheet where there is one, otherwise copy the link.
+  function initShare() {
+    const btn = document.querySelector<HTMLButtonElement>("[data-share]");
+    const label = btn?.querySelector("[data-share-label]");
+    if (!btn || !label) return;
+    const data = { title: "NeoStation", text: "All your retro games on every screen you own. Free and open source.", url: "https://neostation.dev/" };
+    btn.addEventListener("click", async () => {
+      if (navigator.share) {
+        try { await navigator.share(data); } catch { /* closed by the user */ }
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(data.url);
+        label.textContent = "Link copied";
+        setTimeout(() => (label.textContent = "Share NeoStation"), 2000);
+      } catch { window.open(data.url, "_blank"); }
+    });
+  }
+  initShare();
+
   function initSlider() {
     const root = document.querySelector<HTMLElement>("[data-slider]");
     if (!root) return;
